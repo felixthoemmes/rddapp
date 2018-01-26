@@ -1,6 +1,6 @@
 rddapp
 ==================================================
-[![Travis-CI Build Status](https://travis-ci.com/zejin/RDD.svg?token=h8mzag8cm4Jo3UpxzTas&branch=master)](https://travis-ci.org/felixthoemmes/rddapp.svg?branch=master)
+[![Travis-CI Build Status](https://travis-ci.org/felixthoemmes/rddapp.svg?branch=master)](https://travis-ci.org/felixthoemmes/rddapp.svg?branch=master)
 
 
 Overview
