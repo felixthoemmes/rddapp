@@ -1,0 +1,78 @@
+Package: rddapp
+Title: Regression Discontinuity Design Application
+Version: 1.0.0
+Date: 2018-01-23
+Authors@R: c(
+    person("Ze", "Jin", role = c("aut"),
+           email = "zj58@cornell.edu"),
+    person("Wang", "Liao", role = c("aut"),
+           email = "wl483@cornell.edu"),
+    person("Felix", "Thoemmes", role = c("aut", "cre"),
+           email = "fjt36@cornell.edu"),
+    person("Drew", "Dimmery", role = c("ctb"),
+           email = "drewd@nyu.edu",
+           comment = "Implementation of functions in R package rdd"),
+    person("Bastiaan", "Quast", role = c("ctb"),
+           email = "bquast@gmail.com",
+           comment = "Implementation of functions in R package rddtools"),
+    person("Matthieu", "Stigler", role = c("ctb"),
+           comment = "Implementation of functions in R package rddtools")
+    )                      
+Description: Estimation of both single- and multiple-assignment Regression Discontinuity Designs 
+    (RDDs). Provides both parametric (global) and non-parametric (local) estimation choices for
+    both sharp and fuzzy designs, along with power analysis and assumption checks. 
+    Introductions to the underlying logic and analysis of RDDs are in 
+    Thistlethwaite, D. L., Campbell, D. T. (1960) <doi:10.1037/h0044319> and
+    Lee, D. S., Lemieux, T. (2010) <doi:10.1257/jel.48.2.281>.
+Depends:
+    R (>= 3.2.3)
+Imports:
+    AER (>= 1.2-5),
+    sandwich (>= 2.3-4),
+    lmtest (>= 0.9-35),
+    Formula (>= 1.2-1),
+    shiny (>= 0.14)
+Suggests:
+    rdd (>= 0.57),
+    rddtools (>= 0.4.0),
+    foreign (>= 0.8-67),
+    devtools (>= 1.12.0),
+    testthat (>= 1.0.2),
+    roxygen2 (>= 5.0.1),
+    knitr (>= 1.14),
+    rmarkdown (>= 1.1.9012),
+    DT (>= 0.2)
+VignetteBuilder: knitr
+License: GPL (>= 2)
+LazyData: true
+RoxygenNote: 6.0.1
+Collate: 
+    'attr_check.R'
+    'bw_ik09.R'
+    'bw_ik12.R'
+    'data.R'
+    'wt_kern.R'
+    'dc_test.R'
+    'treat_assign.R'
+    'mfrd_est.R'
+    'var_center.R'
+    'rd_est.R'
+    'mrd_est.R'
+    'mrd_impute.R'
+    'mrd_power.R'
+    'mrd_sens_bw.R'
+    'mrd_sens_cutoff.R'
+    'plot.mfrd.R'
+    'predict.rd.R'
+    'plot.rd.R'
+    'print.mfrd.R'
+    'print.rd.R'
+    'rd_impute.R'
+    'rd_power.R'
+    'rd_sens_bw.R'
+    'rd_sens_cutoff.R'
+    'rd_type.R'
+    'rddapp-package.R'
+    'sens_plot.R'
+    'shiny_run.R'
+    'summary.rd.R'

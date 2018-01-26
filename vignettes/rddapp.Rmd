@@ -1,0 +1,12 @@
+---
+title: "Using the RDD app"
+author: "Felix Thoemmes"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the RDD app}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The rddapp package (and the accompaning ShinyRDD RShiny app) can be used for the analysis of regression-discontinuity designs (RDDs). The package offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. It is built on and inspired by the work of Drew Dimmery (RDD), Matthieu Stigler & Bastiaan Quast (rddtools), and Sebastian Calonico, Matias D. Cattaneo, Max H. Farrell &, Rocio Titiunik (rdrobust). 

@@ -1,0 +1,11 @@
+library(testthat)
+# library(AER)
+# library(sandwich)
+# library(lmtest)
+# library(Formula)
+library(rddapp)
+library(rdd)
+library(rddtools)
+library(foreign)
+
+test_check("rddapp")

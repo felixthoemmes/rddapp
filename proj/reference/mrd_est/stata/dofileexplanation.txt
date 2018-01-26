@@ -1,0 +1,19 @@
+1) Set your local directory (replace the code for setting up the local directory under Step 1, and run the do files for each of the programs. 
+
+"Simdata" is a program to create simulated data. 
+"Trueeffects" is a program to estimate the "true" treatment effects for each of the treatment frontiers, and the average treatment effect. 
+"s_mv12" is a program to estimate treatment effects using the frontier approach
+"centering" is a program to estimate average treatment effects using the centering approach
+"singleav" is a program to estimate frontier treatment effects using the univariate approach
+"bwopt" is a program to select bandwidth for non-parametric estimates based on Imbens & Kalyanaraman's (2009) algorithm. 
+"IVRD" is an IV approach using the wald estimator. 
+
+(i apologize in advance that the programs may not be the most efficiently programmed ...)
+
+2) Set metric and scale of simulated assignment variables, and the true functional form of the response surface. Run "simdata" program. 
+
+3) Estimate "true" treatment effects for the R and M frontiers, and for the frontier average treatment effect. 
+
+4) Estimate treatment effects using each of the four approaches. 
+
+Finally, I have included the latest draft of the paper which was recently accepted in JEBS. Hopefully, the code that I have provided here will help you write the program to analyze your MRDD. Are you having difficulty with modeling the response function with three assignment variables? I expect that as the number of assignment variables increase, the more difficult it will be to model the correct response surface. 

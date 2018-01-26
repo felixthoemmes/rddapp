@@ -1,0 +1,91 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Volumes/Data/rdd/reference/bandwidth/rd_log_09aug4.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}17 Feb 2017, 12:43:23
+{txt}
+{com}. 
+. 
+. 
+. /*  example of fuzzy regression discontinuity design */
+. /* read in data */
+. infile y w x z1 z2 z3 using art_fuzzy_rd.txt, clear
+{txt}(2,000 observations read)
+
+{com}. 
+. /* display summary statistics */
+. summ
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 11}y {c |}{res}      2,000    .8514133    2.238817    -6.4845     8.4516
+{txt}{space 11}w {c |}{res}      2,000       .3275    .4694187          0          1
+{txt}{space 11}x {c |}{res}      2,000    .0332528    .9900492    -3.3996     3.2124
+{txt}{space 10}z1 {c |}{res}      2,000     .006862     .995141    -3.5221     3.6326
+{txt}{space 10}z2 {c |}{res}      2,000    .0096877    1.027505    -3.5532     3.4005
+{txt}{hline 13}{c +}{hline 57}
+{space 10}z3 {c |}{res}      2,000   -.0242338    1.009812    -4.2151     3.6895
+{txt}
+{com}. 
+. /* estimate rd effect */
+. /* y is outcome */
+. /* x is forcing variable */
+. /* z1, z2, z3 are additional covariates */
+. /* w is treatment indicator */
+. /* c(0.5) implies that threshold is 0.5 */
+. 
+. rdob y x z1 z2 z3, c(0.5)  fuzzy(w)
+{res}{txt}optimal bandwidth(h_opt) = {res}.84015499
+{txt}RD point estimate = {res}1.0622666
+{txt}RD standard error = {res}.06672707
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/2v/g3rnlvyn4vq4kskjnclthrbw0000gn/T//SD87681.000000"
+{txt}
+{com}. rdob y x z1 z2 z3, c(0)  fuzzy(w)
+{res}{txt}optimal bandwidth(h_opt) = {res}.51018551
+{txt}RD point estimate = {res}6.5999966
+{txt}RD standard error = {res}25.12072
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/2v/g3rnlvyn4vq4kskjnclthrbw0000gn/T//SD87681.000000"
+{txt}
+{com}. clear
+{txt}
+{com}. /*  example of sharp regression discontinuity design */
+. 
+. infile y x  z1 z2 z3 z4 using art_sharp_rd.txt, clear
+{txt}(1,000 observations read)
+
+{com}. 
+. summ
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 11}y {c |}{res}      1,000    .8599701    2.437958    -6.1598     7.8408
+{txt}{space 11}x {c |}{res}      1,000   -.0159921    1.030868    -3.7989     3.6829
+{txt}{space 10}z1 {c |}{res}      1,000   -.0069933    1.005088    -2.6543     3.4578
+{txt}{space 10}z2 {c |}{res}      1,000    .0006841    .9642191    -3.2744     2.8882
+{txt}{space 10}z3 {c |}{res}      1,000   -.0175452    1.011192    -3.5851     3.7476
+{txt}{hline 13}{c +}{hline 57}
+{space 10}z4 {c |}{res}      1,000    .0067984    .9805332    -2.6127     3.2348
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/2v/g3rnlvyn4vq4kskjnclthrbw0000gn/T//SD87681.000000"
+{txt}
+{com}. rdob y x z1 z2 z3 z4, c(0)
+{res}{txt}optimal bandwidth(h_opt) = {res}.85903018
+{txt}RD point estimate = {res}-.13594639
+{txt}RD standard error = {res}.05370893
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. 
