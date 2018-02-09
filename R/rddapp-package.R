@@ -34,7 +34,7 @@
 #'
 #' @title Regression Discontinuity Design Application
 #'
-#' @author Ze Jin \email{zj58@@cornell.edu}, 
+#' @author Ze Jin \email{zj58@cornell.edu}, 
 #'   Liao Wang \email{wl483@cornell.edu},
 #'   Felix Thoemmes, \email{fjt36@cornell.edu}
 
