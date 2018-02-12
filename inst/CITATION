@@ -1,15 +1,13 @@
 citHeader("To cite rddapp in publications use:")
 
-citEntry(entry = "Article",
+citEntry(entry = "Manual",
   title        = "rddapp: Regression Discontinuity Design Application",
   author       = personList(as.person("Ze Jin"),
                    as.person("Wang Liao"),
                    as.person("Felix Thoemmes")),
-  journal      = "R package version",
   year         = "2018",
-  volume       = "1",
-  number       = "0",
-
+  note         = "R package version 1.0.",
+  
   textVersion  =
   paste("Ze Jin, Wang Liao, and Felix Thoemmes (2018).",
         "rddapp: Regression Discontinuity Design Application.",
