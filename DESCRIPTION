@@ -75,4 +75,6 @@ Collate:
     'rddapp-package.R'
     'sens_plot.R'
     'shiny_run.R'
+    'summary.mfrd.R'
+    'summary.mrd.R'
     'summary.rd.R'
