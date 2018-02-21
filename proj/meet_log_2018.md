@@ -14,3 +14,12 @@
 - Felix and Wenyu discussed the possiblity of writing a summary function for mrd_est objects (results of MRDD runs). Here is a pointer on how to write summary functions for custom classes: https://stackoverflow.com/questions/18684229/how-to-get-summary-to-work-with-custom-class-in-r
 
 - Felix will write some help file materials for Irena to check, edit, and integrate into the Shiny app
+
+
+## February, 21th
+
+- Irena and Felix met and discussed how to write the help manual of the shiny app. Irena will try to write a script that will compilea all help pages, and feed them into an R program that uses Shiny-specific commands to generate an html for us.
+
+- Felix will continue writing the help pages.
+
+- Irena and Felix also discussed the use the github projects pages. We will use them going forward to assign issues. 
