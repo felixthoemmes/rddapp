@@ -1,0 +1,88 @@
+---
+title: "rddapp shiny manual"
+author: "Felix Thoemmes"
+date: "January 20, 2018"
+output: html_document
+---
+
+"rddapp" is an R package with an RShiny application for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. 
+
+## Online use
+The Shiny environment of the "rddapp" can be accessed online, here: https://rddapp.shinyapps.io/shinyrdd/. Untested features will first be introduced to the beta version, which can be accessed online, here: https://rddapp.shinyapps.io/shinyrdd_beta/. 
+
+The online Shiny enviorment is completely point-and-click, and no programming in R is required. Data for analysis can be uploaded directly to the Shiny server. However, sensitive data should not be transferred over the Internet, and the use of an offline client is preferred. 
+
+## Offline use
+The easiest way to use the Shiny application offline, is to download the offical R package from CRAN (https://cran.r-project.org/web/packages/rddapp/index.html), and execute the function shiny_run(). This will load the Shiny enviroment in the local browser, without the need of being online, or transfering any data over the Internet. 
+
+## Interface
+At the very top of the Shiny app are three tabs, labeled *"Model"*, *"Power"*, and *"More"*. The Model tab contains all routines for estimation, the Power tab contains all routines for power analysis, and the More tab, contains this manual, and a simple "About" page.  
+
+## Model
+The model tab itself is subdivided into a data panel on the left, and a dynamic results panel on the right. The dynamic panel is not shown until data has been uploaded. 
+
+### Data
+Typically, the user will begin by uploading the data using the pull-down menu in the data upload tab. The choices are to upload either a .SAV file (native file format of SPSS), or a CSV file (comma separated values). For each of these two choices, the user can further fine-tune the data upload, by clicking on the small button (in the shape of a gear) at the top right. The gear button reveals additional options, and is updated dynamically based on user-chosen options. The "Browse" button appears automatically when the user chooses a .SAV or .CSV file. The Browse button opens a file explorer from which the user can navigate to the datafile for upload. 
+
+If the user selects an .SAV file for upload, the options under the gear button include whether value labels in SPSS should be read into the uploaded datafile. E.g., a user may have coded a categorical variable 0 and 1, and included value labels "male" and "female". If "Use Value Labels" is activated, the actual labels will be displayed, otherwise the numeric code will be used. 
+
+The option "Use User's Missing Value" instructs the program to code any user-specified missing values in SPSS to be recoded as NA in the datafile. 
+
+Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values). The user needs to provide the Imputation ID variable, and all analyses will then be performed on the multiply imputed datafile. In particular this means, that all analyses will be performed on each imputation, then estimates from the imputation will be averaged, and standard errors will be derived using Rubin's rules (1987), taking into account both the variation within imputations, and between imputations. *Is more detailed needed here? And if so, should it appear here, or in some sort of technical appendix??*
+
+If the user selects a .CSV file (comma separated values), the options under the gear button allow the user to specify exactly how the CSV file is structured. The user can specify whether certain values are enclosed in quotes (double, single, or none), what kind of separator is used between values (comma, semi-colon, tab, or whitespace), whether missing values are blank by default or whether a special character is used (e.g., NA), and whether the file includes a header in the first line that includes the variable names. Just as for .SAV files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID. 
+
+The application also ships with an example dataset, named "CARE". The dataset is a subsample of the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full dataset is hosted by ICPSR and can be accessed here [http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091](http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091). The example dataset contains the following variables:
+
+  1.) SUBJECT: An ID variable for each subject  
+  2.) DC_TRT: An indicator whether a child received the treatment or the control condition  
+  3.) MOMWAIS0: The IQ of the mother of the child measured at baseline  
+  4.) HRI0: A continuous index to assess whether a birth was high-risk  
+  5.) APGAR5: The APGAR score of the newborn infant  
+  6.) SBIQ48: The IQ of the child at two years  
+  7.) RDD1_TR: A constructed treatment indicator to demonstrate an RDD.
+  8.) RDD2_TR: A constructed treatment indicator to demonstrate a multiple-assignment RDD. 
+  
+The original study was a randomized experiment, but for the purposes of the example, we created an RDD out of this experiment, by selecting cases whose random treatment assignment coincided with an RDD-like decision rule. In particular, we assumed that an RDD could have been conducted in which children were assigned to the treatment condition, if and only if the IQ of the mother at baseline was 85 or lower. The treatment assignment of units under such an RDD is contained in the RDD1_TR variable. In a second example, we assumed that treatment was assigned based on a bi-variate decision rule, namely that children were assigned to the treatment if their mother's IQ was 85 or lower, or the APGAR score was 3 or lower. The resulting treatment assignment is stored in a variable called RDD2_TR. Using DC_TRT, the experimental benchmark estimate of the treatment on IQ at 2 years can be computed, and then compared with estimates that can be derived using an RDD with the treatment indicators RDD1_TR, and RDD2_TR, respectively. 
+*Should the description of the datafile appear here on in an appendix?*
+
+
+### Model specification
+Once the data are loaded, additional pull-down menus will appear. By default, pull-down boxes for the outcome variable, the assignment variable, and the treatment design will be shown directly underneath the data input box. 
+
+#### Outcome
+As the name implies, the outcome box allows the user to define the outcome variable. This is the variable that the researcher assumes is affected by the treatment. Clicking the gear button opens additional options related to the analysis of the outcome variable. Here, the user can specify which kernel should be used for the non-parametric (local linear fitting) analysis. By default, a triangular kernel is chosen, but the user can change this to a large variety of other kernels, described below. The kernels are used in the non-parametric estimation of the RDD that is described in more detail in the section on estimation. The kernels themselves can be described using the following kernel functions. 
+
+  1.) Triangular:   $K(u) = (1-|u|)$  
+  2.) Rectangular:  $K(u) = 1/2$  
+  3.) Epanechnikov: $K(u) = 3/4(1-u^2$)  
+  4.) Quartic:      $K(u) = 15/16(1-u^2)^2$  
+  5.) Triweight:    $K(u) = 35/32(1-u^2)^3$  
+  6.) Tricube:      $K(u) = 70/81(1-|u|^3)^3$  
+  7.) Gaussian:     $K(u) = 1/sqrt(2/pi^-1/2u^2)$  
+  8.) Cosine:       $K(u) = /pi/4cos(/pi/2)u$  
+  
+In line with recommendations of Imbens and Kalyanaraman (XXXX), we recommend the use of the triangular kernel. 
+
+*Check whether the new GUI actually still has kernels to choose from.*
+
+The second option under the outcome tab is the type of standard error that should be used. ShinyRDD supports a "usual" standard error, that assumes constant variance ($/sigma ^2 (X'X)^{-1}$). In addition, all types of standard errors that are included in the R package "sandwich" (Zeileis, 2017) are included. By default a heteroskedasticty-robust standard error (HC1) is chosen. For details on the specific choices of heteroskedasticty-robust standard errors, consult Zeileis, 2006. **Lastly, for clustered data, a standard error that is robust to clustering can be chosen. Here, a cluster ID needs to be provided by the user. A pull-down menu to input this clustering ID opens automatically upon choosing this type of standard error.**
+
+The last option under the outcome tab is called "auxiliary variables". In this pull-down menu, users can specify the use of auxiliary variables in the RDD. These variables are integrated in the regressions of the parameteric RDD. Purely linear terms are used for all auxiliary variables, and there is currently no implementation of adding non-linear terms. If users wanted to add non-linear terms, these would have to be created by hand first (e.g., polynomials) and entered as regular auxiliary variables. Further, by default the auxiliary variables will not be entered as interactive terms (interacting with treatment assignment). In a properly executed RDD, it should not be necessary to include auxiliary variables, but inclusion of them can in some instances increase  precision of parameter estimates, and thus statistical power. 
+
+#### Treatment Design
+ShinyRDD allows the user fine-grained control over the actual treatment assignment mechanism. The treatment variable is the variable that encodes which treatment was _actually_ received by the participants. In some designs the assignment rule, and the actually received treatment may not be identical. This variable is entered in the box labeled "Treatment receipt". 
+
+The treatment mechanism is described by (a series) of "if" statements. In the pull-down labelled "primary assignment" the user inputs the variable on which the assignment is based. **In the pull-down below, the user can choose under which condition the treatment was applied, and supply the value of the actual cut-off that was used to determine the assignment to either treatment or control condition. The user can further change the "smaller equals" and "larger equals" sign, by clicking on it. As an example, choosing an assignment variable and then selecting, "larger equals" with cut-off value 40, would mean that treatment was assigned to those individuals that were equal or larger to 40. Clicking the gear button, reveals one additional option. The user can specify whether individuals that were right at the cut-off were assigned to the treatment or control. By default, this option is clicked, but when unclicked, the "larger equal" sign (or "smaller equal" sign) turns to a strictly "larger" (or "smaller") sign.** 
+Clicking the small "plus" button opens another dynamic menu in which a second assignment variable can be defined. This option accommodates multiple-assignment RDDs, currently up to two assignment variables. All other options that were available for the first assignment variable are also available for the second assignment. 
+Finally, the user must specify a variable that contains information about the actual treatment that was received. This is necessary for designs in which the assigned treatment and the received treatment may not be identical, so-called "fuzzy" RDDs.
+
+
+### Data tab
+As soon as data are loaded, the "Data" tab is populated with a spreadsheet-like display of the data. Variable names are displayed at the top, and users can navigate through the data, and sort by each of the variables. This display is mainly for purposes of validating that the data were read in correctly. 
+As soon as the outcome, and the treatment assignment variables are defined, the data tab is further populated with two additional tables. 
+Table 1.1 shows descriptive statistics of the treatment variable (T), the assignment variable (A1 - and A2, is a second assignment was chosen), and the outcome variable (O). For each variable, three columns are reported: N (the sample size), M (the mean), and SD (the standard deviation). In addition, a small correlation matrix is shown on the side. The columns of this correlation matrix are labeled with T and O, indicating both treatment, and outcome variable. Within each corresponding row and column, the Pearson correlation coefficient among all three variables is shown in the lower triangle of the matrix. The information in the table can be downloaded as a .CSV file, by clicking on the small button in the upper left that looks like a notepad. 
+Table 1.2 summarizes the design of the RDD, and can serve as a check for the researcher that the design was correctly specified. The design summary consists of a tabulation of the sample sizes by treatment assignment, and actual received treatment. In the case of an RDD with a single assignment variable, the actual treatment is displayed in the columns **(with labels control and treatment)**, and the assignment variable (along with the cut-offs) is displayed in the rows. In a sharp RDD (a design in which assigned and received treatment always coincide), the off-diagonal cell counts are always zero. In fuzzy designs, the off-diagonal elements will contain sample sizes of incorrectly classified individuals (treatment assignment and received treatment do not coincide). A parameter $/pi$ is displayed, which is simply the probability of receiving treatment, conditional on being on either side of the threshold. This is computed as a simple conditional probability, P(T=1|A1), and no parametric model is being used to estimate this quantity. 
+
+If a second assignment variable is specified, the table is expanded, and an additional column is added. All combinations of cut-offs are displayed as single rows, with their respective sample sizes, and the estimated $/pi$ parameter. 
+ShinyRDD determines for each dataset, and each given input, whether the design is sharp, or fuzzy, and whether one or two assignment variables were used. In cases, in which one assignment variable does not alter any of the assigned treatment that were based on the first assignment variable, it notes that the second assignment variable is redundant, and call this an "ineffective assignment". 
