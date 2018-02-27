@@ -18,11 +18,17 @@
 ## Attempt 3: Load HTML header and body separately using tags function
 # includeHTML('help_page_content/help_page_full.html')
 # tags$head(includeHTML("help_page_content/help_head.html"))
-# tags$body(includeHTML("help_page_content/help_body.html"))
+tags$body(includeHTML("help_page_content/help_body.html"))
 # tags$body(includeHTML("help_page_content/help_page_full.html"))
 
 ## Attempt 4: read HTML as character string from .txt file
-filename <- "help_page_content/help_head.txt"
-tags$head(HTML(readChar(filename, file.info(filename)$size)))
-filename <- "help_page_content/help_body.txt"
-tags$body(HTML(readChar(filename, file.info(filename)$size)))
+# filename.head <- "help_page_content/help_head.txt"
+# filename.body <- "help_page_content/help_body.txt"
+# tags$html(tags$head(HTML(readChar(filename.head, file.info(filename.head)$size))),
+#           tags$body(HTML(readChar(filename.body, file.info(filename.body)$size)))
+#           )
+
+## Attempt 5: using iframe
+# tags$iframe(srcdoc='help_page_content/help_page_full.html',
+#             seamless=TRUE)
+# tags$iframe(src='http://www.google.com', scrolling='yes')
