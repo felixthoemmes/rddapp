@@ -22,6 +22,7 @@ The easiest way to use the Shiny application offline is to download the official
 
 ## Interface
 At the very top of the Shiny app are three tabs, labeled *"Model"*, *"Power"*, and *"More"*:
+
 * the Model tab contains all estimation modules;
 * the Power tab contains all power analysis modules;
 * the More tab contains a Help page (with this manual), as well as a simple "About" page with software author information and references.  
@@ -31,15 +32,21 @@ The model tab is subdivided into a data panel on the left, and a dynamic results
 
 ### Data
 Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled "Data"). First, the user must specify the data file type. The choices are:
+
 * a .SAV file (native file format of SPSS);
 * a .CSV file (comma separated values).
-For each of these two choices, the user can further fine-tune the data upload, by clicking on the small button (in the shape of a gear) at the top right of the Data panel. The gear button reveals additional options, and is updated dynamically based on user-chosen options. The "Browse" button appears automatically when the user chooses a .SAV or .CSV file. The Browse button opens a file explorer from which the user can navigate to the data file for upload.
 
-If the user selects an .SAV file for upload, the options under the gear button include whether value labels in SPSS should be read into the uploaded datafile. E.g., a user may have coded a categorical variable 0 and 1, and included value labels "male" and "female". If "Use Value Labels" is activated, the actual labels will be displayed, otherwise the numeric code will be used.
+The "Browse" button appears automatically when the user chooses a .SAV or .CSV file, and opens a file explorer from which the user can navigate to the data file for upload on their system.
 
-The option "Use User's Missing Value" instructs the program to code any user-specified missing values in SPSS to be recoded as NA in the datafile.
+For each of the two file types, the user can further fine-tune the data upload by clicking on the small button at the top right of the Data panel (in the shape of a gear). The gear button reveals additional options, and is updated dynamically based on user-chosen options.
+
+#### .SAV file options
+
+If the user selects an .SAV file for upload, these options include whether value labels in SPSS should be read into the uploaded datafile: e.g., a user may have coded a categorical variable 0 and 1, and included value labels "male" and "female". If "Use Value Labels" is activated, the actual labels will be displayed, otherwise numbers will be used. The option "Use User's Missing Value" instructs the program to code any user-specified missing values in SPSS to be recoded as NA in the datafile.
 
 Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values). The user needs to provide the Imputation ID variable, and all analyses will then be performed on the multiply imputed datafile. In particular this means, that all analyses will be performed on each imputation, then estimates from the imputation will be averaged, and standard errors will be derived using Rubin's rules (1987), taking into account both the variation within imputations, and between imputations. *Is more detailed needed here? And if so, should it appear here, or in some sort of technical appendix??*
+
+#### .CSV file options
 
 If the user selects a .CSV file (comma separated values), the options under the gear button allow the user to specify exactly how the CSV file is structured. The user can specify whether certain values are enclosed in quotes (double, single, or none), what kind of separator is used between values (comma, semi-colon, tab, or whitespace), whether missing values are blank by default or whether a special character is used (e.g., NA), and whether the file includes a header in the first line that includes the variable names. Just as for .SAV files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID.
 
