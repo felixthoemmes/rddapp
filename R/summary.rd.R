@@ -6,12 +6,13 @@
 #' @method summary rd
 #' 
 #' @param object An object of class \code{"rd"}, usually a result of a call to \code{\link{rd_est}}.
+#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
 #' @param digits Number of digits to display.
 #' @param ... Additional arguments.
 #' 
 #' @return \code{summary.rd} returns a list which has the following components:
 #' \item{coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-#'   SEs, z-values and p-values for each estimated bandwidth.}
+#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
 #' 
 #' @importFrom stats residuals
 #'
@@ -19,7 +20,7 @@
 #' 
 #' @export
 
-summary.rd <- function(object, digits = max(3, getOption("digits") - 3), ...) {
+summary.rd <- function(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...) {
   call.copy <- object$call
   if ("data" %in% names(call.copy) && length(call.copy$data) > 1) {
     call.copy$data <- "(.)"
@@ -80,16 +81,21 @@ summary.rd <- function(object, digits = max(3, getOption("digits") - 3), ...) {
   #                 object$est, object$se, object$z, object$p), nrow = m)
   # rownames(out) <- names(object$est)
 
+  alpha <- 1 - level
+  lower.CL <- object$est - qnorm(1-alpha/2) * object$se
+  upper.CL <- object$est + qnorm(1-alpha/2) * object$se
   if (object$impute) {
     out <- matrix(c(rep(object$bw, each = k), rep(object$obs, each = k), 
-      object$est, object$se, object$z, object$df, object$p), nrow = m)
-    colnames(out) <- c("Bandwidth", "Observations", "Estimate", "Std. Error", "t value", 
-      "df", "Pr(>|t|)")
+      object$est, object$se, lower.CL, upper.CL, object$z, object$df, object$p), nrow = m)
+    colnames(out) <- c("Bandwidth", "Observations", "Estimate", "Std. Error", 
+                       "lower.CL", "upper.CL",
+                       "t value", "df", "Pr(>|t|)")
   } else {
     out <- matrix(c(rep(object$bw, each = k), rep(object$obs, each = k), 
-      object$est, object$se, object$z, object$p), nrow = m)
-    colnames(out) <- c("Bandwidth", "Observations", "Estimate", "Std. Error", "z value", 
-      "Pr(>|z|)") 
+      object$est, object$se, lower.CL, upper.CL, object$z, object$p), nrow = m)
+    colnames(out) <- c("Bandwidth", "Observations", "Estimate", "Std. Error", 
+                       "lower.CL", "upper.CL",
+                       "z value", "Pr(>|z|)") 
   }
   
   rownames(out) <- names(object$est)
@@ -98,6 +104,7 @@ summary.rd <- function(object, digits = max(3, getOption("digits") - 3), ...) {
     quote = FALSE, print.gap = 2, right = FALSE)
   cat("---\n")
   cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+  cat("Confidence interval used: ", level, "\n\n")
   
   out <- list(coefficients = out)
   # class(out) <- "summary.rd"

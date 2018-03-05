@@ -4,10 +4,13 @@
 \alias{summary.mrd}
 \title{Summarize the Multivariate Regression Discontinuity}
 \usage{
-\method{summary}{mrd}(object, digits = max(3, getOption("digits") - 3), ...)
+\method{summary}{mrd}(object, level = 0.95, digits = max(3,
+  getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"mrd"}, usually a result of a call to \code{\link{mrd_est}}.}
+
+\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
 
 \item{digits}{Number of digits to display.}
 
@@ -17,11 +20,11 @@
 \code{summary.mrd} returns a list which has the following components depending on methods
 implemented in the \code{"mrd"} object:
 \item{center_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-  SEs, z-values and p-values for each estimated bandwidth.}
+  SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
 \item{univR_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-  SEs, z-values and p-values for each estimated bandwidth.}
+  SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
 \item{univM_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-  SEs, z-values and p-values for each estimated bandwidth.}
+  SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
 \item{front_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 for the complete model.}
 \item{front_ht_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 

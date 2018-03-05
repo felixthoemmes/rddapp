@@ -6,6 +6,7 @@
 #' @method summary mfrd
 #' 
 #' @param object An object of class \code{"mfrd"}, usually a result of a call to \code{\link{mfrd_est}}.
+#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
 #' @param digits Number of digits to display.
 #' @param ... Additional arguments.
 #' 
@@ -23,7 +24,7 @@
 #' 
 #' @export
 
-summary.mfrd <- function(object, digits = max(3, getOption("digits") - 3), ...) {
+summary.mfrd <- function(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...) {
   call.copy <- object$call
   if ("data" %in% names(call.copy) && length(call.copy$data) > 1) {
     call.copy$data <- "(.)"
@@ -42,12 +43,17 @@ summary.mfrd <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   cat("w1:", format(object$w[1], digits = digits), "\n")
   cat("w2:", format(object$w[2], digits = digits), "\n\n")
   
+  if ('ci' %in% names(object)){
+    alpha <- 1 - level
+    ci_boot <- apply(object$est_boot, 2, quantile, na.rm = TRUE, probs = c(alpha/2, 1-alpha/2))
+  }
+  
   cat("Estimates for Complete Model:\n")
   
   if ('ci' %in% names(object)){
-    out <- matrix(c(object$est[1:3], t(object$ci[,1:3])), ncol = 3, byrow = FALSE)
+    out <- matrix(c(object$est[1:3], t(ci_boot[,1:3])), ncol = 3, byrow = FALSE)
     rownames(out) <- names(object$est[1:3])
-    colnames(out) <- c('Estimate', 'Lower Bound of 95% CI', 'Upper Bound of 95% CI')
+    colnames(out) <- c('Estimate', 'lower.CL', 'upper.CL')
   }else{
     out <- matrix(object$est[1:3], ncol = 1)
     rownames(out) <- names(object$est[1:3])
@@ -61,9 +67,9 @@ summary.mfrd <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   cat("Estimates for Heterogeneous Treatment Model:\n")
   
   if ('ci' %in% names(object)){
-    ht_out <- matrix(c(object$est[4:6], t(object$ci[,4:6])), ncol = 3, byrow = FALSE)
+    ht_out <- matrix(c(object$est[4:6], t(ci_boot[,4:6])), ncol = 3, byrow = FALSE)
     rownames(ht_out) <- names(object$est[4:6])
-    colnames(ht_out) <- c('Estimate', 'Lower Bound of 95% CI', 'Upper Bound of 95% CI')
+    colnames(ht_out) <- c('Estimate', 'lower.CL', 'upper.CL')
   }else{
     ht_out <- matrix(object$est[4:6], ncol = 1)
     rownames(ht_out) <- names(object$est[4:6])
@@ -77,9 +83,9 @@ summary.mfrd <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   cat("Estimates for Treatment Only Model:\n")
   
   if ('ci' %in% names(object)){
-    t_out <- matrix(c(object$est[7:9], t(object$ci[,7:9])), ncol = 3, byrow = FALSE)
+    t_out <- matrix(c(object$est[7:9], t(ci_boot[,7:9])), ncol = 3, byrow = FALSE)
     rownames(t_out) <- names(object$est[7:9])
-    colnames(t_out) <- c('Estimate', 'Lower Bound of 95% CI', 'Upper Bound of 95% CI')
+    colnames(t_out) <- c('Estimate', 'lower.CL', 'upper.CL')
   }else{
     t_out <- matrix(object$est[7:9], ncol = 1)
     rownames(t_out) <- names(object$est[7:9])
@@ -89,6 +95,9 @@ summary.mfrd <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   print.default(apply(t_out, 2, function(x) format(x, digits = digits)), 
                 quote = FALSE, print.gap = 2, right = FALSE)
   cat("\n")
+  if ('ci' %in% names(object)){
+    cat("Confidence interval used: ", level, "\n\n")
+  }
   
   all_out <- list(coefficients = out, ht_coefficients = ht_out, t_coefficients = t_out)
   

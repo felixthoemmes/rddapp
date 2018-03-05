@@ -4,10 +4,13 @@
 \alias{summary.mfrd}
 \title{Summarize the Multivariate Frontier Regression Discontinuity}
 \usage{
-\method{summary}{mfrd}(object, digits = max(3, getOption("digits") - 3), ...)
+\method{summary}{mfrd}(object, level = 0.95, digits = max(3,
+  getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"mfrd"}, usually a result of a call to \code{\link{mfrd_est}}.}
+
+\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
 
 \item{digits}{Number of digits to display.}
 
