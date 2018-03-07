@@ -18,7 +18,7 @@
 ## Attempt 3: Load HTML header and body separately using tags function
 # includeHTML('help_page_content/help_page_full.html')
 # tags$head(includeHTML("help_page_content/help_head.html"))
-tags$body(includeHTML("help_page_content/help_body.html"))
+#######tags$body(includeHTML("help_page_content/help_body.html"))
 # tags$body(includeHTML("help_page_content/help_page_full.html"))
 
 ## Attempt 4: read HTML as character string from .txt file
@@ -32,3 +32,8 @@ tags$body(includeHTML("help_page_content/help_body.html"))
 # tags$iframe(srcdoc='help_page_content/help_page_full.html',
 #             seamless=TRUE)
 # tags$iframe(src='http://www.google.com', scrolling='yes')
+tags$iframe(src="help_page_full.html",
+            width="100%",
+            height=550,
+            frameborder=0,
+            seamless="seamless")
