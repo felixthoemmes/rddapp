@@ -21,13 +21,13 @@ The online Shiny environment is completely point-and-click, and no programming i
 The easiest way to use the Shiny application offline is to download the official R package from [CRAN](https://cran.r-project.org/web/packages/rddapp/index.html), load the package in an R console, and execute the function shiny_run(). This will load the Shiny environment in the local browser, meaning that an online connection is not required (or used), and no data is transferred over the Internet.
 
 ## Interface
-At the very top of the Shiny app are three tabs, labeled *"Model"*, *"Power"*, and *"More"*:
+At the very top of the Shiny app are three tabs: [Model](#Model), *"Power"*, and *"More"*:
 
 * the Model tab contains all estimation modules;
 * the Power tab contains all power analysis modules;
 * the More tab contains a Help page (with this manual), as well as a simple "About" page with software author information and references.  
 
-## Model
+## Model {#Model}
 The model tab is subdivided into a data panel on the left, and a dynamic results panel on the right. The dynamic panel is not shown until data has been uploaded by the user.
 
 ### Data

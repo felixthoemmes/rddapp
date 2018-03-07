@@ -238,17 +238,38 @@ div.tocify {
 </div>
 <div id="interface" class="section level2">
 <h2>Interface</h2>
-<p>At the very top of the Shiny app are three tabs, labeled <em>“Model”</em>, <em>“Power”</em>, and <em>“More”</em>: * the Model tab contains all estimation modules; * the Power tab contains all power analysis modules; * the More tab contains a Help page (with this manual), as well as a simple “About” page with software author information and references.</p>
+<p>At the very top of the Shiny app are three tabs: <a href="#Model">Model</a>, <em>“Power”</em>, and <em>“More”</em>:</p>
+<ul>
+<li>the Model tab contains all estimation modules;</li>
+<li>the Power tab contains all power analysis modules;</li>
+<li>the More tab contains a Help page (with this manual), as well as a simple “About” page with software author information and references.</li>
+</ul>
 </div>
-<div id="model" class="section level2">
+<div id="Model" class="section level2">
 <h2>Model</h2>
 <p>The model tab is subdivided into a data panel on the left, and a dynamic results panel on the right. The dynamic panel is not shown until data has been uploaded by the user.</p>
 <div id="data" class="section level3">
 <h3>Data</h3>
-<p>Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled “Data”). First, the user must specify the data file type. The choices are: * a .SAV file (native file format of SPSS); * a .CSV file (comma separated values). For each of these two choices, the user can further fine-tune the data upload, by clicking on the small button (in the shape of a gear) at the top right of the Data panel. The gear button reveals additional options, and is updated dynamically based on user-chosen options. The “Browse” button appears automatically when the user chooses a .SAV or .CSV file. The Browse button opens a file explorer from which the user can navigate to the data file for upload.</p>
-<p>If the user selects an .SAV file for upload, the options under the gear button include whether value labels in SPSS should be read into the uploaded datafile. E.g., a user may have coded a categorical variable 0 and 1, and included value labels “male” and “female”. If “Use Value Labels” is activated, the actual labels will be displayed, otherwise the numeric code will be used.</p>
-<p>The option “Use User’s Missing Value” instructs the program to code any user-specified missing values in SPSS to be recoded as NA in the datafile.</p>
+<p>Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled “Data”). First, the user must specify the data file type. The choices are:</p>
+<ul>
+<li>a .SAV file (native file format of SPSS);</li>
+<li>a .CSV file (comma separated values).</li>
+</ul>
+<p>The “Browse” button appears automatically when the user chooses a .SAV or .CSV file, and opens a file explorer from which the user can navigate to the data file for upload on their system.</p>
+<p>For each of the two file types, the user can further fine-tune the data upload by clicking on the small button at the top right of the Data panel (in the shape of a gear). The gear button reveals additional options, and is updated dynamically based on user-chosen options.</p>
+<div id="sav-file-options" class="section level4">
+<h4>.SAV file options</h4>
+<p>If the user selects an .SAV file for upload, these options include whether value labels in SPSS should be read into the uploaded datafile: e.g., a user may have coded a categorical variable 0 and 1, and included value labels “male” and “female”. If “Use Value Labels” is activated, the actual labels will be displayed, otherwise numbers will be used. The option “Use User’s Missing Value” instructs the program to code any user-specified missing values in SPSS to be recoded as NA in the datafile.</p>
 <p>Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values). The user needs to provide the Imputation ID variable, and all analyses will then be performed on the multiply imputed datafile. In particular this means, that all analyses will be performed on each imputation, then estimates from the imputation will be averaged, and standard errors will be derived using Rubin’s rules (1987), taking into account both the variation within imputations, and between imputations. <em>Is more detailed needed here? And if so, should it appear here, or in some sort of technical appendix??</em></p>
+</div>
+<div id="csv-file-options" class="section level4">
+<h4>.CSV file options</h4>
+<p>The “Use Value Labels” option allows a user to specify whether value labels from SPSS should be read into the uploaded datafile. For instance, a user may have coded a categorical variable 0 and 1 in SPSS, and included value labels “male” and “female”. If “Use Value Labels” is selected, the actual labels will be displayed in the rddapp’s analyses. Otherwise, the numbers will be used.</p>
+<p>The “Use User’s Missing Value” option instructs rddapp to code any user-specified missing values from SPSS as the symbol NA in the datafile (which has a <a href="https://www.statmethods.net/input/missingdata.html">special meaning</a> in R). <em>IP: what is the alternative if this option is left unchecked but there are missing values?</em></p>
+<p>Finally, the user can indicate that the uploaded file has been multiply imputed, typically to deal with missing values. The user needs to provide the Imputation ID variable, and all analyses will then be performed on the multiply imputed datafile. In particular, this means that all analyses will be performed on each imputation, then estimates from the imputation will be averaged, and standard errors will be derived using Rubin’s rules (1987), taking into account both the variation within imputations, and between imputations.</p>
+<p><em>Is more detailed needed here? And if so, should it appear here, or in some sort of technical appendix??</em></p>
+<p><em>IP: I think that anyone who’s done this in SPSS ought to know about it, so it’s sufficient to remind then by linking to an existing resource about this in SPSS, like <a href="https://www.uvm.edu/~dhowell/StatPages/Missing_Data/MissingDataSPSS.html">this</a> or <a href="https://www.ibm.com/support/knowledgecenter/en/SSLVMB_24.0.0/spss/mva/idh_idd_mi_variables.html">this</a>. I’m not sure if those are the best resources, but I included them for demonstration</em></p>
+<p><em>IP: Stopped here</em></p>
 <p>If the user selects a .CSV file (comma separated values), the options under the gear button allow the user to specify exactly how the CSV file is structured. The user can specify whether certain values are enclosed in quotes (double, single, or none), what kind of separator is used between values (comma, semi-colon, tab, or whitespace), whether missing values are blank by default or whether a special character is used (e.g., NA), and whether the file includes a header in the first line that includes the variable names. Just as for .SAV files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID.</p>
 <p>The application also ships with an example dataset, named “CARE”. The dataset is a subsample of the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full dataset is hosted by ICPSR and can be accessed here <a href="http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091" class="uri">http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091</a>. The example dataset contains the following variables:</p>
 <p>1.) SUBJECT: An ID variable for each subject<br />
@@ -259,6 +280,7 @@ div.tocify {
 6.) SBIQ48: The IQ of the child at two years<br />
 7.) RDD1_TR: A constructed treatment indicator to demonstrate an RDD. 8.) RDD2_TR: A constructed treatment indicator to demonstrate a multiple-assignment RDD.</p>
 <p>The original study was a randomized experiment, but for the purposes of the example, we created an RDD out of this experiment, by selecting cases whose random treatment assignment coincided with an RDD-like decision rule. In particular, we assumed that an RDD could have been conducted in which children were assigned to the treatment condition, if and only if the IQ of the mother at baseline was 85 or lower. The treatment assignment of units under such an RDD is contained in the RDD1_TR variable. In a second example, we assumed that treatment was assigned based on a bi-variate decision rule, namely that children were assigned to the treatment if their mother’s IQ was 85 or lower, or the APGAR score was 3 or lower. The resulting treatment assignment is stored in a variable called RDD2_TR. Using DC_TRT, the experimental benchmark estimate of the treatment on IQ at 2 years can be computed, and then compared with estimates that can be derived using an RDD with the treatment indicators RDD1_TR, and RDD2_TR, respectively. <em>Should the description of the datafile appear here on in an appendix?</em></p>
+</div>
 </div>
 <div id="model-specification" class="section level3">
 <h3>Model specification</h3>
