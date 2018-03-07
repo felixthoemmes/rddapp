@@ -28,3 +28,9 @@
 
 - Irena briefed us on her attempts to integrate compiled Markdown into the shiny app. She is still looking for a solution. 
 - Wenyu and Felix checked the newly written summary functions. They seemed to work well. We decided to also add some confidence interval functionality to the summary output, and Felix created an issue on github. 
+
+## March, 7th
+
+- Wenyu and Felix met and discussed the recent changes to the summary function. 
+- Felix also pointed out some minor improvements in the dc_est function and the manual in the package; those were all converted to issues on the project page. 
+- Felix added a download counter to our github page. Average downloads per month are at 240
