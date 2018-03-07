@@ -65,6 +65,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
         c1 = c1, c2 = c2, tr = tr[index], t.design = t.design, local = local, 
         ngrid = ngrid, margin = margin)$est
     }
+    out$est_boot = est_boot
     se_boot <- apply(est_boot, 2, sd, na.rm = TRUE)
     ci_boot <- apply(est_boot, 2, quantile, na.rm = TRUE, probs = c(.025,.975))
     out$se <- se_boot

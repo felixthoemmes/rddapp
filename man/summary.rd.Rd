@@ -4,10 +4,13 @@
 \alias{summary.rd}
 \title{Summarize the Regression Discontinuity}
 \usage{
-\method{summary}{rd}(object, digits = max(3, getOption("digits") - 3), ...)
+\method{summary}{rd}(object, level = 0.95, digits = max(3,
+  getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"rd"}, usually a result of a call to \code{\link{rd_est}}.}
+
+\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
 
 \item{digits}{Number of digits to display.}
 
@@ -16,7 +19,7 @@
 \value{
 \code{summary.rd} returns a list which has the following components:
 \item{coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-  SEs, z-values and p-values for each estimated bandwidth.}
+  SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
 }
 \description{
 \code{summary.rd} is a \code{summary} method for class \code{"rd"}

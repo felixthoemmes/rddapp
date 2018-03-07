@@ -106,7 +106,7 @@ input_fileUI = function(id) {
             condition = sprintf("input['%s'] == 'sav'", ns('type')),
             checkboxGroupInput(ns('sav_options'),label = NULL,
               choices = c(
-                'Use Value Lables' = 'sav_vallabel',
+                'Use Value Labels' = 'sav_vallabel',
                 'Use User\'s Missing Value' = 'sav_missing'
               )
             ),

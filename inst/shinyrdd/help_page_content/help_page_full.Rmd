@@ -48,6 +48,18 @@ Finally, the user can indicate that the uploaded file has been multiply imputed 
 
 #### .CSV file options
 
+The "Use Value Labels" option allows a user to specify whether value labels from SPSS should be read into the uploaded datafile. For instance, a user may have coded a categorical variable 0 and 1 in SPSS, and included value labels "male" and "female". If "Use Value Labels" is selected, the actual labels will be displayed in the rddapp's analyses. Otherwise, the numbers will be used.
+
+The "Use User's Missing Value" option instructs rddapp to code any user-specified missing values from SPSS as the symbol NA in the datafile (which has a [special meaning](https://www.statmethods.net/input/missingdata.html) in R). *IP: what is the alternative if this option is left unchecked but there are missing values?*
+
+Finally, the user can indicate that the uploaded file has been multiply imputed, typically to deal with missing values. The user needs to provide the Imputation ID variable, and all analyses will then be performed on the multiply imputed datafile. In particular, this means that all analyses will be performed on each imputation, then estimates from the imputation will be averaged, and standard errors will be derived using Rubin's rules (1987), taking into account both the variation within imputations, and between imputations.
+
+*Is more detailed needed here? And if so, should it appear here, or in some sort of technical appendix??*
+
+*IP: I think that anyone who's done this in SPSS ought to know about it, so it's sufficient to remind then by linking to an existing resource about this in SPSS, like [this](https://www.uvm.edu/~dhowell/StatPages/Missing_Data/MissingDataSPSS.html) or [this](https://www.ibm.com/support/knowledgecenter/en/SSLVMB_24.0.0/spss/mva/idh_idd_mi_variables.html). I'm not sure if those are the best resources, but I included them for demonstration*
+
+*IP: Stopped here* 
+
 If the user selects a .CSV file (comma separated values), the options under the gear button allow the user to specify exactly how the CSV file is structured. The user can specify whether certain values are enclosed in quotes (double, single, or none), what kind of separator is used between values (comma, semi-colon, tab, or whitespace), whether missing values are blank by default or whether a special character is used (e.g., NA), and whether the file includes a header in the first line that includes the variable names. Just as for .SAV files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID.
 
 The application also ships with an example dataset, named "CARE". The dataset is a subsample of the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full dataset is hosted by ICPSR and can be accessed here [http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091](http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091). The example dataset contains the following variables:
