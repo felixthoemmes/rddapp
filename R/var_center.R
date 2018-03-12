@@ -2,6 +2,8 @@
 #' 
 #' \code{var_center} computes the univariate assignment variable X based on the cutoffs of 
 #  two assignment variables X1, X2.
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::var_center().
 #'
 #' @param x Data frame or matrix of two assignment variables,
 #'   where the 1st column is X1, the 2nd column is X2

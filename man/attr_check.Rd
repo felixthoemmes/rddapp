@@ -24,4 +24,6 @@ A list with the missing data numbers and percentages for all variables
 \description{
 \code{attr_check} reports missing data on treatment variable, assignment variable, and outcome.
 Currently it only supports the design with one assignment variable.
+This is an internal function and is typically not directly invoked by the user. 
+It can be accessed using the triple colon, as in rddapp:::attr_check().
 }

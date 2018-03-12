@@ -3,6 +3,8 @@
 #' \code{wt_kern} calculates the appropriate kernel weights for a vector. 
 #' This is useful when, for instance, one wishes to perform local regression.
 #' It is based on the \code{\link[rdd]{kernelwts}} function in the \pkg{rdd} package. 
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::wt_kern().
 #'
 #' @param X The input x values. This variable represents the axis along which kernel weighting 
 #'   should be performed.

@@ -3,6 +3,8 @@
 #' \code{bw_ik09} calculates the Imbens-Kalyanaraman (2009) optimal bandwidth
 #' for local linear regression in regression discontinuity designs.
 #' It is based on the \code{\link[rdd]{IKbandwidth}} function in the \pkg{rdd} package. 
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::bw_ik09().
 #' 
 #' @param X A numerical vector which is the running variable.
 #' @param Y A numerical vector which is the outcome variable.

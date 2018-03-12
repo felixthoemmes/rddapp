@@ -2,6 +2,8 @@
 #'
 #' \code{attr_check} reports missing data on treatment variable, assignment variable, and outcome.
 #' Currently it only supports the design with one assignment variable.
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::attr_check().
 #' 
 #' @param x1 A numeric object, the assignment variable.
 #' @param y A numeric object, the outcome variable, with the same dimensionality 

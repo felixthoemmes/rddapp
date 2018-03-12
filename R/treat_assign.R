@@ -2,6 +2,8 @@
 #' 
 #' \code{treat_assign} computes the treatment variable T based on the cutoff of 
 #' assignment variables X.
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::treat_assign().
 #'
 #' @param x The vector of assignment variable X.
 #' @param cut The cutoff of assignment variables X.
