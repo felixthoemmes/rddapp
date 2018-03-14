@@ -43,7 +43,7 @@ tagList(
         source(file.path('ui_elements', 'page_help.R'), local = T)$value
       ),
       # About Page
-      tabPanel("About", icon = icon('info-circle'),
+      tabPanel("About", icon = icon('info-circle'), style="height:100%;",
         source(file.path('ui_elements', 'page_about.R'), local = T)$value
       )
     )
