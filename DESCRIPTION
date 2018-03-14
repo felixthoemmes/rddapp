@@ -31,7 +31,8 @@ Imports:
     sandwich (>= 2.3-4),
     lmtest (>= 0.9-35),
     Formula (>= 1.2-1),
-    shiny (>= 0.14)
+    shiny (>= 0.14),
+    R.utils (>= 2.6.0)
 Suggests:
     rdd (>= 0.57),
     rddtools (>= 0.4.0),
@@ -46,7 +47,7 @@ VignetteBuilder: knitr
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 6.0.1
-Collate: 
+Collate:
     'attr_check.R'
     'bw_ik09.R'
     'bw_ik12.R'

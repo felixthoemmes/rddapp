@@ -9,7 +9,7 @@
 #' @param bw The bandwidth to use (by default uses bandwidth selection calculation 
 #'   from McCrary (2008)).
 #' @param verbose Logical flag specifying whether to print diagnostic information to 
-#'   the terminal (defaults to \code{FALSE}).
+#'   the terminal (defaults to \code{TRUE}).
 #' @param plot Logical flag indicating whether to plot the histogram and density estimations 
 #'   (defaults to \code{TRUE}). The user may wrap this function in additional graphical options 
 #'   to modify the plot.
@@ -18,6 +18,8 @@
 #'   When \code{TRUE}, \code{DCdensity} will return the additional information documented below.
 #' @param htest Logical flag indicating whether to return an \code{"htest"} object 
 #'   compatible with base R's hypothesis test output.
+#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
+#' @param digits Number of digits to display.
 #' @param ... Additional arguments affecting the plot. 
 #'
 #' @return If \code{ext.out} is \code{FALSE}, only the p value will be returned. 
@@ -39,8 +41,8 @@
 #'   Journal of Econometrics, 142(2), 698-714. 
 #'   \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.005}.
 #'
-#' @importFrom stats complete.cases sd lm coef predict pnorm setNames
-#' @importFrom graphics lines points axis box plot.new plot.window polygon
+#' @importFrom stats complete.cases sd lm coef predict pnorm setNames 
+#' @importFrom graphics lines points axis box plot.new plot.window polygon title
 #' @importFrom grDevices adjustcolor
 #'
 #' @include wt_kern.R
@@ -57,8 +59,9 @@
 #' x <- x + 2 * (runif(1000, -1, 1) > 0 & x < 0)
 #' dc_test(x, 0)
 
-dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, plot = TRUE,
-  ext.out = FALSE, htest = FALSE) {
+dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plot = TRUE,
+  ext.out = FALSE, htest = FALSE, level = 0.95, digits = max(3, getOption("digits") - 3)) {
+  runvar.name = deparse(substitute(runvar))
   runvar <- runvar[complete.cases(runvar)]
   # Grab some summary vars
   rn <- length(runvar)
@@ -68,6 +71,7 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
   if (missing(cutpoint)) {
     if (verbose) 
       cat("Assuming cutpoint of zero.\n")
+      cat("\n")
     cutpoint <- 0
   }
   
@@ -77,10 +81,12 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
   
   if (is.null(bin)) {
     bin <- 2 * rsd * rn^(-1/2)
-    if (verbose) 
-      cat("Using calculated bin size: ", sprintf("%.3f", bin), "\n")
   }
-  
+  if (verbose){
+    cat("Binwidth:\n")
+    cat(format(bin, digits = digits), "\n\n")    
+  }
+
   l <- floor((rmin - cutpoint) / bin) * bin + bin / 2 + cutpoint  # Midpoint of lowest bin
   r <- floor((rmax - cutpoint) / bin) * bin + bin / 2 + cutpoint  # Midpoint of highest bin
   lc <- cutpoint - (bin / 2)  # Midpoint of bin just left of breakpoint
@@ -90,13 +96,26 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
   binnum <- round((((floor((runvar - cutpoint)/bin) * bin + bin/2 + cutpoint) - l) / bin) + 1)
   
   # cellval stores the frequency/density of data in every binned cell
-  cellval <- rep(0, j) 
-  
-  for (i in seq(1, rn)) {
-    cnum <- binnum[i]
-    cellval[cnum] <- cellval[cnum] + 1
+  fillcellval = function(j, rn, binnum){
+    cellval <- tryCatch(rep(0, j), 
+                        error = function(e){
+                          e$message <- "Select a larger binwidth."
+                          stop(e)
+                        })
+    
+    for (i in seq(1, rn)) {
+      cnum <- binnum[i]
+      cellval[cnum] <- cellval[cnum] + 1
+    }
+    
+    cellval <- (cellval / rn) / bin
+    return(cellval)
   }
-  cellval <- (cellval / rn) / bin
+  cellval <- tryCatch(R.utils::withTimeout(fillcellval(j, rn, binnum), timeout = 30),
+                   TimeoutException = function(ex){
+                     cat('Timeout. Select a larger binwidth.')
+                     stop(ex)
+                   })
   
   cellmp <- seq(from = 1, to = j, by = 1)
   cellmp <- floor(((l + (cellmp - 1) * bin) - cutpoint) / bin) * bin + bin / 2 + cutpoint
@@ -114,7 +133,13 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
     cellmpright <- cellmp[rightofc:j]
     
     # Estimate 4th order polynomial to the left
-    P.lm <- lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), subset = cellmp < cutpoint)
+    P.lm <- tryCatch(R.utils::withTimeout(lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), 
+                                   subset = cellmp < cutpoint), 
+                                timeout = 30),
+                     TimeoutException = function(ex){
+                       cat('Timeout. Select a larger binwidth.')
+                       stop(ex)
+                     })
     mse4 <- summary(P.lm)$sigma^2
     lcoef <- coef(P.lm)
     fppleft <- 2 * lcoef[3] + 6 * lcoef[4] * cellmpleft + 12 * lcoef[5] * cellmpleft * 
@@ -122,7 +147,13 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
     hleft <- 3.348 * (mse4 * (cutpoint - l) / sum(fppleft * fppleft))^(1/5)
     
     # And to the right
-    P.lm <- lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), subset = cellmp >= cutpoint)
+    P.lm <- tryCatch(R.utils::withTimeout(lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), 
+                                    subset = cellmp >= cutpoint), 
+                                 timeout = 30),
+                     TimeoutException = function(ex){
+                       cat('Timeout. Select a larger binwidth.')
+                       stop(ex)
+                     })
     mse4 <- summary(P.lm)$sigma^2
     rcoef <- coef(P.lm)
     fppright <- 2 * rcoef[3] + 6 * rcoef[4] * cellmpright + 12 * rcoef[5] * cellmpright * 
@@ -130,54 +161,81 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
     hright <- 3.348 * (mse4 * (r - cutpoint) / sum(fppright * fppright))^(1/5)
     
     bw <- 0.5 * (hleft + hright)
-    if (verbose) 
-      cat("Using calculated bandwidth: ", sprintf("%.3f", bw), "\n")
+    if (is.nan(bw)){
+      stop("Select a smaller binwidth.")
+    }
+    
   }
-
+  if (verbose){
+    cat("Bandwidth:\n")
+    cat(format(bw, digits = digits), "\n\n")      
+  } 
+  
   if (sum(runvar > cutpoint - bw & runvar < cutpoint) == 0 | 
     sum(runvar < cutpoint + bw & runvar >= cutpoint) == 0) 
     stop("Insufficient data within the bandwidth.")
   if (plot) {
     # estimate density to either side of the cutpoint using a triangular kernel
-    d.l <- data.frame(cellmp = cellmp[cellmp < cutpoint], cellval = cellval[cellmp < cutpoint], 
-      dist = NA, est = NA, lwr = NA, upr = NA)
     pmin <- cutpoint - 2 * rsd
     pmax <- cutpoint + 2 * rsd
-    for (i in 1:nrow(d.l)) {
-      d.l$dist <- d.l$cellmp - d.l[i, "cellmp"]
-      w <- wt_kern(d.l$dist, 0, bw, kernel = "triangular")
-      newd <- data.frame(dist = 0)
-      pred <- predict(lm(cellval ~ dist, weights = w, data = d.l), interval = "confidence", 
-        newdata = newd)
-      d.l$est[i] <- pred[1]
-      d.l$lwr[i] <- pred[2]
-      d.l$upr[i] <- pred[3]
+    filld.l = function(cutpoint, bw, cellmp, cellval){
+      d.l <- data.frame(cellmp = cellmp[cellmp < cutpoint], cellval = cellval[cellmp < cutpoint], 
+                        dist = NA, est = NA, lwr = NA, upr = NA)
+      for (i in 1:nrow(d.l)) {
+        d.l$dist <- d.l$cellmp - d.l[i, "cellmp"]
+        w <- wt_kern(d.l$dist, 0, bw, kernel = "triangular")
+        newd <- data.frame(dist = 0)
+        pred <- predict(lm(cellval ~ dist, weights = w, data = d.l), interval = "confidence", 
+                        newdata = newd)
+        d.l$est[i] <- pred[1]
+        d.l$lwr[i] <- pred[2]
+        d.l$upr[i] <- pred[3]
+      }
+      return(d.l)
     }
-
-    d.r <- data.frame(cellmp = cellmp[cellmp >= cutpoint], cellval = cellval[cellmp >= cutpoint], 
-      dist = NA, est = NA, lwr = NA, upr = NA)
-    for (i in 1:nrow(d.r)) {
-      d.r$dist <- d.r$cellmp - d.r[i, "cellmp"]
-      w <- wt_kern(d.r$dist, 0, bw, kernel = "triangular")
-      newd <- data.frame(dist = 0)
-      pred <- predict(lm(cellval ~ dist, weights = w, data = d.r), interval = "confidence", 
-        newdata = newd)
-      d.r$est[i] <- pred[1]
-      d.r$lwr[i] <- pred[2]
-      d.r$upr[i] <- pred[3]
+    d.l <- tryCatch(R.utils::withTimeout(filld.l(cutpoint, bw, cellmp, cellval), timeout = 30),
+                    TimeoutException = function(ex){
+                      cat('Timeout. Select a larger binwidth.')
+                      stop(ex)
+                    })
+    
+    filld.r = function(cutpoint, bw, cellmp, cellval){
+      d.r <- data.frame(cellmp = cellmp[cellmp >= cutpoint], cellval = cellval[cellmp >= cutpoint], 
+                        dist = NA, est = NA, lwr = NA, upr = NA)
+      for (i in 1:nrow(d.r)) {
+        d.r$dist <- d.r$cellmp - d.r[i, "cellmp"]
+        w <- wt_kern(d.r$dist, 0, bw, kernel = "triangular")
+        newd <- data.frame(dist = 0)
+        pred <- predict(lm(cellval ~ dist, weights = w, data = d.r), interval = "confidence", 
+                        newdata = newd)
+        d.r$est[i] <- pred[1]
+        d.r$lwr[i] <- pred[2]
+        d.r$upr[i] <- pred[3]
+      }
+      return(d.r)
     }
-
+    d.r <- tryCatch(R.utils::withTimeout(filld.r(cutpoint, bw, cellmp, cellval), timeout = 30),
+                    TimeoutException = function(ex){
+                      cat('Timeout. Select a larger binwidth.')
+                      stop(ex)
+                    })
+    
     # plot to the left 
 
     # return(list(d.l,d.r))
     plot.new()
+    ylim <- c(0,  # Wang: Modified
+              max(c(cellval[cellmp <= pmax & cellmp >= pmin]), d.r$upr, d.l$upr))
+    if (any(is.na(ylim))){
+      stop("Error due to selected binwidth and bandwidth.")
+    }
     plot.window(xlim = range(runvar, na.rm = TRUE), 
-      ylim = c(0,  # Wang: Modified
-        max(c(cellval[cellmp <= pmax & cellmp >= pmin]), d.r$upr, d.l$upr))
+      ylim = ylim,
     )
     box()
     axis(1)
     axis(2)
+    title(xlab = runvar.name, ylab = "Density Estimates")
     
     # Wang: Plot CIs as area (polygon)
     d.l2 <- rbind(setNames(d.l[order(d.l$cellmp), c("cellmp", "lwr")], c("x", "y")),
@@ -237,10 +295,26 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE, pl
   p <- 2 * pnorm(abs(z), lower.tail = FALSE)
   
   if (verbose) {
-    cat("Log difference in heights is ", sprintf("%.3f", thetahat), " with SE ", 
-      sprintf("%.3f", sethetahat), "\n")
-    cat("  this gives a z-stat of ", sprintf("%.3f", z), "\n")
-    cat("  and a p value of ", sprintf("%.3f", p), "\n")
+    cat("Estimate for log difference in heights:\n")
+    stars <- if (is.na(p)) 
+      " " else if (p < 0.001) 
+        "***" else if (p < 0.01) 
+          "**" else if (p < 0.05) 
+            "*" else if (p < 0.1) 
+              "." else " "
+    alpha <- 1 - level
+    lower.CL <- thetahat - qnorm(1-alpha/2) * sethetahat
+    upper.CL <- thetahat + qnorm(1-alpha/2) * sethetahat
+    out <- matrix(c(thetahat, sethetahat, lower.CL, upper.CL, z, p), nrow = 1)
+    colnames(out) <- c("Estimate", "Std. Error", 
+                       "lower.CL", "upper.CL",
+                       "z value", "Pr(>|z|)") 
+    rownames(out) <- ''
+    print.default(cbind(format(out, digits = digits), " " = stars), 
+                  quote = FALSE, print.gap = 2, right = FALSE)
+    cat("---\n")
+    cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+    cat("Confidence interval used: ", level, "\n\n")
   }
 
   if (ext.out) 

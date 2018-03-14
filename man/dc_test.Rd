@@ -4,8 +4,9 @@
 \alias{dc_test}
 \title{McCrary Sorting Test}
 \usage{
-dc_test(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE,
-  plot = TRUE, ext.out = FALSE, htest = FALSE)
+dc_test(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE,
+  plot = TRUE, ext.out = FALSE, htest = FALSE, level = 0.95,
+  digits = max(3, getOption("digits") - 3))
 }
 \arguments{
 \item{runvar}{Numerical vector of the running variable.}
@@ -18,7 +19,7 @@ dc_test(runvar, cutpoint, bin = NULL, bw = NULL, verbose = FALSE,
 from McCrary (2008)).}
 
 \item{verbose}{Logical flag specifying whether to print diagnostic information to 
-the terminal (defaults to \code{FALSE}).}
+the terminal (defaults to \code{TRUE}).}
 
 \item{plot}{Logical flag indicating whether to plot the histogram and density estimations 
 (defaults to \code{TRUE}). The user may wrap this function in additional graphical options 
@@ -30,6 +31,10 @@ When \code{TRUE}, \code{DCdensity} will return the additional information docume
 
 \item{htest}{Logical flag indicating whether to return an \code{"htest"} object 
 compatible with base R's hypothesis test output.}
+
+\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
+
+\item{digits}{Number of digits to display.}
 
 \item{...}{Additional arguments affecting the plot.}
 }
