@@ -15,7 +15,8 @@
 #' }
 
 shiny_run <- function(app_name = "shinyrdd") {
-  app_path <- system.file("inst", app_name, package = "rddapp")
+  # app_path <- system.file("inst", app_name, package = "rddapp")
+  app_path <- system.file(app_name, package = "rddapp")
   if (app_path == "") {
     stop("The Shiny app does not exist in the package.")
   }
