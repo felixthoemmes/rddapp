@@ -55,6 +55,9 @@
 #'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
 #'   if X1 is less than or equal to its cutoff.
 #'   The 2nd entry is for X2.
+#' @param stop.on.error Logical. If \code{TRUE} (the default), removes bootstraps which cause
+#'   error in the \code{integrate} function, and resample till the specified number of 
+#'   bootstrap samples are acquired.
 #'
 #' @return \code{mrd_est} returns an object of \link{class} "\code{mrd}".
 #'
@@ -90,7 +93,7 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   kernel = "triangular", se.type = "HC1", cluster = NULL, verbose = FALSE, 
   less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 2500, 
   margin = 0.03, boot = NULL, method = c("center", "univ", "front"), 
-  t.design = c("l", "l")) {
+  t.design = c("l", "l"), stop.on.error = TRUE) {
   call <- match.call()
   
   # if data is not specified, look for variables in the formula from the global environment
@@ -303,11 +306,12 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         eval(bquote(
           mfrd_est(y = Y, x1 = X1, x2 = X2, c1 = .(cutpoint[1]), c2 = .(cutpoint[2]), 
             tr = NULL, t.design = .(t.design), local = .(local), ngrid = ngrid, 
-            margin = margin, boot = boot, cluster = cluster)
+            margin = margin, boot = boot, cluster = cluster, stop.on.error = stop.on.error)
         ))
     )
   } 
   
+  cat('\n')
   o$call <- call
   return(o)
 }

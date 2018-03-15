@@ -6,7 +6,7 @@
 \usage{
 mfrd_est(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
   local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL,
-  cluster = NULL)
+  cluster = NULL, stop.on.error = TRUE)
 }
 \arguments{
 \item{y}{The outcome variable (continuous).}
@@ -45,6 +45,10 @@ of sample points on each assignment variable.}
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
 anything specified in \code{se.type}. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
+
+\item{stop.on.error}{Logical. If \code{TRUE} (the default), removes bootstraps which cause
+error in the \code{integrate} function, and resample till the specified number of 
+bootstrap samples are acquired.}
 }
 \value{
 \code{mfrd_est} returns an object of \link{class} "\code{mfrd}".
