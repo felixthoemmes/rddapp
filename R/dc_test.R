@@ -20,6 +20,9 @@
 #'   compatible with base R's hypothesis test output.
 #' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
 #' @param digits Number of digits to display.
+#' @param timeout Numerical value specifying the maximum number of seconds (defaults to 30 seconds) 
+#'   expressions in the function are allowed to run. Specify \code{Inf} to run all expressions
+#'   to completion.
 #' @param ... Additional arguments affecting the plot. 
 #'
 #' @return If \code{ext.out} is \code{FALSE}, only the p value will be returned. 
@@ -60,7 +63,8 @@
 #' dc_test(x, 0)
 
 dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plot = TRUE,
-  ext.out = FALSE, htest = FALSE, level = 0.95, digits = max(3, getOption("digits") - 3)) {
+  ext.out = FALSE, htest = FALSE, level = 0.95, digits = max(3, getOption("digits") - 3),
+  timeout = 30) {
   runvar.name = deparse(substitute(runvar))
   runvar <- runvar[complete.cases(runvar)]
   # Grab some summary vars
@@ -111,9 +115,9 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
     cellval <- (cellval / rn) / bin
     return(cellval)
   }
-  cellval <- tryCatch(R.utils::withTimeout(fillcellval(j, rn, binnum), timeout = 30),
+  cellval <- tryCatch(R.utils::withTimeout(fillcellval(j, rn, binnum), timeout = timeout),
                    TimeoutException = function(ex){
-                     cat('Timeout. Select a larger binwidth.')
+                     cat('Timeout. Select a larger binwidth or increase timeout argument.')
                      stop(ex)
                    })
   
@@ -135,9 +139,9 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
     # Estimate 4th order polynomial to the left
     P.lm <- tryCatch(R.utils::withTimeout(lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), 
                                    subset = cellmp < cutpoint), 
-                                timeout = 30),
+                                timeout = timeout),
                      TimeoutException = function(ex){
-                       cat('Timeout. Select a larger binwidth.')
+                       cat('Timeout. Select a larger binwidth or increase timeout argument.')
                        stop(ex)
                      })
     mse4 <- summary(P.lm)$sigma^2
@@ -149,9 +153,9 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
     # And to the right
     P.lm <- tryCatch(R.utils::withTimeout(lm(cellval ~ poly(cellmp, degree = 4, raw = TRUE), 
                                     subset = cellmp >= cutpoint), 
-                                 timeout = 30),
+                                 timeout = timeout),
                      TimeoutException = function(ex){
-                       cat('Timeout. Select a larger binwidth.')
+                       cat('Timeout. Select a larger binwidth or increase timeout argument.')
                        stop(ex)
                      })
     mse4 <- summary(P.lm)$sigma^2
@@ -193,9 +197,9 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
       }
       return(d.l)
     }
-    d.l <- tryCatch(R.utils::withTimeout(filld.l(cutpoint, bw, cellmp, cellval), timeout = 30),
+    d.l <- tryCatch(R.utils::withTimeout(filld.l(cutpoint, bw, cellmp, cellval), timeout = timeout),
                     TimeoutException = function(ex){
-                      cat('Timeout. Select a larger binwidth.')
+                      cat('Timeout. Select a larger binwidth or increase timeout argument.')
                       stop(ex)
                     })
     
@@ -214,9 +218,9 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
       }
       return(d.r)
     }
-    d.r <- tryCatch(R.utils::withTimeout(filld.r(cutpoint, bw, cellmp, cellval), timeout = 30),
+    d.r <- tryCatch(R.utils::withTimeout(filld.r(cutpoint, bw, cellmp, cellval), timeout = timeout),
                     TimeoutException = function(ex){
-                      cat('Timeout. Select a larger binwidth.')
+                      cat('Timeout. Select a larger binwidth or increase timeout argument.')
                       stop(ex)
                     })
     
