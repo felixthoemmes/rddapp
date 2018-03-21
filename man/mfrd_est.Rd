@@ -39,7 +39,7 @@ which is also the number of zero grid points on each assignment variable.}
 \item{margin}{The range of grid points beyond the minimum and maximum
 of sample points on each assignment variable.}
 
-\item{boot}{The number of bootstrap samples to obtain standard deviation of estimates.}
+\item{boot}{The number of bootstrap samples to obtain standard error of estimates.}
 
 \item{cluster}{An optional vector specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
@@ -62,6 +62,6 @@ set.seed(12345)
 x1 <- runif(1000, -1, 1)
 x2 <- runif(1000, -1, 1)
 cov <- rnorm(1000)
-y <- 3 + 2 * x1 + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
+y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0)
 }

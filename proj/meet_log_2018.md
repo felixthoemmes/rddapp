@@ -34,3 +34,6 @@
 - Wenyu and Felix met and discussed the recent changes to the summary function. 
 - Felix also pointed out some minor improvements in the dc_est function and the manual in the package; those were all converted to issues on the project page. 
 - Felix added a download counter to our github page. Average downloads per month are at 240
+
+## March, 21st
+ - Wenyu fixed many of the issues from the projects page. One thing that became apparent was that the mfrd_est function has an argument for tr (treatment assignment), however this argument does nothing. It's intended use was to support fuzzy assigment, but we don't support that model (MRDD frontier approach) - yet. 

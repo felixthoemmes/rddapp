@@ -23,7 +23,7 @@
 #'   which is also the number of zero grid points on each assignment variable.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
-#' @param boot The number of bootstrap samples to obtain standard deviation of estimates.
+#' @param boot The number of bootstrap samples to obtain standard error of estimates.
 #' @param cluster An optional vector specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
@@ -45,7 +45,7 @@
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
-#' y <- 3 + 2 * x1 + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
+#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0)
 
 mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),

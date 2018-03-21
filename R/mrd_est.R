@@ -45,7 +45,7 @@
 #'   which is also the number of zero grid points on each assignment variable.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
-#' @param boot The number of bootstrap samples to obtain standard deviation of estimates.
+#' @param boot The number of bootstrap samples to obtain standard error of estimates.
 #' @param method The method to estimate rd effect. Options are \code{"center"}, 
 #'   \code{"univ"}, \code{"front"}.
 #' @param t.design The treatment option according to design.
@@ -81,7 +81,7 @@
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
-#' y <- 3 + 2 * x1 + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
+#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' # centering
 #' mrd_est(y ~ x1 + x2 | cov, method = "center")
 #' # univariate
