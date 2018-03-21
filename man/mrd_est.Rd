@@ -68,7 +68,7 @@ which is also the number of zero grid points on each assignment variable.}
 \item{margin}{The range of grid points beyond the minimum and maximum
 of sample points on each assignment variable.}
 
-\item{boot}{The number of bootstrap samples to obtain standard deviation of estimates.}
+\item{boot}{The number of bootstrap samples to obtain standard error of estimates.}
 
 \item{method}{The method to estimate rd effect. Options are \code{"center"}, 
 \code{"univ"}, \code{"front"}.}

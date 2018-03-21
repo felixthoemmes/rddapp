@@ -23,7 +23,7 @@
 #'   which is also the number of zero grid points on each assignment variable.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
-#' @param boot The number of bootstrap samples to obtain standard deviation of estimates.
+#' @param boot The number of bootstrap samples to obtain standard error of estimates.
 #' @param cluster An optional vector specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 

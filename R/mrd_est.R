@@ -45,7 +45,7 @@
 #'   which is also the number of zero grid points on each assignment variable.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
-#' @param boot The number of bootstrap samples to obtain standard deviation of estimates.
+#' @param boot The number of bootstrap samples to obtain standard error of estimates.
 #' @param method The method to estimate rd effect. Options are \code{"center"}, 
 #'   \code{"univ"}, \code{"front"}.
 #' @param t.design The treatment option according to design.
