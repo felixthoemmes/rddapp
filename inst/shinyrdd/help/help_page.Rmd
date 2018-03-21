@@ -83,7 +83,7 @@ The application also includes an example dataset, named "CARE". The dataset is a
 
 The original study was a randomized experiment, but for the purposes of the example, we created an RDD by selecting cases whose random treatment assignment coincided with an RDD-like decision rule. In particular, we assumed that an RDD could have been conducted in which children were assigned to the treatment condition if and only if the IQ of the mother at baseline was 85 or lower. The treatment assignment of units under such an RDD is contained in the `RDD1_TR` variable. In a second example, we assumed that treatment was assigned based on a bi-variate decision rule, namely that children were assigned to the treatment if their mother's IQ was 85 or lower, or the `APGAR` score was 3 or lower. The resulting treatment assignment is stored in a variable called `RDD2_TR`. Using `DC_TRT`, the experimental benchmark estimate of the treatment on IQ at 2 years can be computed, and then compared with estimates that can be derived using an RDD with the treatment indicators `RDD1_TR`, and `RDD2_TR`, respectively.
 *Should the description of the datafile appear here on in an appendix?*
-*IP: I like the idea of having the example dataset in the main help file because you can't really play with the example data without this infomation... I wonder if we should somehow link to this part of the web page in the app when the user selects the CARE data?* 
+*IP: I like the idea of having the example dataset in the main help file because you can't really play with the example data without this infomation... I wonder if we should somehow link to this part of the web page in the app when the user selects the CARE data?*
 
 ### Model specification
 Once the data are loaded, additional pull-down menus will appear. By default, pull-down boxes for the outcome variable, the assignment variable, and the treatment design will be shown directly underneath the data input box.
@@ -130,7 +130,13 @@ If a second assignment variable, A2, is specified, a second column is added to d
 
 Under the table, ShinyRDD determines whether the design is sharp or fuzzy. In the case that one assignment variable does not alter any treatment assignment based on the other assignment variable, the app notes that the assignment variable in question is redundant, and call this an "ineffective assignment".
 
-*IP: The sections below obviously haven't been written up yet, but I've included placeholder headings and anchors because they've been hyperlinked above.* 
+### Assumptions
+
+The "Assumptions" tab is populated at the same time that the data are loaded, and the design is specified. The tab is divided into two sections. Figure 2.1. displays the results of the McCrary sorting test. This test is designed to detect discontinuities in the assignment variable. Under a valid RDD it is assumed that no such discontinuities exist, as they would imply the possibility that participants assigned themselves towards one side of the cut-off - a violation of the assumption that treatment is entirely determined by the assignment rule. The McCrary sorting test operates by estimating densities of binned data on each side of the cut-off, and then compares the height of the density curves at the cut-off. A test statistic (theta), standard error (se), z-value (z), and a p-value (p) are shown in the section labeled "Test summary". In most situations, users would like to see that this test is not significant, meaning that the hypothesis of no violation of the assumption fails to get rejected.
+
+The user also has the option to fine-tune the sorting test. By default a specific bin width (for binning individual data points), and bandwidth (for the non-parametric density estimation) are chosen. These defaults were suggested by McCrary, and they depend on the particular dataset. Increasing the bin size will result in fewer points being used to estimate the density, whereas decreasing the bin size will result in more binned points. Likewise, an increase in the bandwidth will tend to make the density estimates more smooth, whereas a decrease in bandwidth will make the densities less smooth. Plots and test statistics are automatically updated as soon as these values are changed. Both plot and summary statistics can be downloaded by the user using the small buttons in the top right corner.
+
+*IP: The sections below obviously haven't been written up yet, but I've included placeholder headings and anchors because they've been hyperlinked above.*
 
 ---
 
@@ -143,5 +149,3 @@ Under the table, ShinyRDD determines whether the design is sharp or fuzzy. In th
 ---
 
 ## More {#More}
-
-
