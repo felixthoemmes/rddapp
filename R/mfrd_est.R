@@ -45,7 +45,7 @@
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
-#' y <- 3 + 2 * x1 + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
+#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0)
 
 mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
