@@ -4,9 +4,9 @@
 \alias{mfrd_est}
 \title{Multivariate Frontier Regression Discontinuity Estimation}
 \usage{
-mfrd_est(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
-  local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL,
-  cluster = NULL, stop.on.error = TRUE)
+mfrd_est(y, x1, x2, c1, c2, t.design = c("l", "l"), local = 0.15,
+  ngrid = 2500, margin = 0.03, boot = NULL, cluster = NULL,
+  stop.on.error = TRUE)
 }
 \arguments{
 \item{y}{The outcome variable (continuous).}
@@ -17,9 +17,8 @@ mfrd_est(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
 
 \item{c1}{The cutoff of assignment variable 1.}
 
-\item{c2}{The cutoff of assignment variable 2.}
-
-\item{tr}{The treatment variable used to compare with the derived treatment 
+\item{c2}{The cutoff of assignment variable 2.
+# @param tr The treatment variable used to compare with the derived treatment 
 based on assignments and cutoffs.}
 
 \item{t.design}{The treatment option according to design.

@@ -8,8 +8,8 @@
 #' @param x2 The assignment variable 2.
 #' @param c1 The cutoff of assignment variable 1.
 #' @param c2 The cutoff of assignment variable 2.
-#' @param tr The treatment variable used to compare with the derived treatment 
-#'   based on assignments and cutoffs.
+#' # @param tr The treatment variable used to compare with the derived treatment 
+#' based on assignments and cutoffs.
 #' @param t.design The treatment option according to design.
 #'   The 1st entry is for x1: \code{"g"} means treatment is assigned 
 #'   if x1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
@@ -48,12 +48,12 @@
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0)
 
-mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
+mfrd_est <- function(y, x1, x2, c1, c2, t.design = c("l", "l"),
   local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL, cluster = NULL,
   stop.on.error = TRUE) {
   call <- match.call()
 
-  out <- mfrd_est_single(y = y, x1 = x1, x2 = x2, c1 = c1, c2 = c2, tr = tr, 
+  out <- mfrd_est_single(y = y, x1 = x1, x2 = x2, c1 = c1, c2 = c2, 
     t.design = t.design, local = local, ngrid = ngrid, margin = margin)
   # keep track of number of bad bootstrap samples
   badboot <- 0
@@ -68,7 +68,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
         index <- clus_boot(length(y), cluster = cluster)
       }
       tryboot <- try(mfrd_est_single(y = y[index], x1 = x1[index], x2 = x2[index], 
-        c1 = c1, c2 = c2, tr = tr[index], t.design = t.design, local = local, 
+        c1 = c1, c2 = c2, t.design = t.design, local = local, 
         ngrid = ngrid, margin = margin, stop.on.error = TRUE)$est, silent = TRUE)
       if (stop.on.error){
         if (inherits(tryboot, "try-error")){
@@ -81,7 +81,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
         if (inherits(tryboot, "try-error")){
           badboot <- badboot + 1
           est_boot[b, ] <- mfrd_est_single(y = y[index], x1 = x1[index], x2 = x2[index], 
-                                           c1 = c1, c2 = c2, tr = tr[index], t.design = t.design, 
+                                           c1 = c1, c2 = c2, t.design = t.design, 
                                            local = local, ngrid = ngrid, margin = margin, 
                                            stop.on.error = stop.on.error)$est
         }else{
@@ -117,7 +117,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"),
 }
 
 ## single estimate
-mfrd_est_single <- function(y, x1, x2, c1, c2, tr = NULL, t.design = c("l", "l"), 
+mfrd_est_single <- function(y, x1, x2, c1, c2, t.design = c("l", "l"), 
   local = 0.15, ngrid = 2500, margin = 0.03, stop.on.error = stop.on.error) {
   # call <- match.call()
 

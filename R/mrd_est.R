@@ -305,7 +305,7 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o[["front"]] <- list(tau_MRD = 
         eval(bquote(
           mfrd_est(y = Y, x1 = X1, x2 = X2, c1 = .(cutpoint[1]), c2 = .(cutpoint[2]), 
-            tr = NULL, t.design = .(t.design), local = .(local), ngrid = ngrid, 
+            t.design = .(t.design), local = .(local), ngrid = ngrid, 
             margin = margin, boot = boot, cluster = cluster, stop.on.error = stop.on.error)
         ))
     )
