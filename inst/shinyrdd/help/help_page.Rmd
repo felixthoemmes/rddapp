@@ -1,5 +1,5 @@
 ---
-title: "rddapp shiny manual"
+title: "`rddapp` shiny manual"
 # output: html_fragment # displays in app
 # includes TOC but doesn't display in app
 output:
@@ -8,30 +8,37 @@ output:
    toc_depth: 3
    toc_float:
      collapsed: false
+   css: styles.css
 ---
 
-"rddapp" is an R package with an RShiny application for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
+`rddapp` is an R package with an RShiny application for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
 
 ## Online use
-The Shiny environment of the "rddapp" can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta version, which can also be accessed [online](https://rddapp.shinyapps.io/shinyrdd_beta/).
+The Shiny environment of the `rddapp` can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta version, which can also be accessed [online](https://rddapp.shinyapps.io/shinyrdd_beta/).
 
 The online Shiny environment is completely point-and-click, and no programming in R is required. Data for analysis can be uploaded directly to the Shiny server. However, sensitive data should not be transferred over the Internet, and the use of an offline client is preferred.
 
 ## Offline use
-The easiest way to use the Shiny application offline is to download the official R package from [CRAN](https://cran.r-project.org/web/packages/rddapp/index.html), load the package in an R console, and execute the function shiny_run(). This will load the Shiny environment in the local browser, meaning that an online connection is not required (or used), and no data is transferred over the Internet.
+The easiest way to use the Shiny application offline is to download the official R package from [CRAN](https://cran.r-project.org/web/packages/rddapp/index.html), load the package in an R console, and execute the function `shiny_run()`. This will load the Shiny environment in the local browser, meaning that an online connection is not required (or used), and no data is transferred over the Internet.
 
 ## Interface
-At the very top of the Shiny app are three tabs: [Model](#Model), [Power](#Power), and [More](#More):
+At the very top of the Shiny app are three tabs: [Model](#Model), [Power](#Power), and [More](#More).
 
-* the Model tab contains all estimation modules;
-* the Power tab contains all power analysis modules;
-* the More tab contains a Help page (with this manual), as well as a simple "About" page with software author information and references.  
+<img src="screenshots/navbar.png" alt="Navigation bar" class="screenshot">
+
+* the [Model](#Model) tab contains all estimation modules;
+* the [Power](#Power) tab contains all power analysis modules;
+* the [More](#More) tab contains a Help page (with this manual), as well as a simple "About" page with software author information and references.  
 
 ## Model {#Model}
 The model tab is subdivided into a data panel on the left, and a dynamic results panel on the right. The dynamic panel is not shown until data has been uploaded by the user.
 
 ### Data
-Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled "Data"). First, the user must specify the data file type. The choices are:
+Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled "Data"):
+
+<img src="screenshots/data-1.png" alt="Data upload panel" class="screenshot">
+
+First, the user must specify the data file type. The choices are:
 
 * a .SAV file (native file format of SPSS);
 * a .CSV file (comma separated values).
