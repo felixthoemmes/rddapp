@@ -89,3 +89,7 @@ Table 1.2 summarizes the design of the RDD, and can serve as a check for the res
 
 If a second assignment variable is specified, the table is expanded, and an additional column is added. All combinations of cut-offs are displayed as single rows, with their respective sample sizes, and the estimated $/pi$ parameter.
 ShinyRDD determines for each dataset, and each given input, whether the design is sharp, or fuzzy, and whether one or two assignment variables were used. In cases, in which one assignment variable does not alter any of the assigned treatment that were based on the first assignment variable, it notes that the second assignment variable is redundant, and call this an "ineffective assignment".
+
+
+### Assumptions
+The "Assumptions" tab is populated at the same time that the data are loaded, and the design is specified. The tab is divided into two sections. Figure 2.1. displays the results of the McCrary sorting test. This test is designed to detect discontinuities in the assignment variable. Under a valid RDD it is assumed that no such discontinuties exist, as they would imply the possibility that participants assigned themselves towards one side of the cut-off. 
