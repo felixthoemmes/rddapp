@@ -50,17 +50,21 @@
 #'
 #' @examples
 #' \dontrun{
-#' rd_power()
-#' rd_power(x.dist = "uniform", x.cut = 0.5)
-#' rd_power(x.fuzzy = c(0.1, 0.1))
+#' rd_power(x.design = "l")
+#' rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
+#' rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
 #' }
 
 rd_power <- function(num.rep = 100, sample.size = 100, x.dist = "normal", x.para = c(0, 1), 
-  x.cut = 0, x.fuzzy = c(0, 0), x.design = "l", coeff = c(0.3, 1, 0.2, 0.3), eta.sq = 0.5, 
+  x.cut = 0, x.fuzzy = c(0, 0), x.design = NULL, coeff = c(0.3, 1, 0.2, 0.3), eta.sq = 0.5, 
   alpha.list = c(0.001, 0.01, 0.05)) {
   est_res <- matrix(NA, num.rep, 2)
   pval_res <- matrix(NA, num.rep, 2)
   
+  if (is.null(x.design)){
+    stop("Specify x.design.")
+  }
+
   if (!x.design %in% c("g", "geq", "l", "leq")) {
     stop("Treatment design must be one of 'g', 'geq', 'l', 'leq'.")
   }

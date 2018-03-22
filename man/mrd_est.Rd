@@ -8,7 +8,7 @@ mrd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   kernel = "triangular", se.type = "HC1", cluster = NULL,
   verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
   local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL,
-  method = c("center", "univ", "front"), t.design = c("l", "l"),
+  method = c("center", "univ", "front"), t.design = NULL,
   stop.on.error = TRUE)
 }
 \arguments{
@@ -99,11 +99,11 @@ x2 <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 # centering
-mrd_est(y ~ x1 + x2 | cov, method = "center")
+mrd_est(y ~ x1 + x2 | cov, method = "center", t.design = c("geq", "geq"))
 # univariate
-mrd_est(y ~ x1 + x2 | cov, method = "univ")
+mrd_est(y ~ x1 + x2 | cov, method = "univ", t.design = c("geq", "geq"))
 # frontier
-mrd_est(y ~ x1 + x2 | cov, method = "front")
+mrd_est(y ~ x1 + x2 | cov, method = "front", t.design = c("geq", "geq"))
 }
 \references{
 Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 

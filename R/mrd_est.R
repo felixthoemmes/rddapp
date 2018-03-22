@@ -83,17 +83,22 @@
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' # centering
-#' mrd_est(y ~ x1 + x2 | cov, method = "center")
+#' mrd_est(y ~ x1 + x2 | cov, method = "center", t.design = c("geq", "geq"))
 #' # univariate
-#' mrd_est(y ~ x1 + x2 | cov, method = "univ")
+#' mrd_est(y ~ x1 + x2 | cov, method = "univ", t.design = c("geq", "geq"))
 #' # frontier
-#' mrd_est(y ~ x1 + x2 | cov, method = "front")
+#' mrd_est(y ~ x1 + x2 | cov, method = "front", t.design = c("geq", "geq"))
 
 mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   kernel = "triangular", se.type = "HC1", cluster = NULL, verbose = FALSE, 
   less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 2500, 
   margin = 0.03, boot = NULL, method = c("center", "univ", "front"), 
-  t.design = c("l", "l"), stop.on.error = TRUE) {
+  t.design = NULL, stop.on.error = TRUE) {
+
+  if (is.null(t.design)){
+    stop("Specify t.design.")
+  }
+  
   call <- match.call()
   
   # if data is not specified, look for variables in the formula from the global environment
@@ -311,7 +316,6 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     )
   } 
   
-  cat('\n')
   o$call <- call
   return(o)
 }

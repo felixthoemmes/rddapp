@@ -4,7 +4,7 @@
 \alias{rd_type}
 \title{Determine Type of Regression Discontinuity Design}
 \usage{
-rd_type(data, treat, assign_1, cutoff_1, operator_1 = "g", assign_2 = NULL,
+rd_type(data, treat, assign_1, cutoff_1, operator_1 = NULL, assign_2 = NULL,
   cutoff_2 = NULL, operator_2 = NULL)
 }
 \arguments{

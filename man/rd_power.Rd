@@ -5,7 +5,7 @@
 \title{Power Analysis of Regression Discontinuity}
 \usage{
 rd_power(num.rep = 100, sample.size = 100, x.dist = "normal",
-  x.para = c(0, 1), x.cut = 0, x.fuzzy = c(0, 0), x.design = "l",
+  x.para = c(0, 1), x.cut = 0, x.fuzzy = c(0, 0), x.design = NULL,
   coeff = c(0.3, 1, 0.2, 0.3), eta.sq = 0.5, alpha.list = c(0.001, 0.01,
   0.05))
 }
@@ -64,8 +64,8 @@ i.e. the empirical alpha of null hypothesis: RD = 0
 }
 \examples{
 \dontrun{
-rd_power()
-rd_power(x.dist = "uniform", x.cut = 0.5)
-rd_power(x.fuzzy = c(0.1, 0.1))
+rd_power(x.design = "l")
+rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
+rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
 }
 }

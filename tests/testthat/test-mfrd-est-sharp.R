@@ -22,7 +22,7 @@ if (file.exists(path)) {
       dat <- dat[c("readav", "mathav", "m_posty")]
       names(dat) <- c("x1", "x2", "y")
   
-      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60)  
+      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   
@@ -84,7 +84,7 @@ if (file.exists(path)) {
       dat <- dat[c("readav", "mathav", "m_posty")]
       names(dat) <- c("x1", "x2", "y")
   
-      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60)  
+      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   
@@ -145,7 +145,7 @@ if (file.exists(path)) {
       dat <- dat[c("readav", "mathav", "m_posty")]
       names(dat) <- c("x1", "x2", "y")
   
-      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60)  
+      mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   

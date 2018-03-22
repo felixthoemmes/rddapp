@@ -46,11 +46,16 @@
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
-#' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0)
+#' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0, t.design = c("geq", "geq"))
 
-mfrd_est <- function(y, x1, x2, c1, c2, t.design = c("l", "l"),
+mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL,
   local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL, cluster = NULL,
   stop.on.error = TRUE) {
+  
+  if (is.null(t.design)){
+    stop("Specify t.design.")
+  }
+  
   call <- match.call()
 
   out <- mfrd_est_single(y = y, x1 = x1, x2 = x2, c1 = c1, c2 = c2, 

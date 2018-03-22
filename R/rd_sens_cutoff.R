@@ -17,7 +17,7 @@
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
-#' rd <- rd_est(y ~ x | cov)
+#' rd <- rd_est(y ~ x | cov, t.design = "geq")
 #' rd_sens_cutoff(rd, seq(-.5, .5, length.out = 10))
 
 rd_sens_cutoff <- function(object, cutoffs) {

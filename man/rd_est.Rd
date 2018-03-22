@@ -7,7 +7,7 @@
 rd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   kernel = "triangular", se.type = "HC1", cluster = NULL,
   verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  t.design = "l")
+  t.design = NULL)
 }
 \arguments{
 \item{formula}{The formula of the RDD. This is supplied in the
@@ -104,9 +104,9 @@ For non-parametric models, Imbens-Kalyanaraman optimal bandwidths can be used,
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
-rd_est(y ~ x)
+rd_est(y ~ x, t.design = "geq")
 # Efficiency gains can be made by including covariates
-rd_est(y ~ x | cov)
+rd_est(y ~ x | cov, t.design = "geq")
 }
 \references{
 Lee, D. S., Lemieux, T. (2010).

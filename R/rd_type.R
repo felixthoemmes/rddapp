@@ -20,13 +20,17 @@
 #'
 #' @include treat_assign.R
 
-rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = "g", 
+rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = NULL, 
   assign_2 = NULL, cutoff_2 = NULL, operator_2 = NULL) {
   #################################################
   ## Cross-tabulate observations per assignments ##
   #################################################
   
   if (is.null(assign_2) | is.null(cutoff_2)) {
+    if (is.null(operator_1)){
+      stop("Specify operator_1.")
+    }
+
     data$tstar_1 <- treat_assign(data[assign_1], cutoff_1, operator_1)
     xdf <- as.data.frame(xtabs(
       formula = substitute(
@@ -70,6 +74,11 @@ rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = "g",
     colnames(xdf) <- c("A1", "Control", "Treat", "Prob.")
     
   } else {
+
+    if (is.null(operator_1) || is.null(operator_2)){
+      stop("Specify operator_1 and operator_2.")
+    }
+
     data$tstar_1 <- treat_assign(data[assign_1], cutoff_1, operator_1)
     data$tstar_2 <- treat_assign(data[assign_2], cutoff_2, operator_2)
     xdf <- as.data.frame(xtabs(
