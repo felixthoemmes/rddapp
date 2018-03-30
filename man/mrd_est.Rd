@@ -7,7 +7,7 @@
 mrd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   kernel = "triangular", se.type = "HC1", cluster = NULL,
   verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL,
+  local = 0.15, ngrid = 250, margin = 0.03, boot = NULL,
   method = c("center", "univ", "front"), t.design = NULL,
   stop.on.error = TRUE)
 }
@@ -63,7 +63,8 @@ instead of linear, quadratic, cubic, optimal, half and double.}
 standardized scale on each assignment variable, which is a positive number.}
 
 \item{ngrid}{The number of non-zero grid points on each assignment variable,
-which is also the number of zero grid points on each assignment variable.}
+which is also the number of zero grid points on each assignment variable. Value used in 
+Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
 \item{margin}{The range of grid points beyond the minimum and maximum
 of sample points on each assignment variable.}

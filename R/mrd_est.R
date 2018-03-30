@@ -42,7 +42,8 @@
 #' @param local The range of neighboring points around the cutoff on the 
 #'   standardized scale on each assignment variable, which is a positive number.
 #' @param ngrid The number of non-zero grid points on each assignment variable,
-#'   which is also the number of zero grid points on each assignment variable.
+#'   which is also the number of zero grid points on each assignment variable. Value used in 
+#'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
 #' @param boot The number of bootstrap samples to obtain standard error of estimates.
@@ -91,7 +92,7 @@
 
 mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   kernel = "triangular", se.type = "HC1", cluster = NULL, verbose = FALSE, 
-  less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 2500, 
+  less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250, 
   margin = 0.03, boot = NULL, method = c("center", "univ", "front"), 
   t.design = NULL, stop.on.error = TRUE) {
 

@@ -8,8 +8,6 @@
 #' @param x2 The assignment variable 2.
 #' @param c1 The cutoff of assignment variable 1.
 #' @param c2 The cutoff of assignment variable 2.
-#' # @param tr The treatment variable used to compare with the derived treatment 
-#' based on assignments and cutoffs.
 #' @param t.design The treatment option according to design.
 #'   The 1st entry is for x1: \code{"g"} means treatment is assigned 
 #'   if x1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
@@ -20,7 +18,8 @@
 #' @param local The range of neighboring points around the cutoff on the 
 #'   standardized The scale on each assignment variable, which is a positive number.
 #' @param ngrid The number of non-zero grid points on each assignment variable,
-#'   which is also the number of zero grid points on each assignment variable.
+#'   which is also the number of zero grid points on each assignment variable. Value used in 
+#'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
 #' @param boot The number of bootstrap samples to obtain standard error of estimates.
@@ -49,7 +48,7 @@
 #' mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0, t.design = c("geq", "geq"))
 
 mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL,
-  local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL, cluster = NULL,
+  local = 0.15, ngrid = 250, margin = 0.03, boot = NULL, cluster = NULL,
   stop.on.error = TRUE) {
   
   if (is.null(t.design)){

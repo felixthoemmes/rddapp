@@ -4,7 +4,7 @@
 \alias{mfrd_est}
 \title{Multivariate Frontier Regression Discontinuity Estimation}
 \usage{
-mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, ngrid = 2500,
+mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, ngrid = 250,
   margin = 0.03, boot = NULL, cluster = NULL, stop.on.error = TRUE)
 }
 \arguments{
@@ -16,9 +16,7 @@ mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, ngrid = 2500,
 
 \item{c1}{The cutoff of assignment variable 1.}
 
-\item{c2}{The cutoff of assignment variable 2.
-# @param tr The treatment variable used to compare with the derived treatment 
-based on assignments and cutoffs.}
+\item{c2}{The cutoff of assignment variable 2.}
 
 \item{t.design}{The treatment option according to design.
 The 1st entry is for x1: \code{"g"} means treatment is assigned 
@@ -32,7 +30,8 @@ The 2nd entry is for x2.}
 standardized The scale on each assignment variable, which is a positive number.}
 
 \item{ngrid}{The number of non-zero grid points on each assignment variable,
-which is also the number of zero grid points on each assignment variable.}
+which is also the number of zero grid points on each assignment variable. Value used in 
+Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
 \item{margin}{The range of grid points beyond the minimum and maximum
 of sample points on each assignment variable.}
