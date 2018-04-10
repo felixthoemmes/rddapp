@@ -137,7 +137,9 @@ The last option under the outcome tab is called "auxiliary variables", where use
 
 ShinyRDD allows the user fine-grained control over the actual treatment assignment status. The *treatment variable* encodes which treatment was _actually_ received by the participants. It is important to distinguish between the *assignment rule* and the *treatment variable* because in some designs, they may not be equal; not all participants that satisfy the treatment rule receive treatment (and some participants that do *not* satisfy the treatment rule may receive treatment). The treatment variable is entered in the box labeled "Treatment receipt".
 
-The assignment rule, or treatment mechanism, is described by (a series) of "if" statements. In the pull-down labelled "primary assignment", the user inputs the variable on which the assignment is based. **In the pull-down below, the user can choose under which condition the treatment was applied, and supply the value of the actual cut-off that was used to determine the treatment assignment status. The user can further change the "smaller equals" and "larger equals" sign, by clicking on it. As an example, choosing an assignment variable and then selecting, "larger equals" with cut-off value 40, would mean that treatment was assigned to those individuals that were equal or larger to 40. Clicking the gear button, reveals one additional option; the user can specify whether individuals that were right at the cut-off were assigned to the treatment or control. By default, this option is clicked, but when unclicked, the "larger equal" sign (or "smaller equal" sign) turns to a strictly "larger" (or "smaller") sign.**
+The assignment rule, or treatment mechanism, is described by (a series) of "if" statements. In the pull-down menu under the label "IF", the user can choose the variable upon which the assignment rule is evaluated, and supply the value of the actual cut-off that was used to determine the treatment assignment status. The user can further change the inequality in the assignment condition by clicking on its icon. As an example, choosing an assignment variable and then selecting the greater than or equal symbol ($>=$) to with cut-off value 40, would mean that treatment was assigned to those individuals with assignment rule variable were equal or larger to 40.
+
+Clicking the gear button, reveals one additional option; the user can specify whether individuals that were right at the cut-off were assigned to the treatment or control. By default, this option is selected, but when unselected, the inequality sign (e.g. $>=$) turns to a strict inequality (e.g. $>$).
 Clicking the small "plus" button opens another dynamic menu in which a second assignment variable can be defined. This option accommodates multiple-assignment RDDs (currently up to two assignment variables). All other options that were available for the first assignment variable are also available for the second assignment.
 
 Finally, the user must specify a variable that contains information about the actual treatment that was received. This is necessary for designs in which the assigned treatment and the received treatment may not be identical, so-called "fuzzy" RDDs.
@@ -147,13 +149,21 @@ Finally, the user must specify a variable that contains information about the ac
 As soon as data are loaded, the "Data" tab is populated with a spreadsheet-like display of the data. Variable names are displayed at the top, and users can navigate through the data, and sort by each of the variables. This display is mainly for purposes of validating that the data were read in correctly.
 As soon as the outcome, and the treatment assignment variables are defined, the data tab is further populated with two additional tables.
 
-**IP: Stopped adding screenshots here**
+<figure class="screenshot">
+<img src="screenshots/table1.1.png">
+<figcaption>Table 1.1 for CARE data</figcaption>
+</figure>
 
 Table 1.1 shows descriptive statistics of the treatment variable (T), the assignment variable (A1 - and A2, is a second assignment was chosen), and the outcome variable (O). For each variable, three columns are reported: N (the sample size), M (the mean), and SD (the standard deviation). In addition, a small correlation matrix is shown on the side. The columns of this correlation matrix are labeled with T and O, indicating both treatment, and outcome variable. Within each corresponding row and column, the Pearson correlation coefficient among all three variables is shown in the lower triangle of the matrix. The information in the table can be downloaded as a .CSV file by clicking on the paper icon in the upper right corner of the panel.
 
+<figure class="screenshot">
+<img src="screenshots/table1.2.png">
+<figcaption>Table 1.2 for CARE data</figcaption>
+</figure>
+
 Table 1.2 summarizes the design of the RDD, and can serve as a check for the researcher that the design was correctly specified. The design summary consists of the sample sizes by treatment assignment and actual received treatment.
 
-In the case of an RDD with a single assignment variable, A1, the actual treatment is given in the columns **(with labels control and treatment)**, and the assignment variable (along with the cut-offs) is given in the rows. In a sharp RDD (a design in which assigned and received treatment always coincide), the off-diagonal cell counts are always zero. In fuzzy designs, the off-diagonal elements will contain sample sizes of incorrectly classified individuals (where treatment assignment and received treatment do not coincide). A parameter $\pi$ is displayed, which is the probability of receiving treatment, conditional on being on either side of the threshold. This is computed as a simple conditional probability, $\mathbb{P}(T=1|A1)$ (and not with a parametric model).
+In the case of an RDD with a single assignment variable, A1, the actual treatment is given in the columns **(with labels control and treatment)**, and the assignment variable (along with the cut-offs) is given in the rows. In a sharp RDD (a design in which assigned and received treatment always coincide), the off-diagonal cell counts are always zero. In fuzzy designs, the off-diagonal elements will contain sample sizes of incorrectly classified individuals (where treatment assignment and received treatment do not coincide). A parameter $\pi$ is displayed, which is the probability of receiving treatment, conditional on being on either side of the threshold. $\pi$ is computed as a simple conditional probability, $\mathbb{P}(T=1|A1)$ (and not with a parametric model).
 
 If a second assignment variable, A2, is specified, a second column is added to denote A2. The rows give all combinations of cut-offs, with their respective sample sizes, and the estimated $\pi$ parameter.
 
