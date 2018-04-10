@@ -24,7 +24,7 @@ The easiest way to use the Shiny application offline is to download the official
 ## Interface
 At the very top of the Shiny app are three tabs: [Model](#Model), [Power](#Power), and [More](#More).
 
-<img src="screenshots/navbar.png" alt="Navigation bar" class="screenshot">
+<img src="screenshots/navbar.png" class="screenshot" style="width:75%; float:none;">
 
 * the [Model](#Model) tab contains all estimation modules;
 * the [Power](#Power) tab contains all power analysis modules;
@@ -36,7 +36,10 @@ The model tab is subdivided into a data panel on the left, and a dynamic results
 ### Data
 Typically, the user will begin by uploading the data using the pull-down menu in the data upload panel (labeled "Data"):
 
-<img src="screenshots/data-1.png" alt="Data upload panel" class="screenshot">
+<figure class="screenshot">
+<img src="screenshots/data-1.png">
+<figcaption>Data upload panel</figcaption>
+</figure>
 
 First, the user must specify the data file type. The choices are:
 
@@ -48,6 +51,11 @@ The "Browse" button appears automatically when the user chooses a .SAV or .CSV f
 For each of the two file types, the user can further fine-tune the data upload by clicking on the small button at the top right of the Data panel (in the shape of a gear). The gear button reveals additional options, and is updated dynamically based on user-chosen options.
 
 #### .SAV file options
+
+<figure class="screenshot">
+<img src="screenshots/data-sav-options.png">
+<figcaption>.sav file options</figcaption>
+</figure>
 
 The "Use Value Labels" option allows a user to specify whether value labels from SPSS should be read into the uploaded datafile. For instance, a user may have coded a categorical variable 0 and 1 in SPSS, and included value labels "male" and "female". If "Use Value Labels" is selected, the actual labels will be displayed in the rddapp's analyses. Otherwise, the numbers will be used.
 
@@ -61,7 +69,13 @@ Finally, the user can indicate that the uploaded file has been "multiply imputed
 
 #### .CSV file options
 
+<figure class="screenshot">
+<img src="screenshots/data-csv-options.png">
+<figcaption>.csv file options</figcaption>
+</figure>
+
 If the user selects a .CSV file (comma separated values), the options under the gear button allow the user to specify exactly how the CSV file is structured. The user can specify:
+
 * whether certain values are enclosed in quotes (double, single, or none);
 * what kind of separator is used between values (comma, semi-colon, tab, or whitespace);
 * whether missing values are blank by default or if a special character is used (e.g., `NA`);
@@ -86,9 +100,16 @@ The original study was a randomized experiment, but for the purposes of the exam
 *IP: I like the idea of having the example dataset in the main help file because you can't really play with the example data without this infomation... I wonder if we should somehow link to this part of the web page in the app when the user selects the CARE data?*
 
 ### Model specification
+
 Once the data are loaded, additional pull-down menus will appear. By default, pull-down boxes for the outcome variable, the assignment variable, and the treatment design will be shown directly underneath the data input box.
 
 #### Outcome
+
+<figure class="screenshot">
+<img src="screenshots/outcome-options.png">
+<figcaption>Outcome variable options</figcaption>
+</figure>
+
 The outcome box allows the user to define the outcome variable: the variable that the researcher assumes is affected by the treatment. Clicking the gear button opens additional options related to the analysis of the outcome variable. Here, the user can specify which kernel should be used for the non-parametric (local linear fitting) analysis (see [Estimation](#Estimation) for more detail). By default, a triangular kernel is chosen, as recommended by Imbens and Kalyanaraman (XXXX), but a variety of other kernels are available, as described by the following functions:
 
   1.) Triangular:   $K(u) = (1-|u|)$  
@@ -108,6 +129,12 @@ The second option under the outcome tab is the type of standard error that shoul
 The last option under the outcome tab is called "auxiliary variables", where users can specify the use of auxiliary variables in the RDD. These variables are integrated in the regressions of the parameteric RDD. Purely linear terms are used for all auxiliary variables, and there is currently no support for non-linear terms. If users wanted to add non-linear terms, these would have to be created by hand first (e.g., polynomials) and entered as regular auxiliary variables. Furthermore, auxiliary variables will not be entered as interactive terms by default (interacting with treatment assignment). In a properly executed RDD, it should not be necessary to include auxiliary variables, but inclusion of them can in some instances increase precision of parameter estimates, and thus statistical power.
 
 #### Treatment Design
+
+<figure class="screenshot">
+<img src="screenshots/treatment-options.png">
+<figcaption>Treatment design options</figcaption>
+</figure>
+
 ShinyRDD allows the user fine-grained control over the actual treatment assignment status. The *treatment variable* encodes which treatment was _actually_ received by the participants. It is important to distinguish between the *assignment rule* and the *treatment variable* because in some designs, they may not be equal; not all participants that satisfy the treatment rule receive treatment (and some participants that do *not* satisfy the treatment rule may receive treatment). The treatment variable is entered in the box labeled "Treatment receipt".
 
 The assignment rule, or treatment mechanism, is described by (a series) of "if" statements. In the pull-down labelled "primary assignment", the user inputs the variable on which the assignment is based. **In the pull-down below, the user can choose under which condition the treatment was applied, and supply the value of the actual cut-off that was used to determine the treatment assignment status. The user can further change the "smaller equals" and "larger equals" sign, by clicking on it. As an example, choosing an assignment variable and then selecting, "larger equals" with cut-off value 40, would mean that treatment was assigned to those individuals that were equal or larger to 40. Clicking the gear button, reveals one additional option; the user can specify whether individuals that were right at the cut-off were assigned to the treatment or control. By default, this option is clicked, but when unclicked, the "larger equal" sign (or "smaller equal" sign) turns to a strictly "larger" (or "smaller") sign.**
@@ -119,6 +146,8 @@ Finally, the user must specify a variable that contains information about the ac
 ### Data tab
 As soon as data are loaded, the "Data" tab is populated with a spreadsheet-like display of the data. Variable names are displayed at the top, and users can navigate through the data, and sort by each of the variables. This display is mainly for purposes of validating that the data were read in correctly.
 As soon as the outcome, and the treatment assignment variables are defined, the data tab is further populated with two additional tables.
+
+**IP: Stopped adding screenshots here**
 
 Table 1.1 shows descriptive statistics of the treatment variable (T), the assignment variable (A1 - and A2, is a second assignment was chosen), and the outcome variable (O). For each variable, three columns are reported: N (the sample size), M (the mean), and SD (the standard deviation). In addition, a small correlation matrix is shown on the side. The columns of this correlation matrix are labeled with T and O, indicating both treatment, and outcome variable. Within each corresponding row and column, the Pearson correlation coefficient among all three variables is shown in the lower triangle of the matrix. The information in the table can be downloaded as a .CSV file by clicking on the paper icon in the upper right corner of the panel.
 

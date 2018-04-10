@@ -1,20 +1,35 @@
 /* styling for images */
-img {
-  width=50%;
+/*img {
+  width: 25%;
+}*/
+
+figcaption {
+    /* centering text */
+    text-align: center;
+
+    /* format font */
+    font-style: italic;
+    font-size: smaller;
 }
 
 /* styling for screenshots */
 .screenshot
 {
+  /* adjust default width */
+  width: 40%;
 
   /* centre horizontal align */
   display: block;
   margin-left: auto;
   margin-right: auto;
 
+  /* have text wrap around */
+  float: right;
+  margin: 15px;
+
   /* add border that matches the one on TOC */
-  border-radius: 5px 5px 5px 5px;
+  /*border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border: 1px solid #cccccc;
+  border: 1px solid #cccccc;*/
 }
