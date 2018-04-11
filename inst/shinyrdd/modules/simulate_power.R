@@ -64,10 +64,10 @@ simulate_powerUI = function(id){
                   )
               ),
           div(class='btn-group',
-            downloadLink(ns('power_chart_png'),label = "PNG",
+            downloadLink(ns('power_chart_png'),label = NULL, icon('file-image-o'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PNG'),
-            downloadLink(ns('power_chart_svg'),label = "SVG",
+            downloadLink(ns('power_chart_svg'),label = NULL, icon('file-o'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as SVG'),
             downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf-o'),
