@@ -64,6 +64,12 @@ simulate_powerUI = function(id){
                   )
               ),
           div(class='btn-group',
+            downloadLink(ns('power_chart_png'),label = "PNG",
+              class='btn btn-default btn-sm', 
+              title = 'Download plot as PNG'),
+            downloadLink(ns('power_chart_svg'),label = "SVG",
+              class='btn btn-default btn-sm', 
+              title = 'Download plot as SVG'),
             downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf-o'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PDF'),
@@ -323,6 +329,22 @@ simulate_power = function(input, output, session, parameter){
     } 
   })
   
+  output$power_chart_png = downloadHandler(
+    filename = 'power_by_sample_size.png',
+    content = function(file) {
+      png(file, width=700, height=600, res=150)
+      power_chart(do.call(rbind.data.frame, result$summaries))
+      dev.off()
+    }
+  )
+  output$power_chart_svg = downloadHandler(
+    filename = 'power_by_sample_size.svg',
+    content = function(file) {
+      svg(file)
+      power_chart(do.call(rbind.data.frame, result$summaries))
+      dev.off()
+    }
+  )
   output$power_chart_pdf = downloadHandler(
     filename = 'power_by_sample_size.pdf',
     content = function(file) {
