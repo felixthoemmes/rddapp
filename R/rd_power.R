@@ -178,10 +178,10 @@ rd_power <- function(num.rep = 100, sample.size = 100, x.dist = "normal", x.para
     
     rd_model <- try(if(x.fuzzy[1] == 0 && x.fuzzy[2] == 0) {
       # sharp design
-      rd_est(y_out ~ x_var, cutpoint = x.cut, less = TRUE)
+      rd_est(y_out ~ x_var, cutpoint = x.cut, less = TRUE, t.design = x.design)
     } else {
       # fuzzy design
-      rd_est(y_out ~ x_var + t_var, cutpoint = x.cut, less = TRUE)
+      rd_est(y_out ~ x_var + t_var, cutpoint = x.cut, less = TRUE, t.design = x.design)
     })
     
     if (class(rd_model) == "try-error") {
