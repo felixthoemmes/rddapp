@@ -57,7 +57,11 @@ model_estimateUI = function(id){
           style = 'padding-top:4px;',
           class='panel-title pull-left'), 
         downloadLink(ns('rdd_plot_pdf'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-pdf-o'),
-          title = 'Download Plot as PDF')
+                     title = 'Download plot as PDF'),
+        downloadLink(ns('rdd_plot_svg'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-o'),
+                     title = 'Download plot as SVG'),
+        downloadLink(ns('rdd_plot_png'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-image-o'),
+                     title = 'Download plot as PNG')
       ),
       div(class='panel-body',
         fluidRow(
@@ -697,8 +701,25 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       par(new=T)
       rdd_plot_estimate()
     })
-  
-  
+
+  output$rdd_plot_png = downloadHandler(
+    filename = 'rdd_estimate.png',
+    content = function(file) {
+      png(file, width=700, height=600, res=150)
+      rdd_plot_estimate()
+      dev.off()
+    }
+  )    
+
+  output$rdd_plot_svg= downloadHandler(
+    filename = 'rdd_estimate.svg',
+    content = function(file) {
+      svg(file)
+      rdd_plot_estimate()
+      dev.off()
+    }
+  )  
+    
   output$rdd_plot_pdf = downloadHandler(
     filename = 'rdd_estimate.pdf',
     content = function(file) {

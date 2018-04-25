@@ -11,9 +11,15 @@ assumption_checkUI = function(id){
             style = 'display: inline;')
         ),
         div(class='btn-group pull-right',
+          downloadLink(ns('assumption_plot_png'), icon('file-image-o'),
+                       label = NULL, class='btn btn-default btn-sm',
+                       title = 'Download plot as PNG'),  
+          downloadLink(ns('assumption_plot_svg'), icon('file-o'),
+                       label = NULL, class='btn btn-default btn-sm',
+                       title = 'Download plot as SVG'),  
           downloadLink(ns('assumption_plot_pdf'), icon('file-pdf-o'),
             label = NULL, class='btn btn-default btn-sm',
-            title = 'Download Plot as PDF'),
+            title = 'Download plot as PDF'),
           downloadLink(ns('assumption_plot_csv'),label = NULL, 
             class='btn btn-default btn-sm', 
             icon('file-text-o'),
@@ -369,6 +375,26 @@ assumption_check = function(input, output, session, dataframe, parameter){
     }
   )
   
+  output$assumption_plot_png = downloadHandler(
+    filename = 'figure_2_1_sorting_test.png',
+    content = function(file) {
+      png(file, width=700, height=600, res=150)
+      par(mar=c(3,3,.5,.5))
+      plot_sort()
+      dev.off()
+    }
+  )
+
+  output$assumption_plot_svg = downloadHandler(
+    filename = 'figure_2_1_sorting_test.svg',
+    content = function(file) {
+      svg(file)
+      par(mar=c(3,3,.5,.5))
+      plot_sort()
+      dev.off()
+    }
+  )
+    
   output$assumption_plot_pdf = downloadHandler(
     filename = 'figure_2_1_sorting_test.pdf',
     content = function(file) {
