@@ -37,15 +37,18 @@ tagList(
     # ),
     
     ## More Pages
-    navbarMenu("More", icon = icon('ellipsis-v'),
+    #navbarMenu("More", icon = icon('ellipsis-v'),
       # Help Page
+      # tabPanel("Help", icon = icon('book'),
+      #   source(file.path('ui_elements', 'page_help.R'), local = T)$value
+      # ),
       tabPanel("Help", icon = icon('book'),
-        source(file.path('ui_elements', 'page_help.R'), local = T)$value
+               source(file.path('ui_elements', 'page_help.R'), local = T)$value
       ),
       # About Page
       tabPanel("About", icon = icon('info-circle'), style="height:100%;",
         source(file.path('ui_elements', 'page_about.R'), local = T)$value
       )
-    )
+    #)
   )
 )

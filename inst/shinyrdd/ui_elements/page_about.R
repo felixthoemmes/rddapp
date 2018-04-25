@@ -3,7 +3,7 @@ navlistPanel(widths = c(3,9),
     wellPanel(
       
       helpText("This software was developed by Felix Thoemmes, 
-        Wang Liao, and Ze Jin, all at Cornell University.", 
+        Wang Liao, Ze Jin, Wenyu Zhang, and Irena Papst all at Cornell University.", 
       "We are happy to receive feedback! Please send it to"),
       img(src='fjt_email.png'),
       
