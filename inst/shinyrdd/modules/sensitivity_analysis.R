@@ -21,9 +21,15 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','%')
               ),
               div(class='btn-group',
+                downloadLink(ns('cutsens_png'),label = NULL, icon('file-image-o'),
+                             class='btn btn-default btn-sm', 
+                             title = 'Download plot as PNG'),  
+                downloadLink(ns('cutsens_svg'),label = NULL, icon('file-o'),
+                             class='btn btn-default btn-sm', 
+                             title = 'Download plot as SVG'),
                 downloadLink(ns('cutsens_pdf'),label = NULL, icon('file-pdf-o'),
-                  class='btn btn-default btn-sm', 
-                  title = 'Download Plot as PDF'),
+                             class='btn btn-default btn-sm', 
+                             title = 'Download plot as PDF'),
                 downloadLink(ns('cutsens_csv'),label = NULL, class='btn btn-default btn-sm', 
                   icon('file-text-o'),
                   title = 'Download simulated results as CSV')
@@ -107,8 +113,12 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','%')
               ),
               div(class='btn-group',
+                downloadLink(ns('bwsens_png'),label = NULL, class='btn btn-default btn-sm', 
+                             icon('file-image-o'), title = 'Download plot as PNG'),
+                downloadLink(ns('bwsens_svg'),label = NULL, class='btn btn-default btn-sm', 
+                             icon('file-o'), title = 'Download plot as SVG'),
                 downloadLink(ns('bwsens_pdf'),label = NULL, class='btn btn-default btn-sm', 
-                  icon('file-pdf-o'), title = 'Download Plot as PDF'),
+                             icon('file-pdf-o'), title = 'Download plot as PDF'),
                 downloadLink(ns('bwsens_csv'),label = NULL, class='btn btn-default btn-sm', 
                   icon('file-text-o'),
                   title = 'Download simulated results as CSV')
@@ -298,6 +308,22 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
       dev.off()
     }
   )
+  output$cutsens_svg = downloadHandler(
+    filename = 'cutoff_sensitivity.svg',
+    content = function(file) {
+      svg(file)
+      cutsens_plot()
+      dev.off()
+    }
+  )
+  output$cutsens_png = downloadHandler(
+    filename = 'cutoff_sensitivity.png',
+    content = function(file) {
+      png(file, width=700, height=600, res=150)
+      cutsens_plot()
+      dev.off()
+    }
+  )
   output$cutsens_csv = downloadHandler(
     filename = 'cutoff_sensitivity.csv',
     content = function(file) {
@@ -414,6 +440,22 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
     filename = 'bandwidth_sensitivity.pdf',
     content = function(file) {
       pdf(file)
+      bwsens_plot()
+      dev.off()
+    }
+  )
+  output$bwsens_svg = downloadHandler(
+    filename = 'bandwidth_sensitivity.svg',
+    content = function(file) {
+      svg(file)
+      bwsens_plot()
+      dev.off()
+    }
+  )
+  output$bwsens_png = downloadHandler(
+    filename = 'bandwidth_sensitivity.png',
+    content = function(file) {
+      png(file, width=700, height=600, res=150)
       bwsens_plot()
       dev.off()
     }
