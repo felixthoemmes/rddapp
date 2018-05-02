@@ -37,8 +37,10 @@
 #' @param verbose Will provide some additional information printed to the terminal.
 #' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal, 
 #'   instead of linear, quadratic, cubic, optimal, half and double.
-#' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included.
-#' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned.
+#' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included. Not
+#'   applicable if method is \code{"front"}.
+#' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned. Not
+#'   applicable if method is \code{"front"}
 #' @param local The range of neighboring points around the cutoff on the 
 #'   standardized scale on each assignment variable, which is a positive number.
 #' @param ngrid The number of non-zero grid points on each assignment variable,
