@@ -122,7 +122,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL,
 
 ## single estimate
 mfrd_est_single <- function(y, x1, x2, c1, c2, t.design = c("l", "l"), 
-  local = 0.15, ngrid = 2500, margin = 0.03, stop.on.error = stop.on.error) {
+  local = 0.15, ngrid = 250, margin = 0.03, stop.on.error = stop.on.error) {
   # call <- match.call()
 
   dat <- data.frame(y, x1, x2)

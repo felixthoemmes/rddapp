@@ -41,7 +41,8 @@
 #' @param local The range of neighboring points around the cutoff on the 
 #'   standardized scale on each assignment variable, which is a positive number.
 #' @param ngrid The number of non-zero grid points on each assignment variable,
-#'   which is also the number of zero grid points on each assignment variable.
+#'   which is also the number of zero grid points on each assignment variable. Value used in 
+#'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
 #' @param margin The range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable.
 #' @param boot The number of bootstrap samples to obtain standard deviation of estimates.
@@ -54,6 +55,9 @@
 #'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
 #'   if X1 is less than or equal to its cutoff.
 #'   The 2nd entry is for X2.
+#' @param stop.on.error Logical. If \code{TRUE} (the default), removes bootstraps which cause
+#'   error in the \code{integrate} function, and resample till the specified number of 
+#'   bootstrap samples are acquired.
 #'
 #' @return \code{rd_impute} returns an object of \link{class} "\code{mrd}".
 #'
@@ -81,8 +85,8 @@
 
 mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   kernel = "triangular", se.type = "HC1", cluster = NULL, impute = NULL, verbose = FALSE, 
-  less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 2500, margin = 0.03, 
-  boot = NULL, method = c("center", "univ", "front"), t.design = NULL) {
+  less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250, margin = 0.03, 
+  boot = NULL, method = c("center", "univ", "front"), t.design = NULL, stop.on.error = TRUE) {
  
   if (is.null(t.design)){
     stop("Specify t.design.")
@@ -119,12 +123,14 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         curr_mod <- mrd_est(formula = formula, subset = imp_sub, cutpoint = cutpoint, bw = bw,
           kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, less = less, 
           est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, margin = margin, 
-          boot = boot, method = method, t.design = t.design)
+          boot = boot, method = method, t.design = t.design, 
+          stop.on.error = stop.on.error)
       } else {
         curr_mod <- mrd_est(formula = formula, data = data, subset = imp_sub, cutpoint = cutpoint, 
           bw = bw, kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
           less = less, est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, 
-          margin = margin, boot = boot, method = method, t.design = t.design)
+          margin = margin, boot = boot, method = method, t.design = t.design, 
+          stop.on.error = stop.on.error)
       }
       
     } else {
@@ -132,12 +138,14 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         curr_mod <- mrd_est(formula = formula, subset = (subset & imp_sub), cutpoint = cutpoint, 
           bw = bw, kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
           less = less, est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, 
-          margin = margin, boot = boot, method = method, t.design = t.design)
+          margin = margin, boot = boot, method = method, t.design = t.design,
+          stop.on.error = stop.on.error)
       } else {
         curr_mod <- mrd_est(formula = formula, data = data, subset = (subset & imp_sub), 
           cutpoint = cutpoint, bw = bw, kernel = kernel, se.type = se.type, cluster = cluster,
           verbose = verbose, less = less, est.cov = est.cov, est.itt = est.itt, local = local, 
-          ngrid = ngrid, margin = margin, boot = boot, method = method, t.design = t.design)
+          ngrid = ngrid, margin = margin, boot = boot, method = method, t.design = t.design,
+          stop.on.error = stop.on.error)
       }
       
     }

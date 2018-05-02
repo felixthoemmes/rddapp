@@ -7,8 +7,9 @@
 mrd_impute(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   kernel = "triangular", se.type = "HC1", cluster = NULL, impute = NULL,
   verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  local = 0.15, ngrid = 2500, margin = 0.03, boot = NULL,
-  method = c("center", "univ", "front"), t.design = NULL)
+  local = 0.15, ngrid = 250, margin = 0.03, boot = NULL,
+  method = c("center", "univ", "front"), t.design = NULL,
+  stop.on.error = TRUE)
 }
 \arguments{
 \item{formula}{The formula of the MRDD. This is supplied in the
@@ -64,7 +65,8 @@ instead of linear, quadratic, cubic, optimal, half and double.}
 standardized scale on each assignment variable, which is a positive number.}
 
 \item{ngrid}{The number of non-zero grid points on each assignment variable,
-which is also the number of zero grid points on each assignment variable.}
+which is also the number of zero grid points on each assignment variable. Value used in 
+Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
 \item{margin}{The range of grid points beyond the minimum and maximum
 of sample points on each assignment variable.}
@@ -81,6 +83,10 @@ if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assi
 if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
 if X1 is less than or equal to its cutoff.
 The 2nd entry is for X2.}
+
+\item{stop.on.error}{Logical. If \code{TRUE} (the default), removes bootstraps which cause
+error in the \code{integrate} function, and resample till the specified number of 
+bootstrap samples are acquired.}
 }
 \value{
 \code{rd_impute} returns an object of \link{class} "\code{mrd}".
