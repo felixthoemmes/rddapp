@@ -2,6 +2,8 @@
 #' 
 #' \code{rd_type} cross-tabulates observations based on (1) a binary treatment and 
 #' (2) one or two assignments and their cutoff values.
+#' This is an internal function and is typically not directly invoked by the user. 
+#' It can be accessed using the triple colon, as in rddapp:::rd_type().
 #'
 #' @param data A \code{data.frame} with each row representing an observation.
 #' @param treat The name of a numeric variable (treated = positive values).
@@ -19,6 +21,13 @@
 #' @importFrom stats reshape xtabs
 #'
 #' @include treat_assign.R
+#' 
+#' @examples
+#' x <- runif(1000, -1, 1)
+#' cov <- rnorm(1000)
+#' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
+#' df <- data.frame(cbind(y, x))
+#' rddapp:::rd_type(df, 'y', 'x', 0, 'geq')
 
 rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = NULL, 
   assign_2 = NULL, cutoff_2 = NULL, operator_2 = NULL) {

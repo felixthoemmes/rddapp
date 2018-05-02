@@ -43,6 +43,8 @@ the treatment effect at other cut-points along the assignment variable.
 
 \author{
 Ze Jin \email{zj58@cornell.edu}, 
-  Liao Wang \email{wl483@cornell.edu},
+  Wang Liao \email{wl483@cornell.edu},
+  Irena Papst \email{ip98@cornell.edu},
+  Wenyu Zhang \email{wz258@cornell.edu},
   Felix Thoemmes, \email{fjt36@cornell.edu}
 }
