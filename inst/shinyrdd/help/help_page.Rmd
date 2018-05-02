@@ -185,7 +185,3 @@ The user also has the option to fine-tune the sorting test. By default a specifi
 ---
 
 ## Power {#Power}
-
----
-
-## More {#More}
