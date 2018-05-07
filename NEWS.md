@@ -27,3 +27,11 @@
 - Stability fixes for dc_est function
 
 - Default of t.design was changed to NULL to force user to always specify design
+
+# rddapp work in progress
+
+- Summary functions have been updated to display results according to selection of est.cov and est.itt
+
+- Bugfixes in mrd_impute function
+
+- Example added for rd_type function in help file
