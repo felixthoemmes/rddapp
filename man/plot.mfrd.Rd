@@ -11,9 +11,12 @@
 \item{x}{An \code{mfrd} object returned by \code{mfrd_est} or contained in the object 
 returned by \code{mrd_est}.}
 
-\item{model}{Option for the model specification, one of \code{c("m_s", "m_h", "m_t")}.}
+\item{model}{Option for the model specification, one of \code{c("m_s", "m_h", "m_t")},
+which denotes the complete model, heterogeneous treatment model and treatment only 
+model respectively.}
 
-\item{gran}{Granularity of the surface grid.}
+\item{gran}{Granularity of the surface grid i.e. desired number of predicted points 
+before and after the cutoff along each assignment variable.}
 
 \item{raw_data}{Whether the raw data points are plotted.}
 

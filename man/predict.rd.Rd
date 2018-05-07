@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{An \code{rd} object, typically the result of \code{\link{rd_est}}.}
 
-\item{gran}{Granularity of the data points.}
+\item{gran}{Granularity of the data points i.e. desired number of predicted points.}
 
 \item{...}{Additional arguments affecting the predictions produced.}
 }

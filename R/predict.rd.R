@@ -3,7 +3,7 @@
 #' \code{predict.rd} makes predictions of mean and standard deviation of RDs at different cutoffs.
 #' 
 #' @param object An \code{rd} object, typically the result of \code{\link{rd_est}}.
-#' @param gran Granularity of the data points.
+#' @param gran Granularity of the data points i.e. desired number of predicted points.
 #' @param ... Additional arguments affecting the predictions produced.
 #'
 #' @importFrom AER ivreg 
