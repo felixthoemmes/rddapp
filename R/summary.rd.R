@@ -35,6 +35,19 @@ summary.rd <- function(object, level = 0.95, digits = max(3, getOption("digits")
   print(call.copy)
   cat("\n")
   
+  if (is.null(object$call$est.itt)){
+    est.itt = 'FALSE'
+  }else{
+    if (object$call$est.itt == 'T' || object$call$est.itt == 'TRUE'){
+      est.itt = 'TRUE'
+    }else{
+      est.itt = 'FALSE'
+    }
+  }
+  cat("ITT used:\n")
+  cat(est.itt)
+  cat("\n\n")
+  
   cat("Type:\n")
   cat(object$type, "\n\n")
   
@@ -64,7 +77,7 @@ summary.rd <- function(object, level = 0.95, digits = max(3, getOption("digits")
   } else {
     for (i in 1:n) obs[i] <- length(residuals(object$model$iv[[i]]))
   }
-  cat("Estimates:\n")
+
   # Need to get this to give at least as much as stata does in fuzzy designs
   stars <- vector(length = n)
   
@@ -100,10 +113,37 @@ summary.rd <- function(object, level = 0.95, digits = max(3, getOption("digits")
   
   rownames(out) <- names(object$est)
 
-  print.default(cbind(apply(out, 2, function(x) format(x, digits = digits)), " " = stars), 
-    quote = FALSE, print.gap = 2, right = FALSE)
-  cat("---\n")
-  cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+  # if there are estimates of covariates, display in a separate table
+  splitcov = FALSE
+  if (!is.null(object$cov) && !is.null(object$call$est.cov)){
+    if (object$call$est.cov == 'T' || object$call$est.cov == 'TRUE'){
+      splitcov = TRUE
+    }
+  }
+  
+  outmat = cbind(apply(out, 2, function(x) format(x, digits = digits)), " " = stars)
+  if (splitcov){
+    outmat.est = outmat[seq(1, nrow(outmat), by = 2),]
+    outmat.cov = outmat[seq(2, nrow(outmat), by = 2),]
+    out = list(out[seq(1, nrow(out), by = 2),], out[seq(2, nrow(out), by = 2),])
+    
+    cat("Estimates:\n")
+    print.default(outmat.est, quote = FALSE, print.gap = 2, right = FALSE)
+    cat("---\n")
+    cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+    
+    cat("Estimates of covariates:\n")
+    print.default(outmat.cov, quote = FALSE, print.gap = 2, right = FALSE)
+    cat("---\n")
+    cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+        
+  }else{
+    cat("Estimates:\n")
+    print.default(outmat, quote = FALSE, print.gap = 2, right = FALSE)
+    cat("---\n")
+    cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+  }
+  
   cat("Confidence interval used: ", level, "\n\n")
   
   out <- list(coefficients = out)

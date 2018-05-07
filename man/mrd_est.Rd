@@ -55,9 +55,11 @@ variable be clustered by each unique value of the running variable (Lee and Card
 \item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal, 
 instead of linear, quadratic, cubic, optimal, half and double.}
 
-\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included.}
+\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included. Not
+applicable if method is \code{"front"}.}
 
-\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.}
+\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned. Not
+applicable if method is \code{"front"}.}
 
 \item{local}{The range of neighboring points around the cutoff on the 
 standardized scale on each assignment variable, which is a positive number.}

@@ -40,7 +40,7 @@
 #' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included. Not
 #'   applicable if method is \code{"front"}.
 #' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned. Not
-#'   applicable if method is \code{"front"}
+#'   applicable if method is \code{"front"}.
 #' @param local The range of neighboring points around the cutoff on the 
 #'   standardized scale on each assignment variable, which is a positive number.
 #' @param ngrid The number of non-zero grid points on each assignment variable,
@@ -210,7 +210,7 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
           eval(bquote(
             rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = bw, 
               kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = "leq")
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = "leq")
           ))
       )
     } else {
@@ -218,7 +218,7 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
           eval(bquote(
             rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = bw, 
               kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = "l")
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = "l")
           ))
         
       )
@@ -263,13 +263,13 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
             rd_est(formula = .(form1), data = data, subset = subset1, 
               cutpoint = .(cutpoint[1]), bw = bw, kernel = .(kernel), 
               se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = est.itt, t.design = .(t.design[1]))
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
           )),
           tau_M = eval(bquote(
             rd_est(formula = .(form2), data = data, subset = subset2, 
               cutpoint = .(cutpoint[2]), bw = bw, kernel = .(kernel), 
               se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = .(t.design[2]))
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
           ))
         )
       } else if (length(bw) == 2 && is.numeric(bw)) {
@@ -278,13 +278,13 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
             rd_est(formula = .(form1), data = data, subset = subset1, 
               cutpoint = .(cutpoint[1]), bw = bw[1], kernel = .(kernel), 
               se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = .(t.design[1]))
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
           )),
           tau_M = eval(bquote(
             rd_est(formula = .(form2), data = data, subset = subset2, 
               cutpoint = .(cutpoint[2]), bw = bw[2], kernel = .(kernel), 
               se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = .(t.design[2]))
+              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
           ))
         )
       } else {
@@ -296,12 +296,12 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         tau_R = eval(bquote(
           rd_est(formula = .(form1), data = data, subset = subset1, cutpoint = .(cutpoint[1]), 
             bw = NULL, kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-            less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = .(t.design[1]))
+            less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
         )),  
         tau_M = eval(bquote(
           rd_est(formula = .(form2), data = data, subset = subset2, cutpoint = .(cutpoint[2]), 
             bw = NULL, kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-            less = less, est.cov = est.cov, est.itt = .(est.itt), t.design = .(t.design[2]))  
+            less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))  
         ))
       )
     }

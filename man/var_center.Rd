@@ -28,6 +28,7 @@ The 2nd entry is for x2.}
 }
 \description{
 \code{var_center} computes the univariate assignment variable X based on the cutoffs of 
+ two assignment variables X1, X2.
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::var_center().
 }
