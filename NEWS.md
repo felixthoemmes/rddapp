@@ -34,4 +34,4 @@
 
 - Bugfixes in mrd_impute function
 
-- Example added for rd_type function in help file
+- Help files have been updated e.g. example added for rd_type, more descriptions of arguments added for plot.mfrd and predict.rd
