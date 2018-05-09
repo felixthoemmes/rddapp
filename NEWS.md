@@ -32,6 +32,8 @@
 
 - Summary functions have been updated to display results according to selection of est.cov and est.itt
 
+- Summary functions have been added for functions rd_power and mrd_power
+
 - Bugfixes in mrd_impute function
 
 - Help files have been updated e.g. example added for rd_type, more descriptions of arguments added for plot.mfrd and predict.rd
