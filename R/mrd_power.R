@@ -53,8 +53,9 @@
 #'   treatment itself. It is used to control the variance of noise in the linear model.
 #' @param alpha.list List of significance levels used to calculate the empirical alpha.
 #'
-#' @return \code{mrd_power} returns the results of 6 estimators as a table, 
-#'   including mean, variance, and power of estimate.
+#' @return \code{mrd_power} returns the results of 6 estimators as a table of \link{class} 
+#'   "\code{mrdp}", including mean, variance, and power of estimate. The function \code{summary}
+#'   is used to obtain and print a summary of the power analysis.
 #'   The 1st \code{Linear} results of the linear regression estimator 
 #'   of combined RD using the centering approach.
 #'   The 2nd \code{Opt} results of the local linear regression estimator
@@ -266,6 +267,8 @@ mrd_power <- function(num.rep = 100, sample.size = 100, x1.dist = "normal", x1.p
   
   rownames(comb_res) <- rep(c("Linear", "Opt"), 3)
   colnames(comb_res) <- c("success", "mean(est)", "var(est)", as.character(alpha.list))
+  
+  class(comb_res) <- "mrdp"
   
   return(comb_res)  
 }
