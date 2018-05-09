@@ -52,8 +52,9 @@ treatment itself. It is used to control the variance of noise in the linear mode
 \item{alpha.list}{List of significance levels used to calculate the empirical alpha.}
 }
 \value{
-\code{rd_power} returns the results of 2 estimators as a table, 
-  including mean, variance, and power of estimate.
+\code{rd_power} returns the results of 2 estimators as a table of \link{class} 
+  "\code{rdp}", including mean, variance, and power of estimate. The function \code{summary}
+  is used to obtain and print a summary of the power analysis.
   The 1st \code{Linear} results of the linear regression estimator 
   The 2nd \code{Opt} results of the local linear regression estimator
   of RD, with the optimal bandwidth in the IK 2012 paper.

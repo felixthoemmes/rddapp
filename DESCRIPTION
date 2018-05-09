@@ -51,7 +51,7 @@ VignetteBuilder: knitr
 License: GPL (>= 2)
 LazyData: true
 RoxygenNote: 6.0.1
-Collate:
+Collate: 
     'attr_check.R'
     'bw_ik09.R'
     'bw_ik12.R'
@@ -82,4 +82,6 @@ Collate:
     'shiny_run.R'
     'summary.mfrd.R'
     'summary.mrd.R'
+    'summary.mrdp.R'
     'summary.rd.R'
+    'summary.rdp.R'

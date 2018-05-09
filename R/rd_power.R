@@ -35,8 +35,9 @@
 #'   treatment itself. It is used to control the variance of noise in the linear model.
 #' @param alpha.list List of significance levels used to calculate the empirical alpha.
 #'
-#' @return \code{rd_power} returns the results of 2 estimators as a table, 
-#'   including mean, variance, and power of estimate.
+#' @return \code{rd_power} returns the results of 2 estimators as a table of \link{class} 
+#'   "\code{rdp}", including mean, variance, and power of estimate. The function \code{summary}
+#'   is used to obtain and print a summary of the power analysis.
 #'   The 1st \code{Linear} results of the linear regression estimator 
 #'   The 2nd \code{Opt} results of the local linear regression estimator
 #'   of RD, with the optimal bandwidth in the IK 2012 paper.  
@@ -206,6 +207,8 @@ rd_power <- function(num.rep = 100, sample.size = 100, x.dist = "normal", x.para
   
   rownames(comb_res) <- c("Linear", "Opt")
   colnames(comb_res) <- c("success", "mean(est)", "var(est)", as.character(alpha.list))
+  
+  class(comb_res) <- "rdp"
   
   return(comb_res)  
 }
