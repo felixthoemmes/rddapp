@@ -89,7 +89,8 @@ error in the \code{integrate} function, and resample till the specified number o
 bootstrap samples are acquired.}
 }
 \value{
-\code{rd_impute} returns an object of \link{class} "\code{mrd}".
+\code{mrd_impute} returns an object of \link{class} "\code{mrd}", or "\code{mrdi}" for
+\code{"front"} method.
 }
 \description{
 \code{mrd_impute} estimates treatment effects in an MRDD with imputed missing values.

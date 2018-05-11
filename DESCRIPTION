@@ -82,6 +82,7 @@ Collate:
     'shiny_run.R'
     'summary.mfrd.R'
     'summary.mrd.R'
+    'summary.mrdi.R'
     'summary.mrdp.R'
     'summary.rd.R'
     'summary.rdp.R'

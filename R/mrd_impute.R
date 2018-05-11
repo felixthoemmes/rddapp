@@ -59,7 +59,8 @@
 #'   error in the \code{integrate} function, and resample till the specified number of 
 #'   bootstrap samples are acquired.
 #'
-#' @return \code{rd_impute} returns an object of \link{class} "\code{mrd}".
+#' @return \code{mrd_impute} returns an object of \link{class} "\code{mrd}", or "\code{mrdi}" for
+#' \code{"front"} method.
 #'
 #' @references Stata: 64 mi estimate - Estimation using multiple imputations
 #'
@@ -373,7 +374,8 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o$front$tau_MRD$w <- rep(NA, 2)   
 
     o$front$tau_MRD$impute <- TRUE
-    class(o$front$tau_MRD) <- "mfrd"                
+    class(o) = "mrdi"
+    class(o$front$tau_MRD) <- "mfrdi"                
   }
 
   return(o)
