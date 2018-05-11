@@ -32,7 +32,7 @@
 
 - Summary functions have been updated to display results according to selection of est.cov and est.itt
 
-- Summary functions have been added for functions rd_power and mrd_power
+- Summary functions have been added for functions rd_power and mrd_power, and fixed for function mrd_impute
 
 - Bugfixes in mrd_impute function
 
