@@ -5,15 +5,15 @@ date: "January 20, 2018"
 output: html_document
 ---
 
-"rddapp" is an R package with an RShiny application for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. 
+rddapp is an [R package](https://cran.r-project.org/web/packages/rddapp/index.html) with a [Shiny](https://shiny.rstudio.com/) web app for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. 
 
 ## Online use
-The Shiny environment of the "rddapp" can be accessed online, here: https://rddapp.shinyapps.io/shinyrdd/. Untested features will first be introduced to the beta version, which can be accessed online, here: https://rddapp.shinyapps.io/shinyrdd_beta/. 
+The rddapp Shiny web app can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta [version](https://rddapp.shinyapps.io/shinyrdd_beta/). 
 
-The online Shiny enviorment is completely point-and-click, and no programming in R is required. Data for analysis can be uploaded directly to the Shiny server. However, sensitive data should not be transferred over the Internet, and the use of an offline client is preferred. 
+The online Shiny environment is fully point-and-click; no programming in R is required. Data can be uploaded directly to the Shiny server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available. 
 
 ## Offline use
-The easiest way to use the Shiny application offline, is to download the offical R package from CRAN (https://cran.r-project.org/web/packages/rddapp/index.html), and execute the function shiny_run(). This will load the Shiny enviroment in the local browser, without the need of being online, or transfering any data over the Internet. 
+<!-- To use the Shiny app offline, R must be installed. **LINK TO EASY INSTALL GUIDE** Once R is installed, open an R session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the R prompt, and then execute the function `shiny_run()`. This command will load the point-and-click Shiny enviroment in a local browser, without transfering any data over the Internet. --> The easiest way to use the Shiny application offline, is to download [the offical R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html), and execute the function shiny_run(). This will load the Shiny enviroment in the local browser, without the need of being online, or transfering any data over the Internet. 
 
 
 ## Interface
