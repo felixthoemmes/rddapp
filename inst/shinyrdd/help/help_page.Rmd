@@ -1,29 +1,34 @@
 ---
 title: "rddapp shiny manual"
 author: "Felix Thoemmes"
-date: "January 20, 2018"
+#date: "January 20, 2018"
 output: html_document
 ---
 
-rddapp is an [R package](https://cran.r-project.org/web/packages/rddapp/index.html) with a [Shiny](https://shiny.rstudio.com/) web app for the analysis of regression-discontinuity designs (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. 
+`rddapp` is an [R package](https://cran.r-project.org/web/packages/rddapp/index.html) with a `shiny` [web app](https://shiny.rstudio.com/) for the analysis of [regression discontinuity designs](https://en.wikipedia.org/wiki/Regression_discontinuity_design) (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. 
+# Use
 
-## Online use
+## Online
 The rddapp Shiny web app can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta [version](https://rddapp.shinyapps.io/shinyrdd_beta/). 
+The Shiny environment is fully point-and-click; no programming in R is required. Data can be uploaded directly to the Shiny server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available. 
 
-The online Shiny environment is fully point-and-click; no programming in R is required. Data can be uploaded directly to the Shiny server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available. 
+## Offline
+To use the Shiny app offline, R must be [installed](https://cran.cnr.berkeley.edu/). Next, open an R session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the R prompt, and then execute the function `shiny_run()`. This command will load the point-and-click Shiny enviroment in a local browser. No further interaction with the R console is required and no data will be transfered over the Internet.
 
-## Offline use
-<!-- To use the Shiny app offline, R must be installed. **LINK TO EASY INSTALL GUIDE** Once R is installed, open an R session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the R prompt, and then execute the function `shiny_run()`. This command will load the point-and-click Shiny enviroment in a local browser, without transfering any data over the Internet. --> The easiest way to use the Shiny application offline, is to download [the offical R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html), and execute the function shiny_run(). This will load the Shiny enviroment in the local browser, without the need of being online, or transfering any data over the Internet. 
+# Interface
+At the very top of the Shiny app are three menu options, labeled [Model](#model), [Power](#power), and More. The Model page is for statistical estimation, the Power page is for power analysis, and the More menu contains this manual, as well as a simple About page.  
 
+# Model {#model}
+The Model page is subdivided into a data  panel and a dynamic results panel which appears after the data are loaded.
 
-## Interface
-At the very top of the Shiny app are three tabs, labeled *"Model"*, *"Power"*, and *"More"*. The Model tab contains all routines for estimation, the Power tab contains all routines for power analysis, and the More tab, contains this manual, and a simple "About" page.  
+## Data
+Data are uploaded using the pull-down menu in the data upload panel. The choices are to upload either a .SAV file (native file format of SPSS), or a CSV file (comma separated values).
 
-## Model
-The model tab itself is subdivided into a data panel on the left, and a dynamic results panel on the right. The dynamic panel is not shown until data has been loaded. 
+The user can further fine-tune the data upload by clicking on the small gear button at the top right of the panel to reveal additional options depending on the file format chosen. 
 
-### Data
-Typically, the user will begin by uploading the data using the pull-down menu in the data upload tab. The choices are to upload either a .SAV file (native file format of SPSS), or a CSV file (comma separated values). For each of these two choices, the user can further fine-tune the data upload, by clicking on the small button (in the shape of a gear) at the top right. The gear button reveals additional options, and is updated dynamically based on user-chosen options. The "Browse" button appears automatically when the user chooses a .SAV or .CSV file. The Browse button opens a file explorer from which the user can navigate to the datafile for upload. 
+The Browse button appears automatically when the user chooses a .SAV or .CSV file and opens a file explorer from which to select the data for upload. 
+
+<!-- IP: stopped editing here. next add .SAV and .CSV subheaders (lv 2) -->
 
 If the user selects an .SAV file for upload, the options under the gear button include whether value labels in SPSS should be read into the uploaded datafile. E.g., a user may have coded a categorical variable 0 and 1, and included value labels "male" and "female". If "Use Value Labels" is activated, the actual labels will be displayed, otherwise the numeric code will be used. 
 
@@ -36,10 +41,10 @@ If the user selects a .CSV file (comma separated values), the options under the 
 The application also ships with an example dataset, named "CARE". The dataset is a subsample of the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full dataset is hosted by ICPSR and can be accessed here [http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091](http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091). The example dataest is briefly described in the R package help page, and described in detail in the vignette. 
 
 
-### Model specification
+## Model specification
 Once the data are loaded, additional pull-down menus will appear. By default, pull-down boxes for the outcome variable, the assignment variable, and the treatment design will be shown directly underneath the data input box. 
 
-#### Outcome
+## Outcome
 As the name implies, the outcome box allows the user to define the outcome variable. This is the variable that the researcher assumes is affected by the treatment. Clicking the gear button opens additional options related to the analysis of the outcome variable. Here, the user can specify which kernel should be used for the non-parametric (local linear fitting) analysis. By default, a triangular kernel is chosen, but the user can change this to a large variety of other kernels, described below. The kernels are used in the non-parametric estimation of the RDD that is described in more detail in the section on estimation. The kernels themselves can be described using the following kernel functions. 
 
   1.) Triangular:   $K(u) = (1-|u|)$  
@@ -48,8 +53,8 @@ As the name implies, the outcome box allows the user to define the outcome varia
   4.) Quartic:      $K(u) = 15/16(1-u^2)^2$  
   5.) Triweight:    $K(u) = 35/32(1-u^2)^3$  
   6.) Tricube:      $K(u) = 70/81(1-|u|^3)^3$  
-  7.) Gaussian:     $K(u) = 1/sqrt(2/pi^-1/2u^2)$  
-  8.) Cosine:       $K(u) = /pi/4cos(/pi/2)u$  
+  7.) Gaussian:     $K(u) = 1/\sqrt(2/\pi^-1/2u^2)$  
+  8.) Cosine:       $K(u) = /\pi/4\cos(/\pi/2)u$  
   
 In line with recommendations of Imbens and Kalyanaraman (XXXX), we recommend the use of the triangular kernel. 
 
@@ -59,7 +64,7 @@ In addition, a cluster ID may be provided by the user, and a standard error for 
 
 The last option under the outcome tab is called "auxiliary variables". In this pull-down menu, users can specify the use of auxiliary variables in the RDD. These variables are integrated in the regressions of the parameteric RDD. Purely linear terms are used for all auxiliary variables, and there is currently no implementation of adding non-linear terms. If users wanted to add non-linear terms, these would have to be created by hand first (e.g., polynomials) and entered as regular auxiliary variables. Further, by default the auxiliary variables will not be entered as interactive terms (interacting with treatment assignment). In a properly executed RDD, it should not be necessary to include auxiliary variables, but inclusion of them can in some instances increase precision of parameter estimates, and thus statistical power. 
 
-#### Treatment Design
+## Treatment Design
 ShinyRDD allows the user fine-grained control over the actual treatment assignment mechanism. Under the box "Treatment receipt" the user should input the treatment variable. With this, we mean the variable that encodes which treatment was _actually_ received by the participants. In a so-called sharp RDD the actual received treatment and the assigned treatment based on the cut-off are identical. In so-called fuzzy designs, the treatment under the assignment rule and the actually received treatment may not be identical. 
 
 The treatment mechanism of the RDD is described by (a series) of "if" statements, under the heading "Treatment Design". The first box labeled "primary assignment" should be used for the assignment variable, and the box underneath should be used to input the threshold for being assigned to the treatment. By default the threshold is interpreted that every score _equal_ or larger than the threshold leads to an assignment in the treatment condition. However, the user can change this default, and define that the treatment is applied to individuals who are below the threshold. The gear button, also the user to change the assignment operator from a smaller or equal, and larger or equal, to a strictly smaller, or strictly larger assignment. This defines whether individuals who are right at the cut-off are assigned to the treatment or not. All of this information should be available to the reseachers based on the actual design and assignment rule that was implemented. 
@@ -68,8 +73,7 @@ As an example, choosing an assignment variable and then selecting, "larger equal
 
 Clicking the small "plus" button opens another dynamic menu in which a second assignment variable can be defined. This option accommodates multiple-assignment RDDs, currently up to two assignment variables. All other options that were available for the first assignment variable are also available for the second assignment. One restriction that is in place for these designs is that both assignment rules must be either strictly larger / smaller or equal larger / smaller. Combinations of these two lead to designs in which it is at least theoretically possible to have undefined cases for some analytic approaches. 
 
-
-### Data tab
+## Data tab
 As soon as data are loaded, the "Data" tab is populated with a spreadsheet-like display of the data. Variable names are displayed at the top, and users can navigate through the data, and sort by each of the variables. This display is mainly for purposes of validating that the data were read in correctly. The user has the option to display all variables in the dataset, or restrict to the view to the variables that are in the actual model, using the "Model Data" tab. As soon as the outcome, and the treatment assignment variables are defined, the data tab is further populated with two additional tables. 
 
 Table 1.1 shows descriptive statistics of the treatment variable (T), the assignment variable (A1 - and A2, if a second assignment was chosen), and the outcome variable (O). For each variable, three columns are reported: N (the sample size), M (the mean), and SD (the standard deviation). In addition, a small correlation matrix is shown on the side. The columns of this correlation matrix are labeled with T and O, indicating both treatment, and outcome variable. Within each corresponding row and column, the Pearson correlation coefficient among all three variables is shown in the lower triangle of the matrix. The information in the table can be downloaded as a .CSV file, by clicking on the small button in the upper right that looks like a notepad.
@@ -79,7 +83,7 @@ Table 1.2 summarizes the design of the RDD, and can serve as a check for the res
 If a second assignment variable is specified, the table is expanded, and an additional column is added. All combinations of cut-offs are displayed as single rows, with their respective sample sizes, and the estimated $/pi$ parameter. 
 ShinyRDD determines for each dataset, and each given input, whether the design is sharp, or fuzzy, and whether one or two assignment variables were used. In cases, in which one assignment variable does not alter any of the assigned treatment that were based on the first assignment variable, it notes that the second assignment variable is redundant, and call this an "ineffective assignment". 
 
-### Assumptions
+## Assumptions tab
 RDDs rely on several assumptions, which are summarized in the assumptions tab. Depending on whether the design is sharp or fuzzy, and relies on one or two assignment variables, the content of the assumption tab will vary. Variations of output are noted whenever they occur. 
 
 Figure 2.1 shows the result of McCrary's (2008) sorting test. Briefly described, the sorting test relies on the following idea: in a proper RDD, there should be no discontinuity at the cut-off, because the presence of a discontinuity would imply that participants potentially sorted themselves through other means than just the assignment cut-off. As an example, consider that students are put on the dean's list if their GPA is 3.75 or higher. Teachers who (implicitly or explicitly) want to help their students may round up a grade that is very close to the cut-off. E.g., a teacher may grade the final exam of a student with a GPA of 3.74 more leniently, so that the student can obtain a final GPA of 3.75 and make it on the dean's list. If such behavior is wide-spread, we would assume that we would find less scores of 3.74 or very slightly below, and more scores of 3.75 or slightly above. This would show up as a small bump in the distribution of GPA, right at the cut-off.
@@ -87,7 +91,6 @@ Figure 2.1 shows the result of McCrary's (2008) sorting test. Briefly described,
 The sorting test is implemented as described by McCray (2008). A default binning of the data is conducted (which can be modified by the user). After binning, a non-parametric kernel smoother is applied to both sides of the cut-off using the midpoints of bins and the observed count in each bin as data. The actual test measures the vertical distance of the two edges on both sides of the cut-off, on a log metric. A test statistic $/theta$ (which quantifies the vertical distance), along with a standard error is derived, and tested using a z-test. The z-value and the p-value are reported alongside this test. Ideally, this test should not be significant. A significant test statistic would indicate that the assumption of a faithfully implemented RDD (assignment only due to cut-off) has been violated. 
 
 Because the sorting test relies on a non-parametric estimation of the kernel density estimate, it is possible to change parameters of this plot, and the resulting test. The first one is the smoothing parameter, also called band-width. The smooting parameter simply determines how mcuh data is considered at once, when computing the smooth approximation. A large value results in lots of data being considered, and the smoother being very flat. A small number results in narrow bands of data being considered when computing local means, and results in a very jagged line. The choice of bandwidht will naturally result in different test statistics, and possibly different inferential decisions. Generally speaking, a bandwidth parameter should be chosen, so that no over- or under-smoothing occurs. To aid in the selection of the parameter, a graphical display is provided, and updated every time the smoothing parameter changes. 
-
 
 The second graphical parameter is the bin size. The bin size determines the amount of binning of the raw data. The kernel density estimate in the sorting test is not derived from individual datapoints, but from binned means. If the bin size gets smaller, then many bins will have frequencies identical to, or close to 1, and the density estimate will look very flat. If the bin size increases, then there will only be few bins, and the kernel density estimate will tend to be under-smoothed, and only rely on too few bins. Just like the choice of bandwidth, the choice of bin size can be determined either through the default value, or by examining the plot. Every time the bin size is changed, the plot will automatically update.  
 
@@ -98,19 +101,18 @@ The assumptions tab will always show the sorting test for the assignment variabl
 The plot in Figure 2.1 can be downloaded as a PDF, PNG, or SVG. The test statistic itself can be downloaded in a CSV file. 
 
 The second table in the assumptions tab, Table 2.1 offers a small attrition analysis. It provides a simple count and percentages of missing data. The rows display the total sample size, and then report how many cases are missing on the treamtne variable, the outcome, and the assignment variable. This missingness information is further subdivided into the overall sample, only individuals in the control condition, or only individuals in the treatment condition. This information can sometimes be helpful to determine whether any differential attrition occured. 
+## Estimates
+
+## Sensitivity
+
+## Code
+
+# Power {#power}
+
+# About
+
+This software was developed by Felix Thoemmes, Wang Liao, Ze Jin, Wenyu Zhang, and Irena Papst all at Cornell University. We are happy to receive feedback! Please send it to
+![](../www/fjt_email.png)
 
 
-### Estimates
-
-### Sensitivity
-
-### Code
-
-## Power
-
-
-
-
-## About
-
-ShinyRDD was developed by Felix Thoemmes, Wang Liao, and Ze Jin. The work was supported by an IES grant 
+The project was supported by the Institute of Education Sciences, U.S. Department of Education, through Grant R305D150029. The opinions expressed are those of the authors and do not represent views of the Institute or the U.S. Department of Education.
