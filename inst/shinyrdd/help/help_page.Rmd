@@ -101,7 +101,15 @@ The assumptions tab will always show the sorting test for the assignment variabl
 The plot in Figure 2.1 can be downloaded as a PDF, PNG, or SVG. The test statistic itself can be downloaded in a CSV file. 
 
 The second table in the assumptions tab, Table 2.1 offers a small attrition analysis. It provides a simple count and percentages of missing data. The rows display the total sample size, and then report how many cases are missing on the treamtne variable, the outcome, and the assignment variable. This missingness information is further subdivided into the overall sample, only individuals in the control condition, or only individuals in the treatment condition. This information can sometimes be helpful to determine whether any differential attrition occured. 
+
+
 ## Estimates
+The estimates panel is where the user will find point estimates and inferential statistics for the treatment effect. As such, this panel will often be the main interest of the researcher. Because the program allows for a variety of model specifications, the output can get quite lengthy. Table 3.1. contains all results and treatment effect estimates, along with inferential statistics. The table updates automatically depending on the particular design that is being chosen. In addition, the user can expand or reduce the amount of information that is being displayed using several toggle switches at the top right of the table. The total content of the table can be downloaded as a .CSV file, using the download button at the top of the table. 
+Because the table automatically adjusts based on the particular design, we divide the following section into the different designs:
+
+### Sharp RDD with a single assignment
+In the case of sharp RDD with a single assignment, Table 3.1. displays the treatment effect estimates for the parametric model (global model), and the non-parametric model (local model). Each one of them can be toggled off by the user. 
+By default, the parametric model is shown as the first entry of the table. The parametric model is subdivided into three additional rows. Each row diplays the results of a parametric model with different functional form. The first row shows the treatment effect, estimated using a linear model. In this model the outcome is modeled as a function of the cut-off, and two linear slopes to the right and the left of it. The two linear slopes are allowed to differ from each other, that means the model always includes an interaction effect between the assignment variable, and the treatment status. The row underneath displays results of the parametric model, but instead of a linear slope, a quadratic slope is modeled on each side of the cut-off. Both linear and quadratic component of the slopes are allowed to differ on each side of the cut-off. Finally, there is also a parametric model that includes a cubic component. 
 
 ## Sensitivity
 
