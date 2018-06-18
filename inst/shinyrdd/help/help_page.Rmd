@@ -115,6 +115,8 @@ For each parametric model, a variety of inferential statistics are reported. The
 
 The lower part of the table contains results for the non-parametric models. These are models in which a bandwidth is chosen that determines how many units away from the cut-off are being used in the estimation of the regression, and how smooth the slopes on either side of the cut-off are modeled. The vast majority of information from these models is identical to the information shown for the parametric models. The non-parametric models have one additional piece of information, which is the bandwidth parameter, and unlike the parametric models, they also differ on the sample size that is being considered for each model. The three parametric models that are shown by default are one with an "optimal" bandwidth, defined by Imbens and Kalyanaraman, one with double of the optimal bandwidth, and one half of the optimal bandwidth. The three different non-parametric models are run by default to allow the researcher to see whether results hold under a variety of different bandwidth (additional robustness checks can be performed in a later tab). 
 
+In case a covariate is added, an additional toggle button is shown at the top of the table. It is deactived by default, but once the user activates it, additional rows are added for the covariate. Each row is labeled with a "+" symbol and the name of the covariate. 
+
 Figure 3.1. right underneath the table with treatment effect estimates provides a visual display of the treatment effect. Every of the six models shown above can also be individually displayed, or overlaid on top of each other. The 
 
 
