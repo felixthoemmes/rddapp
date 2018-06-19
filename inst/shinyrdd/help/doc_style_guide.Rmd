@@ -1,7 +1,7 @@
 ---
 title: "`rddapp` documentation style guide"
 author: "Irena Papst"
-output: 
+output:
   pdf_document:
     latex_engine: xelatex
 linkcolor: magenta
@@ -12,7 +12,7 @@ header-includes:
 ---
 
 Some notes to keep the writing and formatting style consistent within the docs for `rddapp`, including the `shiny` help page and the `rddapp` vignette.
- 
+
 # Headers
 * Header levels are as follows:
     + 1: Page (e.g. Model, Power)
@@ -20,6 +20,7 @@ Some notes to keep the writing and formatting style consistent within the docs f
     + 3: Anything within tabs/panels
 * Header anchors should be all lower case, with spaces replaced with underscores:
     + `## Data tab {#data_tab}`
+* Headers should be in Sentence case.
 
 # Text formatting
 
