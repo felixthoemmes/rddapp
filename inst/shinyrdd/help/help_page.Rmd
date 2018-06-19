@@ -64,15 +64,15 @@ Once the data are loaded, additional pull-down menus will appear in the "Model S
 The "Outcome" menu allows the user to define the outcome variable. This is the variable that the researcher assumes is affected by the treatment. Clicking the gear button opens additional options related to the analysis of the outcome variable. Here, the user can specify which kernel should be used for the non-parametric (local linear fitting) analysis. By default, a triangular kernel is chosen, but the user can change this to a large variety of other kernels, described below. The kernels are used in the non-parametric estimation of the RDD that is described in more detail in the section on estimation. The kernels themselves can be described using the following kernel functions:
 
   1. Triangular:   $K(u) = (1 - |u|)$,
-  2. Rectangular:  $K(u) = 1/2$,
-  3. Epanechnikov: $K(u) = 3/4(1 - u^2)$,
-  4. Quartic:      $K(u) = 15/16(1 - u^2)^2$,
-  5. Triweight:    $K(u) = 35/32(1 - u^2)^3$,
-  6. Tricube:      $K(u) = 70/81(1 - |u|^3)^3$,
-  7. Gaussian:     $K(u) = 1/\sqrt(2/\pi^-1/2u^2)$,
-  8. Cosine:       $K(u) = \pi/4\cos(\pi/2)u$.
+  2. Rectangular (uniform):  $K(u) = \frac{1}{2}$,
+  3. Epanechnikov: $K(u) = \frac{3}{4} (1 - u^2)$,
+  4. Quartic (biweight):      $K(u) = \frac{15}{16} (1 - u^2)^2$,
+  5. Triweight:    $K(u) = \frac{35}{32}(1 - u^2)^3$,
+  6. Tricube:      $K(u) = \frac{70}{81}(1 - |u|^3)^3$,
+  7. Gaussian:     $K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}$,
+  8. Cosine:       $K(u) = \frac{\pi}{4}\cos(\frac{\pi}{2}u)$,
 
-In line with recommendations of Imbens and Kalyanaraman (XXXX), we recommend the use of the triangular kernel.
+where $|u|\leq 1$, except for with the Gaussian kernel, where $u$ can be any real number. In line with recommendations of Imbens and Kalyanaraman (XXXX), we recommend the use of the triangular kernel.
 
 The second option under the outcome tab is the type of standard error that should be used. ShinyRDD supports a "usual" standard error, that assumes constant variance ($/sigma ^2 (X'X)^{-1}$). In addition, all types of standard errors that are included in the R package "sandwich" (Zeileis, 2017) are included. By default a heteroskedasticty-robust standard error (HC1) is chosen. For details on the specific choices of heteroskedasticty-robust standard errors, consult Zeileis, 2006.
 
