@@ -24,5 +24,6 @@ Some notes to keep the writing and formatting style consistent within the docs f
 
 # Text formatting
 
+* Bold terms that are direct references to objects in the app interface (e.g. the **Data** panel, not the **Data panel**). Only bold the keyword (e.g. Data, Browse, gear), not the descriptor (e.g. panel, button, menu).
 * Any code (package names, functions) should be formatted as an inline code snipet (enclosed in \` marks): `rddapp`.
 * Use [embedded links](https://www.warnerbros.com/archive/spacejam/movie/jam.html) where possible (instead of plaintext urls).

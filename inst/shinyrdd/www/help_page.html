@@ -118,55 +118,58 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><code>rddapp shiny</code> manual</h1>
+<h1 class="title toc-ignore"><code>rddapp</code> <code>shiny</code> manual</h1>
 <h4 class="author"><em>Felix Thoemmes</em></h4>
 
 </div>
 
 
-<p><code>rddapp</code> is an <a href="https://cran.r-project.org/web/packages/rddapp/index.html"><code>R</code> package</a> with a <code>shiny</code> <a href="https://shiny.rstudio.com/">web app</a> for the analysis of <a href="https://en.wikipedia.org/wiki/Regression_discontinuity_design">regression discontinuity designs</a> (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power. # Use</p>
+<p><code>rddapp</code> is an <a href="https://cran.r-project.org/web/packages/rddapp/index.html"><code>R</code> package</a> with a <code>shiny</code> <a href="https://shiny.rstudio.com/">web app</a> for the analysis of <a href="https://en.wikipedia.org/wiki/Regression_discontinuity_design">regression discontinuity designs</a> (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.</p>
+<div id="use" class="section level1">
+<h1>Use</h1>
 <div id="online" class="section level2">
 <h2>Online</h2>
-<p>The <code>rddapp shiny</code> web app can be accessed <a href="https://rddapp.shinyapps.io/shinyrdd/">online</a>. Untested features will first be introduced to the beta <a href="https://rddapp.shinyapps.io/shinyrdd_beta/">version</a>. The <code>shiny</code> environment is fully point-and-click; no programming in <code>R</code> is required. Data can be uploaded directly to the Shiny server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available.</p>
+<p>The <code>rddapp</code> <code>shiny</code> web app can be accessed <a href="https://rddapp.shinyapps.io/shinyrdd/">online</a>. Untested features will first be introduced to the beta <a href="https://rddapp.shinyapps.io/shinyrdd_beta/">version</a>. The <code>shiny</code> environment is fully point-and-click; no programming in <code>R</code> is required. Data can be uploaded directly to the <code>shiny</code> server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available.</p>
 </div>
 <div id="offline" class="section level2">
 <h2>Offline</h2>
-<p>To use the <code>shiny</code> app offline, <code>R</code> must be <a href="https://cran.cnr.berkeley.edu/">installed</a>. Next, open an <code>R</code> session and download <a href="https://cran.r-project.org/web/packages/rddapp/index.html">the offical rddapp R package from CRAN</a>. Load the package using the <code>library(rddapp)</code> command in the <code>R</code> prompt, and then execute the function <code>shiny_run()</code>. This command will load the point-and-click Shiny enviroment in a local browser. No further interaction with the <code>R</code> console is required and no data will be transfered over the Internet.</p>
+<p>To use the <code>shiny</code> app offline, <code>R</code> must be <a href="https://cran.cnr.berkeley.edu/">installed</a>. Next, open an <code>R</code> session and download <a href="https://cran.r-project.org/web/packages/rddapp/index.html">the offical rddapp R package from CRAN</a>. Load the package using the <code>library(rddapp)</code> command in the <code>R</code> prompt, and then execute the function <code>shiny_run()</code>. This command will load the point-and-click <code>shiny</code> enviroment in a local browser. No further interaction with the <code>R</code> console is required and no data will be transfered over the Internet.</p>
+</div>
 </div>
 <div id="interface" class="section level1">
 <h1>Interface</h1>
-<p>At the very top of the <code>shiny</code> app are three menu options, labeled <a href="#model">Model</a>, <a href="#power">Power</a>, and More. The Model page is for statistical estimation, the Power page is for power analysis, and the More menu contains this manual, as well as a simple About page.</p>
+<p>At the very top of the <code>shiny</code> app are three menu options, labeled <a href="#model"><strong>Model</strong></a>, <a href="#power"><strong>Power</strong></a>, and <strong>More</strong>. The <strong>Model</strong> page is for statistical estimation, the <strong>Power</strong> page is for power analysis, and the <strong>More</strong> menu contains this manual, as well as a simple <strong>About</strong> page.</p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
-<p>The Model page is subdivided into a data panel and a dynamic results panel which appears after the data are loaded.</p>
+<p>The <strong>Model</strong> page is subdivided into a data panel and a dynamic results panel which appears after the data are loaded.</p>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>Data are uploaded using the pull-down menu in the data upload panel. The choices are to upload either a <code>.sav</code> file (native file format of <code>SPSS</code>), or a <code>.csv</code> file (comma separated values).</p>
-<p>The user can further fine-tune the data upload by clicking on the small gear button at the top right of the panel to reveal additional options depending on the file format chosen.</p>
-<p>The Browse button appears automatically when the user chooses a <code>.sav</code> or <code>.csv</code> file and opens a file explorer from which to select the data for upload.</p>
+<p>Data are uploaded using the pull-down menu in the <strong>Data</strong> panel. The choices are to upload either a <code>.sav</code> file (native file format of <code>SPSS</code>), or a <code>.csv</code> file (comma separated values).</p>
+<p>The user can further fine-tune the data upload by clicking on the small <strong>gear</strong> button at the top right of the panel to reveal additional options depending on the file format chosen.</p>
+<p>The <strong>Browse</strong> button appears automatically when the user chooses a <code>.sav</code> or <code>.csv</code> file and opens a file explorer from which to select the data for upload.</p>
 <div id="sav_files" class="section level3">
 <h3><code>.sav</code> files</h3>
-<p>If the user selects an <code>.sav</code> file for upload, the gear button in the top right of the “Upload Data” panel can be used to display further options.</p>
-<p>If “Use Value Labels” is selected, value labels from SPSS will be used for the uploaded datafile. For instance, a user may have coded a categorical variable <code>0</code> and <code>1</code>, and included corresponding value labels <code>male</code> and <code>female</code>. If “Use Value Labels” is activated, the actual labels will be displayed; otherwise, the numeric code will be used.</p>
-<p>If “Use User’s Missing Value” is selected, any user-specified missing values in <code>SPSS</code> will be treated as <a href="https://www.statmethods.net/input/missingdata.html"><code>NA</code></a> in the <code>R</code> program.</p>
-<p>Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values). The user needs to provide the “Imputation ID” variable. All analyses will then be performed on the multiply imputed data. In particular, all analyses will be performed on each imputation, estimates from each imputation will be averaged, and standard errors will be derived using Rubin’s rules (1987), taking into account the variation both within and between imputations.</p>
+<p>If the user selects an <code>.sav</code> file for upload, the <strong>gear</strong> button in the top right of the <strong>Data</strong> panel can be used to display further options.</p>
+<p>If the <strong>Use Value Labels</strong> option is selected, value labels from SPSS will be used for the uploaded data. For instance, a user may have coded a categorical variable <code>0</code> and <code>1</code>, and included corresponding value labels <code>male</code> and <code>female</code>. When <strong>Use Value Labels</strong> is activated, the actual labels will be displayed; otherwise, the numeric codes will be used.</p>
+<p>If the <strong>Use User’s Missing Value</strong> option is selected, any user-specified missing values in <code>SPSS</code> will be treated as <a href="https://www.statmethods.net/input/missingdata.html"><code>NA</code></a> in the <code>R</code> program.</p>
+<p>Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values) by selecting a <strong>Multiple Imputation ID</strong> variable from the data. This variable indicates which imputation event each observation corresponds to. All analyses will be performed on each imputation, estimates from each imputation will be averaged, and standard errors will be derived using Rubin’s rules (1987), which accounts for the variation both within and between imputations.</p>
 </div>
 <div id="csv-files" class="section level3">
 <h3><code>.csv</code> files</h3>
-<p>If the user selects a <code>.csv</code> file, the options under the gear button allow the user to specify exactly how the <code>.csv</code> file is structured.</p>
+<p>If the user selects a <code>.csv</code> file, the options under the <strong>gear</strong> button allow the user to specify exactly how the <code>.csv</code> file is structured.</p>
 <p>The user can specify:</p>
 <ul>
-<li>whether any values are enclosed in quotes (double <code>&quot;</code>, single <code>'</code>, or none),</li>
-<li>what kind of separator is used between values (comma <code>,</code>, semi-colon <code>;</code>, tab, or whitespace),</li>
-<li>whether missing values are blank by default or if a special character is used (e.g., <code>NA</code>),</li>
-<li>whether the file includes a header in the first line with variable names.</li>
+<li>whether any values are enclosed in <strong>quotes</strong> (double <code>&quot;</code>, single <code>'</code>, or none),</li>
+<li>what kind of <strong>separator</strong> is used between values (comma <code>,</code>, semi-colon <code>;</code>, tab, or whitespace),</li>
+<li>whether <strong>missing values</strong> are blank by default or if a special character is used (e.g., <code>NA</code>),</li>
+<li>whether the file includes a <strong>header</strong> in the first line with variable names.</li>
 </ul>
-<p>Just as for <code>.sav</code> files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID (see <a href="#sav_files">above</a> for details).</p>
+<p>Just as for <code>.sav</code> files, the user can specify that the file is multiply imputed, and if so which variable is the <strong>Multiple Imputation ID</strong> (see <a href="#sav_files">above</a> for details).</p>
 </div>
 <div id="care-example-data" class="section level3">
 <h3>CARE example data</h3>
-<p>The application includes an example data set, named “CARE”. The data are sampled from the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full data set is hosted by <a href="http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091">ICPSR</a>. The example data are described briefly in the <code>rddapp</code> package <a href="https://cran.r-project.org/web/packages/rddapp/rddapp.pdf">manual</a>, and in detail in the <a href="https://cran.r-project.org/web/packages/rddapp/vignettes/rddapp.html">vignette</a>.</p>
+<p>The application includes an example data set, named <strong>CARE</strong>. The data are sampled from the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study, with the full data set hosted by <a href="http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091">ICPSR</a>. The example data are described briefly in the <code>rddapp</code> package <a href="https://cran.r-project.org/web/packages/rddapp/rddapp.pdf">manual</a>, and in detail in the <a href="https://cran.r-project.org/web/packages/rddapp/vignettes/rddapp.html">vignette</a>.</p>
 </div>
 </div>
 <div id="model-specification" class="section level2">

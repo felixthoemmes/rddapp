@@ -1,66 +1,65 @@
 ---
-title: "`rddapp shiny` manual"
+title: "`rddapp` `shiny` manual"
 author: "Felix Thoemmes"
 #date: "January 20, 2018"
 output: html_document
 ---
 
 `rddapp` is an [`R` package](https://cran.r-project.org/web/packages/rddapp/index.html) with a `shiny` [web app](https://shiny.rstudio.com/) for the analysis of [regression discontinuity designs](https://en.wikipedia.org/wiki/Regression_discontinuity_design) (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
+
 # Use
 
 ## Online
-The `rddapp shiny` web app can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta [version](https://rddapp.shinyapps.io/shinyrdd_beta/).
-The `shiny` environment is fully point-and-click; no programming in `R` is required. Data can be uploaded directly to the Shiny server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available.
+The `rddapp` `shiny` web app can be accessed [online](https://rddapp.shinyapps.io/shinyrdd/). Untested features will first be introduced to the beta [version](https://rddapp.shinyapps.io/shinyrdd_beta/).
+The `shiny` environment is fully point-and-click; no programming in `R` is required. Data can be uploaded directly to the `shiny` server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available.
 
 ## Offline
-To use the `shiny` app offline, `R` must be [installed](https://cran.cnr.berkeley.edu/). Next, open an `R` session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the `R` prompt, and then execute the function `shiny_run()`. This command will load the point-and-click Shiny enviroment in a local browser. No further interaction with the `R` console is required and no data will be transfered over the Internet.
+To use the `shiny` app offline, `R` must be [installed](https://cran.cnr.berkeley.edu/). Next, open an `R` session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the `R` prompt, and then execute the function `shiny_run()`. This command will load the point-and-click `shiny` enviroment in a local browser. No further interaction with the `R` console is required and no data will be transfered over the Internet.
 
 # Interface
-At the very top of the `shiny` app are three menu options, labeled [Model](#model), [Power](#power), and More. The Model page is for statistical estimation, the Power page is for power analysis, and the More menu contains this manual, as well as a simple About page.
+At the very top of the `shiny` app are three menu options, labeled [**Model**](#model), [**Power**](#power), and **More**. The **Model** page is for statistical estimation, the **Power** page is for power analysis, and the **More** menu contains this manual, as well as a simple **About** page.
 
 # Model {#model}
-The Model page is subdivided into a data panel and a dynamic results panel which appears after the data are loaded.
+The **Model** page is subdivided into a data panel and a dynamic results panel which appears after the data are loaded.
 
 ## Data
-Data are uploaded using the pull-down menu in the data upload panel. The choices are to upload either a `.sav` file (native file format of `SPSS`), or a `.csv` file (comma separated values).
+Data are uploaded using the pull-down menu in the **Data** panel. The choices are to upload either a `.sav` file (native file format of `SPSS`), or a `.csv` file (comma separated values).
 
-The user can further fine-tune the data upload by clicking on the small gear button at the top right of the panel to reveal additional options depending on the file format chosen.
+The user can further fine-tune the data upload by clicking on the small **gear** button at the top right of the panel to reveal additional options depending on the file format chosen.
 
-The Browse button appears automatically when the user chooses a `.sav` or `.csv` file and opens a file explorer from which to select the data for upload.
+The **Browse** button appears automatically when the user chooses a `.sav` or `.csv` file and opens a file explorer from which to select the data for upload.
 
 ### `.sav` files {#sav_files}
 
-If the user selects an `.sav` file for upload, the gear button in the top right of the "Upload Data" panel can be used to display further options.
+If the user selects an `.sav` file for upload, the **gear** button in the top right of the **Data** panel can be used to display further options.
 
-If "Use Value Labels" is selected, value labels from SPSS will be used for the uploaded datafile. For instance, a user may have coded a categorical variable `0` and `1`, and included corresponding value labels `male` and `female`. If "Use Value Labels" is activated, the actual labels will be displayed; otherwise, the numeric code will be used.
+If the **Use Value Labels** option is selected, value labels from SPSS will be used for the uploaded data. For instance, a user may have coded a categorical variable `0` and `1`, and included corresponding value labels `male` and `female`. When **Use Value Labels** is activated, the actual labels will be displayed; otherwise, the numeric codes will be used.
 
-If "Use User's Missing Value" is selected, any user-specified missing values in `SPSS` will be treated as [`NA`](https://www.statmethods.net/input/missingdata.html) in the `R` program.
+If the **Use User's Missing Value** option is selected, any user-specified missing values in `SPSS` will be treated as [`NA`](https://www.statmethods.net/input/missingdata.html) in the `R` program.
 
-Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values). The user needs to provide the "Imputation ID" variable. All analyses will then be performed on the multiply imputed data. In particular, all analyses will be performed on each imputation, estimates from each imputation will be averaged, and standard errors will be derived using Rubin's rules (1987), taking into account the variation both within and between imputations.
+Finally, the user can indicate that the uploaded file has been multiply imputed (typically to deal with missing values) by selecting a **Multiple Imputation ID** variable from the data. This variable indicates which imputation event each observation corresponds to. All analyses will be performed on each imputation, estimates from each imputation will be averaged, and standard errors will be derived using Rubin's rules (1987), which accounts for the variation both within and between imputations.
 
 ### `.csv` files
 
-If the user selects a `.csv` file, the options under the gear button allow the user to specify exactly how the `.csv` file is structured.
+If the user selects a `.csv` file, the options under the **gear** button allow the user to specify exactly how the `.csv` file is structured.
 
 The user can specify:
 
-* whether any values are enclosed in quotes (double `"`, single `'`, or none),
-* what kind of separator is used between values (comma `,`, semi-colon `;`, tab, or whitespace),
-* whether missing values are blank by default or if a special character is used (e.g., `NA`),
-* whether the file includes a header in the first line with variable names. 
+* whether any values are enclosed in **quotes** (double `"`, single `'`, or none),
+* what kind of **separator** is used between values (comma `,`, semi-colon `;`, tab, or whitespace),
+* whether **missing values** are blank by default or if a special character is used (e.g., `NA`),
+* whether the file includes a **header** in the first line with variable names. 
 
-Just as for `.sav` files, the user can specify that the file is multiply imputed, and if so which variable is the imputation ID (see [above](#sav_files) for details).
+Just as for `.sav` files, the user can specify that the file is multiply imputed, and if so which variable is the **Multiple Imputation ID** (see [above](#sav_files) for details).
 
 ### CARE example data
 
-The application includes an example data set, named "CARE". The data are sampled from the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study. The full data set is hosted by [ICPSR](http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091). The example data are described briefly in the `rddapp` package [manual](https://cran.r-project.org/web/packages/rddapp/rddapp.pdf), and in detail in the [vignette](https://cran.r-project.org/web/packages/rddapp/vignettes/rddapp.html).
+The application includes an example data set, named **CARE**. The data are sampled from the Carolina Abecedarian Project and the Carolina Approach to Responsive Education (CARE) study, with the full data set hosted by [ICPSR](http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091). The example data are described briefly in the `rddapp` package [manual](https://cran.r-project.org/web/packages/rddapp/rddapp.pdf), and in detail in the [vignette](https://cran.r-project.org/web/packages/rddapp/vignettes/rddapp.html).
 
 ## Model specification
-Once the data are loaded, additional pull-down menus will appear in the "Model Specification" panel for the treatment design, assignment variable, and the outcome variable.
+Once the data are loaded, additional panels will appear for the [**Outcome**](#outcome) variable and [**Treatment Design**](#treatment_design).
 
-<!-- IP: stopped editing here. Do the below sections need to be re-ordered based on their order of appearance in the app? -->
-
-## Outcome
+## Outcome {#outcome}
 The "Outcome" menu allows the user to define the outcome variable. This is the variable that the researcher assumes is affected by the treatment. Clicking the gear button opens additional options related to the analysis of the outcome variable. Here, the user can specify which kernel should be used for the non-parametric (local linear fitting) analysis. By default, a triangular kernel is chosen, but the user can change this to a large variety of other kernels, described below. The kernels are used in the non-parametric estimation of the RDD that is described in more detail in the section on estimation. The kernels themselves can be described using the following kernel functions:
 
   1. Triangular:   $K(u) = (1 - |u|)$,
@@ -80,7 +79,7 @@ In addition, a cluster ID may be provided by the user, and a standard error for 
 
 The last option under the outcome tab is called "auxiliary variables". In this pull-down menu, users can specify the use of auxiliary variables in the RDD. These variables are integrated in the regressions of the parameteric RDD. Purely linear terms are used for all auxiliary variables, and there is currently no implementation of adding non-linear terms. If users wanted to add non-linear terms, these would have to be created by hand first (e.g., polynomials) and entered as regular auxiliary variables. Further, by default the auxiliary variables will not be entered as interactive terms (interacting with treatment assignment). In a properly executed RDD, it should not be necessary to include auxiliary variables, but inclusion of them can in some instances increase precision of parameter estimates, and thus statistical power.
 
-## Treatment Design
+## Treatment Design {#treatment_design}
 ShinyRDD allows the user fine-grained control over the actual treatment assignment mechanism. Under the box "Treatment receipt" the user should input the treatment variable. With this, we mean the variable that encodes which treatment was _actually_ received by the participants. In a so-called sharp RDD the actual received treatment and the assigned treatment based on the cut-off are identical. In so-called fuzzy designs, the treatment under the assignment rule and the actually received treatment may not be identical.
 
 The treatment mechanism of the RDD is described by (a series) of "if" statements, under the heading "Treatment Design". The first box labeled "primary assignment" should be used for the assignment variable, and the box underneath should be used to input the threshold for being assigned to the treatment. By default the threshold is interpreted that every score _equal_ or larger than the threshold leads to an assignment in the treatment condition. However, the user can change this default, and define that the treatment is applied to individuals who are below the threshold. The gear button, also the user to change the assignment operator from a smaller or equal, and larger or equal, to a strictly smaller, or strictly larger assignment. This defines whether individuals who are right at the cut-off are assigned to the treatment or not. All of this information should be available to the reseachers based on the actual design and assignment rule that was implemented.
