@@ -152,7 +152,10 @@ By default this two-state least-squares approach estimates the complier average 
 
 The only addition to the sharp RDD with single assignment, is that the user may also request the intent-to-treat estimate. This estimate essentially ignores the fuzzyness of the design, and simply assigns each individual the treatment that they were supposed to receive based on their value of the assignment variable and the cut-off rule. This estiamte can be toggled on and will show up as an additional row in the Table, labeled "+ ITT". Also, Figure 3.1. can display the ITT model, by selecting it from the dropbox menu labeled "Model type". 
 
+### Sharp RDD with two assignment variables (with or without covariates)
+The RDD with multiple (in this case, two) assignment variables complicates the analysis, because numerous potential estimates have been suggested in the literature. For an overview, see the paper by Wong, Steiner, and Cook (2013), which describes a variety of such designs, and estiamtes. The estimators implemented in this software are directly derived from the Wong et al. (2013) paper, and the Stata code that was published by Wong. 
 
+One choice of estimator 
 
 
 ## Sensitivities tab
