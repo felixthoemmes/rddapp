@@ -147,7 +147,12 @@ The scatterplot is overlaid with the regression line that corresponds to one or 
 Additional information of the graph (e.g., legends for points and regression lines, axis labels) are done automatically, and cannot be overriden by the user. The plot can be downloaded by clicking the buttons on the top right of the Figure. Supported formats are .PDF, .SVG, and .PNG. 
 
 ### Fuzzy RDD with a single assignment (with or without covariates)
-The fuzzy RDD with a single assignment variable is conceptually quite similar to the sharp RDD, and likewise the output in the estiamates tab will be almost identical. 
+The fuzzy RDD with a single assignment variable is conceptually quite similar to the sharp RDD, and likewise the output in the estimates tab will be almost identical, and is therefore not repeated in detail. The fuzzy RDD estiamtes are derived using two-stage least-squares estimation. The first-stage model predicts treatment group status from the assignment variable, and in the second stage these predictions are used in a model with the outcome variable. Unlike in the case of the sharp RDD, the actual assigned treatment, and the treatment that is actually being received may be different. Hence, the predictions of treatment assignment from the assignment variable will generally not be identical to the actual treatment. 
+By default this two-state least-squares approach estimates the complier average treatment effect at the cut-off. By default the same six parametric and non-parametric models are being estimated, and their treatment effects, along with inferential statistics are presented in Table 3.1., with an accompaning graphical display in Figure 3.1. Covariates can be displayed via the toggle button, and if selected, the linear regression coefficient of the covariate predicting the outcome in the second stage model is displayed. 
+
+The only addition to the sharp RDD with single assignment, is that the user may also request the intent-to-treat estimate. This estimate essentially ignores the fuzzyness of the design, and simply assigns each individual the treatment that they were supposed to receive based on their value of the assignment variable and the cut-off rule. This estiamte can be toggled on and will show up as an additional row in the Table, labeled "+ ITT". Also, Figure 3.1. can display the ITT model, by selecting it from the dropbox menu labeled "Model type". 
+
+
 
 
 ## Sensitivities tab
