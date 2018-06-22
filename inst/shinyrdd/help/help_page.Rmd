@@ -147,12 +147,15 @@ The scatterplot is overlaid with the regression line that corresponds to one or 
 Additional information of the graph (e.g., legends for points and regression lines, axis labels) are done automatically, and cannot be overriden by the user. The plot can be downloaded by clicking the buttons on the top right of the Figure. Supported formats are .PDF, .SVG, and .PNG. 
 
 ### Fuzzy RDD with a single assignment (with or without covariates)
+The fuzzy RDD with a single assignment variable is conceptually quite similar to the sharp RDD, and likewise the output in the estiamates tab will be almost identical. 
+
 
 ## Sensitivities tab
 
 ## R Code tab
 
 # Power page {#power_page}
+
 
 # About
 
