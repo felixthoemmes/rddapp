@@ -140,15 +140,15 @@ The **bin size** determines the width of bins for the kernel density estimate in
 
 ### Band width
 
-The second parameter is the band width, also known as the smoothing parameter. The smoothing parameter simply determines how much data is considered at once, when computing the smooth approximation. A large value results in a lot of data being considered, and the smoother being very flat. A small number results in narrow bands of data being considered when computing local means, and results in a very jagged line. The choice of bandwidth will naturally result in different test statistics, and possibly different inferential decisions. Generally speaking, a bandwidth parameter should be chosen, so that no over- or under-smoothing occurs. To aid in the selection of the parameter, a graphical display is provided, and updated every time the smoothing parameter changes.
+The **band width**, also known as the smoothing parameter, determines how many data points are considered at once when computing the smooth approximation to the data. As the band width **increases**, more data points are considered and so the smoother goes **from flat to jagged**. The choice of band width will affect the test statistic, and possibly different inferential decisions. Generally speaking, a band width parameter should be chosen so that **no over- or under-smoothing occurs**. To aid in the selection of the band width parameter, Figure 2.1 will update every time the smoothing parameter is changed.
 
-When changing the parameters, keep in mind that it it is considered bad statistical practice to change the bin size or bandwidth to maximize the p-value in order to make the test look good. Instead either the default should be used, or adjusted in accordance with a properly smoothed plot. The automatic defaults are often good choices, but sometimes some minor adjustment is needed. It is very rare that large adjustments need to be made to the default values.
+When changing the parameters, be mindful that it it is considered **bad statistical practice** to change the bin size or bandwidth to maximize the p-value in order to make the test look good. Instead either the default bin size should be used, or adjusted in accordance with a properly smoothed plot. The software defaults are often good choices, but sometimes minor adjustments are needed. <!-- IP: Citation for the default values and why they are good choices?-->
 
 ### Test summary {#test_summary}
 
-A test statistic, **theta**, which quantifies the vertical distance, and a standard error (**se**) are derived and tested using a $z$-test. The **z** value and the **p** value are reported alongside this test. Ideally, this test should not be significant. A significant test statistic would indicate that the assumption of a neutrally implemented RDD (assignment only due to cut-off) has been violated. The **test summary** is displayed in the lower right corner of the Figure 2.1 panel.
+The sofware derives a test statistic, **theta**, which quantifies the vertical distance, and a standard error (**se**). These quantities are tested using a $z$-test. The **z** value and the **p** value are also reported. Ideally, this test should *not* be significant. A significant test statistic would indicate that the assumption of a neutrally implemented RDD (assignment only due to cut-off) has been violated. The **test summary** is displayed in the lower right corner of the Figure 2.1 panel.
 
-The plot in Figure 2.1 can be downloaded as a PDF, PNG, or SVG. The test statistic itself can be downloaded in a CSV file.
+Both the plot and the test summary can be downloaded using the buttons in the top right corner of the Figure 2.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test summary table can be downloaded as a `.csv` file. 
 
 ### Table 2.1
 
