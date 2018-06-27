@@ -203,13 +203,16 @@ Given the complexity of the frontier approach, it is useful to also inspect the 
 The software provides a three-dimensional plot of the response surface for the frontier estimates. It is accessed using the pull-down menu under "Model Type". A new pull-down is then displayed called "Model Specification", where the user can switch graphical displays of the three different parametric models. This helps to visualize the implied constraints of the various models. The user has various choices to modify the appearance of the plot. The pull-down menu labeled "View" defaults to "Perspective", which presents a three-dimensional graph of the response surface. Changing this to "Top", "Front", or "Side" changes the perspective, and typically flattens one dimension. E.g., the top view shows the response surface directly from above, therefore flattening the dimension of the outcome variable. This can sometimes be useful to visualize the cut-offs of the two assignment variables. Front and Side view can occasionally be of use, but are typically harder to interpret than the three-dimensional plot. 
 The three-dimensional perspective plot can be manually rotated by the user, using the sliders that are labeled with arrows on top, and take angles as input. The graph is redrawn every time these angles are changed, and the display updates as soon as the new angle is set. It is currently not possible to interactively spin the graph. The panel button underneath the perspective view allows the user to color all surfaces that received the treatment assignment, add gridlines, and put a slight shade on all surfaces. Finally, the bottom panel labeled "Data" allows the user to overlay the raw data as points, and to scale the axes. By default the axes are rescaled so that the resulting response surface plot has axes of the same length. Using the toggle button "original scale" changes this so that the axes of the variables correspond to the actual scales, and are therefore potentially of different length. 
 
-
 ### Fuzzy RDD with two assignment variables (with or without covariates)
-
+In the case of an RDD with multiple assignments that are potentially fuzzy, the design becomes slightly more complicated, however the overall interface, and outputs are identical to the sharp counterpart of this design. All of the models that were described above, are now being estimated using the two-stage least squares approach, in which the fuzzy treatment assignment is estimated in a first step, and then the estimated treatment assignments are used for all of the models. 
 
 ## Sensitivities tab
+In this tab, the user may perform various checks to see how sensitive results are to particular modeling choices. The two sections 4.1. and 4.2. contain a sensitivity analysis regarind the cut-off, and the bandwidth parameter, respectively. 
+Figure 4.1. shows the user how the treatment effect would have been different, if a different cut-off would have been chosen for the analysis. This cut-off is necessarily different than the one that was assumed in the original design. These tests of treatment effects at essentially wrong cut-off values are sometimes also called "placebo tests", and the assumption is that in a correct RDD, the treatment effect should only be visible at the actual, true cut-off. Hence, seeing lots of non-significant results at cut-offs away from the actual cut-off value is desriable. 
+
 
 ## R Code tab
+In this tab, the current analysis that the user selected via the drop-down menu is translated into R code. Advanced users may copy and paste this code for further modifications directly in R. This is also useful for being able to replicate results. 
 
 # Power page {#power_page}
 
