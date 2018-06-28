@@ -322,7 +322,7 @@ data_summary = function(input, output, session, dataframe, parameter){
   output$describe_note = renderUI(expr = {
     
     span(em('Note.'),
-                'T = Treatment, O = Outcome, A = Assignment, C = covariate.',
+                'T = Treatment, O = Outcome, A = Assignment, C = Covariate.',
                 
       ifelse(!is.null(describe()$warning),
         span(describe()$warning, style = 'color:red'),''))
