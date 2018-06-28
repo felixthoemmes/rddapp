@@ -40,7 +40,7 @@ assumption_checkUI = function(id){
               span(class = 'input-group-addon', inline = T, style='padding:2.5px;')
             ),
             div(class='input-group input-group-sm',
-              span(class='input-group-addon', style='width:30%','band width'),
+              span(class='input-group-addon', style='width:30%','bandwidth'),
               numericInput(ns('sort_banw'), label = NULL, value = NULL, min = 0, 
                 max = NA, step = .01, width = '100%'),
               span(class = 'input-group-addon', inline = T, style='padding:2.5px;')
