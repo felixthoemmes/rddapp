@@ -249,13 +249,17 @@ In the case of an RDD with multiple assignments that are potentially fuzzy, the 
 
 ## Sensitivities tab
 In this tab, the user may perform various checks to see how sensitive results are to particular modeling choices. The two sections 4.1. and 4.2. contain a sensitivity analysis regarding the cut-off, and the bandwidth parameter, respectively. 
+
 Figure 4.1. shows the user how the treatment effect would have been different, if a different cut-off would have been chosen for the analysis. This cut-off is necessarily different than the one that was assumed in the original design. These tests of treatment effects at essentially wrong cut-off values are sometimes also called "placebo tests", and the assumption is that in a correct RDD, the treatment effect should only be visible at the actual, true cut-off. Hence, seeing lots of non-significant results at cut-offs away from the actual cut-off value is desirable. 
+By default, the tests are not produced before the user clicks the button in the bottom right. The user can change various parameters for the analysis and plot in Figure 4.1. By default the treatment effect at the true cut-off is estimated (and shown with a vertical line in the plot), and estimates around the cut-off using a default span around it. The user may change this span, both by defining the endpoints (using the min and max boxes), and the number of estimates between these endpoints (using the steps box). More extreme endpoints, and a larger number of steps, will yield more placebo test over a wider range of values. By default a 95% confidence interval is shown around the estimates, but the user can change this by using a different value in the box at the top of the Figure. Likewise, the user can change which model is used to estimate the effects (e.g., parameteric model, non-parametric model with specific bandwidths, etc.). Simply clicking the box underneath the figure will display all possible models for this particular analysis. The models will always correspond to the ones found in the Estimates tab. The plot can be downloaded in various formats, using the buttons on the top right of the figure. 
+
+Figure 4.2. is a robustness check for the non-parametric model only, and shows how the treatment effect changes with a different bandwidth for the non-parametric estimator. The user can change which bandwidth parameters should be probed by defining a minimum, maximium, and the number of steps between those values in the boxes underneath the graph. The optimal bandwidth is indicated by a vertical line in the plot. Ideally, the graph should show a somewhat flat line that indicates that over a wide range of bandwidth choices, the estimate does not change dramatrically. By default a 95% confidence interval is shown, however the user can change this using the box on top of the graph. The graph can be downloaded in various formats using the usual buttons in the upper right half. 
 
 ## R Code tab
 In this tab, the current analysis that the user selected via the drop-down menu is translated into R code. Advanced users may copy and paste this code for further modifications directly in R. This is also useful for being able to replicate results. 
 
 # Power page {#power_page}
-
+Users may wish to perform a formal (frequentist) power analysis, to determine a-priori sample sizes, or to construct power curves for various effect sizes, or sample sizes. 
 
 # About
 
