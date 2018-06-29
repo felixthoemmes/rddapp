@@ -15,8 +15,8 @@ Some notes to keep the writing and formatting style consistent within the docs f
 
 # Headers
 * Header levels are as follows:
-    + 1: Page (e.g. Model, Power)
-    + 2: Tabs/panels within pages
+    + 1: Page (e.g. Model, Power) or major tabs (e.g. Data, Estimates, etc. on Model page)
+    + 2: Panels within pages
     + 3: Anything within tabs/panels
 * Header anchors should be all lower case, with spaces replaced with underscores:
     + `## Data tab {#data_tab}`
