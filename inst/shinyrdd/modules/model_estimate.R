@@ -112,7 +112,7 @@ model_estimateUI = function(id){
                     value = 95, min = 0, max = 100, step = .01, width = '100%'),
                   span(class='input-group-addon', tags$small('%'), style='border-left:0;'),
                   span(class='input-group-btn',
-                    actionButton(ns('rdd_bin_level_hide'), label = 'hide errorbars',title = 'show CIs as filled areas',
+                    actionButton(ns('rdd_bin_level_hide'), label = 'hide error bars',title = 'show CIs as filled areas',
                       `data-toggle`="button", `aria-pressed`="false", autocomplete="off")
                   )
                 )
