@@ -148,7 +148,7 @@ When changing the parameters, be mindful that it it is considered **bad statisti
 
 The software derives a test statistic, **theta**, which quantifies the vertical distance, and a standard error (**se**). These quantities are tested using a $z$-test. The **z** value and the **p** value are also reported. Ideally, this test should *not* be significant. A significant test statistic would indicate that the assumption of a neutrally implemented RDD (assignment only due to treatment threshold) has been violated. The **test summary** is displayed in the lower right corner of the Figure 2.1 panel.
 
-Both the plot and the test summary can be downloaded using the buttons in the top right corner of the Figure 2.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test summary table can be downloaded as a `.csv` file. 
+Both the plot and the test summary can be downloaded using the buttons in the top right corner of the Figure 2.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
 
 ## Table 2.1
 
@@ -235,7 +235,7 @@ The **model type** option is only useful for fuzzy designs as there is no differ
 
 #### Predicted lines
 
-The user can toggle which of the models summarized in Table 3.1 are plotted as **predicted lines** in Figure 3.1 by selecting their labels from the drop down menu or by deleting their labels from this field by clicking the label and hitting the backspace key on the keyboard. By default, the non-parametric optimal model is overlaid.
+The user can toggle which of the models summarized in Table 3.1 are plotted as **predicted lines** in Figure 3.1 by selecting their labels from the drop-down menu or by deleting their labels from this field by clicking the label and hitting the backspace key on the keyboard. By default, the non-parametric optimal model is overlaid.
 
 Furthermore, the user can specify a percentage for the confidence interval(s) plotted in the **CI** input box, and toggle whether or not the area between the confidence interval boundaries should be colored in (by selecting the **fill area** button).
 
@@ -280,27 +280,35 @@ The three-dimensional perspective plot can be manually rotated by the user, usin
 ### Fuzzy RDD
 In the case of an RDD with multiple assignments that are potentially fuzzy, the design becomes slightly more complicated, however the overall interface, and outputs are identical to the sharp counterpart of this design. All of the models that were described above, are now being estimated using the two-stage least squares approach, in which the fuzzy treatment assignment is estimated in a first step, and then the estimated treatment assignments are used for all of the models. 
 
-<!-- IP: STARTED EDITING HERE. -->
+<!-- IP: STARTED EDITING AGAIN HERE. -->
 
 # Sensitivities tab {#sensitivities_tab}
-In this tab, the user can perform various **sensitivity analyses**, including those for the **treatment threshold** and the **bandwidth parameter**. Note that neither of figures 4.1 or 4.2 will be generated automatically; they will only appear after the blue circular arrow button is pressed (found in the lower right corner of each figure panel).
+In this tab, the user can perform various **sensitivity analyses**, including those for the **treatment threshold** and the **bandwidth**. Note that neither of Figures 4.1 or 4.2 will be generated automatically; they will only appear after the corresponding blue circular arrow button is pressed (found in the lower right corner of each figure panel).
 
 ## Figure 4.1
 
 Figure 4.1. performs a sensitivity analysis for the **treatment threshold** by plotting the treatment effect estimate as a function of a range of hypothetical treatment thresholds for various models.
 
-These tests of treatment effects at essentially wrong treatment threshold values are sometimes also called **placebo tests**. The assumption is that in a properly-run RDD, the treatment effect should *only* be visible at the actual treatment threshold. Hence, seeing many non-significant results at treatment thresholds away from the actual treatment threshold value is desirable. 
+These tests of treatment effects at wrong treatment threshold values are sometimes also called **placebo tests**. The assumption is that in a properly-run RDD, the treatment effect should *only* be visible at the actual treatment threshold. Hence, seeing many non-significant results at treatment thresholds away from the actual treatment threshold value is desirable. 
 
-<!-- IP: STOPPED EDITING HERE. -->
+The user can change the span of treatment thresholds to test by defining the endpoints using the **min** and **max** boxes below the plot, and the number of estimates to compute between these endpoints using the **steps** box. The treatment effect at the true treatment threshold is always estimated and denoted with a dashed vertical line labeled **designed cutoff**. By default, a 95% confidence interval is shown around the estimates, but the user can change this percentage in the **CI** box at the top right of the Figure 4.1 panel. 
 
-The user can change various parameters for the analysis and plot in Figure 4.1. By default the treatment effect at the true treatment threshold is estimated (and shown with a vertical line in the plot), and estimates around the treatment threshold using a default span around it. The user may change this span, both by defining the endpoints (using the min and max boxes), and the number of estimates between these endpoints (using the steps box). More extreme endpoints, and a larger number of steps, will yield more placebo test over a wider range of values. By default a 95% confidence interval is shown around the estimates, but the user can change this by using a different value in the box at the top of the Figure. Likewise, the user can change which model is used to estimate the effects (e.g., parametric model, non-parametric model with specific bandwidths, etc.). Simply clicking the box underneath the figure will display all possible models for this particular analysis. The models will always correspond to the ones found in the Estimates tab. The plot can be downloaded in various formats, using the buttons on the top right of the figure. 
+The user can **select the models** with which to perform this analysis (e.g., the parametric linear model, the non-parametric optimal model etc.) in the box directly under the plot. Clicking this box will open a drop-down menu featuring all models that can be added to the plot. To delete a model from the plot, click on its label and press the keyboard's backspace button. The labels in this menu correspond to the ones used in the [Estimates](#estimates_tab) tab.
+
+Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
 
 ## Figure 4.2
 
-Figure 4.2. is a robustness check for the non-parametric model only, and shows how the treatment effect changes with a different bandwidth for the non-parametric estimator. The user can change which bandwidth parameters should be probed by defining a minimum, maximum, and the number of steps between those values in the boxes underneath the graph. The optimal bandwidth is indicated by a vertical line in the plot. Ideally, the graph should show a somewhat flat line that indicates that over a wide range of bandwidth choices, the estimate does not change dramatically. By default a 95% confidence interval is shown, however the user can change this using the box on top of the graph. The graph can be downloaded in various formats using the usual buttons in the upper right half. 
+Figure 4.2. is a robustness check for the non-parametric model; it shows how the treatment effect estimate changes with different **bandwidths**. Ideally, the graph should show a somewhat flat line that indicates that over a wide range of bandwidth choices, the estimate does not change dramatically.
 
-# R Code tab
-In this tab, the current analysis that the user selected via the drop-down menu is translated into R code. Advanced users may copy and paste this code for further modifications directly in R. This is also useful for being able to replicate results. 
+The user can change the span of bandwidths to test by defining the endpoints using the **min** and **max** boxes below the plot, and the number of estimates to compute between these endpoints using the **steps** box. The treatment effect at the optimal bandwidth is always estimated and denoted with a dashed vertical line labeled **optimal bandwidth**. By default, a 95% confidence interval is shown around the estimates, but the user can change this percentage in the **CI** box at the top right of the Figure 4.2 panel. 
+
+Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.2 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
+
+# `R` code tab
+In this tab, the current analysis that the user selected via the drop-down menu is translated into `R` code. <!-- IP: I don't see where the drop-down menu is, so this should be clarified  --> Users can copy and paste this code into an `R` script for customization, automation, and for conducting reproducible research.
+
+<!-- IP: STOPPED EDITING HERE. -->
 
 # Power page {#power_page}
 Users may wish to perform a formal (frequentist) power analysis, to determine a priori sample sizes, or to construct power curves for various sample sizes. All power analyses are performed using Monte Carlo simulations, that means that the researcher needs to define all population parameters. From these parameters samples are drawn, and effects, and their significance are estimated. The proportion of significant results across all Monte Carlo simulations is used as an estimate of statistical power. 

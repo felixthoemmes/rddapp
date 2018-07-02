@@ -28,3 +28,4 @@ Some notes to keep the writing and formatting style consistent within the docs f
      * Discretionary bolding of other **keywords** is also helpful.
 * Any software (`R`, `rddapp`) or code (`function()`) should be formatted as an inline code snipet (enclosed in \` marks).
 * Use [embedded links](https://www.warnerbros.com/archive/spacejam/movie/jam.html) where possible (instead of plaintext urls).
+* Page elements (e.g. Figure 4.1, the Estimates tab) should be written using Title case. 
