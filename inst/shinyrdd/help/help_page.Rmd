@@ -165,7 +165,7 @@ This information can help to determine whether any differential attrition occurr
 
 The estimates tab is where the user will find point estimates and inferential statistics for the treatment effect. The output displayed will be significantly different for RDDs with single vs. multiple assignment rules, so we discuss these cases in two separate sections.
 
-## RDD with a single assignment rule
+## RDD with one assignment rule
 
 ### Table 3.1
 
@@ -308,12 +308,21 @@ Both the plot and the data being plotted can be downloaded using the buttons in 
 # `R` code tab
 In this tab, the current analysis that the user selected via the drop-down menu is translated into `R` code. <!-- IP: I don't see where the drop-down menu is, so this should be clarified  --> Users can copy and paste this code into an `R` script for customization, automation, and for conducting reproducible research.
 
+# Power page {#power_page}
+Users may wish to perform a formal (frequentist) **power analysis**, to determine a priori sample sizes, or to construct power curves for various sample sizes. All power analyses are performed using [**Monte Carlo simulations**](https://en.wikipedia.org/wiki/Monte_Carlo_method). The user defines population parameters, which are used to simulate a model. The treatment effect is estimated from the simulation and its significance is calculated. This procedure is repeated many times, and a **mean** and **variance** are calculated for the treatment effects. The **statistical power** is estimated as the proportion of significant results across all Monte Carlo simulations.
+
+The success of this process hinges on properly defining the **population parameters**, which is often challenging. We attempt to guide the user in this process using various graphical displays. These displays change depending on the particular design that is chosen (i.e. whether the RDD has a single or multiple assignment variable(s)).
+
+## RDD with one assignment rule
+
+### Assignment panel
+
+The **Assignment** panel is where the user defines the assumed distribution of the assignment variable. The plot shows a histogram with kernel density estimate. The shading of the histogram bars indicates group membership (**treatment** or **control**).
+
+The settings under the **Distribution** label allow the user to specify the distribution type and parameters for the assignment variable, labeled **A1** by default. The distribution types available are **normal** and **uniform**, and the user can toggle between them using the eponymously labeled toggle button. For a normal distribution, a mean $\mu$ and a standard deviation $\sigma$ must be provided. For a uniform distribution, a **min**imum value and a **max**imum value must be provided. 
+
 <!-- IP: STOPPED EDITING HERE. -->
 
-# Power page {#power_page}
-Users may wish to perform a formal (frequentist) power analysis, to determine a priori sample sizes, or to construct power curves for various sample sizes. All power analyses are performed using Monte Carlo simulations, that means that the researcher needs to define all population parameters. From these parameters samples are drawn, and effects, and their significance are estimated. The proportion of significant results across all Monte Carlo simulations is used as an estimate of statistical power. 
-
-Defining the population parameters is important, and often challenging. We try to guide the user in this process using graphical displays. These displays will change depending on the particular design that is chosen. We begin our description with the RDD with a single assignment variable. The upper left box, called "Assignment" is where the user defines the assumed distribution of the assignment variable. The current choices are "normal" and "uniform", and the user can toggle between those using the first toggle button in the "Distribution" section. By default the assignment variable is called "A1". If the user chooses a normal distribution, a mean and a standard deviation must be provided. If the user chooses a uniform distribution, a minimum and a maximum must be provided. Depending on these entries, the graphical display of the assignment variable is updated. The display always shows a histogram with kernel density estimate, and shading that indicates group membership. 
 The user may also define at which value of the assignment variable, treatment is administered. This typically tends to change the proportion of treated and untreated, and also affects power estimates. The user may also change the amount of "fuzzyness", which is defined as the percentage of misclassified cases around the treatment threshold. We allow the user to define fuzzyness on both sides of the treatment threshold. For example, a user may specify that 20% of the cases below the treatment threshold are misclassified, but only 10% of the cases on the other side of the treatment threshold. Finally, the user must specify the overall sample size in the box in the top right of the section. 
 Clicking the plus sign in the top right of the box, allows the user to add a second assignment variable (by default called A2), and generate an RDD with two assignment variables. All parameters (including distribution, and fuzzyness) of the second variable can be modified in the same way. The plot will automatically update to show two assignment variables. 
 
