@@ -313,24 +313,42 @@ Users may wish to perform a formal (frequentist) **power analysis**, to determin
 
 The success of this process hinges on properly defining the **population parameters**, which is often challenging. We attempt to guide the user in this process using various graphical displays. These displays change depending on the particular design that is chosen (i.e. whether the RDD has a single or multiple assignment variable(s)).
 
-## RDD with one assignment rule
-
-### Assignment panel
+## Assignment panel
 
 The **Assignment** panel is where the user defines the assumed distribution of the assignment variable. The plot shows a histogram with kernel density estimate. The shading of the histogram bars indicates group membership (**treatment** or **control**).
 
 The settings under the **Distribution** label allow the user to specify the distribution type and parameters for the assignment variable, labeled **A1** by default. The distribution types available are **normal** and **uniform**, and the user can toggle between them using the eponymously labeled toggle button. For a normal distribution, a mean $\mu$ and a standard deviation $\sigma$ must be provided. For a uniform distribution, a **min**imum value and a **max**imum value must be provided. 
 
+Under the **Treatment design** label, the user can set the assignment rule, i.e. the values of the assignment variable **A1** at which treatment is administered. The assignment rule changes the proportion of treated and untreated, which affects power estimates. To change the assignment rule, the user can click on the **inequality** symbol to toggle between greater than or equal to and less than or equal to and change the value of the assignment threshold in the adjacent text box. Note that there is no setting to exclude treatment at the threshold (i.e. to remove the equality from the inequality). If the assignment variable is discrete and the desired treatment assignment is **A1** $> x$, then the user could input the equavalent assignment rule **A1** $\geq x+1$. 
+
+The user may also change the amount of **fuzziness** in the design, which is defined as the proportion of misclassified cases around the treatment threshold. The user can set this proportion (as a decimal) below and above the threshold independently, using the text boxes adjacent to the **fuzziness** label. The left box is for the proportion of control cases that were misclasified and instead treated, while the right box is for cases assigned treatment but actually left untreated. Note that the left box is *always* associated with control cases and the right box is *always* associated with treatment cases even if the assignment rule flips the plot so that cases *under* (i.e. to the left of) the threshold are treated.
+
+The **sample size** can be specified in the box found in the top right of the **Assignment** panel.
+
+Clicking the **plus** button in the top right corner of the **Assignment** panel allows the user to add a second assignment variable (labeled **A2**). The **distribution** and **treatment design** for **A2** can be set in the same way as they were for **A1**. All parameters (including distribution, and fuzzyness) of the second variable can be modified in the same way. The plot will update to show an annotated scatterplot with each assignment variable on one axis, along with a sketch of their distributions.
+
 <!-- IP: STOPPED EDITING HERE. -->
 
-The user may also define at which value of the assignment variable, treatment is administered. This typically tends to change the proportion of treated and untreated, and also affects power estimates. The user may also change the amount of "fuzzyness", which is defined as the percentage of misclassified cases around the treatment threshold. We allow the user to define fuzzyness on both sides of the treatment threshold. For example, a user may specify that 20% of the cases below the treatment threshold are misclassified, but only 10% of the cases on the other side of the treatment threshold. Finally, the user must specify the overall sample size in the box in the top right of the section. 
-Clicking the plus sign in the top right of the box, allows the user to add a second assignment variable (by default called A2), and generate an RDD with two assignment variables. All parameters (including distribution, and fuzzyness) of the second variable can be modified in the same way. The plot will automatically update to show two assignment variables. 
+## Parametric model for outcome panel
 
-Once the assignment variables have been defined, the user must define the parametric outcome model that relates the assignment variable, and the treatment to the outcome variable. Currently, we only allow linear models, however we allow a fully unconstrained parametric model with respect to interactive effects. This implies that every segment of the regression surface can have a different slope. The plot will show some example data that are generated from the design, and will update depending on user input. 
+Once the assignment is specified, the user must specify the **parametric model** for the **outcome** variable as a function of the assignement and treatment.
 
-In the case of a single assignment RDD, a simple scatterplot with a regression line is shown. The user can modify the treatment effect, the intercept of the regression slope, the slope on the untreated side of the treatment threshold, and (through the interaction effect), the difference in slopes on the other side of the treatment threshold. Finally, the user can define the partial $\eta^2$ that measures the effect size of the treatment. Changing this value will show up in the graph as data points lying closer to the regression line. Defining the effect size is an indirect way to change the standard error of the treatment effect. 
+Currently, only **linear** models are implemented, though there is a fully **unconstrained parametric model* with respect to **interactive effects**. In this case, every segment of the regression surface can have a different slope.
 
-In the case of an RDD with two assignment variables, the parametric model is substantially more complex. It now involves treatment effects at both frontiers, and slopes that are defined for every piece of the regression surface that is being divided by the cut-off on the assignment variable. There are a total of 13 regression coefficients that need to be defined by the user. Starting with the intercept (the predicted value when both assignment variables are zero, and the assignment is to the control condition), to the two treatment effects (at the boundaries of the two assignment varaiables), to the two regression coefficients that relate the assignment variables to the outcome (while holding treatments constant at the control group). In addition, a total of 7 interaction effects are included, that define how the slopes of the assignment variables change with different values of the treatment and control values for the two cut-offs. The graphical display can help in making sense of all these coefficients. 
+The plot in this panel shows the **simulated outcome** variable as a function of the assignment and will update when simulation parameters are changed. 
+
+In the case of an **RDD with one assignment variable**, a scatterplot with a regression line is shown. The user can modify the treatment effect (labeled **Treatment**), the intercept of the regression slope (labeled **Constant**), the slope on the control side of the treatment threshold (labeled **Slope**), and the difference in slopes on the treatment side of the threshold (labeled **Interaction**). Lastly, the user can define the **Partial $\eta^2$**, which measures the effect size of the treatment. As the partial $\eta^2$ increases, the simulated data will lie closer to the regression lines. Defining the effect size is an indirect way of changing the standard error of the treatment effect. 
+
+In the case of an **RDD with two assignment variables**, the parametric model is substantially more complex. It now involves treatment effects at both **frontiers**, and slopes that are defined for every piece of the regression surface divided by the threshold for each assignment variable.
+
+There are a total of 13 regression coefficients that need to be defined by the user:
+
+* the intercept, i.e., the predicted outcome when both assignment variables at their respective treatment thresholds (labeled **constant**);
+* the two treatment effects (labeled **T1** and **T2** for **A1** And **A2** respectively), which set the effect size of the treatment at the threshold of each assignment variable;
+
+<!-- IP: STOPPED EDITING HERE -->
+
+* the two regression coefficients that relate the assignment variables to the outcome (while holding treatments constant at the control group).
 
 Once the parametric models are specified, the user can generate Monte Carlo simulations in the upper right section of the power tab. 
 Table 5.1. has an execute button in the top right corner, along with a setting for the number of Monte Carlo simulations that should be conducted. By default this is set to 500, but the user can change this number. Generally speaking, higher numbers yield more precise estimates. After the simulation is finished, Table 5.1. is populated. In the case of the rows will contain the parametric linear model, and the non-parametric model with optimal bandwidth. The columns will show the number of succesful replication of the Monte Carlo simulation. Typically this will be equal to the user-specified number of iterations, but for some unsual models (e.g., lots of fuzzyness in assignment), it is possible that a simulated dataset may not yield a valid estimate. The mean and the variance of all simulated treatment effects is shown in in the next two columns. Typically, the user-defined treatment effect should be recovered. Finally, the last three columns show the estimated statistical power (1 - Type II error) for various alpha levels (.05, .01, .001). 
