@@ -148,7 +148,7 @@ When changing the parameters, be mindful that it it is considered **bad statisti
 
 The software derives a test statistic, **theta**, which quantifies the vertical distance, and a standard error (**se**). These quantities are tested using a $z$-test. The **z** value and the **p** value are also reported. Ideally, this test should *not* be significant. A significant test statistic would indicate that the assumption of a neutrally implemented RDD (assignment only due to treatment threshold) has been violated. The **test summary** is displayed in the lower right corner of the Figure 2.1 panel.
 
-Both the plot and the test summary can be downloaded using the buttons in the top right corner of the Figure 2.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
+Both the plot and the test summary can be downloaded using the buttons in the top right corner of the Figure 2.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can be downloaded as a `.csv` file. 
 
 ## Table 2.1
 
@@ -295,7 +295,7 @@ The user can change the span of treatment thresholds to test by defining the end
 
 The user can **select the models** with which to perform this analysis (e.g., the parametric linear model, the non-parametric optimal model etc.) in the box directly under the plot. Clicking this box will open a drop-down menu featuring all models that can be added to the plot. To delete a model from the plot, click on its label and press the keyboard's backspace button. The labels in this menu correspond to the ones used in the [Estimates](#estimates_tab) tab.
 
-Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
+Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can be downloaded as a `.csv` file. 
 
 ## Figure 4.2
 
@@ -303,7 +303,7 @@ Figure 4.2. is a robustness check for the non-parametric model; it shows how the
 
 The user can change the span of bandwidths to test by defining the endpoints using the **min** and **max** boxes below the plot, and the number of estimates to compute between these endpoints using the **steps** box. The treatment effect at the optimal bandwidth is always estimated and denoted with a dashed vertical line labeled **optimal bandwidth**. By default, a 95% confidence interval is shown around the estimates, but the user can change this percentage in the **CI** box at the top right of the Figure 4.2 panel. 
 
-Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.2 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can can be downloaded as a `.csv` file. 
+Both the plot and the data being plotted can be downloaded using the buttons in the top right corner of the Figure 4.2 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The test data displayed in the plot can be downloaded as a `.csv` file. 
 
 # `R` code tab
 In this tab, the current analysis that the user selected via the drop-down menu is translated into `R` code. <!-- IP: I don't see where the drop-down menu is, so this should be clarified  --> Users can copy and paste this code into an `R` script for customization, automation, and for conducting reproducible research.
@@ -319,7 +319,7 @@ The **Assignment** panel is where the user defines the assumed distribution of t
 
 The settings under the **Distribution** label allow the user to specify the distribution type and parameters for the assignment variable, labeled **A1** by default. The distribution types available are **normal** and **uniform**, and the user can toggle between them using the eponymously labeled toggle button. For a normal distribution, a mean $\mu$ and a standard deviation $\sigma$ must be provided. For a uniform distribution, a **min**imum value and a **max**imum value must be provided. 
 
-Under the **Treatment design** label, the user can set the assignment rule, i.e. the values of the assignment variable **A1** at which treatment is administered. The assignment rule changes the proportion of treated and untreated, which affects power estimates. To change the assignment rule, the user can click on the **inequality** symbol to toggle between greater than or equal to and less than or equal to and change the value of the assignment threshold in the adjacent text box. Note that there is no setting to exclude treatment at the threshold (i.e. to remove the equality from the inequality). If the assignment variable is discrete and the desired treatment assignment is **A1** $> x$, then the user could input the equavalent assignment rule **A1** $\geq x+1$. 
+Under the **Treatment design** label, the user can set the assignment rule, i.e. the values of the assignment variable **A1** at which treatment is administered. The assignment rule changes the proportion of treated and untreated, which affects power estimates. To change the assignment rule, the user can click on the **inequality** symbol to toggle between greater than or equal to and less than or equal to and change the value of the assignment threshold in the adjacent text box. Note that there is no setting to exclude treatment at the threshold (i.e. to remove the equality from the inequality). If the assignment variable is discrete and the desired treatment assignment is **A1** $> x$, then the user could use the equavalent assignment rule **A1** $\geq x+1$. 
 
 The user may also change the amount of **fuzziness** in the design, which is defined as the proportion of misclassified cases around the treatment threshold. The user can set this proportion (as a decimal) below and above the threshold independently, using the text boxes adjacent to the **fuzziness** label. The left box is for the proportion of control cases that were misclasified and instead treated, while the right box is for cases assigned treatment but actually left untreated. Note that the left box is *always* associated with control cases and the right box is *always* associated with treatment cases even if the assignment rule flips the plot so that cases *under* (i.e. to the left of) the threshold are treated.
 
@@ -333,30 +333,57 @@ Clicking the **plus** button in the top right corner of the **Assignment** panel
 
 Once the assignment is specified, the user must specify the **parametric model** for the **outcome** variable as a function of the assignement and treatment.
 
-Currently, only **linear** models are implemented, though there is a fully **unconstrained parametric model* with respect to **interactive effects**. In this case, every segment of the regression surface can have a different slope.
+Currently, only **linear** models are implemented, though there is a fully **unconstrained parametric model** with respect to **interactive effects**. In this case, every segment of the regression surface can have a different slope.
 
 The plot in this panel shows the **simulated outcome** variable as a function of the assignment and will update when simulation parameters are changed. 
 
 In the case of an **RDD with one assignment variable**, a scatterplot with a regression line is shown. The user can modify the treatment effect (labeled **Treatment**), the intercept of the regression slope (labeled **Constant**), the slope on the control side of the treatment threshold (labeled **Slope**), and the difference in slopes on the treatment side of the threshold (labeled **Interaction**). Lastly, the user can define the **Partial $\eta^2$**, which measures the effect size of the treatment. As the partial $\eta^2$ increases, the simulated data will lie closer to the regression lines. Defining the effect size is an indirect way of changing the standard error of the treatment effect. 
 
-In the case of an **RDD with two assignment variables**, the parametric model is substantially more complex. It now involves treatment effects at both **frontiers**, and slopes that are defined for every piece of the regression surface divided by the threshold for each assignment variable.
+In the case of an **RDD with two assignment variables**, the parametric model is substantially more complex. It now involves treatment effects at both **frontiers**, and slopes that are defined for every piece of the regression surface divided by the threshold for each assignment variable. <!-- IP: I'm not 100% sure what this last bit means, but I also haven't edited the Estimates section for two variable RDDs yet...-->
 
 There are a total of 13 regression coefficients that need to be defined by the user:
 
-* the intercept, i.e., the predicted outcome when both assignment variables at their respective treatment thresholds (labeled **constant**);
-* the two treatment effects (labeled **T1** and **T2** for **A1** And **A2** respectively), which set the effect size of the treatment at the threshold of each assignment variable;
+* the **intercept**, i.e., the predicted outcome when both assignment variables at their respective treatment thresholds (labeled **constant**);
+* the two **treatment effects** (labeled **T1** and **T2** for the assignment variables **A1** and **A2** respectively), which set the effect size of the treatment at the threshold of each assignment variable;
+* the two **regression coefficients** that relate the assignment variables to the outcome, while holding treatments constant at the control group (labeled **A1** and **A2**); <!-- IP: Not sure what the second part about the control group means... -->
+* a total of seven **interaction effects** are included, that define how the slopes of the assignment variables change with different values of the treatment and control values for the two cut-offs. <!-- IP: An example would be helpful here, and I'm not really sure what to suggest because I don't fully understand these fields. --> 
 
-<!-- IP: STOPPED EDITING HERE -->
+## Table 5.1 Powers of RDD estimates
 
-* the two regression coefficients that relate the assignment variables to the outcome (while holding treatments constant at the control group).
+Once the parametric models are specified in the **Assignment** and **Parametric Model for Outcome** panels, the user can generate Monte Carlo simulations in the **Table 5.1 Powers of RDD estimates** panel.
 
-Once the parametric models are specified, the user can generate Monte Carlo simulations in the upper right section of the power tab. 
-Table 5.1. has an execute button in the top right corner, along with a setting for the number of Monte Carlo simulations that should be conducted. By default this is set to 500, but the user can change this number. Generally speaking, higher numbers yield more precise estimates. After the simulation is finished, Table 5.1. is populated. In the case of the rows will contain the parametric linear model, and the non-parametric model with optimal bandwidth. The columns will show the number of succesful replication of the Monte Carlo simulation. Typically this will be equal to the user-specified number of iterations, but for some unsual models (e.g., lots of fuzzyness in assignment), it is possible that a simulated dataset may not yield a valid estimate. The mean and the variance of all simulated treatment effects is shown in in the next two columns. Typically, the user-defined treatment effect should be recovered. Finally, the last three columns show the estimated statistical power (1 - Type II error) for various alpha levels (.05, .01, .001). 
+The user can specify the number of Monte Carlo simulations to be performed in the field labeled **Iterations** in the top right corner of the panel. The default number of iterations is 500. In general, as the number of iterations increases, the power estimate becomes more precise; however, a large number of iterations may take a very long time to complete.
 
-In the case of an RDD with two assignment variables, the same columns are displayed, but the rows now show three parametric models (centering, and two univariate models), and three non-parametric models (the same models, but with an optimal bandwidth). Other possible effects (e.g., the frontier average effect) are not computed, because they take a prohibtly long amount of time to compute. 
+The simulations are executed by pressing the **blue circular arrow button** in the top right corner of the panel. Once the simulations are complete, Table 5.1. is populated with results.
 
+For an **RDD with one assignment variable**, the rows of the table give the results for the **linear parametric** model and the **non-parametric** model with **optimal bandwidth**.
 
-Figure 5.1. below allows the user to probe several sample sizes (instead of only a single sample size). The user can set the minimum and the maximum sample size, and the number of steps between these sample sizes can be set in the box at the top of the figure. By default 500 iterations are performed, but the user may increase this number for increased precision of power estimates. Finally, the user can change the display of the graph by either graphing two lines for power of the (linear) parametric model, and the optimal non-parametric model, or alterantively draw seperate lines for different alpha levels. All results of Figure 5.1. can be downloaded in various formats using the buttons in the top right of the figure. 
+For an **RDD with two assignment variables**, the rows of the table give the results for three linear parametric models (**centering**, and two **univariate** models), as well as three non-parametric models (same as the parametric ones but with an **optimal bandwidth**). Other possible effects (e.g., the frontier average effect) are not estimated as they take prohibitively long to compute.
+
+In both cases, the columns of the table are:
+
+* **S**: the number of successful Monte Carlo simulations; typically, this value will be equal to the number of iterations, but for some unsual models (e.g., lots of fuzzyiness in the assignment), it is possible that some simulations do not yield a valid estimate;
+* **Treatment effects**: the sample **Mean** and **Variance** of the treatment effect from the simulations of each model; for a large enough number of iterations, the user-defined treatment effect should be recovered;
+* **Power**: the estimated statistical power (Type II error rates) for various significance levels ($\alpha = .05, .01, .001$). 
+
+The tab above the Table 5.1 panel, labeled **R Code** gives the code used to perform the simulation and populate the table. 
+
+## Figure 5.1 Power by Sample Size
+
+Figure 5.1. allows the user to investigate how statistical power is affected by sample size. Inside the panel, the user can set the **minimum sample size** and the **maximum sample size**, while the number of sample sizes to take in this interval can be set in the **Steps** box, in the top right corner of the panel.
+
+The number of **Iterations in each step** can be set in the top right corner of the panel as well. The default number of iterations is 500. In general, as the number of iterations increases, the power estimate becomes more precise; however, a large number of iterations may take a very long time to complete.
+
+The simulations are executed by pressing the **blue circular arrow button** in the top right corner of the panel. Figure 5.1. is populated with results as the simulations for each sample size are complete.
+
+Once the simulations are fully complete, the user can adjust what is plotted in the figure. The **Group lines by** drop-down menu reveals two main options:
+
+1. **Model type**: the results for each model are plotted as a different curve;
+2. **Alpha level**: the results the three levels of significance ("alpha levels") are plotted as different curves.
+
+Depending on the **Group lines by** option selected, a second drop-down menu appears below it. If **Model type** is selected, the menu **Show alpha level** appears, where the user chooses the significance level for which to plot the estimated power. If **Alpha leve** is selected, the menu **Show model type** appears, where the user chooses the model for which to plot the estimated power.
+
+Both the currently displayed plot and the full simulation data can be downloaded using the buttons in the top right corner of the Figure 5.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The simluation data can be downloaded as a `.csv` file.
 
 # About
 This software was developed by [Felix Thoemmes](https://psychology.cornell.edu/felix-j-thoemmes), [Wang Liao](https://wliao229.github.io/), [Ze Jin](https://www.linkedin.com/in/ze-jin-08045b31), [Wenyu Zhang](http://zwenyu.github.io/), and [Irena Papst](https://github.com/papsti) all at Cornell University. We are happy to receive feedback! Please send it to
