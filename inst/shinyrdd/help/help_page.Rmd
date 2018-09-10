@@ -9,6 +9,7 @@ output:
     toc_float: true
     theme: "cosmo"
     css: help_page.css
+bibliography: help_page.bib
 ---
 
 `rddapp` is an [`R` package](https://cran.r-project.org/web/packages/rddapp/index.html) with a `shiny` [web app](https://shiny.rstudio.com/) for the analysis of [regression discontinuity designs](https://en.wikipedia.org/wiki/Regression_discontinuity_design) (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
@@ -67,7 +68,7 @@ The application includes an example data set, named **CARE**. The data are sampl
 ## Outcome panel {#outcome_panel}
 The **Outcome** menu allows the user to define the outcome variable: the variable that the researcher believes is affected by the treatment. Additional options for analyzing the outcome variable appear by clicking the **gear** button and include the **Kernel for local linear fitting**, **Type of SE** (standard error), and **Auxiliary Variables**.
 
-The **kernel** option specifies the type of kernel that should be used for the non-parametric (local linear fitting) analysis, described further in the [**Estimates**](#estimates_tab) section. By default, a triangular kernel is chosen, in line with recommendations of Imbens and Kalyanaraman (XXXX). However, the user can change this to a variety of other kernels, defined by the following functions:
+The **kernel** option specifies the type of kernel that should be used for the non-parametric (local linear fitting) analysis, described further in the [**Estimates**](#estimates_tab) section. By default, a triangular kernel is chosen, in line with recommendations of Imbens and Kalyanaraman [-@ImbenKalya09; -@ImbenKalya12]. However, the user can change this to a variety of other kernels, defined by the following functions:
 
   1. Triangular:   $K(u) = (1 - |u|)$,
   2. Rectangular (uniform):  $K(u) = \frac{1}{2}$,
@@ -208,7 +209,7 @@ The **non-parametric** models use a **weighted least-squares** linear regression
 
 The non-parametric model results are subdivided into three rows, where each row gives results of the outcome variable modeled as a function of the assignment variable, but with a different bandwidth function. The bandwidth functions include:
 
-* **optimal**: the "optimal" bandwidth, as defined by Imbens and Kalyanaraman (XXXX);
+* **optimal**: the "optimal" bandwidth, as defined by Imbens and Kalyanaraman [-@ImbenKalya09; -@ImbenKalya12];
 * **half-optimal**: half the optimal bandwidth;
 * **double-optimal**: double the optimal bandwidth.
 
@@ -430,3 +431,5 @@ This software was developed by [Felix Thoemmes](https://psychology.cornell.edu/f
 
 
 The project was supported by the [Institute of Education Sciences](https://ies.ed.gov/), [U.S. Department of Education](https://www.ed.gov/), through Grant R305D150029. The opinions expressed are those of the authors and do not represent views of the Institute or the U.S. Department of Education.
+
+# Citations
