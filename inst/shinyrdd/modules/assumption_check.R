@@ -101,14 +101,14 @@ assumption_check = function(input, output, session, dataframe, parameter){
       # DEFINE ROW NAMES
       dictionary = c(
         overallt = 'Total Sample Size',
-        overallmisst = sprintf('- Treatment (%s)', parameter$treatment()),
-        overallmissy = sprintf('- Outcome (%s)', parameter$outcome()),
-        overallmissx1 = sprintf('- Assignment 1 (%s)', parameter$assignment1()),
-        overallmissx2 = if(parameter$is_frontier()) sprintf('- Assignment 2 (%s)', parameter$assignment2()),
+        overallmisst = sprintf('Treatment (%s)', parameter$treatment()),
+        overallmissy = sprintf('Outcome (%s)', parameter$outcome()),
+        overallmissx1 = sprintf('Assignment 1 (%s)', parameter$assignment1()),
+        overallmissx2 = if(parameter$is_frontier()) sprintf('Assignment 2 (%s)', parameter$assignment2()),
         missingness = 'Missingness'
       )
       if(!parameter$is_frontier()) 
-        dictionary['overallmissx1'] = sprintf('- Assignment (%s)', parameter$assignment1())
+        dictionary['overallmissx1'] = sprintf('Assignment (%s)', parameter$assignment1())
       
       # TRANSPOSE / RESHAPE DATA
       df = data.frame(
