@@ -275,7 +275,7 @@ div.tocify {
 <div id="outcome_panel" class="section level2">
 <h2>Outcome panel</h2>
 <p>The <strong>Outcome</strong> menu allows the user to define the outcome variable: the variable that the researcher believes is affected by the treatment. Additional options for analyzing the outcome variable appear by clicking the <strong>gear</strong> button and include the <strong>Kernel for local linear fitting</strong>, <strong>Type of SE</strong> (standard error), and <strong>Auxiliary Variables</strong>.</p>
-<p>The <strong>kernel</strong> option specifies the type of kernel that should be used for the non-parametric (local linear fitting) analysis, described further in the <a href="#estimates_tab"><strong>Estimates</strong></a> section. By default, a triangular kernel is chosen, in line with recommendations of Imbens and Kalyanaraman <span class="citation">(2009; 2012)</span>. However, the user can change this to a variety of other kernels, defined by the following functions:</p>
+<p>The <strong>kernel</strong> option specifies the type of kernel that should be used for the non-parametric (local linear fitting) analysis, described further in the <a href="#estimates_tab"><strong>Estimates</strong></a> section. By default, a triangular kernel is chosen, in line with recommendations of Imbens and Kalyanaraman <span class="citation">(2009, 2012)</span>. However, the user can change this to a variety of other kernels, defined by the following functions:</p>
 <ol style="list-style-type: decimal">
 <li>Triangular: <span class="math inline">\(K(u) = (1 - |u|)\)</span>,</li>
 <li>Rectangular (uniform): <span class="math inline">\(K(u) = \frac{1}{2}\)</span>,</li>
@@ -397,7 +397,7 @@ Also, in trying to understand how the estimates are computed, I've come up with 
 <p>The <strong>non-parametric</strong> models use a <strong>weighted least-squares</strong> linear regression. A bandwidth function determines how to weigh each data point in the regression, which determines both the <strong>smoothness</strong> of the regression, as well as the <strong>window</strong> around the treatment threshold from which to use data (points are excluded by being assigning a weight of 0).</p>
 <p>The non-parametric model results are subdivided into three rows, where each row gives results of the outcome variable modeled as a function of the assignment variable, but with a different bandwidth function. The bandwidth functions include:</p>
 <ul>
-<li><strong>optimal</strong>: the “optimal” bandwidth, as defined by Imbens and Kalyanaraman <span class="citation">(2009; 2012)</span>;</li>
+<li><strong>optimal</strong>: the “optimal” bandwidth, as defined by Imbens and Kalyanaraman <span class="citation">(2009, 2012)</span>;</li>
 <li><strong>half-optimal</strong>: half the optimal bandwidth;</li>
 <li><strong>double-optimal</strong>: double the optimal bandwidth.</li>
 </ul>
@@ -574,10 +574,10 @@ Also, in trying to understand how the estimates are computed, I've come up with 
 <h1>Citations</h1>
 <div id="refs" class="references">
 <div id="ref-ImbenKalya09">
-<p>Imbens, Guido, and Karthik Kalyanaraman. 2009. “Optimal Bandwidth Choice for the Regression Discontinuity Estimator.” Working Paper 14726. Working Paper Series. National Bureau of Economic Research. doi:<a href="https://doi.org/10.3386/w14726">10.3386/w14726</a>.</p>
+<p>Imbens, G., &amp; Kalyanaraman, K. (2009). <em>Optimal bandwidth choice for the regression discontinuity estimator</em> (Working Paper No. 14726). National Bureau of Economic Research. doi:/<a href="https://doi.org/10.3386/w14726">10.3386/w14726</a></p>
 </div>
 <div id="ref-ImbenKalya12">
-<p>———. 2012. “Optimal Bandwidth Choice for the Regression Discontinuity Estimator.” <em>The Review of Economic Studies</em> 79 (3): 933–59. doi:<a href="https://doi.org/10.1093/restud/rdr043">10.1093/restud/rdr043</a>.</p>
+<p>Imbens, G., &amp; Kalyanaraman, K. (2012). Optimal bandwidth choice for the regression discontinuity estimator. <em>The Review of Economic Studies</em>, <em>79</em>(3), 933–959. doi:<a href="https://doi.org/10.1093/restud/rdr043">10.1093/restud/rdr043</a></p>
 </div>
 </div>
 </div>

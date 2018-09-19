@@ -10,6 +10,7 @@ output:
     theme: "cosmo"
     css: help_page.css
 bibliography: help_page.bib
+csl: apa-old-doi-prefix.csl
 ---
 
 `rddapp` is an [`R` package](https://cran.r-project.org/web/packages/rddapp/index.html) with a `shiny` [web app](https://shiny.rstudio.com/) for the analysis of [regression discontinuity designs](https://en.wikipedia.org/wiki/Regression_discontinuity_design) (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
