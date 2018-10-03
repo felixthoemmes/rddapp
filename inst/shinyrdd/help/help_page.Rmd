@@ -22,7 +22,7 @@ The `rddapp` `shiny` web app can be accessed [online](https://rddapp.shinyapps.i
 The `shiny` environment is fully point-and-click; no programming in `R` is required. Data can be uploaded directly to the `shiny` server for analysis. For sensitive data that must be kept on secure, the use of an offline client is available.
 
 ## Offline
-To use the `shiny` app offline, `R` must be [installed](https://cran.cnr.berkeley.edu/). Next, open an `R` session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the `R` prompt, and then execute the function `shiny_run()`. This command will load the point-and-click `shiny` environment in a local browser. No further interaction with the `R` console is required and no data will be transferred over the Internet.
+To use the `shiny` app offline, `R` must be [installed](https://cran.r-project.org/). Next, open an `R` session and download [the offical rddapp R package from CRAN](https://cran.r-project.org/web/packages/rddapp/index.html). Load the package using the `library(rddapp)` command in the `R` prompt, and then execute the function `shiny_run()`. This command will load the point-and-click `shiny` environment in a local browser. No further interaction with the `R` console is required and no data will be transferred over the Internet.
 
 # Menu
 At the very top of the `shiny` app are three menu options, labeled [**Model**](#model_page), [**Power**](#power_page), and **More**. The **Model** page is for statistical estimation, the **Power** page is for power analysis, and the **More** menu contains this manual, as well as a simple **About** page.
