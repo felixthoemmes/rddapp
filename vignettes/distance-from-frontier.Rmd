@@ -45,9 +45,9 @@ Using these two ideas, we can now derive the points that are $\varepsilon$ from 
 \includegraphics[width=0.6\textwidth]{figs/f4.png}
 \end{center}
 
-Formally, this is the $l_1$-metric to the frontier, where the distance between a point $p = (p_x,p_y)$ and a set, $A$, is abstractly defined as
+Formally, this is the $l_1$-metric to the frontier, where the distance between a point $p = (p_x,p_y)$ and a set, $A$, is abstractly defined as\footnote{Really, this quantitiy should be phrased in terms of the \href{https://en.wikipedia.org/wiki/Infimum_and_supremum}{infimum} instead of the minimum, but I'm omitting these mathematical details here.}
 \begin{align}
-l_1(p,A) &= \min_{a=(a_x,a_y) \in A}\footnote{Really, this should be phrased in terms of the \href{https://en.wikipedia.org/wiki/Infimum_and_supremum}{infimum} instead of the minimum, but I'm omitting these mathematical details here.} \{ l_1(p,a)\} \\
+l_1(p,A) &= \min_{a=(a_x,a_y) \in A} \{ l_1(p,a)\} \\
 &= \min_{a=(a_x,a_y) \in A} \{|p_x-a_x|+|p_y-a_y|\}.
 \end{align}
 
