@@ -21,6 +21,12 @@
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
+#' @param front.bw A numeric vector specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models in the frontier method. If NA, front.bw will be determined by cross validation.
+#' @param m The number of uniformly-at-random samples to draw as search candidates for front.bw 
+#'   if not given.
+#' @param k An integer specifying the number of folds for cross validation to determine front.bw
+#'   if not given. 
 #' @param kernel A string specifying the kernel to be used in the local linear fitting. 
 #'   \code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 
 #'   used for edge estimation as in RDD (Lee and Lemieux, 2010). Other options are 
@@ -93,6 +99,7 @@
 #' mrd_est(y ~ x1 + x2 | cov, method = "front", t.design = c("geq", "geq"))
 
 mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
+  front.bw = NA, m = 10, k = 5,
   kernel = "triangular", se.type = "HC1", cluster = NULL, verbose = FALSE, 
   less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250, 
   margin = 0.03, boot = NULL, method = c("center", "univ", "front"), 
@@ -313,8 +320,9 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o[["front"]] <- list(tau_MRD = 
         eval(bquote(
           mfrd_est(y = Y, x1 = X1, x2 = X2, c1 = .(cutpoint[1]), c2 = .(cutpoint[2]), 
-            t.design = .(t.design), local = .(local), ngrid = ngrid, 
-            margin = margin, boot = boot, cluster = cluster, stop.on.error = stop.on.error)
+            t.design = .(t.design), local = .(local), 
+            front.bw = front.bw, m = m, k = k, kernel = kernel,
+            ngrid = ngrid, margin = margin, boot = boot, cluster = cluster, stop.on.error = stop.on.error)
         ))
     )
   } 
