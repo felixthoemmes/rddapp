@@ -146,7 +146,10 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
                                           k, kernel, ngrid, margin))}
     bw.seq <-  runif(m, min = 0.5, max = 2.5)
     mse.cv <- sapply(bw.seq, cv)
-    bw.opt <- bw.seq[apply(mse.cv, 1, which.min)]
+    min.idx <- as.numeric(apply(mse.cv, 1, which.min))
+    bw.opt <- bw.seq[min.idx]
+    # default of bandwidth is 1 when minimum cannot be found due to no points within testing bandwidth
+    bw.opt[is.na(bw.opt)] = 1
   }
   
   # concatenate results for the bandwidth, and half and double the bandwidth
@@ -198,6 +201,8 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
       ci_boot <- apply(est_boot, 2, quantile, na.rm = TRUE, probs = c(.025,.975))
       out$se <- rbind(out$se, se_boot)
       out$ci <- rbind(out$ci, ci_boot)
+    }else{
+      out$se <- rbind(out$se, out.nonparam$se)
     }
     
     out$est <- rbind(out$est, out.nonparam$est)
@@ -225,10 +230,9 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
   # updating names of output
   list.names = c('Param', 'bw', 'Half-bw', 'Double-bw')
   names(out$m_s) = names(out$m_h) = names(out$m_t) = names(out$dat_h) <- list.names
-  rownames(out$est) = rownames(out$d) <- list.names
+  rownames(out$est) = rownames(out$d) = rownames(out$se) <- list.names
   if (is.numeric(boot) && boot > 0) {
     names(out$est_boot) <- list.names
-    rownames(out$se) <- list.names  
   }
   
   return(out)

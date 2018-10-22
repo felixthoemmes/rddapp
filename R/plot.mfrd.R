@@ -17,6 +17,7 @@
 #' @importFrom graphics persp 
 #' @importFrom grDevices trans3d
 #'
+#' @include treat_assign.R
 #' @include mfrd_est.R
 #'
 #' @export
@@ -38,7 +39,7 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"), gran = 2, raw_data = TR
   
   model <- match.arg(model)
   
-  m <- x[[model]]
+  m <- x[[model]]$Param
   
   c1 <- eval.parent(x$call$c1)
   c2 <- eval.parent(x$call$c2)

@@ -19,6 +19,12 @@
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
+#' @param front.bw A numeric vector specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models in the frontier method. If NA, front.bw will be determined by cross validation.
+#' @param m The number of uniformly-at-random samples to draw as search candidates for front.bw 
+#'   if not given.
+#' @param k An integer specifying the number of folds for cross validation to determine front.bw
+#'   if not given. 
 #' @param kernel A string specifying the kernel to be used in the local linear fitting. 
 #'   \code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 
 #'   used for edge estimation as in RDD (Lee and Lemieux, 2010). Other options are 
@@ -85,6 +91,7 @@
 #' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"))
 
 mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
+  front.bw = NA, m = 10, k = 5,
   kernel = "triangular", se.type = "HC1", cluster = NULL, impute = NULL, verbose = FALSE, 
   less = FALSE, est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250, margin = 0.03, 
   boot = NULL, method = c("center", "univ", "front"), t.design = NULL, stop.on.error = TRUE) {
@@ -122,13 +129,15 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     if (is.null(subset)) {
       if (missing(data)) {
         curr_mod <- mrd_est(formula = formula, subset = imp_sub, cutpoint = cutpoint, bw = bw,
+          front.bw = front.bw, m = m, k = k,
           kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, less = less, 
           est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, margin = margin, 
           boot = boot, method = method, t.design = t.design, 
           stop.on.error = stop.on.error)
       } else {
         curr_mod <- mrd_est(formula = formula, data = data, subset = imp_sub, cutpoint = cutpoint, 
-          bw = bw, kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
+          bw = bw, front.bw = front.bw, m = m, k = k,
+          kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
           less = less, est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, 
           margin = margin, boot = boot, method = method, t.design = t.design, 
           stop.on.error = stop.on.error)
@@ -137,13 +146,15 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     } else {
       if (missing(data)) {
         curr_mod <- mrd_est(formula = formula, subset = (subset & imp_sub), cutpoint = cutpoint, 
-          bw = bw, kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
+          bw = bw, front.bw = front.bw, m = m, k = k,
+          kernel = kernel, se.type = se.type, cluster = cluster, verbose = verbose, 
           less = less, est.cov = est.cov, est.itt = est.itt, local = local, ngrid = ngrid, 
           margin = margin, boot = boot, method = method, t.design = t.design,
           stop.on.error = stop.on.error)
       } else {
         curr_mod <- mrd_est(formula = formula, data = data, subset = (subset & imp_sub), 
-          cutpoint = cutpoint, bw = bw, kernel = kernel, se.type = se.type, cluster = cluster,
+          cutpoint = cutpoint, bw = bw, front.bw = front.bw, m = m, k = k,
+          kernel = kernel, se.type = se.type, cluster = cluster,
           verbose = verbose, less = less, est.cov = est.cov, est.itt = est.itt, local = local, 
           ngrid = ngrid, margin = margin, boot = boot, method = method, t.design = t.design,
           stop.on.error = stop.on.error)
@@ -245,16 +256,16 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         o$front$tau_MRD$call <- front_MRD$call
         
         est_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(est_res$front_MRD) <- names(front_MRD$est)
+        colnames(est_res$front_MRD) <- colnames(front_MRD$est)
         d_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(d_res$front_MRD) <- names(front_MRD$d)
+        colnames(d_res$front_MRD) <- colnames(front_MRD$d)
         se_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(se_res$front_MRD) <- names(front_MRD$se)
+        colnames(se_res$front_MRD) <- colnames(front_MRD$se)
       }
 
-      est_res$front_MRD[i, ] <- front_MRD$est
-      d_res$front_MRD[i, ] <- front_MRD$d
-      se_res$front_MRD[i, ] <- front_MRD$se
+      est_res$front_MRD[i, ] <- front_MRD$est['Param',]
+      d_res$front_MRD[i, ] <- front_MRD$d['Param',]
+      se_res$front_MRD[i, ] <- front_MRD$se['Param',]
     }
 
   }
