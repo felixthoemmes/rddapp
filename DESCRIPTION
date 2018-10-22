@@ -59,6 +59,7 @@ Collate:
     'wt_kern.R'
     'dc_test.R'
     'treat_assign.R'
+    'wt_kern_bivariate.R'
     'mfrd_est.R'
     'var_center.R'
     'rd_est.R'

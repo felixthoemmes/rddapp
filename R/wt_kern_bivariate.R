@@ -9,7 +9,7 @@
 #'   This variable represents the axis along which kernel weighting should be performed.   
 #' @param center1 The point from which distances should be calculated for the first vector.
 #' @param center2 The point from which distances should be calculated for the second vector.
-#' @param bw The bandwidth.
+#' @param bw A numeric vector specifying the bandwidths for each of three effects models
 #' @param kernel A string indicating the kernel to use. Options are \code{"triangular"} (the default), 
 #'   \code{"epanechnikov"}, \code{"quartic"}, \code{"triweight"}, \code{"tricube"}, \code{"gaussian"},
 #'   and \code{"cosine"}.
@@ -21,9 +21,9 @@
 #'   if X1 is less than or equal to its cutoff.
 #'   The 2nd entry is for X2.
 #'
-#' @return Two vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
-#'   The first weight and distance are calculated with respect to all fontiers of different treatments.
-#'   The second weight and distance calculated with respect to the overall frontier of treatment versus
+#' @return Three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
+#'   The first and second weights and distances are calculated with respect to all fontiers of different treatments.
+#'   The third weight and distance are calculated with respect to the overall frontier of treatment versus
 #'   non-treatment.
 #'   
 #' @include treat_assign.R
