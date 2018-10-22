@@ -4,29 +4,23 @@
 
 # Session Data files
 .RData
-
 # Example code in package build process
 *-Ex.R
-
 # RStudio files
 .Rproj.user/
 .Rproj.user
 *.Rproj
-
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
-
 # MacOS Spotlight Index
 .DS_Store
-
 # system copies
 *~
-
 # R shiny
 rsconnect/
-
 # revdep
 revdep/checks
 revdep/library
 /revdep/.cache.rds
 dev/temp/data-raw/f2cov.csv
+inst/doc

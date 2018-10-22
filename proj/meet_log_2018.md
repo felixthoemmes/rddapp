@@ -37,3 +37,10 @@
 
 ## March, 21st
  - Wenyu fixed many of the issues from the projects page. One thing that became apparent was that the mfrd_est function has an argument for tr (treatment assignment), however this argument does nothing. It's intended use was to support fuzzy assigment, but we don't support that model (MRDD frontier approach) - yet. 
+
+
+## Octtober, 17th
+ - Irena submitted a document that describes how we define the region close to the cut-off in MRDDs. We ended up using the L1 metric to define distance from the boundary. Details are in the document here on github. 
+ - Wenyu implemented cross-validation for the MRDDs non-parametric estimation. 6 bandwidth choices are currently tested (.5 sigma to 3 sigma), using the L1 distance that Irena defined. Results seem sensible as larger values of sigma converge to the parametric result. 
+ - Wenyu will change the 6 candidates to be closer to the boundary. Wenyu will also create output and summary objects for the non-parametric MRDDs. 
+ - Irena will display these outputs in shiny. 
