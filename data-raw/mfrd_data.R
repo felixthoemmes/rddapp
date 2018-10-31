@@ -221,7 +221,8 @@ mrd = mrd_est(y~x1+x2, data = dat, cutpoint = c(c1, c2), t.design = t.design)
 # summarize results
 rbind(
   true = teff,
-  frontier = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est[1:2], NA, mrd$front$tau_MRD$est[3]),
+  frontier_param = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est['Param',][1:2], NA, mrd$front$tau_MRD$est['Param',][3]),
+  frontier_bw = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est['bw',][1:2], NA, mrd$front$tau_MRD$est['bw',][3]),
   centering_linear = c(rep(NA, 7), mrd$center$tau_MRD$est[1]),
   centering_opt = c(rep(NA, 7), mrd$center$tau_MRD$est[4]),
   univ_linear = c(rep(NA, 4), mrd$univ$tau_R$est[1],mrd$univ$tau_M$est[1], NA, NA),
@@ -250,7 +251,8 @@ results_raw = mapply(corr = seq(-.7,.7,0.1),
 
     est = rbind(
       true = teff,
-      frontier = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est[1:2], NA, mrd$front$tau_MRD$est[3]),
+      frontier = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est['Param',][1:2], NA, mrd$front$tau_MRD$est['Param',][3]),
+      frontier_bw = c(NA, NA, mrd$front$tau_MRD$w, mrd$front$tau_MRD$est['bw',][1:2], NA, mrd$front$tau_MRD$est['bw',][3]),
       centering_linear = c(rep(NA, 7), mrd$center$tau_MRD$est[1]),
       centering_opt = c(rep(NA, 7), mrd$center$tau_MRD$est[4]),
       univ_linear = c(rep(NA, 4), mrd$univ$tau_R$est[1],mrd$univ$tau_M$est[1], NA, NA),

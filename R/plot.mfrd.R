@@ -7,6 +7,7 @@
 #' @param model Option for the model specification, one of \code{c("m_s", "m_h", "m_t")},
 #'   which denotes the complete model, heterogeneous treatment model and treatment only 
 #'   model respectively.
+#' @param methodname Option for method specification, one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.
 #' @param gran Granularity of the surface grid i.e. desired number of predicted points 
 #'   before and after the cutoff along each assignment variable.
 #' @param raw_data Whether the raw data points are plotted.
@@ -29,17 +30,19 @@
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 #' model <- mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0, t.design = c("geq", "geq"))
-#' plot(model, "m_s")
+#' plot(model, "m_s", "Param")
 
-plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"), gran = 2, raw_data = TRUE, 
-  color_surface = FALSE, ...) {
+plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
+                      methodname = c("Param", "bw", "Half-bw", "Double-bw"),
+                      gran = 2, raw_data = TRUE, 
+                      color_surface = FALSE, ...) {
   
   if (class(x)!= "mfrd") 
     stop ("Not an object of class mfrd.")
   
   model <- match.arg(model)
   
-  m <- x[[model]]$Param
+  m <- x[[model]][[methodname]]
   
   c1 <- eval.parent(x$call$c1)
   c2 <- eval.parent(x$call$c2)
