@@ -255,17 +255,25 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
       if (i == 1) {
         o$front$tau_MRD$call <- front_MRD$call
         
-        est_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(est_res$front_MRD) <- colnames(front_MRD$est)
-        d_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(d_res$front_MRD) <- colnames(front_MRD$d)
-        se_res$front_MRD <- matrix(NA, nrow = num_imp, ncol = 9)
-        colnames(se_res$front_MRD) <- colnames(front_MRD$se)
+        M <- matrix(NA, nrow = num_imp, ncol = 9)
+        colnames(M) <- colnames(front_MRD$est)
+        est_res$front_MRD <- list('Param' = M, 'bw' = M, 'Half-bw' = M, 'Double-bw' = M)
+        d_res$front_MRD <- list('Param' = M, 'bw' = M, 'Half-bw' = M, 'Double-bw' = M)
+        se_res$front_MRD <- list('Param' = M, 'bw' = M, 'Half-bw' = M, 'Double-bw' = M)
       }
 
-      est_res$front_MRD[i, ] <- front_MRD$est['Param',]
-      d_res$front_MRD[i, ] <- front_MRD$d['Param',]
-      se_res$front_MRD[i, ] <- front_MRD$se['Param',]
+      est_res$front_MRD$'Param'[i, ] <- front_MRD$est['Param',]
+      est_res$front_MRD$'bw'[i, ] <- front_MRD$est['bw',]
+      est_res$front_MRD$'Half-bw'[i, ] <- front_MRD$est['Half-bw',]
+      est_res$front_MRD$'Double-bw'[i, ] <- front_MRD$est['Double-bw',]
+      d_res$front_MRD$'Param'[i, ] <- front_MRD$d['Param',]
+      d_res$front_MRD$'bw'[i, ] <- front_MRD$d['bw',]
+      d_res$front_MRD$'Half-bw'[i, ] <- front_MRD$d['Half-bw',]
+      d_res$front_MRD$'Double-bw'[i, ] <- front_MRD$d['Double-bw',]      
+      se_res$front_MRD$'Param'[i, ] <- front_MRD$se['Param',]
+      se_res$front_MRD$'bw'[i, ] <- front_MRD$se['bw',]
+      se_res$front_MRD$'Half-bw'[i, ] <- front_MRD$se['Half-bw',]
+      se_res$front_MRD$'Double-bw'[i, ] <- front_MRD$se['Double-bw',]
     }
 
   }
@@ -361,28 +369,37 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   }
   
   if ("front" %in% method) {
-    Q <- colMeans(est_res$front_MRD)
-    D <- colMeans(d_res$front_MRD)
-    U <- colMeans(se_res$front_MRD)
-    B <- apply(se_res$front_MRD, 2, var)
+    Q <- rbind(colMeans(est_res$front_MRD$'Param'), colMeans(est_res$front_MRD$'bw'),
+               colMeans(est_res$front_MRD$'Half-bw'), colMeans(est_res$front_MRD$'Double-bw'))
+    D <- rbind(colMeans(d_res$front_MRD$'Param'), colMeans(d_res$front_MRD$'bw'),
+               colMeans(d_res$front_MRD$'Half-bw'), colMeans(d_res$front_MRD$'Double-bw'))
+    U <- rbind(colMeans(se_res$front_MRD$'Param'), colMeans(se_res$front_MRD$'bw'),
+               colMeans(se_res$front_MRD$'Half-bw'), colMeans(se_res$front_MRD$'Double-bw'))
+    B <- rbind(apply(se_res$front_MRD$'Param', 2, var), apply(se_res$front_MRD$'bw', 2, var),
+               apply(se_res$front_MRD$'Half-bw', 2, var), apply(se_res$front_MRD$'Double-bw', 2, var))
     V <- U + (1 + 1 / num_imp) * B
+    list.names = c('Param', 'bw', 'Half-bw', 'Double-bw')
+    rownames(Q) = rownames(D) = rownames(U) = rownames(B) = rownames(V) <- list.names
     
     o$front$tau_MRD$est <- Q
     o$front$tau_MRD$d <- D
     o$front$tau_MRD$se <- sqrt(V)
-    o$front$tau_MRD$z <- unname(o$front$tau_MRD$est/o$front$tau_MRD$se)
+    o$front$tau_MRD$z <- o$front$tau_MRD$est/o$front$tau_MRD$se
     
     r <- (1 + 1 / num_imp) * B / U
     df <- (num_imp - 1) * (1 + 1 / r)^2
     o$front$tau_MRD$df <- df
     
     o$front$tau_MRD$p <- 2 * pt(abs(o$front$tau_MRD$z), df = df, lower.tail = FALSE)
-    o$front$tau_MRD$ci <- unname(c(
-      o$front$tau_MRD$est - qt(0.975, df = df) * o$front$tau_MRD$se, 
-      o$front$tau_MRD$est + qt(0.975, df = df) * o$front$tau_MRD$se))
-    o$front$tau_MRD$ci <- matrix(o$front$tau_MRD$ci, ncol = 2)
+    ci <- matrix(NA, 8, 9)
+    ci[c(1, 3, 5, 7),] <- o$front$tau_MRD$est - qt(0.975, df = df) * o$front$tau_MRD$se
+    ci[c(2, 4, 6, 8),] <- o$front$tau_MRD$est + qt(0.975, df = df) * o$front$tau_MRD$se
+    rownames(ci) <- rep(c('2.5%', '97.5%'), 4)
+    colnames(ci) <- colnames(o$front$tau_MRD$est)
+    o$front$tau_MRD$ci <- ci
     
-    o$front$tau_MRD$w <- rep(NA, 2)   
+    o$front$tau_MRD$w <- front_MRD$w   
+    o$front$tau_MRD$front.bw <- front_MRD$front.bw
 
     o$front$tau_MRD$impute <- TRUE
     class(o) = "mrdi"

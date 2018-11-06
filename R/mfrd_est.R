@@ -43,7 +43,7 @@
 #'
 #' @return \code{mfrd_est} returns an object of \link{class} "\code{mfrd}".
 #'
-#' @importFrom stats bw.nrd0 integrate splinefun
+#' @importFrom stats bw.nrd0 integrate splinefun predict.lm
 #'
 #' @include treat_assign.R
 #' @include wt_kern_bivariate.R
@@ -228,11 +228,16 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
   out$front.bw <- bw.opt
   
   # updating names of output
-  list.names = c('Param', 'bw', 'Half-bw', 'Double-bw')
+  list.names <- c('Param', 'bw', 'Half-bw', 'Double-bw')
+  coeff.names <- c("ev1", "ev2", "ate", "htev1", "htev2", "htate", "tev1", "tev2", "tate")
   names(out$m_s) = names(out$m_h) = names(out$m_t) = names(out$dat_h) <- list.names
   rownames(out$est) = rownames(out$d) = rownames(out$se) <- list.names
+  colnames(out$est) = colnames(out$d) = colnames(out$se) <- coeff.names
   if (is.numeric(boot) && boot > 0) {
+    colnames(out$ci) <- coeff.names
     names(out$est_boot) <- list.names
+    colnames(out$est_boot$'Param') = colnames(out$est_boot$'bw') = colnames(out$est_boot$'Half-bw') =
+      colnames(out$est_boot$'Double-bw') <- coeff.names
   }
   
   return(out)

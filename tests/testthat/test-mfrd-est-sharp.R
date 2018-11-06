@@ -23,13 +23,14 @@ if (file.exists(path)) {
       names(dat) <- c("x1", "x2", "y")
   
       mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, 
+                              front.bw = c(1,1,1),
                               ngrid = 2500, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   
       expect_equal(stata_dat, mod$dat[names(stata_dat)], tolerance = 4e-8)
   
-      expect_equal(stata_dat_h, mod$dat_h[names(stata_dat_h)], tolerance = 1e-7)
+      expect_equal(stata_dat_h, mod$dat_h$Param[names(stata_dat_h)], tolerance = 1e-7)
   
       # compare estimates from mfrd_est with Stata
   
@@ -70,7 +71,7 @@ if (file.exists(path)) {
                      3.9562, 3.9562, 3.9562)
       
       expect_equal(stata_w, unname(mod$w), tolerance = 2e-4)
-      expect_equal(stata_est, unname(mod$est), tolerance = 2e-4)
+      expect_equal(stata_est, unname(mod$est['Param',]), tolerance = 2e-4)
     })
   }
   
@@ -86,13 +87,14 @@ if (file.exists(path)) {
       names(dat) <- c("x1", "x2", "y")
   
       mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, 
+                              front.bw = c(1,1,1),
                               ngrid = 2500, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   
       expect_equal(stata_dat, mod$dat[names(stata_dat)], tolerance = 4e-8)
   
-      expect_equal(stata_dat_h, mod$dat_h[names(stata_dat_h)], tolerance = 2e-7)
+      expect_equal(stata_dat_h, mod$dat_h$Param[names(stata_dat_h)], tolerance = 2e-7)
   
       # compare estimates from mfrd_est with Stata
   
@@ -132,7 +134,7 @@ if (file.exists(path)) {
                      4.9228, 4.9228, 4.9228)
       
       expect_equal(stata_w, unname(mod$w), tolerance = 6e-5)
-      expect_equal(stata_est, unname(mod$est), tolerance = 6e-5)
+      expect_equal(stata_est, unname(mod$est['Param',]), tolerance = 6e-5)
     })
   }
   
@@ -148,13 +150,14 @@ if (file.exists(path)) {
       names(dat) <- c("x1", "x2", "y")
   
       mod <- rddapp::mfrd_est(y = dat$y, x1 = dat$x1, x2 = dat$x2, c1 = 40, c2 = 60, 
+                              front.bw = c(1,1,1),
                               ngrid = 2500, t.design = c("l", "l"))  
   
       ## compare datasets from mfrd_est with Stata
   
       expect_equal(stata_dat, mod$dat[names(stata_dat)], tolerance = 4e-8)
   
-      expect_equal(stata_dat_h, mod$dat_h[names(stata_dat_h)], tolerance = 2e-7)
+      expect_equal(stata_dat_h, mod$dat_h$Param[names(stata_dat_h)], tolerance = 2e-7)
   
       # compare estimates from mfrd_est with Stata
   
@@ -194,7 +197,7 @@ if (file.exists(path)) {
                      7.5848, 7.5848, 7.5848)
       
       expect_equal(stata_w, unname(mod$w), tolerance = 6e-5)
-      expect_equal(stata_est, unname(mod$est), tolerance = 6e-5)
+      expect_equal(stata_est, unname(mod$est['Param',]), tolerance = 6e-5)
     })
   }
 }

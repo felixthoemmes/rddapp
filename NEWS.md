@@ -32,6 +32,8 @@
 
 - Nonparametric version of frontier approach is added to mfrd_est and summary function is updated to display the new results
 
+- Downstream functions mrd_est, plot.mfrd, mrd_impute and its summary function have been updated to display nonparametric results of frontier approach
+
 - Summary functions have been updated to display results according to selection of est.cov and est.itt
 
 - Summary functions have been added for functions rd_power and mrd_power
