@@ -1,3 +1,5 @@
+library(rddapp)
+
 # sim_data() adapted from Vivian's simdata.do
 sim_data = function(
   n, mu1, mu2, sigma1, sigma2, corr, c1, c2, t.design,
@@ -12,8 +14,8 @@ sim_data = function(
   x2 = dat[,2]
   
   # treatment
-  x1_tr <- treat_assign(x1, c1, t.design[1])
-  x2_tr <- treat_assign(x2, c2, t.design[2])
+  x1_tr <- rddapp:::treat_assign(x1, c1, t.design[1])
+  x2_tr <- rddapp:::treat_assign(x2, c2, t.design[2])
   
   tr1 <- ifelse(is.na(x1) | is.na(x2), NA, ifelse(x1_tr & !x2_tr, 1, 0))
   tr2 <- ifelse(is.na(x1) | is.na(x2), NA, ifelse(!x1_tr & x2_tr, 1, 0))
@@ -143,8 +145,8 @@ true_effect = function(
   
   # Integral for numerator of MATH frontier
   
-  intx1 = with(subset(dat_h, !as.logical(treat_assign(h1,  c1, t.design[1]))),
-    int_cubic(h1, x1prod))
+  intx1 = with(subset(dat_h, !as.logical(rddapp:::treat_assign(h1,  c1, t.design[1]))),
+    rddapp:::int_cubic(h1, x1prod))
   
   ## Expected value for MATH frontier
   ev2 = intx1 / cdx1
@@ -162,8 +164,8 @@ true_effect = function(
   
   ## Integral for numerator of READING frontier
   
-  intx2 = with(subset(dat_h, !as.logical(treat_assign(h2, c2, t.design[2]))),
-    int_cubic(h2, x2prod))
+  intx2 = with(subset(dat_h, !as.logical(rddapp:::treat_assign(h2, c2, t.design[2]))),
+    rddapp:::int_cubic(h2, x2prod))
   
   ## Expected value for READING frontier
   ev1 = intx2 / cdx2
