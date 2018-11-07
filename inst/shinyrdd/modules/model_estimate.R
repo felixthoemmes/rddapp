@@ -4,7 +4,9 @@ model_estimateUI = function(id){
     p(),
     div(class='panel panel-default',
       div(class='panel-heading clearfix', 
+        ## UI for Table 3.1
         h6('Table 3.1','Summary of Estimates', class='panel-title pull-left'),
+        ## Display buttons for various parts of Table 3.1
         div(class='btn-toolbar input-group pull-right', 
           conditionalPanel(condition= "output['is_frontier']", class='btn-group btn-group-sm input-group input-group-sm ',
             span(class='input-group-addon','approach'),
@@ -208,7 +210,10 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
     )
   })
   
+  #################################################
   #### GET ESTIMATES / SUMMARIES / PREDICTIONS ####
+  #################################################
+  
   result = reactiveValues()
   
   result$model = reactive({
@@ -406,40 +411,194 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       #     'Frontier 1','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
       #     'Frontier 2','- Unconstrained','- Heterogeneous Effect','- Constant Effect'
       #   ),
+      
+      ## Create labels for all model types based on the diff levels of
+      ## organization
+      label_lv1 <- c("Parametric (linear)", "Nonparametric (optimal bandwidth)")
+      label_lv2 <- c("- Average", "- Frontier 1", "- Frontier 2")
+      label_lv3 <- c("-- Unconstrained", "-- Heterogeneous Effect", "-- Constant Effect")
+      
+      label_vec <- c()
+      label_vec_temp <- c()
+      for (i in 1:length(label_lv1)){
+        label_vec <- c(label_vec, label_lv1[i])
+        for (j in 1:length(label_lv2)){
+          label_vec <- c(label_vec, label_lv2[j], label_lv3)
+          label_vec_temp <- c(label_vec_temp, label_lv3)
+        }
+      }
+      
+      # ## Create columns for table (with blanks inserted where
+      # ## appropriate) to compensate for header rows (lvs 1 and 2)
+      # cols <- c("obs", "est", "se", "z", "p", "ci")
+      
+      # ## Create vector with all 18 data values for col
+      # for (col in cols){
+      #   if (col=="obs"){
+      #     col_dat <- c(rep(result$model()$center$tau_MRD$obs[1], 9),
+      #                  rep("-", 9))
+      #    # FIXME: using N from the center approach
+      #    # get observations returned to
+      #    # result$model()$center$tau_MRD$obs
+      #   } if (col=="z"){
+      #     col_dat <- result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se
+      #   } if (col="p"){
+      #     col_dat <- pnorm(abs(result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se), lower.tail = F) * 2
+      #   } if (col="ci"){
+      #     col_dat <- ifelse(!is.null(result$model()$front$tau_MRD$ci),
+      #                       apply(result$model()$front$tau_MRD$ci, 2,
+      #                             function(ci){sprintf('[%.3f, %.3f]', ci[1], ci[2])}),
+      #                       NA)
+      #   } else {
+      #     col_dat <- result$model()$front$tau_MRD[,col]
+      #     col_dat <- c(col_dat[1:2,]) # first two rows corresp to
+      #     # parametric (linear) and nonpara (optimal)
+      #   }
+        
+      #   ## Add blank entires as buffers for rows that are purely
+      #   ## label rows (e.g "Parametric" row)
+      #   assign(col,
+      #          rep("", 2),
+      #          col_dat[1:3],
+      #          rep("", 1),
+      #          col_dat[4:6],
+      #          rep("", 1),
+      #          col_dat[7:9],
+      #          rep("", 2),
+      #          col_dat[10:12],
+      #          rep("", 1),
+      #          col_dat[13:15],
+      #          rep("", 1),
+      #          col_dat[16:18])
+      # }
+      
+      # ## Make table from columns constructed above
+      # tab_front = data.frame(
+      #   label = label_vec,
+      #   bw = '-',
+      #   n = obs,
+      #   est = est,
+      #   se = se, 
+      #   z = z,
+      #   df = NA, 
+      #   p = p,
+      #   ci = ci,
+      #   d = NA,
+      #   stringsAsFactors = F
+      # )
+      
+      # tab_front = data.frame(
+      #   label = label_vec,
+      #   bw = '-',
+      #   n = c(rep("", 2),
+      #         rep(result$model()$center$tau_MRD$obs[1], 13),
+      #         rep('-', 13)),
+      #   est = c(result$model()$front$tau_MRD$est,
+      #   se = result$model()$front$tau_MRD$se,
+      #   z = result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se,
+      #   df = NA,
+      #   p = pnorm(abs(result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se), lower.tail = F) * 2,
+      #   ci = if(!is.null(result$model()$front$tau_MRD$ci))
+      #     apply(result$model()$front$tau_MRD$ci, 2, function(ci) sprintf('[%.3f, %.3f]', ci[1], ci[2]))
+      #   else NA,
+      #   d = NA,
+      #   stringsAsFactors = F
+      # )
+      
+      ### A BETTER APPROACH THAN ABOVE
+      
+      ## Create barebones table with just the lowest level of organization
+      ## (all rows contain data, no (mostly blank) header rows yet)
+      ## THIS SHOULD GENERATE A TABLE WITH 18 ROWS 
+      ## 9 for Parametric (linear)
+      ## 9 for Nonparametric (optimal)
+      
+      est <- c(t(result$model()$front$tau_MRD$est)[,1:2])
+      se <- c(t(result$model()$front$tau_MRD$se)[,1:2])
+      ci <- ifelse(!is.null(result$model()$front$tau_MRD$ci),
+                   apply(result$model()$front$tau_MRD$ci, 2,
+                         function(ci) sprintf('[%.3f, %.3f]', ci[1], ci[2])),
+                   NA)
+      if (!is.na(ci[1])){ # if we actually have confidence intervals computed
+        ci <- ci[1:18] # take the first 18 entries corresponding to
+        # para (linear) and nonpara (optimal)
+      }
+      
+      ## Construct table for frontier approach
       tab_front = data.frame(
-        label = NA,
+        label = label_vec_temp,
         bw = '-',
-        n = result$model()$center$tau_MRD$obs[1], # using N from the center approach
-        est = result$model()$front$tau_MRD$est,
-        se = result$model()$front$tau_MRD$se,
-        z = result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se,
+        n = c(rep(result$model()$center$tau_MRD$obs[1], 9),
+              rep('-', 9)),
+        # FIXME: using N from the center approach
+        # get observations returned to
+        # result$model()$center$tau_MRD$obs
+        est = est,
+        se = se,
+        z = est/se,
         df = NA,
-        p = pnorm(abs(result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se), lower.tail = F) * 2,
-        ci = if(!is.null(result$model()$front$tau_MRD$ci))
-          apply(result$model()$front$tau_MRD$ci, 2, function(ci) sprintf('[%.3f, %.3f]', ci[1], ci[2]))
-        else NA, 
+        p = pnorm(abs(est/se), lower.tail = F) * 2,
+        ci = ci,
         d = NA,
         stringsAsFactors = F
-      )
+        )
+      
+      ## Replace numerical NA entries (uncomputed quantities) with dashes
       tab_front[is.na(tab_front)] <- '-'
       
-      tab_front = rbind(NA, tab_front[1:3,], NA, tab_front[4:6,], NA, tab_front[7:9,],
+      ## Add blank rows for labelling purposes
+      ## (adding level 1 and level 2 label rows)
+      tab_front = rbind(NA, NA, # for "Parametric (linear)" and
+                        # "- Average" labels
+                        tab_front[1:3,],
+                        NA, # for "- Frontier 1" label
+                        tab_front[4:6,],
+                        NA, # for "- Frontier 2" label
+                        tab_front[7:9,],
+                        NA, NA,
+                        tab_front[10:12,],
+                        NA,
+                        tab_front[13:15,],
+                        NA,
+                        tab_front[16:18,],
         stringsAsFactors = F)
-      tab_front$label = c(
-        'Average','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-        'Frontier 1','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-        'Frontier 2','- Unconstrained','- Heterogeneous Effect','- Constant Effect'
-      )
-      tab_front$type = 'parametric:frontier'
+      
+      ## Add full set of model labels to table
+      tab_front$label <- label_vec
+      
+      ## Add column to denote model type of each row for shiny UI to 
+      ## know to display when need be
+      tab_front$type <-  c(rep('parametric:frontier', 13),
+                           rep('nonparametric:frontier', 13))
+      
+      ## Make sure names match up to other tables for display purposes
+      ## (will be rbinding them together in a sec)
       names(tab_front) = names(tab_univ1)
       
-      
+      ## THIS IS WHERE THE ERROR OCCURS -- DOESN'T SEEM TO GET CALLED WHEN WE ONLY HAVE ONE ASST RULE
       tab = rbind(
         c('Centering', rep(NA, ncol(tab_center)-2),'centering'), tab_center, 
         c('Univariate (A1)', rep(NA, ncol(tab_univ1)-2),'univariate'), tab_univ1, 
         c('Univariate (A2)', rep(NA, ncol(tab_univ2)-2),'univariate'), tab_univ2, 
         c('Frontier', rep(NA, ncol(tab_front)-2),'frontier'), tab_front) 
+      ## problem is in trying to rbind tab_front 
+      ## (other three mini-tables bind just fine)
+      ## centering and univerate mini tables have 11 variables,
+      ## frontier mini-table has 43 variables...
       
+      ## ISSUE: ncol of frontier mini table does not match up
+      ## have 11 "real" variables (match up w/ the other mini tables),
+      ## but for some reason, 32 NA cols also get created in code for
+      ## tab_front...
+      ## tab_front is initialized with 4 obs of 42 variables instead
+      ## of ?? (8?) obvs of 11 variables
+      
+      ## note that in tab_center, univ1, univ2, the 8 "observations"
+      ## are: "Parametric"       "- Linear"         "- Quadratic"      
+      ## "- Cubic"          "Nonparametric"   "- Optimal"        
+      ## "- Half-Optimal"   "- Double-Optimal"
+      ## and the 11 "variables" are: "label" "bw"    "n"     "est"   
+      ## "se"    "z"     "df"    "p"     "l95"   "es"    "type" 
       
       return(tab)
     }
