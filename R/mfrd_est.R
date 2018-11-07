@@ -125,6 +125,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
   out$dat_h <- list(out$dat_h)
   out$impute <- FALSE
   out$call <- call
+  out$obs <- list(out$obs)
   
   if (badboot>0){
     if (stop.on.error){
@@ -211,6 +212,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
     out$m_h <- c(out$m_h, list(out.nonparam$m_h))
     out$m_t <- c(out$m_t, list(out.nonparam$m_t))
     out$dat_h <- c(out$dat_h, list(out.nonparam$dat_h))
+    out$obs <- c(out$obs, list(out.nonparam$obs))
     
     if (badboot>0){
       if (stop.on.error){
@@ -230,7 +232,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
   # updating names of output
   list.names <- c('Param', 'bw', 'Half-bw', 'Double-bw')
   coeff.names <- c("ev1", "ev2", "ate", "htev1", "htev2", "htate", "tev1", "tev2", "tate")
-  names(out$m_s) = names(out$m_h) = names(out$m_t) = names(out$dat_h) <- list.names
+  names(out$m_s) = names(out$m_h) = names(out$m_t) = names(out$dat_h) = names(out$obs) <- list.names
   rownames(out$est) = rownames(out$d) = rownames(out$se) <- list.names
   colnames(out$est) = colnames(out$d) = colnames(out$se) <- coeff.names
   if (is.numeric(boot) && boot > 0) {
@@ -421,8 +423,11 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
       lm(y ~ I(scale(x1, center = .(mean(x1)), scale = .(sd(x1))) - .(zc1)) + 
            I(scale(x2, center = .(mean(x2)), scale = .(sd(x2)))- .(zc2)) + tr, data = dat) 
     ))
+    
+    # number of observations used in each model
+    obs = rep(length(y), 3)
   }else{
-    wt = wt_kern_bivariate(dat$zcx1, dat$zcx2, 0, 0, front.bw, kernel = kernel, t.design = t.design)
+    wt <- wt_kern_bivariate(dat$zcx1, dat$zcx2, 0, 0, front.bw, kernel = kernel, t.design = t.design)
     
     ## Complete model ##
     m_s <- lm(y ~ zcx1 * zcx2 * (tr1 + tr2) + tr, weights = wt$wAll1, data = dat) 
@@ -451,7 +456,9 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
            I(scale(x2, center = .(mean(x2)), scale = .(sd(x2)))- .(zc2)) + tr, 
          weights = wt$wTr, data = dat) 
     ))   
-
+    
+    # number of observations used in each model
+    obs = c(sum(wt$wAll1 > 0), sum(wt$wAll2 > 0), sum(wt$wTr > 0))
   }
 
   # test if output models are identical to the original ones
@@ -672,6 +679,7 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
   
   out$dat_h <- dat_h
   out$dat <- dat
+  out$obs <- obs
   
   return(out)
 }
