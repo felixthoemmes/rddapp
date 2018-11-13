@@ -36,7 +36,8 @@ Imports:
     lmtest (>= 0.9-35),
     Formula (>= 1.2-1),
     shiny (>= 0.14),
-    R.utils (>= 2.6.0)
+    R.utils (>= 2.6.0),
+    plot3D (>= 1.1.1)
 Suggests:
     rdd (>= 0.57),
     rddtools (>= 0.4.0),
