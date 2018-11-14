@@ -25,7 +25,7 @@ sim_data = function(
   tr1 <- ifelse(is.na(x1) | is.na(x2), NA, ifelse(x1_tr & !x2_tr, 1, 0))
   tr2 <- ifelse(is.na(x1) | is.na(x2), NA, ifelse(!x1_tr & x2_tr, 1, 0))
   trb <- ifelse(is.na(x1) | is.na(x2), NA, ifelse(x1_tr & x2_tr, 1, 0))
-  
+  browser()
   tr = ifelse(tr1 == 1 | tr2 == 1 | trb == 1, 1, 0)
   
   # center assignments
@@ -49,9 +49,9 @@ sim_data = function(
     b_tr2x1x2 * tr2 * cx1 * cx2 + 
     rnorm(n,0,1)
   
-  trt <- ifelse(x1 >= c1 & x2 >= c2, 1, 0)
+  # trt <- ifelse(x1 >= c1 & x2 >= c2, 1, 0)
   
-  return(data.frame(x1, x2, y, trt))
+  return(data.frame(x1, x2, y, tr))
 }
 
 ## Sample size
@@ -73,9 +73,9 @@ b_tr1x1x2 <- 0
 b_tr2x1x2 <- 0
 
 ## Assignments
-c1 <- 40
-c2 <- 60
-t.design <- c('l','l')
+c1 <- 45
+c2 <- 55
+t.design <- c('geq','geq')
 
 ## Population parameters
 mu1 <- 45

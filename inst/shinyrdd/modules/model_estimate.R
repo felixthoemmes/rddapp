@@ -404,21 +404,10 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       tab_univ2 = format_summary_table(result$model()$univ$tau_M, 
         sections = list('Parametric:univariate'=1:3, 'Nonparametric:univariate'=4:6),
         tab_itt= tab_itt_univ2)
-      
-      # tab_front = as.data.frame(list(
-      #   label = c(
-      #     'Average','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-      #     'Frontier 1','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-      #     'Frontier 2','- Unconstrained','- Heterogeneous Effect','- Constant Effect'
-      #   ),
-      
+
       ## Create labels for all model types based on the diff levels of
       ## organization
-      # label_lv1 <- c("Parametric (linear)", "Nonparametric (optimal bandwidth)")
-      # label_lv2 <- c("- Average", "- Frontier 1", "- Frontier 2")
-      # label_lv3 <- c("-- Unconstrained", "-- Heterogeneous Effect", "-- Constant Effect")
-      ## I THINK THE ABOVE ARE WRONG
-      label_lv1 <- c("Parametric (linear)", "Nonparametric (optimal bandwidth)")
+      label_lv1 <- c("<b>Parametric (linear)</b>", "<b>Nonparametric (crossvalidated bandwidth)</b>")
       label_lv2 <- c("- Unconstrained", "- Heterogeneous Effect", "- Constant Effect")
       label_lv3 <- c("-- Frontier 1", "-- Frontier 2", "-- Average")
       
@@ -431,8 +420,14 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
           label_vec_temp <- c(label_vec_temp, label_lv3)
         }
       }
-      
+      browser()
       ## Get estimates for table
+      n <- c(rep(result$model()$front$tau_MRD$obs$Param[1], 3),
+             rep(result$model()$front$tau_MRD$obs$Param[2], 3),
+             rep(result$model()$front$tau_MRD$obs$Param[3], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[1], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[2], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[3], 3))
       est <- c(t(result$model()$front$tau_MRD$est)[,1:2])
       se <- c(t(result$model()$front$tau_MRD$se)[,1:2])
       ci <- result$model()$front$tau_MRD$ci
@@ -462,8 +457,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       tab_front = data.frame(
         label = label_vec_temp,
         bw = '-',
-        n = c(rep(result$model()$center$tau_MRD$obs[1], 9),
-              rep(result$model()$center$tau_MRD$obs[4], 9)),
+        n = n,
         # FIXME: using N from the center approach
         # get observations returned to
         # result$model()$center$tau_MRD$obs
