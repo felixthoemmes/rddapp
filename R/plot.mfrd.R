@@ -79,10 +79,10 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
     ratio2 <- (c2 - min(frame$x2)) / (max(frame$x2) - min(frame$x2))
     
     newdata <- expand.grid(
-      x1 = c(seq(min(frame$x1), c1 - 1e-10, length.out = ifelse(gran > 4, round(gran * ratio1), 2)),
-             seq(c1 + 1e-10, max(frame$x1), length.out = ifelse(gran > 4, round(gran * (1 - ratio1)), 2))), 
-      x2 = c(seq(min(frame$x2), c2 - 1e-10, length.out = ifelse(gran > 4, round(gran * ratio2), 2)),
-             seq(c2 + 1e-10, max(frame$x2), length.out = ifelse(gran > 4, round(gran * (1 - ratio2)), 2)))
+      x1 = c(seq(min(frame$x1), c1 - .Machine$double.eps, length.out = ifelse(gran > 4, round(gran * ratio1), 2)),
+             seq(c1 + .Machine$double.eps, max(frame$x1), length.out = ifelse(gran > 4, round(gran * (1 - ratio1)), 2))), 
+      x2 = c(seq(min(frame$x2), c2 - .Machine$double.eps, length.out = ifelse(gran > 4, round(gran * ratio2), 2)),
+             seq(c2 + .Machine$double.eps, max(frame$x2), length.out = ifelse(gran > 4, round(gran * (1 - ratio2)), 2)))
     )
     
     newdata$tr1 <- treat_assign(newdata$x1, c1, t.design[1])
@@ -114,7 +114,8 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
     ele_3d <- persp(preds$x1, preds$x2, preds$yhat, 
                     xlim = range(c(frame$x1, newdata$x1)),
                     ylim = range(c(frame$x2, newdata$x2)),
-                    zlim = range(c(frame$y, newdata$y)), ...)    
+                    zlim = range(c(frame$y, newdata$y)),
+                    xlab = 'A1', ylab = 'A2', zlab = 'y', ...)    
   }else{
     # bandwidth on each axis
     if (methodname == 'bw'){
@@ -148,48 +149,61 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
               max(frame$x2), max(frame$x2))
     
     if (model == 'm_s' || model == 'm_h'){
-      q.x1 <- c(l.x1 - 1e-10, NA, g.x1 + 1e-10, NA, g.x1 + 1e-10, NA, l.x1 - 1e-10)
-      q.x2 <- c(g.x2 + 1e-10, NA, g.x2 + 1e-10, NA, l.x2 - 1e-10, NA, l.x2 - 1e-10)
+      q.x1 <- c(l.x1 - .Machine$double.eps, NA, g.x1 + .Machine$double.eps, NA, g.x1 + .Machine$double.eps, NA, l.x1 - .Machine$double.eps)
+      q.x2 <- c(g.x2 + .Machine$double.eps, NA, g.x2 + .Machine$double.eps, NA, l.x2 - .Machine$double.eps, NA, l.x2 - .Machine$double.eps)
     }else if (model == 'm_t'){
       if ((t.design[1] == 'g' || t.design[1] == 'geq') && 
           (t.design[2] == 'g' || t.design[2] == 'geq')){
-        q.x1 <- c(l.x1 - 1e-10, NA, c(c1, c1, min(c1+bw.x1, max(frame$x1)), min(c1+bw.x1, max(frame$x1))) + 1e-10, NA, 
-                  c(c1, min(c1+bw.x1, max(frame$x1)), c1) + 1e-10, NA,
-                  c(c1, min(frame$x1), min(frame$x1), c1) - 1e-10)
-        q.x2 <- c(l.x2 - 1e-10, NA, c(c2, min(frame$x2), min(frame$x2), c2) - 1e-10, NA, 
-                  c(c2, c2, min(c2+bw.x2, max(frame$x2))) + 1e-10, NA,
-                  c(min(c2+bw.x2, max(frame$x2)), min(c2+bw.x2, max(frame$x2)), c2, c2) + 1e-10)
+        q.x1 <- c(l.x1 - .Machine$double.eps, NA, c(c1, c1, min(c1+bw.x1, max(frame$x1)), min(c1+bw.x1, max(frame$x1))) + .Machine$double.eps, NA, 
+                  c(c1, min(c1+bw.x1, max(frame$x1)), c1) + .Machine$double.eps, NA,
+                  c(c1, min(frame$x1), min(frame$x1), c1) - .Machine$double.eps)
+        q.x2 <- c(l.x2 - .Machine$double.eps, NA, c(c2, min(frame$x2), min(frame$x2), c2) - .Machine$double.eps, NA, 
+                  c(c2, c2, min(c2+bw.x2, max(frame$x2))) + .Machine$double.eps, NA,
+                  c(min(c2+bw.x2, max(frame$x2)), min(c2+bw.x2, max(frame$x2)), c2, c2) + .Machine$double.eps)
       }else if ((t.design[1] == 'l' || t.design[1] == 'leq') && 
                 (t.design[2] == 'l' || t.design[2] == 'leq')){
-        q.x1 <- c(g.x1 + 1e-10, NA, c(c1, max(frame$x1), max(frame$x1), c1) + 1e-10, NA,
-                  c(c1, c1, max(c1-bw.x1, min(frame$x1))) - 1e-10, NA,
-                  c(max(c1-bw.x1, min(frame$x1)), max(c1-bw.x1, min(frame$x1)), c1, c1) - 1e-10)
-        q.x2 <- c(g.x2 + 1e-10, NA, c(c2, c2, max(c2-bw.x2, min(frame$x2)), max(c2-bw.x2, min(frame$x2))) - 1e-10, NA,
-                  c(c2, max(c2-bw.x2, min(frame$x2)), c2) - 1e-10, NA,
-                  c(c2, max(frame$x2), max(frame$x2), c2) + 1e-10)
+        q.x1 <- c(g.x1 + .Machine$double.eps, NA, c(c1, max(frame$x1), max(frame$x1), c1) + .Machine$double.eps, NA,
+                  c(c1, c1, max(c1-bw.x1, min(frame$x1))) - .Machine$double.eps, NA,
+                  c(max(c1-bw.x1, min(frame$x1)), max(c1-bw.x1, min(frame$x1)), c1, c1) - .Machine$double.eps)
+        q.x2 <- c(g.x2 + .Machine$double.eps, NA, c(c2, c2, max(c2-bw.x2, min(frame$x2)), max(c2-bw.x2, min(frame$x2))) - .Machine$double.eps, NA,
+                  c(c2, max(c2-bw.x2, min(frame$x2)), c2) - .Machine$double.eps, NA,
+                  c(c2, max(frame$x2), max(frame$x2), c2) + .Machine$double.eps)
       }else if ((t.design[1] == 'g' || t.design[1] == 'geq') && 
                 (t.design[2] == 'l' || t.design[2] == 'leq')){
-        q.x1 <- c(l.x1 - 1e-10, NA, c(c1, c1, min(c1+bw.x1, max(frame$x1)), min(c1+bw.x1, max(frame$x1))) + 1e-10, NA,
-                  c(c1, min(c1+bw.x1, max(frame$x1)), c1) + 1e-10, NA,
-                  c(c1, min(frame$x1), min(frame$x1), c1) - 1e-10)
-        q.x2 <- c(g.x2 + 1e-10, NA, c(c2, max(frame$x2), max(frame$x2), c2) + 1e-10, NA,
-                  c(c2, c2, max(c2-bw.x2, min(frame$x2))) - 1e-10, NA,
-                  c(max(c2-bw.x2, min(frame$x2)), max(c2-bw.x2, min(frame$x2)), c2, c2) - 1e-10)
+        q.x1 <- c(l.x1 - .Machine$double.eps, NA, c(c1, c1, min(c1+bw.x1, max(frame$x1)), min(c1+bw.x1, max(frame$x1))) + .Machine$double.eps, NA,
+                  c(c1, min(c1+bw.x1, max(frame$x1)), c1) + .Machine$double.eps, NA,
+                  c(c1, min(frame$x1), min(frame$x1), c1) - .Machine$double.eps)
+        q.x2 <- c(g.x2 + .Machine$double.eps, NA, c(c2, max(frame$x2), max(frame$x2), c2) + .Machine$double.eps, NA,
+                  c(c2, c2, max(c2-bw.x2, min(frame$x2))) - .Machine$double.eps, NA,
+                  c(max(c2-bw.x2, min(frame$x2)), max(c2-bw.x2, min(frame$x2)), c2, c2) - .Machine$double.eps)
       }else if ((t.design[1] == 'l' || t.design[1] == 'leq') && 
                 (t.design[2] == 'g' || t.design[2] == 'geq')){
-        q.x1 <- c(g.x1 + 1e-10, NA, c(c1, max(frame$x1), max(frame$x1), c1) + 1e-10, NA,
-                  c(c1, c1, max(c1-bw.x1, min(frame$x1))) - 1e-10, NA,
-                  c(max(c1-bw.x1, min(frame$x1)), max(c1-bw.x1, min(frame$x1)), c1, c1) - 1e-10)
-        q.x2 <- c(l.x2 - 1e-10, NA, c(c2, c2, min(c2+bw.x2, max(frame$x2)), min(c2+bw.x2, max(frame$x2))) + 1e-10, NA,
-                  c(c2, min(c2+bw.x2, max(frame$x2)), c2) + 1e-10, NA,
-                  c(c2, min(frame$x2), min(frame$x2), c2) - 1e-10)
+        q.x1 <- c(g.x1 + .Machine$double.eps, NA, c(c1, max(frame$x1), max(frame$x1), c1) + .Machine$double.eps, NA,
+                  c(c1, c1, max(c1-bw.x1, min(frame$x1))) - .Machine$double.eps, NA,
+                  c(max(c1-bw.x1, min(frame$x1)), max(c1-bw.x1, min(frame$x1)), c1, c1) - .Machine$double.eps)
+        q.x2 <- c(l.x2 - .Machine$double.eps, NA, c(c2, c2, min(c2+bw.x2, max(frame$x2)), min(c2+bw.x2, max(frame$x2))) + .Machine$double.eps, NA,
+                  c(c2, min(c2+bw.x2, max(frame$x2)), c2) + .Machine$double.eps, NA,
+                  c(c2, min(frame$x2), min(frame$x2), c2) - .Machine$double.eps)
       }
     }
     newdata <- data.frame(x1 = q.x1, x2 = q.x2)
     newdata$tr1 <- treat_assign(newdata$x1, c1, t.design[1])
     newdata$tr2 <- treat_assign(newdata$x2, c2, t.design[2])
     newdata$tr <- as.integer(newdata$tr1 | newdata$tr2)
-    newdata$yhat <- predict(m, newdata = newdata)      
+    
+    zc1 <- c(scale(c1, center = mean(x$dat$x1), scale = sd(x$dat$x1)))
+    zc2 <- c(scale(c2, center = mean(x$dat$x2), scale = sd(x$dat$x2)))
+    q.zcx1 <- c(scale(q.x1, sd(x$dat$x1))) - zc1
+    q.zcx2 <- c(scale(q.x2, sd(x$dat$x2))) - zc2
+    wt <- wt_kern_bivariate(q.zcx1, q.zcx2, 0, 0, front.bw, kernel = kernel, t.design = t.design)
+    if (model == 'm_s'){
+      newwt = wt$wAll1
+    }else if (model == 'm_h'){
+      newwt = wt$wAll2
+    }else if (model == 'm_t'){
+      newwt = wt$Tr
+    }
+    newdata$yhat <- predict(m, newdata = newdata, weights = newwt)      
     
     newdata$quadrant <- interaction(newdata$tr1, newdata$tr2)
     
@@ -204,7 +218,8 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
     ele_3d <- polygon3D(newdata$x1, newdata$x2, newdata$yhat, border='black', col = 'white',
                         xlim = range(c(frame$x1, newdata$x1), na.rm = TRUE),
                         ylim = range(c(frame$x2, newdata$x2), na.rm = TRUE),
-                        zlim = range(c(frame$y, newdata$yhat), na.rm = TRUE), ...)
+                        zlim = range(c(frame$y, newdata$yhat), na.rm = TRUE),
+                        xlab = 'A1', ylab = 'A2', zlab = 'y', ...)
   }
   
   # color panels

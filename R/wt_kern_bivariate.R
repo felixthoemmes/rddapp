@@ -58,9 +58,10 @@ wt_kern_bivariate <- function(X1, X2, center1, center2, bw, kernel = "triangular
   distAll1 = apply(M1, 1, min)
   distAll2 = apply(M2, 1, min)
   distTr  = apply(M3, 1, min)
-  distTr[tr1 == 1] = dist3.1[tr1 == 1]
-  distTr[tr2 == 1] = dist3.2[tr2 == 1]
-  distTr[trb == 1] = (dist3.1 + dist3.2)[trb == 1]
+  
+  distTr[ifelse(!is.na(tr1) & tr1==1, T, F)] = dist3.1[ifelse(!is.na(tr1) & tr1==1, T, F)]
+  distTr[ifelse(!is.na(tr2) & tr2==1, T, F)] = dist3.2[ifelse(!is.na(tr2) & tr2==1, T, F)]
+  distTr[ifelse(!is.na(trb) & trb==1, T, F)] = (dist3.1 + dist3.2)[ifelse(!is.na(trb) & trb==1, T, F)]     
   
   if (kernel == "triangular") {
     wAll1 <- (1 - abs(distAll1))
@@ -101,9 +102,9 @@ wt_kern_bivariate <- function(X1, X2, center1, center2, bw, kernel = "triangular
   wAll1 <- ifelse(distAll1 > 1 & kernel != "gaussian", 0, wAll1)
   wAll2 <- ifelse(distAll2 > 1 & kernel != "gaussian", 0, wAll2)
   wTr <- ifelse(distTr > 1 & kernel != "gaussian", 0, wTr)
-  wAll1 <- wAll1 / sum(wAll1)
-  wAll2 <- wAll2 / sum(wAll2)
-  wTr <- wTr / sum(wTr)
+  wAll1 <- wAll1 / sum(wAll1, na.rm = TRUE)
+  wAll2 <- wAll2 / sum(wAll2, na.rm = TRUE)
+  wTr <- wTr / sum(wTr, na.rm = TRUE)
   
   return(list(wAll1 = wAll1, wAll2 = wAll2, wTr = wTr, 
               distAll1 = distAll1, distAll2 = distAll2, distTr = distTr))
