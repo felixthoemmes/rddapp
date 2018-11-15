@@ -85,15 +85,18 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
              seq(c2 + .Machine$double.eps, max(frame$x2), length.out = ifelse(gran > 4, round(gran * (1 - ratio2)), 2)))
     )
     
-    newdata$tr1 <- treat_assign(newdata$x1, c1, t.design[1])
-    newdata$tr2 <- treat_assign(newdata$x2, c2, t.design[2])
-    newdata$tr <- as.integer(newdata$tr1 | newdata$tr2)
+    x1_tr <- treat_assign(newdata$x1, c1, t.design[1])
+    x2_tr <- treat_assign(newdata$x2, c2, t.design[2])
+    newdata$tr1 <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(x1_tr & !x2_tr, 1, 0))
+    newdata$tr2 <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(!x1_tr & x2_tr, 1, 0))
+    newdata$trb <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(x1_tr & x2_tr, 1, 0))
+    newdata$tr <- ifelse(newdata$tr1 == 1 | newdata$tr2 == 1 | newdata$trb == 1, 1, 0)
     
     # newdata$cov = mean(frame$cov)  # not implemented yet
     
     newdata$yhat <- predict(m, newdata = newdata)
     
-    newdata$quadrant <- interaction(newdata$tr1, newdata$tr2)
+    newdata$quadrant <- interaction(x1_tr, x2_tr)
     
     newdata <- merge(newdata, 
                      data.frame(
@@ -187,25 +190,15 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
       }
     }
     newdata <- data.frame(x1 = q.x1, x2 = q.x2)
-    newdata$tr1 <- treat_assign(newdata$x1, c1, t.design[1])
-    newdata$tr2 <- treat_assign(newdata$x2, c2, t.design[2])
-    newdata$tr <- as.integer(newdata$tr1 | newdata$tr2)
+    x1_tr <- treat_assign(newdata$x1, c1, t.design[1])
+    x2_tr <- treat_assign(newdata$x2, c2, t.design[2])
+    newdata$tr1 <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(x1_tr & !x2_tr, 1, 0))
+    newdata$tr2 <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(!x1_tr & x2_tr, 1, 0))
+    newdata$trb <- ifelse(is.na(newdata$x1) | is.na(newdata$x2), NA, ifelse(x1_tr & x2_tr, 1, 0))
+    newdata$tr <- ifelse(newdata$tr1 == 1 | newdata$tr2 == 1 | newdata$trb == 1, 1, 0)
+    newdata$yhat <- predict(m, newdata = newdata)      
     
-    zc1 <- c(scale(c1, center = mean(x$dat$x1), scale = sd(x$dat$x1)))
-    zc2 <- c(scale(c2, center = mean(x$dat$x2), scale = sd(x$dat$x2)))
-    q.zcx1 <- c(scale(q.x1, sd(x$dat$x1))) - zc1
-    q.zcx2 <- c(scale(q.x2, sd(x$dat$x2))) - zc2
-    wt <- wt_kern_bivariate(q.zcx1, q.zcx2, 0, 0, front.bw, kernel = kernel, t.design = t.design)
-    if (model == 'm_s'){
-      newwt = wt$wAll1
-    }else if (model == 'm_h'){
-      newwt = wt$wAll2
-    }else if (model == 'm_t'){
-      newwt = wt$Tr
-    }
-    newdata$yhat <- predict(m, newdata = newdata, weights = newwt)      
-    
-    newdata$quadrant <- interaction(newdata$tr1, newdata$tr2)
+    newdata$quadrant <- interaction(x1_tr, x2_tr)
     
     newdata$id  <- 1:nrow(newdata)
     newdata <- merge(newdata, 
