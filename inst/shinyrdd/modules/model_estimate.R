@@ -407,7 +407,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
 
       ## Create labels for all model types based on the diff levels of
       ## organization
-      label_lv1 <- c("<b>Parametric (linear)</b>", "<b>Nonparametric (crossvalidated bandwidth)</b>")
+      label_lv1 <- c("Parametric (linear)", "Nonparametric (crossvalidated bandwidth)")
       label_lv2 <- c("- Unconstrained", "- Heterogeneous Effect", "- Constant Effect")
       label_lv3 <- c("-- Frontier 1", "-- Frontier 2", "-- Average")
       
@@ -420,7 +420,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
           label_vec_temp <- c(label_vec_temp, label_lv3)
         }
       }
-      browser()
+      
       ## Get estimates for table
       n <- c(rep(result$model()$front$tau_MRD$obs$Param[1], 3),
              rep(result$model()$front$tau_MRD$obs$Param[2], 3),
@@ -452,6 +452,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       } else {
         ci <- NA
       }
+      d <- c(t(result$model()$front$tau_MRD$d)[,1:2])
       
       ## Construct table for frontier approach
       tab_front = data.frame(
@@ -467,7 +468,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
         df = NA,
         p = pnorm(abs(est/se), lower.tail = F) * 2,
         ci = ci,
-        d = NA,
+        d = d,
         stringsAsFactors = F
         )
       
