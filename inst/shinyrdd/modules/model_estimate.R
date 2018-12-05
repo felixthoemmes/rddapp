@@ -121,7 +121,12 @@ model_estimateUI = function(id){
               )
               
             ),
+            ## PLOT OPTIONS FOR FRONTIER METHOD
             conditionalPanel(condition = sprintf('input["%s"] == "frontier"', ns('plot_type')) ,
+              h6(class='badge', 'Method'),
+              selectizeInput(ns('mfrd_method'), label=NULL, multiple=F,
+                choices = c('Parametric (linear)'='Param', 'Nonparametric (crossvalidated bandwidth)'='bw')
+                ),
               h6(class='badge','Model Specification'),
               selectizeInput(ns('mfrd_model'), label = NULL, multiple = F,
                 choices = c('Unconstrained'='m_s','Heterogeneous Effect' = 'm_h','Constant Effect' = 'm_t') 
@@ -509,25 +514,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
         c('Centering', rep(NA, ncol(tab_center)-2),'centering'), tab_center, 
         c('Univariate (A1)', rep(NA, ncol(tab_univ1)-2),'univariate'), tab_univ1, 
         c('Univariate (A2)', rep(NA, ncol(tab_univ2)-2),'univariate'), tab_univ2, 
-        c('Frontier', rep(NA, ncol(tab_front)-2),'frontier'), tab_front) 
-      ## problem is in trying to rbind tab_front 
-      ## (other three mini-tables bind just fine)
-      ## centering and univerate mini tables have 11 variables,
-      ## frontier mini-table has 43 variables...
-      
-      ## ISSUE: ncol of frontier mini table does not match up
-      ## have 11 "real" variables (match up w/ the other mini tables),
-      ## but for some reason, 32 NA cols also get created in code for
-      ## tab_front...
-      ## tab_front is initialized with 4 obs of 42 variables instead
-      ## of ?? (8?) obvs of 11 variables
-      
-      ## note that in tab_center, univ1, univ2, the 8 "observations"
-      ## are: "Parametric"       "- Linear"         "- Quadratic"      
-      ## "- Cubic"          "Nonparametric"   "- Optimal"        
-      ## "- Half-Optimal"   "- Double-Optimal"
-      ## and the 11 "variables" are: "label" "bw"    "n"     "est"   
-      ## "se"    "z"     "df"    "p"     "l95"   "es"    "type" 
+        c('Frontier', rep(NA, ncol(tab_front)-2),'frontier'), tab_front)
       
       return(tab)
     }
@@ -761,8 +748,9 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       mtext(isolate(parameter$outcome()), 2, 2)
       grid(col = 'black')
     } else {
-      plot(result$model()$front$tau_MRD, 
-        model = input$mfrd_model, 
+      plot(result$model()$front$tau_MRD,
+        model = input$mfrd_model,
+        methodname = input$mfrd_method,
         phi = switch(input$mfrd_view, 'top' = 90, 'a1' = 0, 'a2' = 0,
           input$mfrd_phi),
         theta = switch(input$mfrd_view, 'top' = 0, 'a1' = 0, 'a2' = 90,
@@ -770,13 +758,10 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
         d = ifelse(input$mfrd_view == 'custom', 1, 1e10),
         color_surface = input$mfrd_color_surface %% 2 == 1,
         raw_data = input$mfrd_raw_data %% 2 == 1,
-        # local_data = input$mfrd_local_data %% 2 == 1,
-        xlab = parameter$assignment1(),
-        ylab = parameter$assignment2(),
-        zlab = parameter$outcome(),
+        #local_data = input$mfrd_local_data %% 2 == 1,
         gran = if(input$mfrd_grid %% 2 == 1) 16 else 2,
         shade = if(input$mfrd_shade %% 2 == 1) .4 else NA,
-        scale = input$mfrd_raw_scale %% 2 == 0, 
+        scale = input$mfrd_raw_scale %% 2 == 0,
         ticktype = 'detailed')
     }
   }
