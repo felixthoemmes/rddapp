@@ -5,7 +5,7 @@
 \title{Plot the Multivariate Frontier Regression Discontinuity}
 \usage{
 \method{plot}{mfrd}(x, model = c("m_s", "m_h", "m_t"),
-  methodname = c("Param", "bw", "Half-bw", "Double-bw"), gran = 2,
+  methodname = c("Param", "bw", "Half-bw", "Double-bw"), gran = 10,
   raw_data = TRUE, color_surface = FALSE, ...)
 }
 \arguments{
