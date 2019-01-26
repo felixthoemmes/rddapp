@@ -215,17 +215,17 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     if (all(t.design %in% c("geq", "leq"))) {
       o[["center"]] <- list(tau_MRD = 
           eval(bquote(
-            rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = bw, 
-              kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = "leq")
+            rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = .(bw), 
+              kernel = .(kernel), se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = "leq")
           ))
       )
     } else {
       o[["center"]] <- list(tau_MRD =
           eval(bquote(
-            rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = bw, 
-              kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = "l")
+            rd_est(formula = .(form), data = data, subset = NULL, cutpoint = 0, bw = .(bw), 
+              kernel = .(kernel), se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = "l")
           ))
         
       )
@@ -268,30 +268,30 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         o[["univ"]] <- list(
           tau_R = eval(bquote(
             rd_est(formula = .(form1), data = data, subset = subset1, 
-              cutpoint = .(cutpoint[1]), bw = bw, kernel = .(kernel), 
-              se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
+              cutpoint = .(cutpoint[1]), bw = .(bw), kernel = .(kernel), 
+              se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
           )),
           tau_M = eval(bquote(
             rd_est(formula = .(form2), data = data, subset = subset2, 
-              cutpoint = .(cutpoint[2]), bw = bw, kernel = .(kernel), 
-              se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
+              cutpoint = .(cutpoint[2]), bw = .(bw), kernel = .(kernel), 
+              se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
           ))
         )
       } else if (length(bw) == 2 && is.numeric(bw)) {
         o[["univ"]] <- list(
           tau_R = eval(bquote(
             rd_est(formula = .(form1), data = data, subset = subset1, 
-              cutpoint = .(cutpoint[1]), bw = bw[1], kernel = .(kernel), 
-              se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
+              cutpoint = .(cutpoint[1]), bw = .(bw[1]), kernel = .(kernel), 
+              se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
           )),
           tau_M = eval(bquote(
             rd_est(formula = .(form2), data = data, subset = subset2, 
-              cutpoint = .(cutpoint[2]), bw = bw[2], kernel = .(kernel), 
-              se.type = se.type, cluster = cluster, verbose = verbose, 
-              less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
+              cutpoint = .(cutpoint[2]), bw = .(bw[2]), kernel = .(kernel), 
+              se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+              less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
           ))
         )
       } else {
@@ -302,13 +302,13 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
       o[["univ"]] <- list(
         tau_R = eval(bquote(
           rd_est(formula = .(form1), data = data, subset = subset1, cutpoint = .(cutpoint[1]), 
-            bw = NULL, kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-            less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
+            bw = NULL, kernel = .(kernel), se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+            less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
         )),  
         tau_M = eval(bquote(
           rd_est(formula = .(form2), data = data, subset = subset2, cutpoint = .(cutpoint[2]), 
-            bw = NULL, kernel = .(kernel), se.type = se.type, cluster = cluster, verbose = verbose, 
-            less = less, est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))  
+            bw = NULL, kernel = .(kernel), se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+            less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))  
         ))
       )
     }
@@ -321,8 +321,8 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
         eval(bquote(
           mfrd_est(y = Y, x1 = X1, x2 = X2, c1 = .(cutpoint[1]), c2 = .(cutpoint[2]), 
             t.design = .(t.design), local = .(local), 
-            front.bw = front.bw, m = m, k = k, kernel = kernel,
-            ngrid = ngrid, margin = margin, boot = boot, cluster = cluster, stop.on.error = stop.on.error)
+            front.bw = .(front.bw), m = .(m), k = .(k), kernel = .(kernel),
+            ngrid = .(ngrid), margin = .(margin), boot = .(boot), cluster = .(cluster), stop.on.error = .(stop.on.error))
         ))
     )
   } 
