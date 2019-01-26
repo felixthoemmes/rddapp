@@ -759,7 +759,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
         color_surface = input$mfrd_color_surface %% 2 == 1,
         raw_data = input$mfrd_raw_data %% 2 == 1,
         #local_data = input$mfrd_local_data %% 2 == 1,
-        gran = if(input$mfrd_grid %% 2 == 1) 16 else 2,
+        gran = if(input$mfrd_grid %% 2 == 1) 16 else 10,
         shade = if(input$mfrd_shade %% 2 == 1) .4 else NA,
         scale = input$mfrd_raw_scale %% 2 == 0,
         ticktype = 'detailed')
