@@ -28,7 +28,7 @@
 
 - Default of t.design was changed to NULL to force user to always specify design
 
-# rddapp work in progress
+# rddapp 1.2.0
 
 - Nonparametric version of frontier approach is added to mfrd_est and summary function is updated to display the new results
 
