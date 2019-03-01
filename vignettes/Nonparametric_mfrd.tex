@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Nonparametric mfrd}
+\author{Wenyu Zhang}
+\date{December 2018}
+
+\begin{document}
+
+\maketitle
+
+This document describes the nonparametric frontier approach in function \textit{mfrd\_est}:
+
+\textit{mfrd\_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw = NA, m = 10, k = 5, kernel = "triangular",
+ngrid = 250, margin = 0.03, boot = NULL, cluster = NULL, stop.on.error = TRUE)}
+
+\section{Optimal bandwidth}
+
+Assuming that we have an optimal bandwidth $b^*$, then estimation of treatment effects can proceed similar to the univariate case. We fit a weighted linear model using only points within $L_1$ distance $b^*$ of the interested frontiers, with weights calculated according to the specified kernel. We denote the linear model by $f(x_1, x_2; b^*)$.
+
+\section{Bandwidth evaluation}
+
+We want $b^*$ to be optimal in estimating the treatment effects at the frontiers. To evaluate how good a bandwidth $b$ is, we use the mean squared error (MSE) for estimation on a test set:
+$$\frac{1}{|S(\delta)|} \sum_{(x_1,x_2) \in S(\delta)} \left( f(x_1,x_2; b) - y \right)^2$$
+where $f$ is fitted using the training set, and $S(\delta)$ is the test set where all points are within $L_1$ distance $\delta$ of the interest frontiers. This means that: 
+$$b^* = \text{argmin}_b \frac{1}{|S(\delta)|} \sum_{(x_1,x_2) \in S(\delta)} \left( f(x_1,x_2; b) - y \right)^2$$
+Since we have three treatment effect models (i.e. complete, heterogeneous treatments, treatment only), there is a MSE and hence optimal bandwidth corresponding to each.
+
+Since it is difficult to optimize for $b^*$ exactly, we select the best $b$ from a random sample. In the $mfrd\_est$ function, we draw $m$ choices of $b$ uniformly-at-random from the interval $[0.5,2.5]$ for the standardized $x_1$ and $x_2$, and $m = 10$ as the default value. We set $\delta = 0.25$ to focus on effects at the frontier and also to provide fairer comparison among different $b$'s.
+
+\section{Cross-validation for MSE}
+
+To calculate the MSE, we implement $k$-fold cross-validation, with $k = 5$ as the default. In each iteration, the $k$-th set is used to produce $S(\delta)$, and the remaining $k-1$ sets are used to train the linear model $f$. The final MSE is the average across all $k$-folds, and the optimal empirical bandwidth is chosen as the minimizer of this MSE.
+
+\end{document}
