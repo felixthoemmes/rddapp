@@ -43,3 +43,11 @@
 - Incorrect outputs for Cohen'd of covariates are removed from rd_est and mrd_est
 
 - Help files have been updated e.g. example added for rd_type, more descriptions of arguments added for plot.mfrd and predict.rd
+
+- The shiny app manual has been fully drafted and edited
+
+- Plots in the Shiny app can all now be downloaded as `.png` or `.svg` (in addition to `.pdf`) with the click of a button
+
+- Added new model estimates to Table 3.1 in the Shiny app
+
+- Added 3D plots for models with two assignment variables to Figure 3.1 in the Shiny app
