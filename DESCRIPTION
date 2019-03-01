@@ -22,6 +22,14 @@ Authors@R: c(
     person("Matthieu", "Stigler", role = c("ctb"),
            comment = "Implementation of functions in R package rddtools")
     )   
+Author: Ze Jin [aut],
+    Wang Liao [aut],
+    Irena Papst [aut],
+    Wenyu Zhang [aut],
+    Felix Thoemmes [aut, cre],
+    Drew Dimmery [ctb],
+    Bastiaan Quast [ctb],
+    Matthieu Stigler [ctb]
 Maintainer: Felix Thoemmes <fjt36@cornell.edu>
 Description: Estimation of both single- and multiple-assignment Regression Discontinuity Designs 
     (RDDs). Provides both parametric (global) and non-parametric (local) estimation choices for
