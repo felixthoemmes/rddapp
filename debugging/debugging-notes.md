@@ -2,8 +2,9 @@
 
 ## bug reports
 
-**bug 1)** Felix: "The power analysis in the shiny interface
-sometimes breaks, and does not return any result. I am not sure why this is happening."
+**bug 1)** Felix: "In terms of the power analysis, I don't have a reproducible example. In the beta version, it appears to crash every time I try to use the
+power analysis that searches over a grid (the lower panel in the shiny
+app)."
 
 **bug 2)** dataset causes shiny GUI to crash
 
@@ -22,7 +23,7 @@ Felix: "The issue is with error reporting. In your example, the crashes are a re
 
 * can only use breakpoints in `shinyServer()`, but `browser()` works everywhere
   * not always helpful as shiny code doesn't execute linearly
-  * need to rememeber to take `browse()` statements out after
+  * need to rememeber to take `browser()` statements out after
 * use **showcase mode** to ID which parts of code are executing after various actions (to help find where bugs trigger in code)
   * `shiny::runApp(display.mode="showcase")`
   * can also enable by default by setting `DisplayMode: Showcase` in DESCRIPTION file
