@@ -75,3 +75,17 @@ assign2: mp <= 5
   * else get `trt = as.name(treat)` in list called `env` in `fml` list
 [x] change `tr` to `trt` in `tr ~ tstar_1 + tstar_2` of `rd_type()`
   * seems to fix bug!!!!!!!!!!!!!
+
+## 2019-10-25 (1 hr)
+* why is it that we were still able to perform other multivar RDDs sans error while developing the 3D plots last year...?
+[x] check that changing `trt` column to `treatment` or `T` in `multivarRD.csv`
+  * bug appears again!!
+  * it looks like trt does not correspond to a general internal relabeling of the treatment variable within the scope of the whole `rd_type()` function
+    * it's just used in some substitute statements within the function
+* inserted browser() just before error is triggered to explore
+  * the app crashes when checking for a *sharp frontier design* with the statement `if (all((xtabs(tr ~ tstar_1 + tstar_2, data) > 0) == matrix(c(0, 1, 1, 1), nrow = 2, byrow = TRUE)))`
+    * the problem is that `tr` is supposed to refer to the treatment column, but it's hardcoded as `tr` for some reason
+    * changing this line so that it refers to the treatment variable as specifed in the `rd_type()` function arguments actually does the trick
+      * checked by changing the treatment col in `multivarRD.csv` to various names and it worked
+      * also checked that this formula is compatible for non-binary treatment columns (`rd_type()` simply says that treated = positive values), so checked when treated = some positive number and untreated = 0; it works
+  * i think we only worked with fuzzy frontier designs when developing the 3D plots last year, so that might explain why we were never able to provoke this error before
