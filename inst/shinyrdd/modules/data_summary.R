@@ -162,8 +162,6 @@ data_summary = function(input, output, session, dataframe, parameter){
     
     res = withCallingHandlers(
       rddapp:::rd_type(
-      ## debugging (see 2019-10-24 in irena-work-log)
-      # rd_type(
         data_to_describe(), 
         treat         = parameter$treatment(),
         assign_1      = parameter$assignment1(),
