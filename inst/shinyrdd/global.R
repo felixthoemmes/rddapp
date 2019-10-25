@@ -1,6 +1,10 @@
 # load packages
 library(rddapp)
 
+## debugging (see 2019-10-24 in irena-work-log)
+# source("../../R/rd_type.R")
+# source("../../R/treat_assign.R")
+
 # devtools::load_all("rddapp")
 # devtools::install_github("wliao229/RDD",
 # 	auth_token = '97d442b7543326db9a2c182c3ea83b8e3e24d5c1')
