@@ -89,3 +89,49 @@ assign2: mp <= 5
       * checked by changing the treatment col in `multivarRD.csv` to various names and it worked
       * also checked that this formula is compatible for non-binary treatment columns (`rd_type()` simply says that treated = positive values), so checked when treated = some positive number and untreated = 0; it works
   * i think we only worked with fuzzy frontier designs when developing the 3D plots last year, so that might explain why we were never able to provoke this error before
+
+## 2019-10-28 (1 hr)
+[x] find a reproducible example of bug 1 (the power analysis breaking)
+*  Felix: "In the beta version, it appears to crash every time I try to use the
+power analysis that searches over a grid (the lower panel in the shiny
+app)."
+[x] read overview of monte carlo power analysis [here](https://deliveroo.engineering/2018/12/07/monte-carlo-power-analysis.html) to orient myself
+* starting with the CARE package
+    * outcome: MOMWAIS0
+    * a1: APGAR5 >= 9
+    * trt: DC_TRT
+  * go to power tab, hit simulate button (two arrows chasing each other) with default settings and get crash
+    ```
+    Warning: Error in as.data.frame.default: cannot coerce class ""rdp"" to a data.frame
+  59: stop
+  58: as.data.frame.default
+  44: <observer> [modules/simulate_power.R#301]
+   1: shiny::runApp
+   ```
+   * in `modules/simulate_power.R`, only one call to `as.data.frame()`
+   * the expression inside of `as.data.frame()` returns an object of class `rdp` that prints like this:
+   ```
+       success mean(est)   var(est) 0.001  0.01  0.05
+    Linear     500  1.000083 0.05515612 0.786 0.938 0.988
+    Opt        500  1.007370 0.08761318 0.608 0.828 0.930
+    attr(,"class")
+    [1] "rdp"
+    ```
+    * need to figure out how to convert `rdp` (or rather the output of its print method) to a data frame
+    * i think `print.rdp` is an undocumented internal method (`?print.rdp` and `??print.rdp` don't yield anything)
+    * need to figure out more about objects of class `rdp` as defined to figure out how to coorce into a data frame...(why do we need a data frame in the first place?)
+    [x] try by simply removing `as.data.frame()` around result
+    ```
+        Warning: Error in $<-.data.frame: replacement has 0 rows, data has 2
+    171: stop
+    170: $<-.data.frame
+    168: power_chart [modules/simulate_power.R#224]
+    167: renderPlot [modules/simulate_power.R#281]
+    165: func
+    125: drawPlot
+    111: <reactive:plotObj>
+     95: drawReactive
+     82: origRenderFunc
+     81: output$simulate_power-power_chart
+      1: runApp
+  ```
