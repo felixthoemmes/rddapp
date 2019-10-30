@@ -143,7 +143,7 @@ app)."
   * same bug as before (immediately above)
   * i think this is still a type error (the code relies on res being a data frame but its of class `rdp`)
   * type error comes up when `power_chart(df)` actually tries to use `df` for the first time (calls a column named `type`)
-[x] try `res = as.data.frame(matrix(res, ncol = 6))` (since there should always be 6 columns and we can cooerce rdp into a matrix, which can then be cooerced into a df)
+[x] try `res = as.data.frame(matrix(res, ncol = 6))` (since there should always be 6 columns and we can coerce rdp into a matrix, which can then be coerced into a df)
   * getting some type errors with the plot now... df provided for the `power_chart` should have a column called `type` so where is this supposed to be created?
  * why isn't the code set up to assign row names to res if there are fewer than 6 rows... seems arbitrarily hardcoded
 [x] try instead `res = as.data.frame(unclass(res))`
