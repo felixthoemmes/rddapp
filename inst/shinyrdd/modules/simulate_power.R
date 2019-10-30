@@ -138,7 +138,6 @@ simulate_power = function(input, output, session, parameter){
     power_input = parameter()
     power_input$pars$num.rep = input$power_simulate_iter
     # power_input$pars$sample.size = input$power_n
-    
     res = withProgress(message = 'Simulating...', value = NULL, 
       expr = do.call(power_input$cmd, power_input$pars)
     )
@@ -303,15 +302,13 @@ simulate_power = function(input, output, session, parameter){
         power_input = parameter()
         power_input$pars$num.rep = input$power_chart_iter
         power_input$pars$sample.size = n
-        # browser()
-        # res = as.data.frame(
-        #   withProgress(message = 'Simulating...', value = NULL, detail = sprintf('N = %g', n),
-        #     expr = do.call(power_input$cmd, power_input$pars)
-        #   )
-        # )
-        res = withProgress(message = 'Simulating...', value = NULL, detail = sprintf('N = %g', n),
-                       expr = do.call(power_input$cmd, power_input$pars)
-                       )
+        res =
+          withProgress(message = 'Simulating...', value = NULL, detail = sprintf('N = %g', n),
+            expr = do.call(power_input$cmd, power_input$pars)
+          )
+        ## Convert to df for displaying power table and plot 
+        res = as.data.frame(unclass(res))
+
         if (nrow(res) == 6){
           row.names(res) <- c(
             'Linear-Centering','Optimal-Centering',
