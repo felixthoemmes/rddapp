@@ -3,6 +3,10 @@ simulate_powerUI = function(id){
   ns = NS(id)
   tagList(
     p(),
+    p(em("To start a Monte-Carlo simulation, please click a compute icon ("),
+      icon('refresh'),
+      #img(src = "compute-icon.png"),
+      em(").")),
     div(class='panel panel-default',
       div(class='panel-heading',
         h6('Table 5.1',strong('Powers of RDD Estimates'), class='pull-left'),
