@@ -13,7 +13,7 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','CI'),
                 eval({
                   tag=numericInput(ns('cutsens_level'), label = NULL, min = 0, max = 99.9, 
-                    value = 95, width = '65px')
+                    value = 95, width = '50px')
                   
                   tag$attribs$class = paste(tag$attribs$class, 'input-group-sm')
                   tag
@@ -106,7 +106,7 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','CI'),
                 eval({
                   tag=numericInput(ns('bwsens_level'), label = NULL, min = 0, max = 99.9, 
-                    value = 95, width = '65px')
+                    value = 95, width = '50px')
                   tag$attribs$class = paste(tag$attribs$class, 'input-group-sm')
                   tag
                 }),
