@@ -3,7 +3,7 @@ simulate_powerUI = function(id){
   ns = NS(id)
   tagList(
     p(),
-    p(em("To start a Monte-Carlo simulation, please click a compute icon ("),
+    p(em("To start a Monte Carlo simulation, please click a compute icon ("),
       icon('refresh'),
       #img(src = "compute-icon.png"),
       em(").")),
