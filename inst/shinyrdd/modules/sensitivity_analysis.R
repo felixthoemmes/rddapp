@@ -148,7 +148,15 @@ sensitivity_analysisUI = function(id){
                 
               )
             ),
-            uiOutput(ns('bwsens_controls'))
+            h6("X-axis"),
+            uiOutput(ns('bwsens_controls')),
+            h6("Y-axis"),
+            div(class = 'input-group',
+                span(class='input-group-addon', tags$small('min')),
+                numericInput(ns('bwsens_ymin'), label = NULL, value = 0, min =  -10, max = 10, step = .1,  width = '95px'),
+                span(class='input-group-addon', tags$small('max')),
+                numericInput(ns('bwsens_ymax'), label = NULL, value =  10, min = 0, max = 20, step = .1,  width = '95px')
+            )
           )
         )
       )
