@@ -1,5 +1,6 @@
 sensitivity_analysisUI = function(id){
   ns = NS(id)
+  ## compute good default yrange for bw sensitivity plot
   tagList(
     p(),
     fluidRow(
@@ -153,9 +154,9 @@ sensitivity_analysisUI = function(id){
             h6("Y-axis"),
             div(class = 'input-group',
                 span(class='input-group-addon', tags$small('min')),
-                numericInput(ns('bwsens_ymin'), label = NULL, value = 0, min =  -10, max = 10, step = .1,  width = '95px'),
+                numericInput(ns('bwsens_ymin'), label = NULL, value = 0, min =  -Inf, max = Inf, step = .1,  width = '95px'),
                 span(class='input-group-addon', tags$small('max')),
-                numericInput(ns('bwsens_ymax'), label = NULL, value =  10, min = 0, max = 20, step = .1,  width = '95px')
+                numericInput(ns('bwsens_ymax'), label = NULL, value =  10, min = -Inf, max = Inf, step = .1,  width = '95px')
             )
           )
         )
@@ -408,16 +409,15 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
       class(result$model()) %in% c('rd','mrd'),
       bw_sens_summary()
     )
-    yrange = bw_sens_summary()$est[grepl('origin',bw_sens_summary()$model)] + bw_sens_summary()$se[grepl('origin',bw_sens_summary()$model)] * qnorm(c(.005,.995))
-    
+
     sens_plot(bw_sens_summary(),
       level = input$bwsens_level / 100,
       x = 'bw',
-      yrange = yrange
+      yrange = c(input$bwsens_ymin, input$bwsens_ymax)
     )
     grid(col = 'black')
     abline(v = opt(), col = 'red3', lty = 2)
-    text(x = opt(), y = min(yrange), labels = 'optimal bandwidth', col = 'red3',  adj = c(-.1, 0))
+    text(x = opt(), y = min(input$bwsens_ymin), labels = 'optimal bandwidth', col = 'red3',  adj = c(-.1, 0))
     
     mtext('Bandwidth', side = 1, 2)
     mtext('Estimate', side = 2, 2)
