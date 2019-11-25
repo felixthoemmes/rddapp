@@ -153,3 +153,8 @@ app)."
 * added Felix's annotated list of bug reports to `debugging-notes.md`
   * referring to this list as "bug report 2"
 * fixed first item (changed "IF" to "Assign treatment if" in Treatment Design panel)
+
+## 2019-11-25 (2.5 hrs)
+[x] program new UI elements for fig 4.2 as reactive values that do something server-side
+* addressed bug 2.5 (added to help manual for it)
+* finished responding to the rest of the bugs via email
