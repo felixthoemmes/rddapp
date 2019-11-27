@@ -3,6 +3,10 @@ simulate_powerUI = function(id){
   ns = NS(id)
   tagList(
     p(),
+    p(em("To start a Monte Carlo simulation, please click a compute icon ("),
+      icon('refresh'),
+      #img(src = "compute-icon.png"),
+      em(").")),
     div(class='panel panel-default',
       div(class='panel-heading',
         h6('Table 5.1',strong('Powers of RDD Estimates'), class='pull-left'),
@@ -138,7 +142,6 @@ simulate_power = function(input, output, session, parameter){
     power_input = parameter()
     power_input$pars$num.rep = input$power_simulate_iter
     # power_input$pars$sample.size = input$power_n
-    
     res = withProgress(message = 'Simulating...', value = NULL, 
       expr = do.call(power_input$cmd, power_input$pars)
     )
@@ -303,12 +306,13 @@ simulate_power = function(input, output, session, parameter){
         power_input = parameter()
         power_input$pars$num.rep = input$power_chart_iter
         power_input$pars$sample.size = n
-        
-        res = as.data.frame(
+        res =
           withProgress(message = 'Simulating...', value = NULL, detail = sprintf('N = %g', n),
             expr = do.call(power_input$cmd, power_input$pars)
           )
-        )
+        ## Convert to df for displaying power table and plot 
+        res = as.data.frame(unclass(res))
+
         if (nrow(res) == 6){
           row.names(res) <- c(
             'Linear-Centering','Optimal-Centering',
