@@ -158,3 +158,8 @@ app)."
 [x] program new UI elements for fig 4.2 as reactive values that do something server-side
 * addressed bug 2.5 (added to help manual for it)
 * finished responding to the rest of the bugs via email
+
+## 2019-12-02 (1 hr)
+* for bug 2.4, made y-lim values dynamic (min and max update depending on est plus minus standard error of model)
+  * for one variable rd, just uses est from linear parametric model
+  * for mrd, uses corresponding values for center, univ 1, and univ 2 models (see code diff for details)
