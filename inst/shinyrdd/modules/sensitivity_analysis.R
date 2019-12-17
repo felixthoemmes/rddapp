@@ -152,12 +152,7 @@ sensitivity_analysisUI = function(id){
             h6("X-axis"),
             uiOutput(ns('bwsens_controls')),
             h6("Y-axis"),
-            div(class = 'input-group',
-                span(class='input-group-addon', tags$small('min')),
-                numericInput(ns('bwsens_ymin'), label = NULL, value = 0, min =  -Inf, max = Inf, step = .1,  width = '95px'),
-                span(class='input-group-addon', tags$small('max')),
-                numericInput(ns('bwsens_ymax'), label = NULL, value =  10, min = -Inf, max = Inf, step = .1,  width = '95px')
-            )
+            uiOutput(ns('bwsens_ylims'))
           )
         )
       )
@@ -166,7 +161,6 @@ sensitivity_analysisUI = function(id){
 }
 
 sensitivity_analysis =  function(input, output, session, dataframe, parameter, result){
-  
   ## CUTOFFS
   
   # UPDATE CUTOFF RANGE INPUT
@@ -207,7 +201,6 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
   })
   
   cut_sens_summary = eventReactive(input$cutsens_simulate, ignoreNULL = T, {
-    
     req(class(result$model()) %in% c('rd','mrd'))
     req(input$cutsens_range_min, input$cutsens_range_max, input$cutsens_step)
     
@@ -271,7 +264,7 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
       length(input$cutsens_models) > 0,
       all(input$cutsens_models %in% cut_sens_summary()$model)
     )
-    
+
     sens_plot(cut_sens_summary(),
       level = input$cutsens_level / 100,
       x = isolate(input$cutsens_which_cutoff),
@@ -369,6 +362,42 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
     )
   })
   
+  ## Update y-limits for fig 4.2 per result
+  bwsens_est = reactiveVal()
+  bwsens_se = reactiveVal()
+  output$bwsens_ylims = renderUI({
+    ns = session$ns
+    req(class(result$model()) %in% c('rd','mrd'))
+    bwsens_est(if(class(result$model()) == 'rd'){
+      result$model()$est['Linear']
+    } else {
+      switch( input$bwsens_which_est,
+              'center' =  result$model()$center$tau_MRD$est['Linear'],
+              'univ1'=  result$model()$univ$tau_R$est['Linear'],
+              'univ2'=  result$model()$univ$tau_M$est['Linear']
+      )
+    })
+    bwsens_se(if(class(result$model()) == 'rd'){
+      result$model()$se['Linear']
+    } else {
+      switch( input$bwsens_which_est,
+              'center' =  result$model()$center$tau_MRD$se['Linear'],
+              'univ1'=  result$model()$univ$tau_R$se['Linear'],
+              'univ2'=  result$model()$univ$tau_M$se['Linear']
+      )
+    })
+    div(class = 'input-group',
+        span(class='input-group-addon', tags$small('min')),
+        numericInput(ns('bwsens_ymin'), label = NULL,
+                     value = round(bwsens_est()-3*bwsens_se(), 2),
+                     min =  -Inf, max = Inf, step = .01,  width = '95px'),
+        span(class='input-group-addon', tags$small('max')),
+        numericInput(ns('bwsens_ymax'), label = NULL,
+                     value =  round(bwsens_est()+3*bwsens_se(), 2),
+                     min = -Inf, max = Inf, step = .01,  width = '95px')
+    )
+  })
+
   
   bw_sens_summary = eventReactive(input$bwsens_simulate, ignoreNULL = T, {
     req(class(result$model()) %in% c('rd','mrd'))
