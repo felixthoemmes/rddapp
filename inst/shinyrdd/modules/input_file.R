@@ -9,10 +9,10 @@ input_fileUI = function(id) {
         
         conditionalPanel(condition = sprintf("input['%s'] != ''", ns('type')),
           actionButton(ns('controls'), class='pull-right btn-sm', label = NULL, icon = icon(name = 'cog'),
-            `data-toggle`="button", `aria-pressed`="false", autocomplete="off",
-            title = 'options for data file')
+            `data-toggle`="button", `aria-pressed`="false", autocomplete="off")
         )
       ),
+      bsTooltip(ns('controls'), title = 'Data file options'),
       div(class='panel-body',
         ## INPUT DATA UI START ##
         selectizeInput(ns('type'), 
