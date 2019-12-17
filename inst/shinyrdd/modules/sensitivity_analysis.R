@@ -389,11 +389,11 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
     div(class = 'input-group',
         span(class='input-group-addon', tags$small('min')),
         numericInput(ns('bwsens_ymin'), label = NULL,
-                     value = round(bwsens_est()-bwsens_se(), 2),
+                     value = round(bwsens_est()-3*bwsens_se(), 2),
                      min =  -Inf, max = Inf, step = .01,  width = '95px'),
         span(class='input-group-addon', tags$small('max')),
         numericInput(ns('bwsens_ymax'), label = NULL,
-                     value =  round(bwsens_est()+bwsens_se(), 2),
+                     value =  round(bwsens_est()+3*bwsens_se(), 2),
                      min = -Inf, max = Inf, step = .01,  width = '95px')
     )
   })

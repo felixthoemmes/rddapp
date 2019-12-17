@@ -163,3 +163,7 @@ app)."
 * for bug 2.4, made y-lim values dynamic (min and max update depending on est plus minus standard error of model)
   * for one variable rd, just uses est from linear parametric model
   * for mrd, uses corresponding values for center, univ 1, and univ 2 models (see code diff for details)
+  
+## 2019-12-17 (3.5 hrs)
+* looked at different multiples of the standard error for fig 4.2 y-lims
+  * settled on 3*(standard error)
