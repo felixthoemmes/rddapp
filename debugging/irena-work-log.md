@@ -164,6 +164,7 @@ app)."
   * for one variable rd, just uses est from linear parametric model
   * for mrd, uses corresponding values for center, univ 1, and univ 2 models (see code diff for details)
   
-## 2019-12-17 (3.5 hrs)
+## 2019-12-17
 * looked at different multiples of the standard error for fig 4.2 y-lims
   * settled on 3*(standard error)
+* looked at Vivian's report and reformatted into a list that is easy to reference (numbered)
