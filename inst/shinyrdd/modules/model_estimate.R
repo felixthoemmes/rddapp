@@ -778,7 +778,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
   output$rdd_plot_png = downloadHandler(
     filename = 'rdd_estimate.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       rdd_plot_estimate()
       dev.off()
     }
