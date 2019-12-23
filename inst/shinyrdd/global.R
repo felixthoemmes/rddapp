@@ -1,6 +1,5 @@
 # load packages
 library(rddapp)
-library(shinyBS)
 
 # devtools::load_all("rddapp")
 # devtools::install_github("wliao229/RDD",
