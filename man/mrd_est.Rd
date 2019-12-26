@@ -5,11 +5,11 @@
 \title{Multivariate Regression Discontinuity Estimation}
 \usage{
 mrd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
-  kernel = "triangular", se.type = "HC1", cluster = NULL,
-  verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  local = 0.15, ngrid = 250, margin = 0.03, boot = NULL,
-  method = c("center", "univ", "front"), t.design = NULL,
-  stop.on.error = TRUE)
+  front.bw = NA, m = 10, k = 5, kernel = "triangular",
+  se.type = "HC1", cluster = NULL, verbose = FALSE, less = FALSE,
+  est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250,
+  margin = 0.03, boot = NULL, method = c("center", "univ", "front"),
+  t.design = NULL, stop.on.error = TRUE)
 }
 \arguments{
 \item{formula}{The formula of the MRDD. This is supplied in the
@@ -33,6 +33,15 @@ with that bandwidth, half that bandwidth, and twice that bandwidth.
 If only a single value is passed into the function,
 the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 and twice that bandwidth.}
+
+\item{front.bw}{A numeric vector specifying the bandwidths at which to estimate the RD for each
+of three effects models in the frontier method. If NA, front.bw will be determined by cross validation.}
+
+\item{m}{The number of uniformly-at-random samples to draw as search candidates for front.bw 
+if not given.}
+
+\item{k}{An integer specifying the number of folds for cross validation to determine front.bw
+if not given.}
 
 \item{kernel}{A string specifying the kernel to be used in the local linear fitting. 
 \code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 

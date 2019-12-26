@@ -4,7 +4,9 @@ model_estimateUI = function(id){
     p(),
     div(class='panel panel-default',
       div(class='panel-heading clearfix', 
+        ## UI for Table 3.1
         h6('Table 3.1','Summary of Estimates', class='panel-title pull-left'),
+        ## Display buttons for various parts of Table 3.1
         div(class='btn-toolbar input-group pull-right', 
           conditionalPanel(condition= "output['is_frontier']", class='btn-group btn-group-sm input-group input-group-sm ',
             span(class='input-group-addon','approach'),
@@ -119,7 +121,12 @@ model_estimateUI = function(id){
               )
               
             ),
+            ## PLOT OPTIONS FOR FRONTIER METHOD
             conditionalPanel(condition = sprintf('input["%s"] == "frontier"', ns('plot_type')) ,
+              h6(class='badge', 'Method'),
+              selectizeInput(ns('mfrd_method'), label=NULL, multiple=F,
+                choices = c('Parametric (linear)'='Param', 'Nonparametric (crossvalidated bandwidth)'='bw')
+                ),
               h6(class='badge','Model Specification'),
               selectizeInput(ns('mfrd_model'), label = NULL, multiple = F,
                 choices = c('Unconstrained'='m_s','Heterogeneous Effect' = 'm_h','Constant Effect' = 'm_t') 
@@ -208,7 +215,10 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
     )
   })
   
+  #################################################
   #### GET ESTIMATES / SUMMARIES / PREDICTIONS ####
+  #################################################
+  
   result = reactiveValues()
   
   result$model = reactive({
@@ -399,47 +409,112 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       tab_univ2 = format_summary_table(result$model()$univ$tau_M, 
         sections = list('Parametric:univariate'=1:3, 'Nonparametric:univariate'=4:6),
         tab_itt= tab_itt_univ2)
+
+      ## Create labels for all model types based on the diff levels of
+      ## organization
+      label_lv1 <- c("Parametric (linear)", "Nonparametric (crossvalidated bandwidth)")
+      label_lv2 <- c("- Unconstrained", "- Heterogeneous Effect", "- Constant Effect")
+      label_lv3 <- c("-- Frontier 1", "-- Frontier 2", "-- Average")
       
-      # tab_front = as.data.frame(list(
-      #   label = c(
-      #     'Average','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-      #     'Frontier 1','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-      #     'Frontier 2','- Unconstrained','- Heterogeneous Effect','- Constant Effect'
-      #   ),
+      label_vec <- c()
+      label_vec_temp <- c()
+      for (i in 1:length(label_lv1)){
+        label_vec <- c(label_vec, label_lv1[i])
+        for (j in 1:length(label_lv2)){
+          label_vec <- c(label_vec, label_lv2[j], label_lv3)
+          label_vec_temp <- c(label_vec_temp, label_lv3)
+        }
+      }
+      
+      ## Get estimates for table
+      n <- c(rep(result$model()$front$tau_MRD$obs$Param[1], 3),
+             rep(result$model()$front$tau_MRD$obs$Param[2], 3),
+             rep(result$model()$front$tau_MRD$obs$Param[3], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[1], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[2], 3),
+             rep(result$model()$front$tau_MRD$obs$bw[3], 3))
+      est <- c(t(result$model()$front$tau_MRD$est)[,1:2])
+      se <- c(t(result$model()$front$tau_MRD$se)[,1:2])
+      ci <- result$model()$front$tau_MRD$ci
+      if (!is.null(ci)){ ## if we actually have confidence intervals
+        ## (because bootstrapping has been performed)
+        ci <- ci[1:4,] ## first four rows,
+        ## since rows 1:2 correspond to 2.5% and 97.5% for parametric
+        ## model, respsectively, while 3:4 is the same but for
+        ## non-parametric w/ optimal bandwidth
+        
+        ## Transpose and stack rows so columns are 2.5% and 97.5% and
+        ## rows are first parametric ones, then non-parametric
+        ci <- data.frame(lower = c(t(ci[1,]), t(ci[3,])),
+                         upper = c(t(ci[2,]), t(ci[4,])))
+        
+        ## Glue lower and upper bounds of ci into one nicely formatted
+        ## String to display
+        ci <- apply(ci, 1,
+                    function(bounds) sprintf('[%.3f, %.3f]',
+                                                    bounds[1],
+                                                    bounds[2]))
+      } else {
+        ci <- NA
+      }
+      d <- c(t(result$model()$front$tau_MRD$d)[,1:2])
+      
+      ## Construct table for frontier approach
       tab_front = data.frame(
-        label = NA,
+        label = label_vec_temp,
         bw = '-',
-        n = result$model()$center$tau_MRD$obs[1], # using N from the center approach
-        est = result$model()$front$tau_MRD$est,
-        se = result$model()$front$tau_MRD$se,
-        z = result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se,
+        n = n,
+        # FIXME: using N from the center approach
+        # get observations returned to
+        # result$model()$center$tau_MRD$obs
+        est = est,
+        se = se,
+        z = est/se,
         df = NA,
-        p = pnorm(abs(result$model()$front$tau_MRD$est/result$model()$front$tau_MRD$se), lower.tail = F) * 2,
-        ci = if(!is.null(result$model()$front$tau_MRD$ci))
-          apply(result$model()$front$tau_MRD$ci, 2, function(ci) sprintf('[%.3f, %.3f]', ci[1], ci[2]))
-        else NA, 
-        d = NA,
+        p = pnorm(abs(est/se), lower.tail = F) * 2,
+        ci = ci,
+        d = d,
         stringsAsFactors = F
-      )
+        )
+      
+      ## Replace numerical NA entries (uncomputed quantities) with dashes
       tab_front[is.na(tab_front)] <- '-'
       
-      tab_front = rbind(NA, tab_front[1:3,], NA, tab_front[4:6,], NA, tab_front[7:9,],
+      ## Add blank rows for labelling purposes
+      ## (adding level 1 and level 2 label rows)
+      tab_front = rbind(NA, NA, # for "Parametric (linear)" and
+                        # "- Average" labels
+                        tab_front[1:3,],
+                        NA, # for "- Frontier 1" label
+                        tab_front[4:6,],
+                        NA, # for "- Frontier 2" label
+                        tab_front[7:9,],
+                        NA, NA,
+                        tab_front[10:12,],
+                        NA,
+                        tab_front[13:15,],
+                        NA,
+                        tab_front[16:18,],
         stringsAsFactors = F)
-      tab_front$label = c(
-        'Average','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-        'Frontier 1','- Unconstrained','- Heterogeneous Effect','- Constant Effect',
-        'Frontier 2','- Unconstrained','- Heterogeneous Effect','- Constant Effect'
-      )
-      tab_front$type = 'parametric:frontier'
+      
+      ## Add full set of model labels to table
+      tab_front$label <- label_vec
+      
+      ## Add column to denote model type of each row for shiny UI to 
+      ## know to display when need be
+      tab_front$type <-  c(rep('parametric:frontier', 13),
+                           rep('nonparametric:frontier', 13))
+      
+      ## Make sure names match up to other tables for display purposes
+      ## (will be rbinding them together in a sec)
       names(tab_front) = names(tab_univ1)
       
-      
+      ## THIS IS WHERE THE ERROR OCCURS -- DOESN'T SEEM TO GET CALLED WHEN WE ONLY HAVE ONE ASST RULE
       tab = rbind(
         c('Centering', rep(NA, ncol(tab_center)-2),'centering'), tab_center, 
         c('Univariate (A1)', rep(NA, ncol(tab_univ1)-2),'univariate'), tab_univ1, 
         c('Univariate (A2)', rep(NA, ncol(tab_univ2)-2),'univariate'), tab_univ2, 
-        c('Frontier', rep(NA, ncol(tab_front)-2),'frontier'), tab_front) 
-      
+        c('Frontier', rep(NA, ncol(tab_front)-2),'frontier'), tab_front)
       
       return(tab)
     }
@@ -673,8 +748,9 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
       mtext(isolate(parameter$outcome()), 2, 2)
       grid(col = 'black')
     } else {
-      plot(result$model()$front$tau_MRD, 
-        model = input$mfrd_model, 
+      plot(result$model()$front$tau_MRD,
+        model = input$mfrd_model,
+        methodname = input$mfrd_method,
         phi = switch(input$mfrd_view, 'top' = 90, 'a1' = 0, 'a2' = 0,
           input$mfrd_phi),
         theta = switch(input$mfrd_view, 'top' = 0, 'a1' = 0, 'a2' = 90,
@@ -682,13 +758,10 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
         d = ifelse(input$mfrd_view == 'custom', 1, 1e10),
         color_surface = input$mfrd_color_surface %% 2 == 1,
         raw_data = input$mfrd_raw_data %% 2 == 1,
-        # local_data = input$mfrd_local_data %% 2 == 1,
-        xlab = parameter$assignment1(),
-        ylab = parameter$assignment2(),
-        zlab = parameter$outcome(),
-        gran = if(input$mfrd_grid %% 2 == 1) 16 else 2,
+        #local_data = input$mfrd_local_data %% 2 == 1,
+        gran = if(input$mfrd_grid %% 2 == 1) 16 else 10,
         shade = if(input$mfrd_shade %% 2 == 1) .4 else NA,
-        scale = input$mfrd_raw_scale %% 2 == 0, 
+        scale = input$mfrd_raw_scale %% 2 == 0,
         ticktype = 'detailed')
     }
   }

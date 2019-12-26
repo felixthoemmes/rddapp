@@ -502,8 +502,15 @@ rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
           o$model$iv[[ibw]] <- mod
         }
       }
+      
+      if (est.cov && num_covs > 0){
+        d = o$d <- o$est / sd(Y)
+        d[seq(2, length(d), 2)] = NA
+        o$d <- d
+      }else{
+        o$d <- o$est / sd(Y)
+      }
 
-      o$d <- o$est / sd(Y)
     }
   }
   

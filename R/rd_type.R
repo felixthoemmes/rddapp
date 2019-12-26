@@ -235,7 +235,7 @@ rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = NULL,
     
     if ((all(!dmat[1:3, 1]) & dmat[4, 1] & !dmat[4, 2]) 
       | (all(!dmat[2:4, 1]) & dmat[1, 1] & !dmat[1, 2])) {
-      if (all((xtabs(tr ~ tstar_1 + tstar_2, data) > 0) == matrix(c(0, 1, 1, 1), 
+      if (all((xtabs(paste0(treat, " ~ tstar_1 + tstar_2"), data) > 0) == matrix(c(0, 1, 1, 1), 
         nrow = 2, byrow = TRUE))) {
         return(list(crosstab = xdf, type = "SHARP FRONTIER"))
       } 

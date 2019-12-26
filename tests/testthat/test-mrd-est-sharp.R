@@ -192,10 +192,10 @@ test_that("mrd vs. rd model 4", {
 test_that("mrd vs. rd model 1", {
   cutoff <- c(0, 0)
   t.design <- c("l", "l")
-  mrd_model <- rddapp::mrd_est(y ~ x1 + x2, cutpoint = cutoff, method = "front", 
+  mrd_model <- rddapp::mrd_est(y ~ x1 + x2, cutpoint = cutoff, front.bw = c(1,1,1), method = "front", 
     t.design = t.design)[["front"]]$tau_MRD
   mfrd_model <- rddapp::mfrd_est(y = y, x1 = x1, x2 = x2, c1 = cutoff[1], c2 = cutoff[2],
-    t.design = t.design)
+    front.bw = c(1,1,1), t.design = t.design)
 
   # all
   mrd_model$call <- NULL
@@ -207,9 +207,9 @@ test_that("mrd vs. rd model 2", {
   cutoff <- c(0.1, -0.1)
   t.design <- c("l", "l")
   mrd_model <- rddapp::mrd_est(y ~ x1 + x2, cutpoint = cutoff, method = "front", 
-    t.design = t.design)[["front"]]$tau_MRD
+    front.bw = c(1,1,1), t.design = t.design)[["front"]]$tau_MRD
   mfrd_model <- rddapp::mfrd_est(y = y, x1 = x1, x2 = x2, c1 = cutoff[1], c2 = cutoff[2],
-    t.design = t.design)
+    front.bw = c(1,1,1), t.design = t.design)
   
   # all
   mrd_model$call <- NULL
@@ -221,9 +221,9 @@ test_that("mrd vs. rd model 3", {
   cutoff <- c(0, 0)
   t.design <- c("g", "l")
   mrd_model <- rddapp::mrd_est(y ~ x1 + x2, cutpoint = cutoff, method = "front", 
-    t.design = t.design)[["front"]]$tau_MRD
+    front.bw = c(1,1,1), t.design = t.design)[["front"]]$tau_MRD
   mfrd_model <- rddapp::mfrd_est(y = y, x1 = x1, x2 = x2, c1 = cutoff[1], c2 = cutoff[2],
-    t.design = t.design)
+    front.bw = c(1,1,1), t.design = t.design)
   
   # all
   mrd_model$call <- NULL
@@ -235,9 +235,9 @@ test_that("mrd vs. rd model 4", {
   cutoff <- c(-0.1, 0.1)
   t.design <- c("g", "l")
   mrd_model <- rddapp::mrd_est(y ~ x1 + x2, cutpoint = cutoff, method = "front", 
-    t.design = t.design)[["front"]]$tau_MRD
+    front.bw = c(1,1,1), t.design = t.design)[["front"]]$tau_MRD
   mfrd_model <- rddapp::mfrd_est(y = y, x1 = x1, x2 = x2, c1 = cutoff[1], c2 = cutoff[2],
-    t.design = t.design)
+    front.bw = c(1,1,1), t.design = t.design)
   
   # all
   mrd_model$call <- NULL

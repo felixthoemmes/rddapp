@@ -92,7 +92,7 @@ input_parameterUI = function(id){
         )
       ),
       div(class='panel-body',
-        h6(span('IF', class='badge badge-default')),
+        h6(span('Assign treatment if', class='badge badge-default')),
         div(style='margin-bottom:-10px',
           selectizeInput(ns('assignment1'), label = NULL, choices = NULL)
         ),

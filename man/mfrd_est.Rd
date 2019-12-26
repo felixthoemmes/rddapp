@@ -4,8 +4,9 @@
 \alias{mfrd_est}
 \title{Multivariate Frontier Regression Discontinuity Estimation}
 \usage{
-mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, ngrid = 250,
-  margin = 0.03, boot = NULL, cluster = NULL, stop.on.error = TRUE)
+mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw = NA,
+  m = 10, k = 5, kernel = "triangular", ngrid = 250, margin = 0.03,
+  boot = NULL, cluster = NULL, stop.on.error = TRUE)
 }
 \arguments{
 \item{y}{The outcome variable (continuous).}
@@ -27,7 +28,21 @@ if x1 is less than or equal to its cutoff.
 The 2nd entry is for x2.}
 
 \item{local}{The range of neighboring points around the cutoff on the 
-standardized The scale on each assignment variable, which is a positive number.}
+standardized scale on each assignment variable, which is a positive number.}
+
+\item{front.bw}{A numeric vector specifying the bandwidths at which to estimate the RD for each
+of three effects models. If NA, front.bw will be determined by cross validation.}
+
+\item{m}{The number of uniformly-at-random samples to draw as search candidates for front.bw if not
+given.}
+
+\item{k}{An integer specifying the number of folds for cross validation to determine front.bw
+if not given.}
+
+\item{kernel}{A string specifying the kernel to be used in the local linear fitting. 
+\code{"triangular"} kernel is the default. Other options are 
+\code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+\code{"triweight"}, \code{"tricube"}, \code{"gaussian"} and \code{"cosine"}.}
 
 \item{ngrid}{The number of non-zero grid points on each assignment variable,
 which is also the number of zero grid points on each assignment variable. Value used in 
