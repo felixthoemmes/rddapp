@@ -180,4 +180,7 @@ app)."
   * this appears only to be an issue for this table (bc of use of the special 'π' and '≥')
 * table 3.1:
   * excel reads cells starting with "-" as formulas and tries to compute the formula, resulting in an error
-  [] figure out how to get around this
+  [x] figure out how to get around this
+
+## 2019-12-29 (1 hr)
+* fixed issue with exporting table 3.1 to csv (see above)

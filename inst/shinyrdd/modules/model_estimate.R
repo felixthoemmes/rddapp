@@ -296,6 +296,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
     validate(
       need(model, message = sprintf('Model estimation failed\n %sCheck model specification.', model))
     )
+    # browser()
     return(model)
   })
   
@@ -699,7 +700,9 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
   
   output$est_csv = downloadHandler( filename = 'rdd_estimate.csv',
     content = function(file) {
-      write.csv(result$table(), file, row.names = F)
+      out_table <- result$table()
+      out_table$label <- gsub("- ", "", out_table$label)
+      write.csv(out_table, file, row.names = F)
     })
   #### GENERATE PLOT ####
   
