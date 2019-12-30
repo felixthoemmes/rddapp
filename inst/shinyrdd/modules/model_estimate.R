@@ -296,7 +296,6 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
     validate(
       need(model, message = sprintf('Model estimation failed\n %sCheck model specification.', model))
     )
-    # browser()
     return(model)
   })
   
