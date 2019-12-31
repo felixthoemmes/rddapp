@@ -34,3 +34,15 @@ freqs_trt <- data %>%
   mutate(mp_neg = if_else(mp<=5, TRUE, FALSE)) %>%
   group_by(vp_pos, mp_neg, trt) %>%
   summarise(n = n())
+
+###################
+## editing plots ##
+###################
+
+## load package
+library(rddapp)
+
+## generate rd estimates
+res <- rd_est(APGAR5 ~ MOMWAIS0, CARE, cutpoint = 85, t.design = "geq")
+par(mar = c(6,3,0.5,10))
+plot(res)
