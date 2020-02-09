@@ -64,21 +64,22 @@ rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = NULL,
     
     xdf <- reshape(xdf, direction = "wide", v.names = "freq", timevar = "t", idvar = "a1")
     
-    # GET COEFFICIENTS OF X>=C FROM ESTIMATE FIRST STAGE OF 2SLS
-    
-    fml <- substitute(
-      trt ~ 0 
-      + I(1-tstar_1) 
-      + tstar_1 
-      + I((X - C) * (1 - tstar_1)) 
-      + I((X - C) * (tstar_1)), 
-      env = list(
-        trt = as.name(treat), 
-        tstar_1 = as.name("tstar_1"),
-        C = cutoff_1, 
-        X = as.name(assign_1)))
-    
-    xdf <- cbind(xdf, round(coef(lm(fml, data))[1:2], 3))
+    xdf$prob =  xdf$freq.TRUE/(xdf$freq.FALSE + xdf$freq.TRUE)
+    # # GET COEFFICIENTS OF X>=C FROM ESTIMATE FIRST STAGE OF 2SLS
+    # 
+    # fml <- substitute(
+    #   trt ~ 0 
+    #   + I(1-tstar_1) 
+    #   + tstar_1 
+    #   + I((X - C) * (1 - tstar_1)) 
+    #   + I((X - C) * (tstar_1)), 
+    #   env = list(
+    #     trt = as.name(treat), 
+    #     tstar_1 = as.name("tstar_1"),
+    #     C = cutoff_1, 
+    #     X = as.name(assign_1)))
+    # 
+    # xdf <- cbind(xdf, round(coef(lm(fml, data))[1:2], 3))
     
     colnames(xdf) <- c("A1", "Control", "Treat", "Prob.")
     
@@ -127,27 +128,28 @@ rd_type <- function(data, treat, assign_1, cutoff_1, operator_1 = NULL,
     xdf <- reshape(xdf, direction = "wide", v.names = "freq", timevar = "t", idvar = c("a1", "a2"))
     is.na(xdf)[c(2, 4), 1] <- TRUE
     
-    # GET COEFFICIENTS OF X>=C FROM ESTIMATE FIRST STAGE OF 2SLS
-    
-    fml <- substitute(
-      trt ~ 0 
-      + I((1-tstar_1) * (1-tstar_2)) 
-      + I((1-tstar_1) * tstar_2)  
-      + I(tstar_1 * (1-tstar_2))  
-      + I(tstar_1 * tstar_2)    
-      + I((X1 - C1) * (X2 - C2) * (1-tstar_1) * (1-tstar_2)) 
-      + I((X1 - C1) * (X2 - C2) * (1-tstar_1) * tstar_2)   
-      + I((X1 - C1) * (X2 - C2) * tstar_1 * (1-tstar_2))   
-      + I((X1 - C1) * (X2 - C2) * tstar_1 * tstar_2),
-      env = list(
-        trt = as.name(treat), 
-        C1 = cutoff_1, X1 = as.name(assign_1), tstar_1 = as.name("tstar_1"), 
-        C2 = cutoff_2, X2 = as.name(assign_2), tstar_2 = as.name("tstar_2")
-      )
-    )
-
+    xdf$prob =  xdf$freq.TRUE/(xdf$freq.FALSE + xdf$freq.TRUE)
+    # # GET COEFFICIENTS OF X>=C FROM ESTIMATE FIRST STAGE OF 2SLS
+    # 
+    # fml <- substitute(
+    #   trt ~ 0 
+    #   + I((1-tstar_1) * (1-tstar_2)) 
+    #   + I((1-tstar_1) * tstar_2)  
+    #   + I(tstar_1 * (1-tstar_2))  
+    #   + I(tstar_1 * tstar_2)    
+    #   + I((X1 - C1) * (X2 - C2) * (1-tstar_1) * (1-tstar_2)) 
+    #   + I((X1 - C1) * (X2 - C2) * (1-tstar_1) * tstar_2)   
+    #   + I((X1 - C1) * (X2 - C2) * tstar_1 * (1-tstar_2))   
+    #   + I((X1 - C1) * (X2 - C2) * tstar_1 * tstar_2),
+    #   env = list(
+    #     trt = as.name(treat), 
+    #     C1 = cutoff_1, X1 = as.name(assign_1), tstar_1 = as.name("tstar_1"), 
+    #     C2 = cutoff_2, X2 = as.name(assign_2), tstar_2 = as.name("tstar_2")
+    #   )
+    # )
+    #  
     # coef(lm(fml, data))
-    xdf <- cbind(xdf, round(coef(lm(fml, data))[1:4], 3))
+    # xdf <- cbind(xdf, round(coef(lm(fml, data))[1:4], 3))
     
     colnames(xdf) <- c("A1", "A2", "Control", "Treat", "Prob.")
   }
