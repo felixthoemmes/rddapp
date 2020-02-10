@@ -23,7 +23,6 @@
 #' @param timeout Numerical value specifying the maximum number of seconds (defaults to 30 seconds) 
 #'   expressions in the function are allowed to run. Specify \code{Inf} to run all expressions
 #'   to completion.
-#' @param ... Additional arguments affecting the plot. 
 #'
 #' @return If \code{ext.out} is \code{FALSE}, only the p value will be returned. 
 #'   Additional output is enabled when \code{ext.out} is \code{TRUE}. 
