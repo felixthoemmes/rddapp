@@ -336,7 +336,7 @@ simulate_power = function(input, output, session, parameter){
   output$power_chart_png = downloadHandler(
     filename = 'power_by_sample_size.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       power_chart(do.call(rbind.data.frame, result$summaries))
       dev.off()
     }

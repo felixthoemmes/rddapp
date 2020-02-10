@@ -42,7 +42,7 @@ function(input, output, session) {
   ## Initialize model estiamte
   result <- callModule(model_estimate, "model_estimate", dataframe = inputfile$dataframe, 
     parameter = parameter, model_type = model_type)
-
+  
   ## Initialize sensitivity analysis
   sensitivities <- callModule(sensitivity_analysis, "sensitivity_analysis", 
     dataframe = inputfile$dataframe, parameter = parameter, result = result)

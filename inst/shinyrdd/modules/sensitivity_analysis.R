@@ -321,7 +321,7 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
   output$cutsens_png = downloadHandler(
     filename = 'cutoff_sensitivity.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       cutsens_plot()
       dev.off()
     }
@@ -492,7 +492,7 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
   output$bwsens_png = downloadHandler(
     filename = 'bandwidth_sensitivity.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       bwsens_plot()
       dev.off()
     }

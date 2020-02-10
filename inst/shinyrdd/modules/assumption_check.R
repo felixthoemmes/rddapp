@@ -378,7 +378,7 @@ assumption_check = function(input, output, session, dataframe, parameter){
   output$assumption_plot_png = downloadHandler(
     filename = 'figure_2_1_sorting_test.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       par(mar=c(3,3,.5,.5))
       plot_sort()
       dev.off()

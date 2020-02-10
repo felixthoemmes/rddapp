@@ -699,7 +699,9 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
   
   output$est_csv = downloadHandler( filename = 'rdd_estimate.csv',
     content = function(file) {
-      write.csv(result$table(), file, row.names = F)
+      out_table <- result$table()
+      out_table$label <- gsub("- ", "", out_table$label)
+      write.csv(out_table, file, row.names = F)
     })
   #### GENERATE PLOT ####
   
@@ -778,7 +780,7 @@ model_estimate = function(input, output, session, dataframe, parameter, model_ty
   output$rdd_plot_png = downloadHandler(
     filename = 'rdd_estimate.png',
     content = function(file) {
-      png(file, width=700, height=600, res=150)
+      png(file, width=700, height=600, res=100)
       rdd_plot_estimate()
       dev.off()
     }
