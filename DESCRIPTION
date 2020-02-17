@@ -17,7 +17,7 @@ Authors@R: c(
            email = "drewd@nyu.edu",
     person("Bastiaan", "Quast", role = c("ctb"),
            email = "bquast@gmail.com",
-    person("Matthieu", "Stigler", role = c("ctb")
+    person("Matthieu", "Stigler", role = c("ctb"))
     )   
 Author: Ze Jin [aut],
     Wang Liao [aut],
