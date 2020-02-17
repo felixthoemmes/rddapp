@@ -15,12 +15,9 @@ Authors@R: c(
            email = "fjt36@cornell.edu"),
     person("Drew", "Dimmery", role = c("ctb"),
            email = "drewd@nyu.edu",
-           comment = "Implementation of functions in R package rdd"),
     person("Bastiaan", "Quast", role = c("ctb"),
            email = "bquast@gmail.com",
-           comment = "Implementation of functions in R package rddtools"),
-    person("Matthieu", "Stigler", role = c("ctb"),
-           comment = "Implementation of functions in R package rddtools")
+    person("Matthieu", "Stigler", role = c("ctb")
     )   
 Author: Ze Jin [aut],
     Wang Liao [aut],
