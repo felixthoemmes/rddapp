@@ -83,12 +83,13 @@
 #' cov <- rnorm(500)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(500)
 #' group <- rep(1:10, each = 50)
+#' # all examples below have low numbers of points and cross-validation folds to keep run-time low
 #' # centering
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"))
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"), m = 5, k = 3)
 #' # univariate
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "univ", t.design = c("geq", "geq"))
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "univ", t.design = c("geq", "geq"), m = 5, k = 3)
 #' # frontier
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"))
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"), m = 5, k = 3)
 
 mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   front.bw = NA, m = 10, k = 5,
