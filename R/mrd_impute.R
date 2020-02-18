@@ -81,9 +81,9 @@
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
-#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(500)
-#' group <- rep(1:10, each = 100)
-#' # all examples below are commentede out to keep run-time low
+#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
+#' group <- rep(1:5, each = 200)
+#' # all examples below are commenteted out to keep run-time low
 #' # centering
 #' # mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"))
 #' # univariate
