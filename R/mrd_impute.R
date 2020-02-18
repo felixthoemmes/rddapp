@@ -78,20 +78,18 @@
 #' @export
 #'
 #' @examples
-#' ## Not run:
-#' x1 <- runif(1000, -1, 1)
-#' x2 <- runif(1000, -1, 1)
-#' cov <- rnorm(1000)
-#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
-#' group <- rep(1:5, each = 200)
+#' x1 <- runif(300, -1, 1)
+#' x2 <- runif(300, -1, 1)
+#' cov <- rnorm(300)
+#' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(300)
+#' group <- rep(1:3, each = 100)
 #' # all examples below are commenteted out to keep run-time low
 #' # centering
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"))
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"), m = 5, k = 3)
 #' # univariate
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "univ", t.design = c("geq", "geq"))
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "univ", t.design = c("geq", "geq"), m = 5, k = 3)
 #' # frontier
-#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"))
-#' ## End(**Not run**)
+#' mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"), m = 5, k = 3)
 
 mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   front.bw = NA, m = 10, k = 5,
