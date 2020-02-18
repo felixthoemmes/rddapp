@@ -4,8 +4,7 @@
 \alias{summary.mrdi}
 \title{Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation}
 \usage{
-\method{summary}{mrdi}(object, level = 0.95, digits = max(3,
-  getOption("digits") - 3), ...)
+\method{summary}{mrdi}(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"mrdi"}, usually a result of a call to 

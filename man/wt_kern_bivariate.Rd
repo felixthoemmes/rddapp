@@ -4,8 +4,15 @@
 \alias{wt_kern_bivariate}
 \title{Bivariate Kernel Weight Calculation}
 \usage{
-wt_kern_bivariate(X1, X2, center1, center2, bw, kernel = "triangular",
-  t.design = NULL)
+wt_kern_bivariate(
+  X1,
+  X2,
+  center1,
+  center2,
+  bw,
+  kernel = "triangular",
+  t.design = NULL
+)
 }
 \arguments{
 \item{X1}{The input x1 values for the first vector. 
@@ -34,7 +41,7 @@ The 2nd entry is for X2.}
 }
 \value{
 Three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
-  The first and second weights and distances are calculated with respect to all fontiers of different treatments.
+  The first and second weights and distances are calculated with respect to all frontiers of different treatments.
   The third weight and distance are calculated with respect to the overall frontier of treatment versus
   non-treatment.
 }

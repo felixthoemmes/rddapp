@@ -22,7 +22,7 @@
 #'   The 2nd entry is for X2.
 #'
 #' @return Three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
-#'   The first and second weights and distances are calculated with respect to all fontiers of different treatments.
+#'   The first and second weights and distances are calculated with respect to all frontiers of different treatments.
 #'   The third weight and distance are calculated with respect to the overall frontier of treatment versus
 #'   non-treatment.
 #'   

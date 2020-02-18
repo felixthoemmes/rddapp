@@ -38,7 +38,7 @@ knitr::include_graphics("figs/f3.png", dpi=200)
 
 Here it helps if we really focus about the application. First off, recall that $x$ and $y$ are independent of each other; a change in one of these variables does not provoke a change in the other. For a subject, that means that they can only move in horizontal and vertical motions in this space of attributes. What we really mean when we say a subject is $\varepsilon$ away from the frontier, is that adding their horizontal and vertical distance from the frontier gives $\varepsilon$.
 
-We also implicitly took the *minimum* distance to the frontier in teh above cases; although we could calculate the distance between a point and *any* point on the frontier, we took the *closest* frontier point.
+We also implicitly took the *minimum* distance to the frontier in the above cases; although we could calculate the distance between a point and *any* point on the frontier, we took the *closest* frontier point.
 
 Using these two ideas, we can now derive the points that are $\varepsilon$ from the frontier in the case where *both* $x<c_1$ and $y<c_2$ (we are below the assignment threshold in *both* variables). First off, note that the closest frontier point to points that satisfy these conditions is the corner $(c_1, c_2)$. The points that are $\varepsilon$ away from the frontier corner, using our reasoning that subjects can only move horizontally and vertically, would be those whose difference in $x$-coordinate, $\Delta x = |x-c_1|$, and difference in $y$-coordinate, $\Delta y = |y-c_2|$ sums to $\varepsilon$. Such points form a triangular buffer around the frontier corner:
 
@@ -47,7 +47,7 @@ knitr::include_graphics("figs/f4.png",dpi = 200)
 ```
 
 
-Formally, this is the $l_1$-metric to the frontier, where the distance between a point $p = (p_x,p_y)$ and a set, $A$, is abstractly defined as\footnote{Really, this quantitiy should be phrased in terms of the \href{https://en.wikipedia.org/wiki/Infimum_and_supremum}{infimum} instead of the minimum, but I'm omitting these mathematical details here.}
+Formally, this is the $l_1$-metric to the frontier, where the distance between a point $p = (p_x,p_y)$ and a set, $A$, is abstractly defined as\footnote{Really, this quantity should be phrased in terms of the \href{https://en.wikipedia.org/wiki/Infimum_and_supremum}{infimum} instead of the minimum, but I'm omitting these mathematical details here.}
 \begin{align}
 l_1(p,A) &= \min_{a=(a_x,a_y) \in A} \{ l_1(p,a)\} \\
 &= \min_{a=(a_x,a_y) \in A} \{|p_x-a_x|+|p_y-a_y|\}.

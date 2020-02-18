@@ -7,11 +7,21 @@
 \code{plot.rd} plots the relationship between the running variable and the outcome.
 It is based on the \code{\link[rdd]{plot.RD}} function in the \pkg{rdd} package.}
 \usage{
-\method{plot}{rd}(x, preds = NULL, fit_line = c("linear", "quadratic",
-  "cubic", "optimal", "half", "double"), fit_ci = c("area", "dot", "hide"),
-  fit_ci_level = 0.95, bin_n = 20, bin_level = 0.95,
-  bin_size = c("shade", "size"), quant_bin = TRUE, xlim = NULL,
-  ylim = NULL, include_rugs = FALSE, ...)
+\method{plot}{rd}(
+  x,
+  preds = NULL,
+  fit_line = c("linear", "quadratic", "cubic", "optimal", "half", "double"),
+  fit_ci = c("area", "dot", "hide"),
+  fit_ci_level = 0.95,
+  bin_n = 20,
+  bin_level = 0.95,
+  bin_size = c("shade", "size"),
+  quant_bin = TRUE,
+  xlim = NULL,
+  ylim = NULL,
+  include_rugs = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{An \code{rd} object, typically the result of \code{\link{rd_est}}.}

@@ -4,12 +4,30 @@
 \alias{mrd_est}
 \title{Multivariate Regression Discontinuity Estimation}
 \usage{
-mrd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
-  front.bw = NA, m = 10, k = 5, kernel = "triangular",
-  se.type = "HC1", cluster = NULL, verbose = FALSE, less = FALSE,
-  est.cov = FALSE, est.itt = FALSE, local = 0.15, ngrid = 250,
-  margin = 0.03, boot = NULL, method = c("center", "univ", "front"),
-  t.design = NULL, stop.on.error = TRUE)
+mrd_est(
+  formula,
+  data,
+  subset = NULL,
+  cutpoint = NULL,
+  bw = NULL,
+  front.bw = NA,
+  m = 10,
+  k = 5,
+  kernel = "triangular",
+  se.type = "HC1",
+  cluster = NULL,
+  verbose = FALSE,
+  less = FALSE,
+  est.cov = FALSE,
+  est.itt = FALSE,
+  local = 0.15,
+  ngrid = 250,
+  margin = 0.03,
+  boot = NULL,
+  method = c("center", "univ", "front"),
+  t.design = NULL,
+  stop.on.error = TRUE
+)
 }
 \arguments{
 \item{formula}{The formula of the MRDD. This is supplied in the

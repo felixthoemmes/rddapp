@@ -4,10 +4,21 @@
 \alias{rd_est}
 \title{Regression Discontinuity Estimation}
 \usage{
-rd_est(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
-  kernel = "triangular", se.type = "HC1", cluster = NULL,
-  verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  t.design = NULL)
+rd_est(
+  formula,
+  data,
+  subset = NULL,
+  cutpoint = NULL,
+  bw = NULL,
+  kernel = "triangular",
+  se.type = "HC1",
+  cluster = NULL,
+  verbose = FALSE,
+  less = FALSE,
+  est.cov = FALSE,
+  est.itt = FALSE,
+  t.design = NULL
+)
 }
 \arguments{
 \item{formula}{The formula of the RDD. This is supplied in the

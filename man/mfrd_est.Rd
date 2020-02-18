@@ -4,9 +4,24 @@
 \alias{mfrd_est}
 \title{Multivariate Frontier Regression Discontinuity Estimation}
 \usage{
-mfrd_est(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw = NA,
-  m = 10, k = 5, kernel = "triangular", ngrid = 250, margin = 0.03,
-  boot = NULL, cluster = NULL, stop.on.error = TRUE)
+mfrd_est(
+  y,
+  x1,
+  x2,
+  c1,
+  c2,
+  t.design = NULL,
+  local = 0.15,
+  front.bw = NA,
+  m = 10,
+  k = 5,
+  kernel = "triangular",
+  ngrid = 250,
+  margin = 0.03,
+  boot = NULL,
+  cluster = NULL,
+  stop.on.error = TRUE
+)
 }
 \arguments{
 \item{y}{The outcome variable (continuous).}
