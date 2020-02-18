@@ -7,5 +7,5 @@
 There were no ERRORs, WARNINGs or NOTEs.
 
 ## Downstream dependencies
-We have also run R CMD check on downstream dependencies of rddapp.
+We also ran R CMD check on downstream dependencies of rddapp.
 There were no ERRORs or WARNINGs.
