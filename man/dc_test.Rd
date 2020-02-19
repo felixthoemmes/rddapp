@@ -4,9 +4,19 @@
 \alias{dc_test}
 \title{McCrary Sorting Test}
 \usage{
-dc_test(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE,
-  plot = TRUE, ext.out = FALSE, htest = FALSE, level = 0.95,
-  digits = max(3, getOption("digits") - 3), timeout = 30)
+dc_test(
+  runvar,
+  cutpoint,
+  bin = NULL,
+  bw = NULL,
+  verbose = TRUE,
+  plot = TRUE,
+  ext.out = FALSE,
+  htest = FALSE,
+  level = 0.95,
+  digits = max(3, getOption("digits") - 3),
+  timeout = 30
+)
 }
 \arguments{
 \item{runvar}{Numerical vector of the running variable.}
@@ -39,8 +49,6 @@ compatible with base R's hypothesis test output.}
 \item{timeout}{Numerical value specifying the maximum number of seconds (defaults to 30 seconds) 
 expressions in the function are allowed to run. Specify \code{Inf} to run all expressions
 to completion.}
-
-\item{...}{Additional arguments affecting the plot.}
 }
 \value{
 If \code{ext.out} is \code{FALSE}, only the p value will be returned. 

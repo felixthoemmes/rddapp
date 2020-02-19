@@ -4,10 +4,22 @@
 \alias{rd_impute}
 \title{Multiple Imputation of Regression Discontinuity Estimation}
 \usage{
-rd_impute(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
-  kernel = "triangular", se.type = "HC1", cluster = NULL, impute = NULL,
-  verbose = FALSE, less = FALSE, est.cov = FALSE, est.itt = FALSE,
-  t.design = NULL)
+rd_impute(
+  formula,
+  data,
+  subset = NULL,
+  cutpoint = NULL,
+  bw = NULL,
+  kernel = "triangular",
+  se.type = "HC1",
+  cluster = NULL,
+  impute = NULL,
+  verbose = FALSE,
+  less = FALSE,
+  est.cov = FALSE,
+  est.itt = FALSE,
+  t.design = NULL
+)
 }
 \arguments{
 \item{formula}{The formula of the RDD. This is supplied in the

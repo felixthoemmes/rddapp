@@ -4,8 +4,7 @@
 \alias{summary.rd}
 \title{Summarize the Regression Discontinuity}
 \usage{
-\method{summary}{rd}(object, level = 0.95, digits = max(3,
-  getOption("digits") - 3), ...)
+\method{summary}{rd}(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"rd"}, usually a result of a call to \code{\link{rd_est}}.}

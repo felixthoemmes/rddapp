@@ -4,11 +4,23 @@
 \alias{mrd_power}
 \title{Power Analysis of Multivariate Regression Discontinuity}
 \usage{
-mrd_power(num.rep = 100, sample.size = 100, x1.dist = "normal",
-  x1.para = c(0, 1), x2.dist = "normal", x2.para = c(0, 1), x1.cut = 0,
-  x2.cut = 0, x1.fuzzy = c(0, 0), x2.fuzzy = c(0, 0), x1.design = NULL,
-  x2.design = NULL, coeff = c(0.1, 0.5, 0.5, 1, rep(0.1, 9)),
-  eta.sq = 0.5, alpha.list = c(0.001, 0.01, 0.05))
+mrd_power(
+  num.rep = 100,
+  sample.size = 100,
+  x1.dist = "normal",
+  x1.para = c(0, 1),
+  x2.dist = "normal",
+  x2.para = c(0, 1),
+  x1.cut = 0,
+  x2.cut = 0,
+  x1.fuzzy = c(0, 0),
+  x2.fuzzy = c(0, 0),
+  x1.design = NULL,
+  x2.design = NULL,
+  coeff = c(0.1, 0.5, 0.5, 1, rep(0.1, 9)),
+  eta.sq = 0.5,
+  alpha.list = c(0.001, 0.01, 0.05)
+)
 }
 \arguments{
 \item{num.rep}{Number of repetitions used to calculate the empirical alpha.}

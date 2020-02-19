@@ -4,8 +4,13 @@
 \alias{sens_plot}
 \title{Plot the Simulated Estimates for Sensitivity Analyses}
 \usage{
-sens_plot(sim_results, level = 0.95, x = c("A1", "A2", "bw"),
-  plot_models = unique(sim_results$model), yrange = NULL)
+sens_plot(
+  sim_results,
+  level = 0.95,
+  x = c("A1", "A2", "bw"),
+  plot_models = unique(sim_results$model),
+  yrange = NULL
+)
 }
 \arguments{
 \item{sim_results}{A \code{data.frame} returned by \code{rd_sens_cutoff}, \code{rd_sens_bw},

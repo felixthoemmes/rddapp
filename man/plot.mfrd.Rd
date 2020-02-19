@@ -4,9 +4,15 @@
 \alias{plot.mfrd}
 \title{Plot the Multivariate Frontier Regression Discontinuity}
 \usage{
-\method{plot}{mfrd}(x, model = c("m_s", "m_h", "m_t"),
-  methodname = c("Param", "bw", "Half-bw", "Double-bw"), gran = 10,
-  raw_data = TRUE, color_surface = FALSE, ...)
+\method{plot}{mfrd}(
+  x,
+  model = c("m_s", "m_h", "m_t"),
+  methodname = c("Param", "bw", "Half-bw", "Double-bw"),
+  gran = 10,
+  raw_data = TRUE,
+  color_surface = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{An \code{mfrd} object returned by \code{mfrd_est} or contained in the object 
