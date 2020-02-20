@@ -3,6 +3,5 @@
 ^data-raw$
 ^dev$
 ^proj$
-^revdep$
 ^cran-comments\.md$
 ^\.travis\.yml$
