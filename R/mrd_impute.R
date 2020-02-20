@@ -83,7 +83,7 @@
 #' cov <- rnorm(300)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(300)
 #' imp <- rep(1:3, each = 100)
-#' # all examples below have smaller numbers of m and k to keep run-time low
+#' # all examples below have smaller numbers of m to keep run-time low
 #' # centering
 #' mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "center", t.design = c("geq", "geq"), m = 3)
 #' # univariate
