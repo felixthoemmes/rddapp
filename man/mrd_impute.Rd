@@ -128,14 +128,14 @@ x1 <- runif(300, -1, 1)
 x2 <- runif(300, -1, 1)
 cov <- rnorm(300)
 y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(300)
-group <- rep(1:3, each = 100)
+imp <- rep(1:3, each = 100)
 # all examples below have smaller numbers of m to keep run-time low
 # centering
-mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "center", t.design = c("geq", "geq"), m = 3)
+mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "center", t.design = c("geq", "geq"), m = 3)
 # univariate
-mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "univ", t.design = c("geq", "geq"), m = 3)
+mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "univ", t.design = c("geq", "geq"), m = 3)
 # frontier
-mrd_impute(y ~ x1 + x2 | cov, impute = group, method = "front", t.design = c("geq", "geq"), m = 3)
+mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", t.design = c("geq", "geq"), m = 3)
 }
 \references{
 Stata: 64 mi estimate - Estimation using multiple imputations
