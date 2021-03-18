@@ -1,7 +1,7 @@
 Package: rddapp
 Title: Regression Discontinuity Design Application
-Version: 1.2.0
-Date: 2019-03-01
+Version: 1.2.1
+Date: 2020-02-02
 Authors@R: c(
     person("Ze", "Jin", role = c("aut"),
            email = "zj58@cornell.edu"),
@@ -14,13 +14,10 @@ Authors@R: c(
     person("Felix", "Thoemmes", role = c("aut", "cre"),
            email = "fjt36@cornell.edu"),
     person("Drew", "Dimmery", role = c("ctb"),
-           email = "drewd@nyu.edu",
-           comment = "Implementation of functions in R package rdd"),
+           email = "drewd@nyu.edu"),
     person("Bastiaan", "Quast", role = c("ctb"),
-           email = "bquast@gmail.com",
-           comment = "Implementation of functions in R package rddtools"),
-    person("Matthieu", "Stigler", role = c("ctb"),
-           comment = "Implementation of functions in R package rddtools")
+           email = "bquast@gmail.com"),
+    person("Matthieu", "Stigler", role = c("ctb"))
     )   
 Author: Ze Jin [aut],
     Wang Liao [aut],
@@ -61,7 +58,7 @@ Suggests:
 VignetteBuilder: knitr
 License: GPL (>= 2)
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0
 Collate: 
     'attr_check.R'
     'bw_ik09.R'

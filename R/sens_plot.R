@@ -40,11 +40,15 @@ sens_plot <- function(sim_results, level = .95, x = c("A1", "A2", "bw"),
   
   if (is.null(yrange)) {
     if (cumprod(range(plot_data$est, na.rm = TRUE))[2] < 0) {
-       yrange <- range(plot_data$est, na.rm = TRUE)      
+      yrange <- range(plot_data$est, na.rm = TRUE)
     } else {
       yrange <- range(plot_data$est, 0, na.rm = TRUE)  
     }
   }
+  
+  ## add buffer space in y limits for legends
+  dy <- 0.3
+  yrange <- c((1-dy)*yrange[1], (1+dy)*yrange[2])
 
   approach <- regmatches(plot_data$model, regexpr("(center|univ[12])", plot_data$model)) 
   plot_data$approach <- if (length(approach) == 0) "regular" else approach

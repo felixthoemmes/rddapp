@@ -4,8 +4,7 @@
 \alias{summary.mrd}
 \title{Summarize the Multivariate Regression Discontinuity}
 \usage{
-\method{summary}{mrd}(object, level = 0.95, digits = max(3,
-  getOption("digits") - 3), ...)
+\method{summary}{mrd}(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...)
 }
 \arguments{
 \item{object}{An object of class \code{"mrd"}, usually a result of a call to \code{\link{mrd_est}}.}

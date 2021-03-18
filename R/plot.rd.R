@@ -149,6 +149,8 @@ plot.rd <- function(x, preds = NULL,
     xlim <- range(d$X)
   if(is.null(ylim))
     ylim <- range(d$Y)
+    dy <- 0.1
+    ylim <- c((1-dy)*ylim[1], (1+dy)*ylim[2])
   plot.window(xlim = xlim, ylim = ylim)
   
   # POINTS

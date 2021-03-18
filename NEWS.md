@@ -51,3 +51,9 @@
 - Added new model estimates to Table 3.1 in the Shiny app
 
 - Added 3D plots for models with two assignment variables to Figure 3.1 in the Shiny app
+
+# rddapp 1.2.1
+
+- Fixed comments in help file
+
+- Fixed probabilities in Table 1.3 of the shiny app
