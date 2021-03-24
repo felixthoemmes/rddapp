@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^dev$
+^proj$
+^cran-comments\.md$
+^\.travis\.yml$
+^CRAN-RELEASE$
