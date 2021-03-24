@@ -12,21 +12,13 @@ Authors@R: c(
     person("Wenyu", "Zhang", role = c("aut"),
             email = "wz258@cornell.edu"),           
     person("Felix", "Thoemmes", role = c("aut", "cre"),
-           email = "fjt36@cornell.edu"),
-    person("Drew", "Dimmery", role = c("ctb"),
-           email = "drewd@nyu.edu"),
-    person("Bastiaan", "Quast", role = c("ctb"),
-           email = "bquast@gmail.com"),
-    person("Matthieu", "Stigler", role = c("ctb"))
+           email = "fjt36@cornell.edu")
     )   
 Author: Ze Jin [aut],
     Wang Liao [aut],
     Irena Papst [aut],
     Wenyu Zhang [aut],
-    Felix Thoemmes [aut, cre],
-    Drew Dimmery [ctb],
-    Bastiaan Quast [ctb],
-    Matthieu Stigler [ctb]
+    Felix Thoemmes [aut, cre]
 Maintainer: Felix Thoemmes <fjt36@cornell.edu>
 Description: Estimation of both single- and multiple-assignment Regression Discontinuity Designs 
     (RDDs). Provides both parametric (global) and non-parametric (local) estimation choices for
@@ -44,21 +36,19 @@ Imports:
     shiny (>= 0.14),
     R.utils (>= 2.6.0),
     plot3D (>= 1.1.1),
-    sp (>= 1.3.1)
+    sp (>= 1.3.1),
+    DT (>= 0.2)
 Suggests:
-    rdd (>= 0.57),
-    rddtools (>= 0.4.0),
     foreign (>= 0.8-67),
     devtools (>= 1.12.0),
     testthat (>= 1.0.2),
     roxygen2 (>= 5.0.1),
     knitr (>= 1.14),
-    rmarkdown (>= 1.1.9012),
-    DT (>= 0.2)
+    rmarkdown (>= 1.1.9012)
 VignetteBuilder: knitr
 License: GPL (>= 2)
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Collate: 
     'attr_check.R'
     'bw_ik09.R'
