@@ -5,7 +5,3 @@
  
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs.
-
-## Downstream dependencies
-We did run R CMD check on downstream dependencies of rddapp,
-and found no errors.
