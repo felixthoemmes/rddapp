@@ -20,7 +20,7 @@
 #' @references Imbens, G., Kalyanaraman, K. (2009). 
 #'   Optimal bandwidth choice for the regression discontinuity estimator 
 #'   (Working Paper No. 14726). National Bureau of Economic Research.
-#'   \url{http://www.nber.org/papers/w14726}.
+#'   \url{https://www.nber.org/papers/w14726}.
 #'
 #' @importFrom stats complete.cases sd median lm coef
 
