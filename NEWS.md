@@ -57,3 +57,7 @@
 - Fixed comments in help file
 
 - Fixed probabilities in Table 1.3 of the shiny app
+
+# rddapp 1.2.2
+
+- Fixed issues with delisted dependencies by removing tests
