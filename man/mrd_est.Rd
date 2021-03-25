@@ -140,5 +140,5 @@ Wong, V. C., Steiner, P. M., Cook, T. D. (2013).
   Analyzing regression-discontinuity designs with multiple assignment variables: 
   A comparative study of four estimation methods.
   Journal of Educational and Behavioral Statistics, 38(2), 107-141.
-  \url{http://journals.sagepub.com/doi/10.3102/1076998611432172}.
+  \url{https://journals.sagepub.com/doi/10.3102/1076998611432172}.
 }
