@@ -41,7 +41,7 @@
 #' @references McCrary, J. (2008).
 #'   Manipulation of the running variable in the regression discontinuity design: A density test. 
 #'   Journal of Econometrics, 142(2), 698-714. 
-#'   \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.005}.
+#'   \url{https://doi.org/10.1016/j.jeconom.2007.05.005}.
 #'
 #' @importFrom stats complete.cases sd lm coef predict pnorm setNames 
 #' @importFrom graphics lines points axis box plot.new plot.window polygon title

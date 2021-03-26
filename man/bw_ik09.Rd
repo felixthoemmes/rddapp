@@ -34,5 +34,5 @@ It can be accessed using the triple colon, as in rddapp:::bw_ik09().
 Imbens, G., Kalyanaraman, K. (2009). 
   Optimal bandwidth choice for the regression discontinuity estimator 
   (Working Paper No. 14726). National Bureau of Economic Research.
-  \url{http://www.nber.org/papers/w14726}.
+  \url{https://www.nber.org/papers/w14726}.
 }
