@@ -15,9 +15,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-18.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: windows-latest, r: 'release'}
+#           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+#           - {os: ubuntu-18.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
+#           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
 
     env:
@@ -59,10 +59,10 @@ jobs:
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
         run: |
+          brew cask install xquartz
           brew install pkg-config
           brew install udunits
-          brew install gdal
-          "brew cask install xquartz"
+          brew install gdal          
       - name: Install package dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
