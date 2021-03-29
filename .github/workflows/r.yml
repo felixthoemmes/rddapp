@@ -59,7 +59,7 @@ jobs:
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
         run: |
-          brew cask install xquartz
+          brew install homebrew/cask/xquartz
           brew install pkg-config
           brew install udunits
           brew install gdal          
