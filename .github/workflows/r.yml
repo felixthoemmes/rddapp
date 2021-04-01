@@ -55,7 +55,8 @@ jobs:
       - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install xvfb firefox
+          sudo apt-get install xvfb xauth xfonts-base
+          xvfb-run R --no-save
           while read -r cmd
           do
             eval sudo $cmd
