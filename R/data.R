@@ -3,6 +3,7 @@
 #' A subset of children of the randomized controlled CARE trial on early childhood intervention. 
 #' The randomized controlled trial was subsetted to mimic a regression-discontinuity design in which 
 #' treatment was assigned only to mothers whose IQ was smaller than 85.
+#' 
 #'
 #' @format A data frame with 81 rows and 5 variables:
 #' \describe{
