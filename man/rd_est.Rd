@@ -133,7 +133,7 @@ Imbens, G., Lemieux, T. (2008).
 Lee, D. S., Card, D. (2010).
   Regression discontinuity inference with specification error. 
   Journal of Econometrics, 142(2), 655-674. 
-  \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.003}.
+  \doi{10.1016/j.jeconom.2007.05.003}.
 
 Angrist, J. D., Pischke, J.-S. (2009). 
   Mostly harmless econometrics: An empiricist's companion. 
