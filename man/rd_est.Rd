@@ -123,12 +123,12 @@ rd_est(y ~ x | cov, t.design = "geq")
 Lee, D. S., Lemieux, T. (2010).
   Regression Discontinuity Designs in Economics.
   Journal of Economic Literature, 48(2), 281-355. 
-  \url{http://www.aeaweb.org/articles.php?doi=10.1257/jel.48.2.281}.
+  \doi{10.1257/jel.48.2.281}.
 
 Imbens, G., Lemieux, T. (2008).
   Regression discontinuity designs: A guide to practice.
   Journal of Econometrics, 142(2), 615-635. 
-  \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.001}.
+  \doi{10.1016/j.jeconom.2007.05.001}.
 
 Lee, D. S., Card, D. (2010).
   Regression discontinuity inference with specification error. 
