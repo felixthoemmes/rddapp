@@ -1,7 +1,7 @@
 #' Plot the Regression Discontinuity
 #'  
 #' \code{plot.rd} plots the relationship between the running variable and the outcome.
-#' It is based on the \code{\link[rdd]{plot.RD}} function in the \pkg{rdd} package.
+#' It is based on the plot.RD function in the rdd package.
 #' 
 #' @method plot rd
 #'

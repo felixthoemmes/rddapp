@@ -2,7 +2,7 @@
 #' 
 #' \code{rd_est} estimates both sharp and fuzzy RDD, using parametric and non-parametric 
 #' (local linear) models. 
-#' It is based on the \code{\link[rdd]{RDestimate}} function in the \pkg{rdd} package.
+#' It is based on the RDestimate function in the rdd package.
 #' Sharp RDDs (both parametric and non-parametric) are estimated using \code{lm} in the 
 #' \pkg{stats} package.
 #' Fuzzy RDDs (both parametric and non-parametric) are estimated using two-stage least-squares 

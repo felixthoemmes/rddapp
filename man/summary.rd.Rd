@@ -22,5 +22,5 @@
 }
 \description{
 \code{summary.rd} is a \code{summary} method for class \code{"rd"}
-It is based on \code{\link[rdd]{summary.RD}} function in the \pkg{rdd} package.
+It is based on summary.RD function in the rdd package.
 }

@@ -104,7 +104,7 @@ if X is less than or equal to its cutoff.}
 \description{
 \code{rd_est} estimates both sharp and fuzzy RDD, using parametric and non-parametric 
 (local linear) models. 
-It is based on the \code{\link[rdd]{RDestimate}} function in the \pkg{rdd} package.
+It is based on the RDestimate function in the rdd package.
 Sharp RDDs (both parametric and non-parametric) are estimated using \code{lm} in the 
 \pkg{stats} package.
 Fuzzy RDDs (both parametric and non-parametric) are estimated using two-stage least-squares 
@@ -123,17 +123,17 @@ rd_est(y ~ x | cov, t.design = "geq")
 Lee, D. S., Lemieux, T. (2010).
   Regression Discontinuity Designs in Economics.
   Journal of Economic Literature, 48(2), 281-355. 
-  \doi{10.1257/jel.48.2.281}.
+  \url{http://www.aeaweb.org/articles.php?doi=10.1257/jel.48.2.281}.
 
 Imbens, G., Lemieux, T. (2008).
   Regression discontinuity designs: A guide to practice.
   Journal of Econometrics, 142(2), 615-635. 
-  \doi{10.1016/j.jeconom.2007.05.001}.
+  \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.001}.
 
 Lee, D. S., Card, D. (2010).
   Regression discontinuity inference with specification error. 
   Journal of Econometrics, 142(2), 655-674. 
-  \doi{10.1016/j.jeconom.2007.05.003}.
+  \url{http://dx.doi.org/10.1016/j.jeconom.2007.05.003}.
 
 Angrist, J. D., Pischke, J.-S. (2009). 
   Mostly harmless econometrics: An empiricist's companion. 

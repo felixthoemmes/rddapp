@@ -67,7 +67,7 @@ If \code{ext.out} is \code{FALSE}, only the p value will be returned.
 }
 \description{
 \code{dc_test} implements the McCrary (2008) sorting test.
-It is based on the \code{\link[rdd]{DCdensity}} function in the \pkg{rdd} package.
+It is based on the DCdensity function in the rdd package.
 }
 \examples{
 # No discontinuity
@@ -83,5 +83,5 @@ dc_test(x, 0)
 McCrary, J. (2008).
   Manipulation of the running variable in the regression discontinuity design: A density test. 
   Journal of Econometrics, 142(2), 698-714. 
-  \doi{10.1016/j.jeconom.2007.05.005}.
+  \url{https://doi.org/10.1016/j.jeconom.2007.05.005}.
 }

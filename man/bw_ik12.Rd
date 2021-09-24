@@ -26,7 +26,7 @@ The optimal bandwidth.
 \description{
 \code{bw_ik12} calculates the Imbens-Kalyanaraman (2012) optimal bandwidth
 for local linear regression in regression discontinuity designs.
-It is based on the \code{\link[rddtools]{rdd_bw_ik}} function in the \pkg{rddtools} package. 
+It is based on a function in the now archived rddtools package. 
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::bw_ik12().
 }

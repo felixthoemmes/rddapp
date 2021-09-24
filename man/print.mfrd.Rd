@@ -15,5 +15,5 @@
 }
 \description{
 \code{print.mfrd} prints a very basic summary of the multivariate frontier regression 
-discontinuity. It is based on the \code{\link[rdd]{print.RD}} function in the \pkg{rdd} package.
+discontinuity. It is based on the print.RD function in the rdd package.
 }

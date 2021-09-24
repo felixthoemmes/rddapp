@@ -1,7 +1,7 @@
 #' McCrary Sorting Test
 #' 
 #' \code{dc_test} implements the McCrary (2008) sorting test.
-#' It is based on the \code{\link[rdd]{DCdensity}} function in the \pkg{rdd} package. 
+#' It is based on the DCdensity function in the rdd package. 
 #' 
 #' @param runvar Numerical vector of the running variable.
 #' @param cutpoint The cutpoint (defaults to 0).
