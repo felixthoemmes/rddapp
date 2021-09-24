@@ -1,9 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-services:
-  - xvfb
-  
+
 before_install:
- - export DISPLAY=:0
+ - export DISPLAY=:99.0
 
 language: R
 
