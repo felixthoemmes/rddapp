@@ -313,11 +313,11 @@ dc_test <- function(runvar, cutpoint, bin = NULL, bw = NULL, verbose = TRUE, plo
                        "lower.CL", "upper.CL",
                        "z value", "Pr(>|z|)") 
     rownames(out) <- ''
-    #print.default(cbind(format(out, digits = digits), " " = stars), 
-    #              quote = FALSE, print.gap = 2, right = FALSE)
-    #cat("---\n")
-    #cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
-    #cat("Confidence interval used: ", level, "\n\n")
+    print.default(cbind(format(out, digits = digits), " " = stars), 
+                  quote = FALSE, print.gap = 2, right = FALSE)
+    cat("---\n")
+    cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
+    cat("Confidence interval used: ", level, "\n\n")
   }
 
   if (ext.out) 
