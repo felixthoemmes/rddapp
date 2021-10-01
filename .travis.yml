@@ -5,4 +5,4 @@ language: R
 cache: packages
     
 before_install:
- - export DISPLAY=:99.0
+ - export DISPLAY=:0
