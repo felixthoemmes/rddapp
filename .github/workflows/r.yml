@@ -56,7 +56,6 @@ jobs:
         run: |
           sudo apt-get install xvfb xauth xfonts-base tcl8.6-dev tk8.6-dev
           xvfb-run R --no-save
-          export DISPLAY=:99
           while read -r cmd
           do
             eval sudo $cmd
@@ -77,6 +76,7 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
+          DISPLAY: 99.0
         run: |
           options(rmarkdown.html_vignette.check_title = FALSE)
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
