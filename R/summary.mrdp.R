@@ -43,6 +43,5 @@ summary.mrdp <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   out <- list(coefficients = coefficients)
   
   return(invisible(out))
+  cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
 } 
-
-#cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")
