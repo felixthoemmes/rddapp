@@ -54,10 +54,6 @@ jobs:
       - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
         run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-          
           sudo apt-get install xvfb xauth xfonts-base tcl8.6-dev tk8.6-dev
           xvfb-run R --no-save
           while read -r cmd
