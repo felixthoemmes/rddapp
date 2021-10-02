@@ -8,7 +8,7 @@ library(rddapp)
 # global parameters
 MORE_REACTIVE <- T
 options(shiny.maxRequestSize = 9*1024^2) 
-'%then%' <- shiny:::'%OR%'
+'%then%' <- rlang:::'%||%'
 
 # load modules
 for (f in list.files(file.path('modules'), pattern = '\\.R$', recursive = T, full.names = T))
