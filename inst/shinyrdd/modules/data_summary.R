@@ -185,7 +185,7 @@ data_summary = function(input, output, session, dataframe, parameter){
               tags$th, rowspan = 2),
             tags$th(colspan = 2, paste0('Treatment Receipt (',parameter$treatment(),')'), 
               style = 'text-align: center'),
-            tags$th('π',rowspan = 2, style = 'text-align: center')
+            tags$th(intToUtf8(0x03C0),rowspan = 2, style = 'text-align: center')
           ),
           tags$tr(
             lapply(c('control', 'treatment'), tags$th, align = 'center')
@@ -233,7 +233,7 @@ data_summary = function(input, output, session, dataframe, parameter){
       'A1 =', paste0(parameter$assignment1(),'.'),
       ifelse(parameter$is_frontier(), 
         paste0('A2 = ', parameter$assignment2(),'.'),''),
-      'π = Probability conditioning on treatment status.',
+       intToUtf8(0x03C0), '= Probability conditioning on treatment status.',
       'This is a', em(tolower(crosstab()$type)), 'design.'
     )
   })
