@@ -45,6 +45,9 @@ plot.rd <- function(x, preds = NULL,
   if (class(x) != "rd") 
     stop("Not an object of class rd.")
   
+  if (is.factor(x$frame[, x$cov]) == TRUE)
+    stop("Plotting is currently not supported for covariates that are factors.")
+  
   if ("cutpoint" %in% names(x$call)) 
     cut <- eval.parent(x$call$cutpoint) 
   else cut <- 0
