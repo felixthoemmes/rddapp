@@ -22,7 +22,7 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','%')
               ),
               div(class='btn-group',
-                downloadLink(ns('cutsens_png'),label = NULL, icon('file-image-o'),
+                downloadLink(ns('cutsens_png'),label = NULL, icon('file-image'),
                              class='btn btn-default btn-sm', 
                              title = 'Download plot as PNG'),  
                 downloadLink(ns('cutsens_svg'),label = NULL, icon('file-o'),
