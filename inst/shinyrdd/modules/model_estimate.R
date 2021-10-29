@@ -62,7 +62,7 @@ model_estimateUI = function(id){
                      title = 'Download plot as PDF'),
         downloadLink(ns('rdd_plot_svg'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-o'),
                      title = 'Download plot as SVG'),
-        downloadLink(ns('rdd_plot_png'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-image-o'),
+        downloadLink(ns('rdd_plot_png'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-image'),
                      title = 'Download plot as PNG')
       ),
       div(class='panel-body',
