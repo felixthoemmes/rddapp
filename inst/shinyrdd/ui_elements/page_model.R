@@ -20,7 +20,7 @@ fluidRow(
           data_summaryUI('data_summary')
         ),
         
-        tabPanel("Assumptions", icon = icon('check-square-o'),
+        tabPanel("Assumptions", icon = icon('check-square'),
           conditionalPanel(
             condition = "output['model_type'] != 'UNDEFINED' && output['par_ready']",
             assumption_checkUI('assumption_check')
