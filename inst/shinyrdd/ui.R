@@ -21,7 +21,7 @@ tagList(
   
   navbarPage(title = "ShinyRDD", collapsible = T, 
     ## Model Page (i.e., do every major)
-    tabPanel("Model", icon = icon('tachometer'),
+    tabPanel("Model", icon = icon('tachometer-alt'),
       source(file.path('ui_elements', 'page_model.R'), local = T)$value
     ),
     
