@@ -11,7 +11,7 @@ assumption_checkUI = function(id){
             style = 'display: inline;')
         ),
         div(class='btn-group pull-right',
-          downloadLink(ns('assumption_plot_png'), icon('file-image-o'),
+          downloadLink(ns('assumption_plot_png'), icon('file-image'),
                        label = NULL, class='btn btn-default btn-sm',
                        title = 'Download plot as PNG'),  
           downloadLink(ns('assumption_plot_svg'), icon('file-o'),
