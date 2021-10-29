@@ -68,7 +68,7 @@ simulate_powerUI = function(id){
                   )
               ),
           div(class='btn-group',
-            downloadLink(ns('power_chart_png'),label = NULL, icon('file-image-o'),
+            downloadLink(ns('power_chart_png'),label = NULL, icon('file-image'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PNG'),
             downloadLink(ns('power_chart_svg'),label = NULL, icon('file-o'),
