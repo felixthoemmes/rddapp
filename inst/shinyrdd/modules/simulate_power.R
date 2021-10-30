@@ -4,7 +4,7 @@ simulate_powerUI = function(id){
   tagList(
     p(),
     p(em("To start a Monte Carlo simulation, please click a compute icon ("),
-      icon('refresh'),
+      icon('sync'),
       #img(src = "compute-icon.png"),
       em(").")),
     div(class='panel panel-default',
@@ -20,7 +20,7 @@ simulate_powerUI = function(id){
                   tag
                 }),
                 span(class='input-group-btn',
-                  actionButton(ns('power_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('refresh'))
+                  actionButton(ns('power_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('sync'))
                   )
               )
           
@@ -64,7 +64,7 @@ simulate_powerUI = function(id){
                   tag
                 }),
                 span(class='input-group-btn',
-                  actionButton(ns('power_chart_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('refresh'))
+                  actionButton(ns('power_chart_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('sync'))
                   )
               ),
           div(class='btn-group',
