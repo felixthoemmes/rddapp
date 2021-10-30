@@ -137,11 +137,11 @@ model_estimateUI = function(id){
               ),
               conditionalPanel(condition= sprintf('input["%s"] == "custom"', ns('mfrd_view')),
                 fluidRow(
-                  column(6, h6(class='badge',icon('arrows-v')),
+                  column(6, h6(class='badge',icon('arrows-alt-v')),
                     sliderInput(ns('mfrd_phi'), label = NULL, min = -180, 
                       max = 180, value = 30, ticks = F, post = '°')
                   ),
-                  column(6, h6(class='badge',icon('arrows-h')),
+                  column(6, h6(class='badge',icon('arrows-alt-h')),
                     sliderInput(ns('mfrd_theta'), label = NULL,min = -180, 
                       max = 180, value = -30, ticks = F, post = '°')
                   )
