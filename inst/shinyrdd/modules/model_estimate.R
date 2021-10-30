@@ -38,7 +38,7 @@ model_estimateUI = function(id){
                 `data-toggle`="button", `aria-pressed`="true", autocomplete="off")
             )
           ),
-          downloadLink(ns('est_csv'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-text-o'),
+          downloadLink(ns('est_csv'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-alt'),
             title = 'Download Estimates as CSV')
           #, div(class='btn-group input-group', id ='heading_3_1')
           
@@ -58,9 +58,9 @@ model_estimateUI = function(id){
             style = 'display: inline;'),
           style = 'padding-top:4px;',
           class='panel-title pull-left'), 
-        downloadLink(ns('rdd_plot_pdf'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-pdf-o'),
+        downloadLink(ns('rdd_plot_pdf'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-pdf'),
                      title = 'Download plot as PDF'),
-        downloadLink(ns('rdd_plot_svg'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-o'),
+        downloadLink(ns('rdd_plot_svg'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file'),
                      title = 'Download plot as SVG'),
         downloadLink(ns('rdd_plot_png'),label = NULL, class='btn btn-default btn-sm pull-right', icon('file-image'),
                      title = 'Download plot as PNG')
