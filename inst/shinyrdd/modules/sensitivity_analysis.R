@@ -32,7 +32,7 @@ sensitivity_analysisUI = function(id){
                              class='btn btn-default btn-sm', 
                              title = 'Download plot as PDF'),
                 downloadLink(ns('cutsens_csv'),label = NULL, class='btn btn-default btn-sm', 
-                  icon('file-text-o'),
+                  icon('file-alt'),
                   title = 'Download simulated results as CSV')
                 # actionButton(ns('cut_sens_opt_btn'), label = NULL, icon = icon(name = 'cog'),
                 #   class='pull-right btn-sm', `data-toggle`="button", `aria-pressed`="false", autocomplete="off",
