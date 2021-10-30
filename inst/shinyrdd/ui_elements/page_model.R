@@ -27,7 +27,7 @@ fluidRow(
           )
         ),
         
-        tabPanel("Estimates", icon = icon('bar-chart'),
+        tabPanel("Estimates", icon = icon('chart-bar'),
           conditionalPanel(
             condition = "output['model_type'] != 'UNDEFINED' && output['par_ready']",
             model_estimateUI('model_estimate')
