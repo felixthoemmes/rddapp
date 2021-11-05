@@ -131,11 +131,11 @@ input_powerUI = function(id){
         plotOutput(ns('par_model'), height = '325px'),
         conditionalPanel(condition = sprintf("input['%s'] %% 2 == 1", ns('allow_frontier')),
           fluidRow(
-            column(6, h6(class='badge',icon('arrows-v')),
+            column(6, h6(class='badge',icon('arrows-up-down')),
               sliderInput(ns('par_model_phi'), label = NULL, min = -180, 
                 max = 180, value = 30, ticks = F, post = '°')
             ),
-            column(6, h6(class='badge',icon('arrows-h')),
+            column(6, h6(class='badge',icon('arrows-left-right')),
               sliderInput(ns('par_model_theta'), label = NULL,min = -180, 
                 max = 180, value = -30, ticks = F, post = '°')
             )

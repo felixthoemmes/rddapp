@@ -208,7 +208,7 @@ data_summary = function(input, output, session, dataframe, parameter){
           buttons = list(list(
             extend = 'csv',
             bom = 'true', 
-            text = '<i class="fa fa-file-text-o"></i>',
+            text = '<i class="fa fa-file-alt"></i>',
             titleAttr = 'Download table as CSV',
             filename = 'table_1_2_design_summary',
             className = 'btn btn-default btn-sm'
@@ -298,7 +298,7 @@ data_summary = function(input, output, session, dataframe, parameter){
           scrollX = TRUE,
           buttons = list(list(
             extend = 'csv',
-            text = '<i class="fa fa-file-text-o"></i>',
+            text = '<i class="fa fa-file-alt"></i>',
             titleAttr = 'Download table as CSV',
             filename = 'table_1_1_descriptive_statistics',
             className = 'btn btn-default btn-sm'

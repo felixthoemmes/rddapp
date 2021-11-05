@@ -71,13 +71,13 @@ simulate_powerUI = function(id){
             downloadLink(ns('power_chart_png'),label = NULL, icon('file-image'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PNG'),
-            downloadLink(ns('power_chart_svg'),label = NULL, icon('file-o'),
+            downloadLink(ns('power_chart_svg'),label = NULL, icon('file'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as SVG'),
-            downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf-o'),
+            downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PDF'),
-            downloadLink(ns('power_chart_csv'),label = NULL, icon('file-text-o'),
+            downloadLink(ns('power_chart_csv'),label = NULL, icon('file-alt'),
               class='btn btn-default btn-sm', 
               title = 'Download simulated results as csv')
           )

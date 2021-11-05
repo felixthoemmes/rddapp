@@ -32,7 +32,7 @@ tagList(
     
     ## DROP REPORT PAGE, ALLOCATE IT TO MODEL PAGE
     ## Report Page
-    # tabPanel("Report", icon = icon('file-text'),
+    # tabPanel("Report", icon = icon('file-alt'),
     #   source(file.path('ui_elements', 'page_report.R'), local = T)$value
     # ),
     

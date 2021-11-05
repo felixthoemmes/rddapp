@@ -14,15 +14,15 @@ assumption_checkUI = function(id){
           downloadLink(ns('assumption_plot_png'), icon('file-image'),
                        label = NULL, class='btn btn-default btn-sm',
                        title = 'Download plot as PNG'),  
-          downloadLink(ns('assumption_plot_svg'), icon('file-o'),
+          downloadLink(ns('assumption_plot_svg'), icon('file'),
                        label = NULL, class='btn btn-default btn-sm',
                        title = 'Download plot as SVG'),  
-          downloadLink(ns('assumption_plot_pdf'), icon('file-pdf-o'),
+          downloadLink(ns('assumption_plot_pdf'), icon('file-pdf'),
             label = NULL, class='btn btn-default btn-sm',
             title = 'Download plot as PDF'),
           downloadLink(ns('assumption_plot_csv'),label = NULL, 
             class='btn btn-default btn-sm', 
-            icon('file-text-o'),
+            icon('file-alt'),
             title = 'Download simulated results as CSV')
         )
         
@@ -163,7 +163,7 @@ assumption_check = function(input, output, session, dataframe, parameter){
             "}"),        
           buttons = list(list(
             extend = 'csv',
-            text = '<i class="fa fa-file-text-o"></i>',
+            text = '<i class="fa fa-file-alt"></i>',
             titleAttr = 'Download table as CSV',
             filename = 'table_2_1_attribution_analysis',
             className = 'btn btn-default btn-sm'
