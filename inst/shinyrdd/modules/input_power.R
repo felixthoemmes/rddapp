@@ -146,7 +146,7 @@ input_powerUI = function(id){
         fluidRow(
           column(4, h6('Treatment'), 
             numericInput(ns('par_model_t'), label = NULL, value = 1, step = .05)),
-          column(8, align = 'right', h6('Partial','η',tags$sup('2')), 
+          column(8, align = 'right', h6('Partial',intToUtf8(0x3B7),tags$sup('2')), 
             sliderInput(
               ns('par_model_eta2'), 
               label = NULL, min = .01, max = .99, value = .5, step = .01, ticks = F)
