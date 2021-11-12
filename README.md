@@ -9,9 +9,10 @@ Overview
 **rddapp** provides a set of functions for the analysis of the regression-discontinuity design (RDD). 
 
 The three main parts are:
-- estimation of effects of interest
-- power analysis
-- assumption checks
+
+- estimation of effects of interest  
+- power analysis  
+- assumption checks  
 
 
 Estimation

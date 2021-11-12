@@ -61,3 +61,7 @@
 # rddapp 1.2.2
 
 - Fixed issues with delisted dependencies by removing tests
+
+# rddapp 1.3
+
+- List things we updated.
