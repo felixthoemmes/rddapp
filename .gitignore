@@ -24,4 +24,3 @@ revdep/library
 /revdep/.cache.rds
 dev/temp/data-raw/f2cov.csv
 inst/doc
-docs
