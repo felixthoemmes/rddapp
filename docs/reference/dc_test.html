@@ -150,42 +150,42 @@ to completion.</p></dd>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binwidth:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.03651 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0368 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bandwidth:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.4281 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.314 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-plt img"><img src="dc_test-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimate for log difference in heights:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate  Std. Error  lower.CL  upper.CL  z value   Pr(&gt;|z|)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -0.03655   0.20762    -0.44348   0.37038  -0.17606   0.86024   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.39293   0.23725    -0.07207   0.85793   1.65620   0.09768  .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence interval used:  0.95 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8602449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09768083</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Discontinuity</span></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binwidth:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.04886 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.04875 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bandwidth:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3989 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.544 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-plt img"><img src="dc_test-2.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimate for log difference in heights:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate  Std. Error  lower.CL  upper.CL  z value   Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.107957  0.361156    0.400104  1.815810  3.067808  0.002156  **</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate  Std. Error  lower.CL  upper.CL  z value   Pr(&gt;|z|)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.38959   0.22770    -0.05668   0.83587   1.71102   0.08708  .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence interval used:  0.95 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.002156353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.08707764</span>
 </code></pre></div>
     </div>
   </div>
