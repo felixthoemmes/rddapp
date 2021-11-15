@@ -7,26 +7,26 @@
 bw_ik09(X, Y, cutpoint = NULL, verbose = FALSE, kernel = "triangular")
 }
 \arguments{
-\item{X}{A numerical vector which is the running variable.}
+\item{X}{A numeric vector containing the running variable.}
 
-\item{Y}{A numerical vector which is the outcome variable.}
+\item{Y}{A numeric vector containing the outcome variable.}
 
-\item{cutpoint}{The cutpoint.}
+\item{cutpoint}{A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined.}
 
-\item{verbose}{Logical flag indicating whether to print more information to the terminal. 
-Default is \code{FALSE}.}
+\item{verbose}{A logical value indicating whether to print more information to the terminal. 
+The default is \code{FALSE}.}
 
-\item{kernel}{String indicating which kernel to use. Options are \code{"triangular"} 
+\item{kernel}{A string indicating which kernel to use. Options are \code{"triangular"} 
 (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 }
 \value{
-The optimal bandwidth.
+`ik_bw09` returns a numeric vector of length 1 containing the optimal bandwidth.
 }
 \description{
 \code{bw_ik09} calculates the Imbens-Kalyanaraman (2009) optimal bandwidth
 for local linear regression in regression discontinuity designs.
-It is based on the IKbandwidth function in the rdd package. 
+It is based on the \code{IKbandwidth} function in the "rdd" package. 
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::bw_ik09().
 }
@@ -35,4 +35,6 @@ Imbens, G., Kalyanaraman, K. (2009).
   Optimal bandwidth choice for the regression discontinuity estimator 
   (Working Paper No. 14726). National Bureau of Economic Research.
   \url{https://www.nber.org/papers/w14726}.
+  
+  Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 }

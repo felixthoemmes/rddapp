@@ -2,25 +2,27 @@
 #' 
 #' \code{bw_ik09} calculates the Imbens-Kalyanaraman (2009) optimal bandwidth
 #' for local linear regression in regression discontinuity designs.
-#' It is based on the IKbandwidth function in the rdd package. 
+#' It is based on the \code{IKbandwidth} function in the "rdd" package. 
 #' This is an internal function and is typically not directly invoked by the user. 
 #' It can be accessed using the triple colon, as in rddapp:::bw_ik09().
 #' 
-#' @param X A numerical vector which is the running variable.
-#' @param Y A numerical vector which is the outcome variable.
-#' @param cutpoint The cutpoint.
-#' @param verbose Logical flag indicating whether to print more information to the terminal. 
-#'   Default is \code{FALSE}.
-#' @param kernel String indicating which kernel to use. Options are \code{"triangular"} 
+#' @param X A numeric vector containing the running variable.
+#' @param Y A numeric vector containing the outcome variable.
+#' @param cutpoint A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined.
+#' @param verbose A logical value indicating whether to print more information to the terminal. 
+#'   The default is \code{FALSE}.
+#' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
 #'
-#' @return The optimal bandwidth.
+#' @return `ik_bw09` returns a numeric vector of length 1 containing the optimal bandwidth.
 #'
 #' @references Imbens, G., Kalyanaraman, K. (2009). 
 #'   Optimal bandwidth choice for the regression discontinuity estimator 
 #'   (Working Paper No. 14726). National Bureau of Economic Research.
 #'   \url{https://www.nber.org/papers/w14726}.
+#'   
+#'   Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 #'
 #' @importFrom stats complete.cases sd median lm coef
 
