@@ -7,23 +7,22 @@
 attr_check(x1, y, t, x2 = NULL)
 }
 \arguments{
-\item{x1}{A numeric object, the assignment variable.}
+\item{x1}{A numeric object containing the assignment variable.}
 
-\item{y}{A numeric object, the outcome variable, with the same dimensionality 
-as \code{x}.}
+\item{y}{A numeric object containing the outcome variable, with the same dimensionality 
+as \code{x1}.}
 
-\item{t}{A numeric object, the treatment variable, with the same dimensionality 
-as \code{x} and \code{y}.}
+\item{t}{A numeric object containing the treatment variable, with the same dimensionality 
+as \code{x1} and \code{y}.}
 
-\item{x2}{A numeric object, the secondary assignment variable.}
+\item{x2}{A numeric object containing the secondary assignment variable.}
 }
 \value{
-A list with the missing data numbers and percentages for all variables 
-  and subgroups by treatment.
+\code{attr_check} returns a list containing the amount and percentage of missing data for all variables and subgroups, by treatment.
 }
 \description{
 \code{attr_check} reports missing data on treatment variable, assignment variable, and outcome.
-Currently it only supports the design with one assignment variable.
+Currently, it only supports designs with one assignment variable.
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::attr_check().
 }
