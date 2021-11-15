@@ -9,7 +9,7 @@ A data frame with 81 rows and 5 variables:
 \describe{
   \item{SUBJECT}{Unique ID variable}
   \item{DC_TRT}{Day Care (Preschool) Treatment Group, 1 = Treatment, 0 = Control}
-  \item{APGAR5}{APGAR ("Appearance, Pulse, Grimace, Activity, and Respiration.") score at 5 minutes after birth}
+  \item{APGAR5}{APGAR ("Appearance, Pulse, Grimace, Activity, and Respiration") score at 5 minutes after birth}
   \item{MOMWAIS0}{Biological mother's WAIS (Wechsler Adult Intelligence Scale) 
     full-scale score at subject's birth}
   \item{SBIQ48}{Subject's Stanford Binet IQ score at 48 months}
