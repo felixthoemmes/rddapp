@@ -2,25 +2,28 @@
 #' 
 #' \code{bw_ik12} calculates the Imbens-Kalyanaraman (2012) optimal bandwidth
 #' for local linear regression in regression discontinuity designs.
-#' It is based on a function in the now archived rddtools package. 
+#' It is based on a function in the "rddtools" package. 
 #' This is an internal function and is typically not directly invoked by the user. 
 #' It can be accessed using the triple colon, as in rddapp:::bw_ik12().
 #' 
-#' @param X A numerical vector which is the running variable.
-#' @param Y A numerical vector which is the outcome variable.
-#' @param cutpoint The cutpoint.
-#' @param verbose Logical flag indicating whether to print more information to the terminal. 
-#'   Default is \code{FALSE}.
-#' @param kernel String indicating which kernel to use. Options are \code{"triangular"} 
+#' @param X A numeric vector containing the running variable.
+#' @param Y A numeric vector containing the outcome variable.
+#' @param cutpoint A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined.
+#' @param verbose A logical value indicating whether to print more information to the terminal.
+#'   The default is \code{FALSE}.
+#' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}. 
 #'
-#' @return The optimal bandwidth.
+#' @return `ik_bw12` returns a numeric vector of length 1 containing the optimal bandwidth.
 #' 
 #' @references Imbens, G., Kalyanaraman, K. (2012). 
 #'   Optimal bandwidth choice for the regression discontinuity estimator. 
 #'   The Review of Economic Studies, 79(3), 933-959.
 #'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
+#'   
+#'   Stigler, M. and B. Quast, B (2016). rddtools: A toolbox for regression discontinuity in R.
+#'   
 #'
 #' @importFrom stats var
 
