@@ -124,6 +124,7 @@ including the frontier average treatment effect (tau_MRD)
 and frontier-specific effects (tau_R and tau_M) simultaneously.
 }
 \examples{
+set.seed(12345)
 x1 <- runif(1000, -1, 1)
 x2 <- runif(1000, -1, 1)
 cov <- rnorm(1000)
