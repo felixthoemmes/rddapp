@@ -35,6 +35,6 @@ Imbens, G., Kalyanaraman, K. (2009).
   Optimal bandwidth choice for the regression discontinuity estimator 
   (Working Paper No. 14726). National Bureau of Economic Research.
   \url{https://www.nber.org/papers/w14726}.
-  
-  Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
+
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 }

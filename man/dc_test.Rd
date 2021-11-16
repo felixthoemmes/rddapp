@@ -84,6 +84,6 @@ McCrary, J. (2008).
   Manipulation of the running variable in the regression discontinuity design: A density test. 
   Journal of Econometrics, 142(2), 698-714. 
   \doi{10.1016/j.jeconom.2007.05.005}.
-  
-  Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
+
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 }

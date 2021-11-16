@@ -17,7 +17,7 @@
 #'   The same options are available for \code{x2}.
 #' @param local A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
 #'   standardized scale, for each assignment variable. The default is 0.15. 
-#' @param front.bw An optional numeric vector specifying the bandwidths at which to estimate the RD for each
+#' @param front.bw An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
 #'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.
@@ -47,7 +47,7 @@
 #'   Journal of Educational and Behavioral Statistics, 38(2), 107-141. 
 #'   \doi{10.3102/1076998611432172}.
 #'   
-#'   Lee, D. and Card, D. (2008).
+#' @references Lee, D. and Card, D. (2008).
 #'   A Regression discontinuity inference with specification error.
 #'   Journal of Econometrics, 142(2), 655-674. 
 #'   \doi{10.1016/j.jeconom.2007.05.003}.

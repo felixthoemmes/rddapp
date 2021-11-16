@@ -21,8 +21,7 @@
 #'   Optimal bandwidth choice for the regression discontinuity estimator. 
 #'   The Review of Economic Studies, 79(3), 933-959.
 #'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
-#'   
-#'   Stigler, M. and B. Quast, B (2016). rddtools: A toolbox for regression discontinuity in R.
+#' @references Stigler, M. and B. Quast, B (2016). rddtools: A toolbox for regression discontinuity in R.
 #'   
 #'
 #' @importFrom stats var

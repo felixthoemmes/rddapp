@@ -43,7 +43,7 @@
 #'   Journal of Econometrics, 142(2), 698-714. 
 #'   \doi{10.1016/j.jeconom.2007.05.005}.
 #'   
-#'   Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 #'
 #' @importFrom stats complete.cases sd lm coef predict pnorm setNames 
 #' @importFrom graphics lines points axis box plot.new plot.window polygon title

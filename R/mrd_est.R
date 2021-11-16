@@ -1,38 +1,38 @@
 #' Multivariate Regression Discontinuity Estimation
 #' 
-#' \code{mrd_est} estimates treatment effects in an MRDD with two assignment variables, 
-#' including the frontier average treatment effect (tau_MRD) 
-#' and frontier-specific effects (tau_R and tau_M) simultaneously. 
+#' \code{mrd_est} estimates treatment effects in a multivariate regression discontinuity design (MRDD) with two assignment variables, 
+#' including the frontier average treatment effect (\code{tau_MRD}) 
+#' and frontier-specific effects (\code{tau_R} and \code{tau_M}) simultaneously. 
 #' 
-#' @param formula The formula of the MRDD. This is supplied in the
+#' @param formula The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
 #'   format of \code{y ~ x1 + x2} for a simple sharp MRDD, or \code{y ~ x1 + x2 | c1 + c2}
 #'   for a sharp MRDD with two covariates. Fuzzy MRDD may be specified as
 #'   \code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
 #'   \code{z} is the endogenous treatment variable. Covariates are then included in the 
 #'   same manner as in a sharp MRDD.
-#' @param data An optional data frame.
-#' @param subset An optional vector specifying a subset of observations to be used.
-#' @param cutpoint The cutpoint. If omitted, it is assumed to be c(0, 0).
-#' @param bw A numeric vector specifying the bandwidths at which to estimate the RD. 
-#'   If omitted or it is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
-#'   2012 method. If it is \code{"IK09"}, the bandwidth is calculated using 
-#'   the Imbens-Kalyanaraman 2009 method. Then it is estimated
+#' @param data An optional data frame containing the variables in the model. If not found in \code{data},
+#'   the variables are taken from \code{environment(formula)}. 
+#' @param subset An optional vector specifying a subset of observations to be used in the fitting process.
+#' @param cutpoint An optional numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).
+#' @param bw A vector specifying the bandwidths at which to estimate the RD. 
+#'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
+#'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
+#'   2012 method. If \code{bw}  is \code{"IK09"}, the bandwidth is calculated using 
+#'   the Imbens-Kalyanaraman 2009 method. Then the RD is estimated
 #'   with that bandwidth, half that bandwidth, and twice that bandwidth. 
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
-#' @param front.bw A numeric vector specifying the bandwidths at which to estimate the RD for each
-#'   of three effects models in the frontier method. If NA, front.bw will be determined by cross validation.
-#' @param m The number of uniformly-at-random samples to draw as search candidates for front.bw 
-#'   if not given.
-#' @param k An integer specifying the number of folds for cross validation to determine front.bw
-#'   if not given. 
-#' @param kernel A string specifying the kernel to be used in the local linear fitting. 
-#'   \code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 
-#'   used for edge estimation as in RDD (Lee and Lemieux, 2010). Other options are 
-#'   \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
-#'   \code{"triweight"}, \code{"tricube"}, \code{"gaussian"} and \code{"cosine"}.
-#' @param se.type This specifies the robust SE calculation method to use. Options are,
+#' @param front.bw An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
+#' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
+#'   if \code{front.bw} is \code{NA}. The default is 10.
+#' @param k A non-negative integer specifying the number of folds for cross-validation to determine \code{front.bw},
+#'   if \code{front.bw} is \code{NA}. The default is 5.
+#' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
+#'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+#'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
+#' @param se.type This specifies the robust standard error calculation method to use. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
@@ -40,7 +40,8 @@
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
-#' @param verbose Will provide some additional information printed to the terminal.
+#' @param verbose A logical value indicating whether to print additional information to 
+#'   the terminal. The default is \code{FALSE}.
 #' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal, 
 #'   instead of linear, quadratic, cubic, optimal, half and double.
 #' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included. Not
@@ -75,6 +76,18 @@
 #'   A comparative study of four estimation methods.
 #'   Journal of Educational and Behavioral Statistics, 38(2), 107-141.
 #'   \url{https://journals.sagepub.com/doi/10.3102/1076998611432172}. 
+#' @references Imbens, G., Kalyanaraman, K. (2009). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator 
+#'   (Working Paper No. 14726). National Bureau of Economic Research.
+#'   \url{https://www.nber.org/papers/w14726}.
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
+#' @references Lee, D. S., Card, D. (2010).
+#'   Regression discontinuity inference with specification error. 
+#'   Journal of Econometrics, 142(2), 655-674. 
+#'   \doi{10.1016/j.jeconom.2007.05.003}.
 #'
 #' @importFrom Formula as.Formula
 #' @importFrom stats model.frame na.pass complete.cases as.formula
