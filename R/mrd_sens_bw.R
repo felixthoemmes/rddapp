@@ -8,7 +8,7 @@
 #'   choosing from \code{c("center", "univ1", "univ2")}.
 #' @param bws A positive numeric vector of the bandwidths for refitting an \code{mrd} object.  
 #'
-#' @return A dataframe which contains the estimate \code{est} and standard error \code{se} 
+#' @return \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
 #'   for each supplemented bandwidth.
 #' 
 #' @export
