@@ -78,45 +78,52 @@ and \code{"leq"} (treatment is assigned if \code{x2} is less than or equal to it
 \itemize{
 \item{The 1st entry is the intercept.}
 \item{The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.}
+\item{The 3rd entry is the slope of treatment 2, i.e. treatment effect 2.}
+\item{The 4th entry is the slope of treatment, i.e. treatment effect.}
+\item{The 5th entry is the slope of assignment 1.}
+\item{The 6th entry is the slope of assignment 2.}
+\item{The 7th entry is the slope of interaction between assignment 1 and assignment 2.}
+\item{The 8th entry is the slope of interaction between treatment 1 and assignment 1.}
+\item{The 9th entry is the slope of interaction between treatment 2 and assignment 1.}
+\item{The 10th entry is the slope of interaction between treatment 1 and assignment 2.}
+\item{The 11th entry is the slope of interaction between treatment 2 and assignment 2.}
+\item{The 12th entry is the slope of interaction between treatment 1, assignment 1 and assignment 2.}
+\item{The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.}
 }
-The 1st entry is the intercept. 
-The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.
-The 3rd entry is the slope of treatment 2, i.e. treatment effect 2.
-The 4th entry is the slope of treatment, i.e. treatment effect.
-The 5th entry is the slope of assignment 1.
-The 6th entry is the slope of assignment 2.
-The 7th entry is the slope of interaction between assignment 1 and assignment 2.
-The 8th entry is the slope of interaction between treatment 1 and assignment 1.
-The 9th entry is the slope of interaction between treatment 2 and assignment 1.
-The 10th entry is the slope of interaction between treatment 1 and assignment 2.
-The 11th entry is the slope of interaction between treatment 2 and assignment 2.
-The 12th entry is the slope of interaction between treatment 1, assignment 1 and assignment 2.
-The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.}
+The default is c(0.1, 0.5, 0.5, 1, rep(0.1, 9)).}
 
-\item{eta.sq}{Expected partial eta-squared of the linear model with respect to the 
-treatment itself. It is used to control the variance of noise in the linear model.}
+\item{eta.sq}{A numeric vector of length 1 specifying the expected partial eta-squared of the linear model with respect to the 
+treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.}
 
-\item{alpha.list}{List of significance levels used to calculate the empirical alpha.}
+\item{alpha.list}{A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
+The default is c(0.001, 0.01, anad 0.05).}
 }
 \value{
-\code{mrd_power} returns the results of 6 estimators as a table of \link{class} 
-  "\code{mrdp}", including mean, variance, and power of estimate. The function \code{summary}
-  is used to obtain and print a summary of the power analysis.
-  The 1st \code{Linear} results of the linear regression estimator 
-  of combined RD using the centering approach.
-  The 2nd \code{Opt} results of the local linear regression estimator
+\code{mrd_power} returns an object of \link{class} 
+  "\code{mrdp}" containing the mean, variance, and power for six estimators. The function \code{summary}
+  is used to obtain and print a summary of the power analysis. The six estimators are as follows:
+  \itemize{
+  \item{The 1st \code{Linear} provides results of the linear regression estimator 
+  of combined RD using the centering approach.}
+  \item{The 2nd \code{Opt} provides results of the local linear regression estimator
   of combined RD using the centering approach, 
-  with the optimal bandwidth in the IK 2012 paper.
-  The 3rd \code{Linear} results of the linear regression estimator 
-  of separate RD in terms of x1 using the univariate approach.
-  The 4th \code{Opt} results of the local linear regression estimator
-  of separate RD in terms of x1 using the univariate approach, 
-  with the optimal bandwidth in the IK 2012 paper.
-  The 5th \code{Linear} results of the linear regression estimator 
-  of separate RD in terms of x2 using the univariate approach.
-  The 6th \code{Opt} results of the local linear regression estimator
-  of separate RD in terms of x2 using the univariate approach, 
-  with the optimal bandwidth in the IK 2012 paper.
+  with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+  \item{The 3rd \code{Linear} provides results of the linear regression estimator 
+  of separate RD in terms of \code{x1} using the univariate approach.}
+  \item{The 4th \code{Opt} provides results of the local linear regression estimator
+  of separate RD in terms of \code{x1} using the univariate approach, 
+  with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+  \item{The 5th \code{Linear} provides results of the linear regression estimator 
+  of separate RD in terms of \code{x2} using the univariate approach.}
+  \item{The 6th \code{Opt} provides results of the local linear regression estimator
+  of separate RD in terms of \code{x2} using the univariate approach, 
+  with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+  }
+  
+  @references Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }
 \description{
 \code{mrd_power} computes the empirical probability that an MRD is significant,
