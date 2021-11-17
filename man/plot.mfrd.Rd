@@ -18,23 +18,23 @@
 \item{x}{An \code{mfrd} object returned by \code{mfrd_est} or contained in the object 
 returned by \code{mrd_est}.}
 
-\item{model}{Option for the model specification, one of \code{c("m_s", "m_h", "m_t")},
-which denotes the complete model, heterogeneous treatment model and treatment only 
-model respectively.}
+\item{model}{A string containing the model specification. Options include one of \code{c("m_s", "m_h", "m_t")},
+which denote the complete model, heterogeneous treatment model, and treatment only 
+model, respectively.}
 
-\item{methodname}{Option for method specification, one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.}
+\item{methodname}{A string containing the method specification. Options include one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.}
 
-\item{gran}{Granularity of the surface grid i.e. desired number of predicted points 
-before and after the cutoff along each assignment variable.}
+\item{gran}{A non-negative integer specifying the granularity of the surface grid (i.e. the desired number of predicted points 
+before and after the cutoff, along each assignment variable). The default is 10.}
 
-\item{raw_data}{Whether the raw data points are plotted.}
+\item{raw_data}{A logical value indicating whether the raw data points are plotted. The default is \code{TRUE}.}
 
-\item{color_surface}{Whether the treated surface is colored.}
+\item{color_surface}{A logical value indicating whether the treated surface is colored. The defaulti s \code{FALSE}.}
 
 \item{...}{Additional graphic arguments passed to \code{persp}.}
 }
 \description{
-\code{plot.mfrd} plots the 3D illustration of the bivariate frontier RDD.
+\code{plot.mfrd} plots a 3D illustration of the bivariate frontier regression discontinuity design (RDD).
 }
 \examples{
 set.seed(12345)
