@@ -19,27 +19,34 @@
 #'   mean and standard deviation of the normal distribution.
 #'   If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
 #'   upper and lower boundaries of the uniform distribution. The default is c(0,1).
-#' @param x1.cut An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
-#' @param x2.cut An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
-#' @param x1.fuzzy Probabilities to be assigned to control in terms of the 1st
-#'   assignment variable X1 for individuals in treatment based on cutoff, 
-#'   and to treatment for individuals in control based on cutoff.
-#'   For a sharp design, by default, the 1st entry is 0, and the 2nd entry is 0. 
-#'   For a fuzzy design, the 1st entry is the probability to be assigned to 
-#'   control for individuals above the cutpoint, and the 2nd entry is the 
+#' @param x1.cut A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
+#' @param x2.cut A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
+#' @param x1.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the first
+#'   assignment variable, \code{x1}, for individuals in the treatment based on the cutoff, 
+#'   and to treatment for individuals in the control based on the cutoff.
+#'   For a sharp design, both entries are 0. 
+#'   For a fuzzy design, the first entry is the probability to be assigned to 
+#'   control for individuals above the cutpoint, and the second entry is the 
 #'   probability to be assigned to treatment for individuals below the cutpoint.
+#'   The default is c(0,0), indicating a sharp design. 
 #' @param x2.fuzzy Probabilities to be assigned to control in terms of the 2nd
 #'   assignment variable X2 for individuals in treatment based on cutoff, 
 #'   and to treatment for individuals in control based on cutoff.
-#' @param x1.design The treatment option according to design.
-#'   The entry is for X1: \code{"g"} means treatment is assigned 
-#'   if X1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-#'   if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-#'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-#'   if X1 is less than or equal to its cutoff.
-#' @param x2.design The treatment option according to design.
-#'   The entry is for X2.
-#' @param coeff Coefficients of variables in the linear model to generate data
+#' @param x1.design A string specifying the treatment option according to design for \code{x1}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+#' @param x2.design A string specifying the treatment option according to design for \code{x2}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x2} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x2} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x2} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x2} is less than or equal to its cutoff).
+#' @param coeff A numeric vector specifying coefficients of variables in the linear model to generate data. Coefficients are in the following order:
+#'   \itemize{
+#'   \item{The 1st entry is the intercept.}
+#'   \item{The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.}
+#'   }
 #'   The 1st entry is the intercept. 
 #'   The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.
 #'   The 3rd entry is the slope of treatment 2, i.e. treatment effect 2.
