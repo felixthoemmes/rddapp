@@ -16,26 +16,28 @@ rd_type(
 )
 }
 \arguments{
-\item{data}{A \code{data.frame} with each row representing an observation.}
+\item{data}{A \code{data.frame}, with each row representing an observation.}
 
-\item{treat}{The name of a numeric variable (treated = positive values).}
+\item{treat}{A string specifying the name of a numeric variable (treated = positive values).}
 
-\item{assign_1}{The variable name of the primary assignment.}
+\item{assign_1}{A string specifying the variable name of the primary assignment.}
 
-\item{cutoff_1}{The cutoff value of the primary assignment.}
+\item{cutoff_1}{A numeric vector of length 1 containing the cutpoint at which
+assignment to the treatment is determined, for the primary assignment.}
 
 \item{operator_1}{The operator for the primary assignment.}
 
-\item{assign_2}{The variable name of the secondary assignment.}
+\item{assign_2}{An optional string specifying the variable name of the secondary assignment.}
 
-\item{cutoff_2}{The cutoff value of the secondary assignment.}
+\item{cutoff_2}{An optional numeric vector of length 1 containing the cutpoint at which
+assignment to the treatment is determined, for the secondary assignment.}
 
 \item{operator_2}{The operator for the secondary assignment.}
 }
 \value{
 A list of two elements:
 \item{crosstab}{The cross-table as a data.frame.}
-\item{type}{The type of design as a string.}
+\item{type}{The type of design as a string, either \code{"SHARP"} or \code{"FUZZY"}.}
 }
 \description{
 \code{rd_type} cross-tabulates observations based on (1) a binary treatment and 
