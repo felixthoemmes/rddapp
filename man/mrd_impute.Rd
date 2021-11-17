@@ -129,6 +129,7 @@ bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error ar
 \code{mrd_impute} estimates treatment effects in a multivariate regression discontinuity design (MRDD) with imputed missing values.
 }
 \examples{
+set.seed(12345)
 x1 <- runif(300, -1, 1)
 x2 <- runif(300, -1, 1)
 cov <- rnorm(300)
