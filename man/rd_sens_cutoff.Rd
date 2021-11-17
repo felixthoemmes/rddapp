@@ -9,19 +9,20 @@ rd_sens_cutoff(object, cutoffs)
 \arguments{
 \item{object}{An object returned by \code{rd_est} or \code{rd_impute}.}
 
-\item{cutoffs}{A numeric vector of cutoff values to be used in the refitting 
-of an \code{rd} object.}
+\item{cutoffs}{A numeric vector of cutoff values to be used for refitting 
+an \code{rd} object.}
 }
 \value{
-A dataframe contains the estimate \code{est} and standard error \code{se} 
+\code{rd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
   for each cutoff values (\code{A1}). Column \code{A1} contains varying cutoffs 
   on the assignment variable.
 }
 \description{
-\code{rd_sens_cutoff} refits the supplemented model with varying cutoff(s). 
+\code{rd_sens_cutoff} refits the supplied model with varying cutoff(s). 
 Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
 }
 \examples{
+set.seed(12345)
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
