@@ -2,21 +2,22 @@
 % Please edit documentation in R/predict.rd.R
 \name{predict.rd}
 \alias{predict.rd}
-\title{Prediction the Regression Discontinuity}
+\title{Predict the Regression Discontinuity}
 \usage{
 \method{predict}{rd}(object, gran = 50, ...)
 }
 \arguments{
 \item{object}{An \code{rd} object, typically the result of \code{\link{rd_est}}.}
 
-\item{gran}{Granularity of the data points i.e. desired number of predicted points.}
+\item{gran}{A non-negative integer specifying the granularity of the data points (i.e. the desired number of predicted points). The default is 50.}
 
 \item{...}{Additional arguments affecting the predictions produced.}
 }
 \description{
-\code{predict.rd} makes predictions of mean and standard deviation of RDs at different cutoffs.
+\code{predict.rd} makes predictions of means and standard deviations of RDs at different cutoffs.
 }
 \examples{
+set.seed(12345)
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)

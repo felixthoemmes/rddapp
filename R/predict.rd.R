@@ -1,9 +1,9 @@
-#' Prediction the Regression Discontinuity
+#' Predict the Regression Discontinuity
 #' 
-#' \code{predict.rd} makes predictions of mean and standard deviation of RDs at different cutoffs.
+#' \code{predict.rd} makes predictions of means and standard deviations of RDs at different cutoffs.
 #' 
 #' @param object An \code{rd} object, typically the result of \code{\link{rd_est}}.
-#' @param gran Granularity of the data points i.e. desired number of predicted points.
+#' @param gran A non-negative integer specifying the granularity of the data points (i.e. the desired number of predicted points). The default is 50.
 #' @param ... Additional arguments affecting the predictions produced.
 #'
 #' @importFrom AER ivreg 
@@ -16,6 +16,7 @@
 #' @export
 #'
 #' @examples 
+#' set.seed(12345)
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
