@@ -1,22 +1,26 @@
 #' Power Analysis of Multivariate Regression Discontinuity
 #' 
-#' \code{mrd_power} computes the empirical probability that RD is significant,
-#' i.e. the empirical alpha of null hypothesis: RD = 0
+#' \code{mrd_power} computes the empirical probability that an MRD is significant,
+#' i.e. the empirical alpha of null hypothesis: MRD = 0
 #'
-#' @param num.rep Number of repetitions used to calculate the empirical alpha.
-#' @param sample.size Number of observations in each sample.
-#' @param x1.dist Distribution of the 1st assignment variable X1.
-#'   \code{"normal"} distribution is the default. 
-#'   \code{"uniform"} distribution is the only other option.
-#' @param x1.para Parameters of the distribution of the 1st assignment variable X1.
+#' @param num.rep A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100. 
+#' @param sample.size A non-negative integer specifying the number of observations in each sample. The default is 100. 
+#' @param x1.dist A string specifying the distribution of the first assignment variable, \code{x1}.
+#'   Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution. 
+#' @param x1.para A numeric vector of length 2 specifying parameters of the distribution of the first assignment variable, \code{x1}.
 #'   If \code{x1.dist} is \code{"normal"}, then \code{x1.para} includes the
-#'   mean and sd of normal distribution.
+#'   mean and standard deviation of the normal distribution.
 #'   If \code{x1.dist} is \code{"uniform"}, then \code{x1.para} includes the 
-#'   upper and lower boundaries of uniform distribution.
-#' @param x2.dist Distribution of the 2nd assignment variable X2.
-#' @param x2.para Parameters of the distribution of the 2nd assignment variable X2.
-#' @param x1.cut Cutpoint of RD with respect to the 1st assignment variable X1.
-#' @param x2.cut Cutpoint of RD with respect to the 2nd assignment variable X2.
+#'   upper and lower boundaries of the uniform distribution. The default is c(0,1). 
+#' @param x2.dist A string specifying the distribution of the second assignment variable, \code{x2}.
+#'   Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.
+#' @param x2.para A numeric vector of length 2 specifying parameters of the distribution of the second assignment variable, \code{x2}.
+#'   If \code{x2.dist} is \code{"normal"}, then \code{x2.para} includes the
+#'   mean and standard deviation of the normal distribution.
+#'   If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
+#'   upper and lower boundaries of the uniform distribution. The default is c(0,1).
+#' @param x1.cut An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
+#' @param x2.cut An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
 #' @param x1.fuzzy Probabilities to be assigned to control in terms of the 1st
 #'   assignment variable X1 for individuals in treatment based on cutoff, 
 #'   and to treatment for individuals in control based on cutoff.

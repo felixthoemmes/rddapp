@@ -23,27 +23,31 @@ mrd_power(
 )
 }
 \arguments{
-\item{num.rep}{Number of repetitions used to calculate the empirical alpha.}
+\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.}
 
-\item{sample.size}{Number of observations in each sample.}
+\item{sample.size}{A non-negative integer specifying the number of observations in each sample. The default is 100.}
 
-\item{x1.dist}{Distribution of the 1st assignment variable X1.
-\code{"normal"} distribution is the default. 
-\code{"uniform"} distribution is the only other option.}
+\item{x1.dist}{A string specifying the distribution of the first assignment variable, \code{x1}.
+Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.}
 
-\item{x1.para}{Parameters of the distribution of the 1st assignment variable X1.
+\item{x1.para}{A numeric vector of length 2 specifying parameters of the distribution of the first assignment variable, \code{x1}.
 If \code{x1.dist} is \code{"normal"}, then \code{x1.para} includes the
-mean and sd of normal distribution.
+mean and standard deviation of the normal distribution.
 If \code{x1.dist} is \code{"uniform"}, then \code{x1.para} includes the 
-upper and lower boundaries of uniform distribution.}
+upper and lower boundaries of the uniform distribution. The default is c(0,1).}
 
-\item{x2.dist}{Distribution of the 2nd assignment variable X2.}
+\item{x2.dist}{A string specifying the distribution of the second assignment variable, \code{x2}.
+Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.}
 
-\item{x2.para}{Parameters of the distribution of the 2nd assignment variable X2.}
+\item{x2.para}{A numeric vector of length 2 specifying parameters of the distribution of the second assignment variable, \code{x2}.
+If \code{x2.dist} is \code{"normal"}, then \code{x2.para} includes the
+mean and standard deviation of the normal distribution.
+If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
+upper and lower boundaries of the uniform distribution. The default is c(0,1).}
 
-\item{x1.cut}{Cutpoint of RD with respect to the 1st assignment variable X1.}
+\item{x1.cut}{An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.}
 
-\item{x2.cut}{Cutpoint of RD with respect to the 2nd assignment variable X2.}
+\item{x2.cut}{An numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.}
 
 \item{x1.fuzzy}{Probabilities to be assigned to control in terms of the 1st
 assignment variable X1 for individuals in treatment based on cutoff, 
@@ -108,8 +112,8 @@ treatment itself. It is used to control the variance of noise in the linear mode
   with the optimal bandwidth in the IK 2012 paper.
 }
 \description{
-\code{mrd_power} computes the empirical probability that RD is significant,
-i.e. the empirical alpha of null hypothesis: RD = 0
+\code{mrd_power} computes the empirical probability that an MRD is significant,
+i.e. the empirical alpha of null hypothesis: MRD = 0
 }
 \examples{
 \dontrun{
