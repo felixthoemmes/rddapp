@@ -73,7 +73,7 @@ anything specified in \code{se.type}. It is suggested that data with a discrete 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
 
 \item{stop.on.error}{A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
-eand resampled until the specified number of 
+and resampled until the specified number of 
 bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error are not removed. The default is \code{TRUE}.}
 }
 \value{

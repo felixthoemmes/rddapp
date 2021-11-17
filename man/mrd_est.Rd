@@ -80,41 +80,43 @@ variable be clustered by each unique value of the running variable (Lee and Card
 \item{verbose}{A logical value indicating whether to print additional information to 
 the terminal. The default is \code{FALSE}.}
 
-\item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal, 
-instead of linear, quadratic, cubic, optimal, half and double.}
+\item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
+return the estimates of linear, quadratic, cubic, optimal, half and double. The default is \code{FALSE}.}
 
-\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included. Not
+\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included.
+If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
 applicable if method is \code{"front"}.}
 
-\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned. Not
+\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.
+If \code{FALSE}, the estimates of ITT will not be returned. The default is \code{FALSE}. This option is not
 applicable if method is \code{"front"}.}
 
-\item{local}{The range of neighboring points around the cutoff on the 
-standardized scale on each assignment variable, which is a positive number.}
+\item{local}{A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+standardized scale, for each assignment variable. The default is 0.15.}
 
-\item{ngrid}{The number of non-zero grid points on each assignment variable,
-which is also the number of zero grid points on each assignment variable. Value used in 
+\item{ngrid}{A non-negative integer specifying the number of non-zero grid points on each assignment variable,
+which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
-\item{margin}{The range of grid points beyond the minimum and maximum
-of sample points on each assignment variable.}
+\item{margin}{A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+of sample points on each assignment variable. The default is 0.03.}
 
-\item{boot}{The number of bootstrap samples to obtain standard error of estimates.}
+\item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.}
 
-\item{method}{The method to estimate rd effect. Options are \code{"center"}, 
+\item{method}{A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 \code{"univ"}, \code{"front"}.}
 
-\item{t.design}{The treatment option according to design.
-The 1st entry is for X1: \code{"g"} means treatment is assigned 
-if X1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-if X1 is less than or equal to its cutoff.
-The 2nd entry is for X2.}
+\item{t.design}{A character vector of length 2 specifying the treatment option according to design.
+The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
+\code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+The same options are available for \code{x2}.}
 
-\item{stop.on.error}{Logical. If \code{TRUE} (the default), removes bootstraps which cause
-error in the \code{integrate} function, and resample till the specified number of 
-bootstrap samples are acquired.}
+\item{stop.on.error}{A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
+and resampled until the specified number of 
+bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error are not removed. The default is \code{TRUE}.}
 }
 \value{
 \code{mrd_est} returns an object of \link{class} "\code{mrd}".
