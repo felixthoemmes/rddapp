@@ -6,7 +6,7 @@
 \alias{rddapp}
 \title{Regression Discontinuity Design Application}
 \description{
-rddapp: A package for regression discontinuity designs
+rddapp: A package for regression discontinuity designs (RDDs).
 }
 \details{
 The rddapp package provides a set of functions for the analysis 
