@@ -22,35 +22,35 @@ rd_impute(
 )
 }
 \arguments{
-\item{formula}{The formula of the RDD. This is supplied in the
-format of \code{y ~ x} for a simple sharp RDD, or \code{y ~ x | c1 + c2}
-for a sharp RDD with two covariates. Fuzzy RDD may be specified as
+\item{formula}{The formula of the RDD; a symbolic description of the model to be fitted. This is supplied in the
+format of \code{y ~ x} for a simple sharp RDD or \code{y ~ x | c1 + c2}
+for a sharp RDD with two covariates. A fuzzy RDD may be specified as
 \code{y ~ x + z} where \code{x} is the running variable, and 
-\code{z} is the endogenous treatment variable. Covariates are then included in the 
+\code{z} is the endogenous treatment variable. Covariates are included in the 
 same manner as in a sharp RDD.}
 
-\item{data}{An optional data frame.}
+\item{data}{An optional data frame containing the variables in the model. If not found in \code{data},
+the variables are taken from \code{environment(formula)}.}
 
-\item{subset}{An optional vector specifying a subset of observations to be used}
+\item{subset}{An optional vector specifying a subset of observations to be used in the fitting process.}
 
-\item{cutpoint}{The cutpoint. If omitted, it is assumed to be 0.}
+\item{cutpoint}{An optional numeric vector of length 1 containing the cutpoints at which assignment to the treatment is determined. The default is 0.}
 
-\item{bw}{A numeric vector specifying the bandwidths at which to estimate the RD. 
-If omitted or it is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
-2012 method. If it is \code{"IK09"}, the bandwidth is calculated using 
-the Imbens-Kalyanaraman 2009 method. Then it is estimated
-with that bandwidth, half that bandwidth, and twice that bandwidth.  
+\item{bw}{A vector specifying the bandwidths at which to estimate the RD. 
+Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
+The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
+2012 method. If \code{bw}  is \code{"IK09"}, the bandwidth is calculated using 
+the Imbens-Kalyanaraman 2009 method. Then the RD is estimated
+with that bandwidth, half that bandwidth, and twice that bandwidth. 
 If only a single value is passed into the function,
 the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 and twice that bandwidth.}
 
-\item{kernel}{A string specifying the kernel to be used in the local linear fitting. 
-\code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 
-used for edge estimation as in RDD (Lee and Lemieux, 2010). Other options are 
-\code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
-\code{"triweight"}, \code{"tricube"}, \code{"gaussian"} and \code{"cosine"}.}
+\item{kernel}{A string indicating which kernel to use. Options are \code{"triangular"} 
+(default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+\code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 
-\item{se.type}{This specifies the robust SE calculation method to use. Options are,
+\item{se.type}{This specifies the robust standard error calculation method to use. Options are,
 as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 is overridden by \code{cluster}.}
@@ -62,27 +62,31 @@ variable be clustered by each unique value of the running variable (Lee and Card
 
 \item{impute}{An optional vector specifying the imputed variables with missing values.}
 
-\item{verbose}{Will provide some additional information printed to the terminal.}
+\item{verbose}{A logical value indicating whether to print additional information to 
+the terminal. The default is \code{FALSE}.}
 
-\item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal, 
-instead of linear, quadratic, cubic, optimal, half and double.}
+\item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
+return the estimates of linear, quadratic, cubic, optimal, half and double. The default is \code{FALSE}.}
 
-\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included.}
+\item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included.
+If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
+applicable if method is \code{"front"}.}
 
-\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.}
+\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.
+If \code{FALSE}, the estimates of ITT will not be returned. The default is \code{FALSE}. This option is not
+applicable if method is \code{"front"}.}
 
-\item{t.design}{The treatment option according to design.
-The entry is for X: \code{"g"} means treatment is assigned 
-if X is greater than its cutoff, \code{"geq"} means treatment is assigned 
-if X is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-if X is less than its cutoff, \code{"leq"} means treatment is assigned 
-if X is less than or equal to its cutoff.}
+\item{t.design}{A string specifying the treatment option according to design.
+Options are \code{"g"} (treatment is assigned if \code{x} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its cutoff).}
 }
 \value{
 \code{rd_impute} returns an object of \link{class} "\code{rd}".
 }
 \description{
-\code{rd_impute} estimates treatment effects in a RDD with imputed missing values.
+\code{rd_impute} estimates treatment effects in an RDD with imputed missing values.
 }
 \examples{
 x <- runif(1000, -1, 1)
@@ -95,4 +99,19 @@ rd_impute(y ~ x | cov, impute = group, t.design = "l")
 }
 \references{
 Stata: 64 mi estimate - Estimation using multiple imputations
+
+Lee, D. S., Card, D. (2010).
+  Regression discontinuity inference with specification error. 
+  Journal of Econometrics, 142(2), 655-674. 
+  \doi{10.1016/j.jeconom.2007.05.003}.
+
+Imbens, G., Kalyanaraman, K. (2009). 
+  Optimal bandwidth choice for the regression discontinuity estimator 
+  (Working Paper No. 14726). National Bureau of Economic Research.
+  \url{https://www.nber.org/papers/w14726}.
+
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }

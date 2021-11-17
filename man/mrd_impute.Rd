@@ -146,6 +146,12 @@ mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", t.design = c("geq"
 \references{
 Stata: 64 mi estimate - Estimation using multiple imputations
 
+Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 
+  Analyzing regression-discontinuity designs with multiple assignment variables: 
+  A comparative study of four estimation methods.
+  Journal of Educational and Behavioral Statistics, 38(2), 107-141.
+  \url{https://journals.sagepub.com/doi/10.3102/1076998611432172}.
+
 Lee, D. S., Lemieux, T. (2010).
   Regression Discontinuity Designs in Economics.
   Journal of Economic Literature, 48(2), 281-355. 
