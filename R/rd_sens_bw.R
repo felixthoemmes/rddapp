@@ -1,10 +1,10 @@
 #' Bandwidth Sensitivity Simulation for Regression Discontinuity
 #'
-#' \code{rd_sens_bw} refits the supplemented model with varying bandwidth. 
+#' \code{rd_sens_bw} refits the supplied model with varying bandwidths. 
 #' Other estimation parameters are held constant.
 #' 
 #' @param object An object returned by \code{rd_est} or \code{rd_impute}. 
-#' @param bws A positive numeric vector of bandwidth for refitting an \code{rd} object.  
+#' @param bws A positive numeric vector of the bandwidths for refitting an \code{rd} object.
 #'
 #' @return A dataframe which contains the estimate \code{est} and standard error \code{se} 
 #'   for each supplemented bandwidth.
@@ -12,6 +12,7 @@
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
