@@ -12,8 +12,8 @@ citEntry(entry = "Manual",
   note         = "R package version 1.3.",
   
   textVersion  =
-  paste("Ze Jin, Wang Liao, Irena Papst, Wenyu Zhang,Kimberly Hochstedler
-          and Felix Thoemmes (2018).",
+  paste("Ze Jin, Wang Liao, Irena Papst, Wenyu Zhang, Kimberly Hochstedler
+          and Felix Thoemmes (2021).",
         "rddapp: Regression Discontinuity Design Application.",
         "R package version 1.3.")
 )
