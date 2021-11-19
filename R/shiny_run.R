@@ -1,8 +1,8 @@
 #' Launch the Shiny App for Regression Discontinuity
 #'
-#' \code{shiny_run} looks for the Shiny app for rdd and launch it.
+#' \code{shiny_run} launches the R Shiny application for "rddapp".
 #'
-#' @param app_name The name of Shiny app.
+#' @param app_name A string specifying the name of the R Shiny app. The default is "shinyrdd".
 #'
 #' @importFrom shiny runApp 
 #'
