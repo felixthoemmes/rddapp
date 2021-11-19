@@ -70,6 +70,7 @@ If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric vector of le
 It is based on the \code{DCdensity} function in the "rdd" package.
 }
 \examples{
+set.seed(12345)
 # No discontinuity
 x <- runif(1000, -1, 1)
 dc_test(x, 0)
