@@ -20,7 +20,7 @@ The default is \code{"l"}.}
 }
 \value{
 \code{treat_assign} returns the treatment variable as a vector according to the design,
-  where 1 means the treated group, and 0 means the control group.
+  where 1 means the treated group and 0 means the control group.
 }
 \description{
 \code{treat_assign} computes the treatment variable, \code{t}, based on the cutoff of 

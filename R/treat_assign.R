@@ -15,7 +15,7 @@
 #'   The default is \code{"l"}.
 #'
 #' @return \code{treat_assign} returns the treatment variable as a vector according to the design,
-#'   where 1 means the treated group, and 0 means the control group.
+#'   where 1 means the treated group and 0 means the control group.
 
 treat_assign <- function(x, cut = 0, t.design = "l") {
   if(t.design == "geq")
