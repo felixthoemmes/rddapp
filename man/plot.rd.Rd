@@ -2,10 +2,7 @@
 % Please edit documentation in R/plot.rd.R
 \name{plot.rd}
 \alias{plot.rd}
-\title{Plot the Regression Discontinuity
- 
-\code{plot.rd} plots the relationship between the running variable and the outcome.
-It is based on the \code{plot.RD} function in the "rdd" package.}
+\title{Plot the Regression Discontinuity}
 \usage{
 \method{plot}{rd}(
   x,
@@ -53,8 +50,6 @@ If \code{bin_n} is < 0, data points are suppressed. The default is 20.}
 \item{...}{Additional arguments affecting the plots produced.}
 }
 \description{
-Plot the Regression Discontinuity
- 
 \code{plot.rd} plots the relationship between the running variable and the outcome.
 It is based on the \code{plot.RD} function in the "rdd" package.
 }
