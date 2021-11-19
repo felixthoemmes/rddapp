@@ -19,7 +19,7 @@ should be performed.}
 \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 }
 \value{
-A vector of weights with length equal to that of the \code{X} input 
+\code{wt_kern} returns a vector of weights with length equal to that of the \code{X} input 
   (one weight per element of \code{X}).
 }
 \description{

@@ -14,7 +14,7 @@
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
 #'
-#' @return A vector of weights with length equal to that of the \code{X} input 
+#' @return \code{wt_kern} returns a vector of weights with length equal to that of the \code{X} input 
 #'   (one weight per element of \code{X}).
 #'   
 #' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
