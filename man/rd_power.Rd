@@ -73,11 +73,6 @@ The default is c(0.001, 0.01, anad 0.05).}
   \item{The 2nd \code{Opt} provides results of the local linear regression estimator of RD,
      with of RD, with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
   }
-
-  @references Imbens, G., Kalyanaraman, K. (2012). 
-  Optimal bandwidth choice for the regression discontinuity estimator. 
-  The Review of Economic Studies, 79(3), 933-959.
-  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }
 \description{
 \code{rd_power} computes the empirical probability that RD is significant,
@@ -89,4 +84,10 @@ rd_power(x.design = "l")
 rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
 rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
 }
+}
+\references{
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }
