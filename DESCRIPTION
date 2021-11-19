@@ -10,7 +10,7 @@ Authors@R: c(
             email = "ip98@cornell.edu"),
     person("Wenyu", "Zhang", role = c("aut"),
             email = "wz258@cornell.edu"),
-    person("Kimberly", "Hochstedler", role = c("ctb"),
+    person("Kimberly", "Hochstedler", role = c("aut"),
             email = "kah343@cornell.edu"),
     person("Felix", "Thoemmes", role = c("aut", "cre"),
            email = "fjt36@cornell.edu")
