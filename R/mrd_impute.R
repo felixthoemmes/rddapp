@@ -106,8 +106,8 @@
 #' mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "center", t.design = c("geq", "geq"), m = 3)
 #' # univariate
 #' mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "univ", t.design = c("geq", "geq"), m = 3)
-#' # frontier
-#' mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", t.design = c("geq", "geq"), m = 3)
+#' # frontier - don't run due to computation time
+#' \dontrun{mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", boot = 1000, t.design = c("geq", "geq"), m = 3)}
 
 mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
   front.bw = NA, m = 10, k = 5,
