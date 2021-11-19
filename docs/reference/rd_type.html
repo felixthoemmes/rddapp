@@ -80,19 +80,21 @@ It can be accessed using the triple colon, as in rddapp:::rd_type().</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
-<dd><p>A <code>data.frame</code> with each row representing an observation.</p></dd>
+<dd><p>A <code>data.frame</code>, with each row representing an observation.</p></dd>
 <dt>treat</dt>
-<dd><p>The name of a numeric variable (treated = positive values).</p></dd>
+<dd><p>A string specifying the name of a numeric variable (treated = positive values).</p></dd>
 <dt>assign_1</dt>
-<dd><p>The variable name of the primary assignment.</p></dd>
+<dd><p>A string specifying the variable name of the primary assignment.</p></dd>
 <dt>cutoff_1</dt>
-<dd><p>The cutoff value of the primary assignment.</p></dd>
+<dd><p>A numeric vector of length 1 containing the cutpoint at which
+assignment to the treatment is determined, for the primary assignment.</p></dd>
 <dt>operator_1</dt>
 <dd><p>The operator for the primary assignment.</p></dd>
 <dt>assign_2</dt>
-<dd><p>The variable name of the secondary assignment.</p></dd>
+<dd><p>An optional string specifying the variable name of the secondary assignment.</p></dd>
 <dt>cutoff_2</dt>
-<dd><p>The cutoff value of the secondary assignment.</p></dd>
+<dd><p>An optional numeric vector of length 1 containing the cutpoint at which
+assignment to the treatment is determined, for the secondary assignment.</p></dd>
 <dt>operator_2</dt>
 <dd><p>The operator for the secondary assignment.</p></dd>
 </dl></div>
@@ -102,7 +104,7 @@ It can be accessed using the triple colon, as in rddapp:::rd_type().</p>
 <dl><dt>crosstab</dt>
 <dd><p>The cross-table as a data.frame.</p></dd>
 <dt>type</dt>
-<dd><p>The type of design as a string.</p></dd>
+<dd><p>The type of design as a string, either <code>"SHARP"</code> or <code>"FUZZY"</code>.</p></dd>
 </dl></div>
     </div>
 
@@ -115,8 +117,8 @@ It can be accessed using the triple colon, as in rddapp:::rd_type().</p>
 <span class="r-in"><span class="fu">rddapp</span><span class="fu">:::</span><span class="fu">rd_type</span><span class="op">(</span><span class="va">df</span>, <span class="st">'t'</span>, <span class="st">'x'</span>, <span class="fl">0</span>, <span class="st">'geq'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $crosstab</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A1 Control Treat Prob.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt; 0     480     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 = 0       0   520     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt; 0     499     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 = 0       0   501     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "SHARP"</span>

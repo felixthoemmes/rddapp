@@ -54,6 +54,7 @@
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' # No discontinuity
 #' x <- runif(1000, -1, 1)
 #' dc_test(x, 0)

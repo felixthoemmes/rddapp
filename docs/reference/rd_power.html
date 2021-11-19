@@ -78,53 +78,58 @@ i.e. the empirical alpha of null hypothesis: RD = 0</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>num.rep</dt>
-<dd><p>Number of repetitions used to calculate the empirical alpha.</p></dd>
+<dd><p>A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.</p></dd>
 <dt>sample.size</dt>
-<dd><p>Number of observations in each sample.</p></dd>
+<dd><p>A non-negative integer specifying the number of observations in each sample. The default is 100.</p></dd>
 <dt>x.dist</dt>
-<dd><p>Distribution of the assignment variable X.
-<code>"normal"</code> distribution is the default. 
-<code>"uniform"</code> distribution is the only other option.</p></dd>
+<dd><p>A string specifying the distribution of the assignment variable, <code>x</code>.
+Options are <code>"normal"</code> and  <code>"uniform"</code>. The default is the <code>"normal"</code> distribution.</p></dd>
 <dt>x.para</dt>
-<dd><p>Parameters of the distribution of the assignment variable X.
+<dd><p>A numeric vector of length 2 specifying parameters of the distribution of the first assignment variable, <code>x1</code>.
 If <code>x.dist</code> is <code>"normal"</code>, then <code>x.para</code> includes the
-mean and sd of normal distribution.
+mean and standard deviation of the normal distribution.
 If <code>x.dist</code> is <code>"uniform"</code>, then <code>x.para</code> includes the 
-upper and lower boundaries of uniform distribution.</p></dd>
+upper and lower boundaries of the uniform distribution. The default is c(0,1).</p></dd>
 <dt>x.cut</dt>
-<dd><p>Cutpoint of RD with respect to the assignment variable X.</p></dd>
+<dd><p>A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
 <dt>x.fuzzy</dt>
-<dd><p>Probabilities to be assigned to control for individuals in treatment 
-based on cutoff, and to treatment for individuals in control based on cutoff.
-For a sharp design, by default, the 1st entry is 0, and the 2nd entry is 0. 
-For a fuzzy design, the 1st entry is the probability to be assigned to 
-control for individuals above the cutpoint, and the 2nd entry is the 
-probability to be assigned to treatment for individuals below the cutpoint.</p></dd>
+<dd><p>A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the
+assignment variable, <code>x</code>, for individuals in the treatment based on the cutoff, 
+and to treatment for individuals in the control based on the cutoff.
+For a sharp design, both entries are 0. 
+For a fuzzy design, the first entry is the probability to be assigned to 
+control for individuals above the cutpoint, and the second entry is the 
+probability to be assigned to treatment for individuals below the cutpoint.
+The default is c(0,0), indicating a sharp design.</p></dd>
 <dt>x.design</dt>
-<dd><p>The treatment option according to design.
-The entry is for X: <code>"g"</code> means treatment is assigned 
-if X is greater than its cutoff, <code>"geq"</code> means treatment is assigned 
-if X is greater than or equal to its cutoff, <code>"l"</code> means treatment is assigned 
-if X is less than its cutoff, <code>"leq"</code> means treatment is assigned 
-if X is less than or equal to its cutoff.</p></dd>
+<dd><p>A string specifying the treatment option according to design.
+Options are <code>"g"</code> (treatment is assigned if <code>x</code> is greater than its cutoff),
+<code>"geq"</code> (treatment is assigned if <code>x</code> is greater than or equal to its cutoff),
+<code>"l"</code> (treatment is assigned if <code>x</code> is less than its cutoff),
+and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or equal to its cutoff).</p></dd>
 <dt>coeff</dt>
-<dd><p>Coefficients of variables in the linear model to generate data
-The 1st entry is the intercept. 
-The 2nd entry is the slope of treatment, i.e. treatment effect.
-The 3rd entry is the slope of assignment.
-The 4th entry is the slope of interaction between treatment and assignment.</p></dd>
+<dd><p>A numeric vector specifying coefficients of variables in the linear model to generate data.
+Coefficients are in the following order:</p><ul><li><p>The 1st entry is the intercept.</p></li>
+<li><p>The 2nd entry is the slope of treatment, i.e. treatment effect.</p></li>
+<li><p>The 3rd entry is the slope of assignment.</p></li>
+<li><p>The 4th entry is the slope of interaction between treatment and assignment.</p></li>
+</ul><p>The default is c(0.3, 1, 0.2, 0.3).</p></dd>
 <dt>eta.sq</dt>
-<dd><p>Expected partial eta-squared of the linear model with respect to the 
-treatment itself. It is used to control the variance of noise in the linear model.</p></dd>
+<dd><p>A numeric vector of length 1 specifying the expected partial eta-squared of the linear model with respect to the 
+treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.</p></dd>
 <dt>alpha.list</dt>
-<dd><p>List of significance levels used to calculate the empirical alpha.</p></dd>
+<dd><p>A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
+The default is c(0.001, 0.01, anad 0.05).</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>rd_power</code> returns the results of 2 estimators as a table of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a>  "<code>rdp</code>", including mean, variance, and power of estimate. The function <code>summary</code>  is used to obtain and print a summary of the power analysis.
-  The 1st <code>Linear</code> results of the linear regression estimator 
-  The 2nd <code>Opt</code> results of the local linear regression estimator
-  of RD, with the optimal bandwidth in the IK 2012 paper.</p>
+    <p><code>rd_power</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a>  "<code>rdp</code>", including containing the mean, variance, and power for two estimators. The function <code>summary</code>  is used to obtain and print a summary of the power analysis. The two estimators are:</p><ul><li><p>The 1st <code>Linear</code> provides results of the linear regression estimator.</p></li>
+<li><p>The 2nd <code>Opt</code> provides results of the local linear regression estimator of RD,
+     with of RD, with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.</p></li>
+</ul><p>@references Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+<a href="https://academic.oup.com/restud/article/79/3/933/1533189" class="external-link">https://academic.oup.com/restud/article/79/3/933/1533189</a>.</p>
     </div>
     </div>
 
