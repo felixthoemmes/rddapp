@@ -73,7 +73,6 @@
 #' @return \code{mrd_impute} returns an object of \link{class} "\code{mrd}", or "\code{mrdi}" for
 #' \code{"front"} method.
 #'
-#' @references Stata: 64 mi estimate - Estimation using multiple imputations
 #' @references Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 
 #'   Analyzing regression-discontinuity designs with multiple assignment variables: 
 #'   A comparative study of four estimation methods.

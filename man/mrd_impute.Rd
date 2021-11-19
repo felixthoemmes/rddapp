@@ -144,8 +144,6 @@ mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "univ", t.design = c("geq",
 mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", t.design = c("geq", "geq"), m = 3)
 }
 \references{
-Stata: 64 mi estimate - Estimation using multiple imputations
-
 Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 
   Analyzing regression-discontinuity designs with multiple assignment variables: 
   A comparative study of four estimation methods.
