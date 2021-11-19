@@ -25,7 +25,7 @@ for the heterogeneous treatment model.}
 for the treatment only model.}
 }
 \description{
-\code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}
+\code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}.
 It is based on the \code{summary.RD} function in the "rdd" package.
 }
 \references{

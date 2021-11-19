@@ -1,13 +1,13 @@
 #' Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation
 #' 
-#' \code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}
+#' \code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}.
 #' 
 #' @method summary mrdi
 #' 
 #' @param object An object of class \code{"mrdi"}, usually a result of a call to 
 #' \code{\link{mrd_impute}} with \code{"front"} method.
-#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
-#' @param digits Number of digits to display.
+#' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
+#' @param digits A non-negative integer specifying the number of digits to display.
 #' @param ... Additional arguments.
 #' 
 #' @return \code{summary.mrdi} returns a list which has the following components:

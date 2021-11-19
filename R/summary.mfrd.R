@@ -1,6 +1,6 @@
 #' Summarize the Multivariate Frontier Regression Discontinuity
 #' 
-#' \code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}
+#' \code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}.
 #' It is based on the \code{summary.RD} function in the "rdd" package. 
 #' 
 #' @method summary mfrd

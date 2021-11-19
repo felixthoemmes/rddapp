@@ -9,9 +9,9 @@
 \arguments{
 \item{object}{An object of class \code{"mrd"}, usually a result of a call to \code{\link{mrd_est}}.}
 
-\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
+\item{level}{A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.}
 
-\item{digits}{Number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.}
 
 \item{...}{Additional arguments.}
 }
@@ -32,6 +32,10 @@ for the heterogeneous treatment model.}
 for the treatment only model.}
 }
 \description{
-\code{summary.mrd} is a \code{summary} method for class \code{"mrd"}
-It is based on summary.RD function in the rdd package.
+\code{summary.mrd} is a \code{summary} method for class \code{"mrd"}.
+It is based on \code{summary.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }
