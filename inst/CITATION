@@ -4,12 +4,16 @@ citEntry(entry = "Manual",
   title        = "rddapp: Regression Discontinuity Design Application",
   author       = personList(as.person("Ze Jin"),
                    as.person("Wang Liao"),
+                   as.person("Irena Papst"),
+                   as.person("Wenyu Zhang"),
+                   as.person("Kimberly Hochstedler"),
                    as.person("Felix Thoemmes")),
   year         = "2021",
   note         = "R package version 1.3.",
   
   textVersion  =
-  paste("Ze Jin, Wang Liao, and Felix Thoemmes (2018).",
+  paste("Ze Jin, Wang Liao, Irena Papst, Wenyu Zhang,Kimberly Hochstedler
+          and Felix Thoemmes (2018).",
         "rddapp: Regression Discontinuity Design Application.",
         "R package version 1.3.")
 )
