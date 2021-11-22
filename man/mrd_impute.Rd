@@ -32,8 +32,8 @@ mrd_impute(
 }
 \arguments{
 \item{formula}{The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
-format of \code{y ~ x1 + x2} for a simple sharp MRDD, or \code{y ~ x1 + x2 | c1 + c2}
-for a sharp MRDD with two covariates. Fuzzy MRDD may be specified as
+format of \code{y ~ x1 + x2} for a simple sharp MRDD or \code{y ~ x1 + x2 | c1 + c2}
+for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
 \code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
 \code{z} is the endogenous treatment variable. Covariates are then included in the 
 same manner as in a sharp MRDD.}
@@ -43,7 +43,7 @@ the variables are taken from \code{environment(formula)}.}
 
 \item{subset}{An optional vector specifying a subset of observations to be used in the fitting process.}
 
-\item{cutpoint}{An optional numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).}
+\item{cutpoint}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).}
 
 \item{bw}{A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -104,7 +104,8 @@ Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 \item{margin}{A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
 of sample points on each assignment variable. The default is 0.03.}
 
-\item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.}
+\item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
+This arugment is not optional if method is \code{"front"}.}
 
 \item{method}{A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 \code{"univ"}, \code{"front"}.}

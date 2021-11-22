@@ -5,8 +5,8 @@
 #' and frontier-specific effects (\code{tau_R} and \code{tau_M}) simultaneously. 
 #' 
 #' @param formula The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
-#'   format of \code{y ~ x1 + x2} for a simple sharp MRDD, or \code{y ~ x1 + x2 | c1 + c2}
-#'   for a sharp MRDD with two covariates. Fuzzy MRDD may be specified as
+#'   format of \code{y ~ x1 + x2} for a simple sharp MRDD or \code{y ~ x1 + x2 | c1 + c2}
+#'   for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
 #'   \code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
 #'   \code{z} is the endogenous treatment variable. Covariates are then included in the 
 #'   same manner as in a sharp MRDD.
@@ -18,12 +18,12 @@
 #'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
 #'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
 #'   2012 method. If \code{bw}  is \code{"IK09"}, the bandwidth is calculated using 
-#'   the Imbens-Kalyanaraman 2009 method. Then the RD is estimated
+#'   the Imbens-Kalyanaraman 2009 method. Then, the RD is estimated
 #'   with that bandwidth, half that bandwidth, and twice that bandwidth. 
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
-#' @param front.bw An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+#' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
 #'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.
@@ -58,6 +58,7 @@
 #' @param margin A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable. The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
+#'   This arugment is not optional if method is \code{"front"}.
 #' @param method A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 #'   \code{"univ"}, \code{"front"}.
 #' @param t.design A character vector of length 2 specifying the treatment option according to design.

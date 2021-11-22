@@ -90,8 +90,8 @@
     <h2>Arguments</h2>
     <dl><dt>formula</dt>
 <dd><p>The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
-format of <code>y ~ x1 + x2</code> for a simple sharp MRDD, or <code>y ~ x1 + x2 | c1 + c2</code>
-for a sharp MRDD with two covariates. Fuzzy MRDD may be specified as
+format of <code>y ~ x1 + x2</code> for a simple sharp MRDD or <code>y ~ x1 + x2 | c1 + c2</code>
+for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
 <code>y ~ x1 + x2 + z</code> where <code>x</code> is the running variable, and 
 <code>z</code> is the endogenous treatment variable. Covariates are then included in the 
 same manner as in a sharp MRDD.</p></dd>
@@ -101,7 +101,7 @@ the variables are taken from <code>environment(formula)</code>.</p></dd>
 <dt>subset</dt>
 <dd><p>An optional vector specifying a subset of observations to be used in the fitting process.</p></dd>
 <dt>cutpoint</dt>
-<dd><p>An optional numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).</p></dd>
+<dd><p>A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).</p></dd>
 <dt>bw</dt>
 <dd><p>A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are <code>"IK09"</code>, <code>"IK12"</code>, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -162,7 +162,8 @@ Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.<
 <dd><p>A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
 of sample points on each assignment variable. The default is 0.03.</p></dd>
 <dt>boot</dt>
-<dd><p>An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.</p></dd>
+<dd><p>An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
+This arugment is not optional if method is <code>"front"</code>.</p></dd>
 <dt>method</dt>
 <dd><p>A string specifying the method to estimate the RD effect. Options are <code>"center"</code>, 
 <code>"univ"</code>, <code>"front"</code>.</p></dd>
