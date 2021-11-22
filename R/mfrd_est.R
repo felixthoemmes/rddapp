@@ -6,8 +6,8 @@
 #' @param y A numeric object containing outcome variable.
 #' @param x1 A numeric object containing the first assignment variable.
 #' @param x2 A numeric object containing the second assignment variable.
-#' @param c1 A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for \code{x1}.
-#' @param c2 A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for \code{x2}.
+#' @param c1 A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x1}.
+#' @param c2 A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x2}.
 #' @param t.design A character vector of length 2 specifying the treatment option according to design.
 #'   The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
 #'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
@@ -15,9 +15,9 @@
 #'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
 #'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
 #'   The same options are available for \code{x2}.
-#' @param local A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+#' @param local A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 #'   standardized scale, for each assignment variable. The default is 0.15. 
-#' @param front.bw An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+#' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
 #'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.
@@ -29,7 +29,7 @@
 #' @param ngrid A non-negative integer specifying the number of non-zero grid points on each assignment variable,
 #'   which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 #'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
-#' @param margin A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+#' @param margin A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable. The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
 #' @param cluster An optional vector specifying clusters within which the errors are assumed

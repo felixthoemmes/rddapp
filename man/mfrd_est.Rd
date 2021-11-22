@@ -30,9 +30,9 @@ mfrd_est(
 
 \item{x2}{A numeric object containing the second assignment variable.}
 
-\item{c1}{A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for \code{x1}.}
+\item{c1}{A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x1}.}
 
-\item{c2}{A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for \code{x2}.}
+\item{c2}{A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x2}.}
 
 \item{t.design}{A character vector of length 2 specifying the treatment option according to design.
 The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
@@ -42,10 +42,10 @@ The first entry is for \code{x1} and the second entry is for \code{x2}. Options 
 and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
 The same options are available for \code{x2}.}
 
-\item{local}{A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+\item{local}{A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 standardized scale, for each assignment variable. The default is 0.15.}
 
-\item{front.bw}{An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+\item{front.bw}{A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
 of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
 
 \item{m}{A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
@@ -62,7 +62,7 @@ if \code{front.bw} is \code{NA}. The default is 5.}
 which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
-\item{margin}{A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+\item{margin}{A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 of sample points on each assignment variable. The default is 0.03.}
 
 \item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.}
