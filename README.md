@@ -1,6 +1,6 @@
 rddapp
 ==================================================
-[![Travis-CI Build Status](https://travis-ci.org/felixthoemmes/rddapp.svg?branch=master)](https://travis-ci.org/felixthoemmes/rddapp) [![Downloads](http://cranlogs.r-pkg.org/badges/rddapp)](https://CRAN.R-project.org/package=rddapp) [![Cran Build](https://www.r-pkg.org/badges/version/rddapp)](https://CRAN.R-project.org/package=rddapp)
+[![Downloads](http://cranlogs.r-pkg.org/badges/rddapp)](https://CRAN.R-project.org/package=rddapp) [![Cran Build](https://www.r-pkg.org/badges/version/rddapp)](https://CRAN.R-project.org/package=rddapp)
 [![R-CMD-check](https://github.com/felixthoemmes/rddapp/actions/workflows/r.yml/badge.svg)](https://github.com/felixthoemmes/rddapp/actions/workflows/r.yml)
 
 Overview
