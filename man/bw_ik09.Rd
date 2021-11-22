@@ -11,7 +11,7 @@ bw_ik09(X, Y, cutpoint = NULL, verbose = FALSE, kernel = "triangular")
 
 \item{Y}{A numeric vector containing the outcome variable.}
 
-\item{cutpoint}{An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined.}
+\item{cutpoint}{A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
 
 \item{verbose}{A logical value indicating whether to print more information to the terminal. 
 The default is \code{FALSE}.}
@@ -21,7 +21,7 @@ The default is \code{FALSE}.}
 \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 }
 \value{
-\code{ik_bw09} returns a numeric vector of length 1 containing the optimal bandwidth.
+\code{ik_bw09} returns a numeric value specifying the optimal bandwidth.
 }
 \description{
 \code{bw_ik09} calculates the Imbens-Kalyanaraman (2009) optimal bandwidth

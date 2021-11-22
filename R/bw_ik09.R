@@ -8,14 +8,14 @@
 #' 
 #' @param X A numeric vector containing the running variable.
 #' @param Y A numeric vector containing the outcome variable.
-#' @param cutpoint An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined.
+#' @param cutpoint A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.
 #' @param verbose A logical value indicating whether to print more information to the terminal. 
 #'   The default is \code{FALSE}.
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
 #'
-#' @return \code{ik_bw09} returns a numeric vector of length 1 containing the optimal bandwidth.
+#' @return \code{ik_bw09} returns a numeric value specifying the optimal bandwidth.
 #'
 #' @references Imbens, G., Kalyanaraman, K. (2009). 
 #'   Optimal bandwidth choice for the regression discontinuity estimator 
