@@ -4,9 +4,9 @@
 #' It is based on the \code{DCdensity} function in the "rdd" package. 
 #' 
 #' @param runvar A numeric vector containing the running variable.
-#' @param cutpoint An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0. 
-#' @param bin An optional numeric vector of length 1 containing the binwidth. The default is \code{2*sd(runvar)*length(runvar)^(-.5)}.
-#' @param bw An optional numeric vector of length 1 containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
+#' @param cutpoint A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0. 
+#' @param bin A numeric value containing the binwidth. The default is \code{2*sd(runvar)*length(runvar)^(-.5)}.
+#' @param bw A numeric value containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
 #'   from McCrary (2008).
 #' @param verbose A logical value indicating whether to print diagnostic information to 
 #'   the terminal. The default is \code{TRUE}.
@@ -24,7 +24,7 @@
 #'   expressions in the function are allowed to run. The default is 30. Specify \code{Inf} to run all expressions
 #'   to completion.
 #'
-#' @return If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric vector of length 1 containing the p-value of the McCrary (2008) sorting test. 
+#' @return If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
 #'   Additional output is enabled when \code{ext.out} is \code{TRUE}. 
 #'   In this case, \code{dc_test} returns a list with the following elements:
 #' \item{theta}{The estimated log difference in heights at the cutpoint.}

@@ -21,11 +21,11 @@ dc_test(
 \arguments{
 \item{runvar}{A numeric vector containing the running variable.}
 
-\item{cutpoint}{An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
+\item{cutpoint}{A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
 
-\item{bin}{An optional numeric vector of length 1 containing the binwidth. The default is \code{2*sd(runvar)*length(runvar)^(-.5)}.}
+\item{bin}{A numeric value containing the binwidth. The default is \code{2*sd(runvar)*length(runvar)^(-.5)}.}
 
-\item{bw}{An optional numeric vector of length 1 containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
+\item{bw}{A numeric value containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
 from McCrary (2008).}
 
 \item{verbose}{A logical value indicating whether to print diagnostic information to 
@@ -51,7 +51,7 @@ expressions in the function are allowed to run. The default is 30. Specify \code
 to completion.}
 }
 \value{
-If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric vector of length 1 containing the p-value of the McCrary (2008) sorting test. 
+If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
   Additional output is enabled when \code{ext.out} is \code{TRUE}. 
   In this case, \code{dc_test} returns a list with the following elements:
 \item{theta}{The estimated log difference in heights at the cutpoint.}

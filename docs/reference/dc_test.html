@@ -81,11 +81,11 @@ It is based on the <code>DCdensity</code> function in the "rdd" package.</p>
     <dl><dt>runvar</dt>
 <dd><p>A numeric vector containing the running variable.</p></dd>
 <dt>cutpoint</dt>
-<dd><p>An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
+<dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
 <dt>bin</dt>
-<dd><p>An optional numeric vector of length 1 containing the binwidth. The default is <code>2*sd(runvar)*length(runvar)^(-.5)</code>.</p></dd>
+<dd><p>A numeric value containing the binwidth. The default is <code>2*sd(runvar)*length(runvar)^(-.5)</code>.</p></dd>
 <dt>bw</dt>
-<dd><p>An optional numeric vector of length 1 containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
+<dd><p>A numeric value containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
 from McCrary (2008).</p></dd>
 <dt>verbose</dt>
 <dd><p>A logical value indicating whether to print diagnostic information to 
@@ -112,7 +112,7 @@ to completion.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>ext.out</code> is <code>FALSE</code>, <code>dc_test</code> returns a numeric vector of length 1 containing the p-value of the McCrary (2008) sorting test. 
+    <p>If <code>ext.out</code> is <code>FALSE</code>, <code>dc_test</code> returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
   Additional output is enabled when <code>ext.out</code> is <code>TRUE</code>. 
   In this case, <code>dc_test</code> returns a list with the following elements:</p>
 <dl><dt>theta</dt>
