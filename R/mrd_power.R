@@ -19,8 +19,8 @@
 #'   mean and standard deviation of the normal distribution.
 #'   If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
 #'   upper and lower boundaries of the uniform distribution. The default is c(0,1).
-#' @param x1.cut A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
-#' @param x2.cut A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
+#' @param x1.cut A numeric value containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
+#' @param x2.cut A numeric value containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
 #' @param x1.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the first
 #'   assignment variable, \code{x1}, for individuals in the treatment based on the cutoff, 
 #'   and to treatment for individuals in the control based on the cutoff.
@@ -29,9 +29,14 @@
 #'   control for individuals above the cutpoint, and the second entry is the 
 #'   probability to be assigned to treatment for individuals below the cutpoint.
 #'   The default is c(0,0), indicating a sharp design. 
-#' @param x2.fuzzy Probabilities to be assigned to control in terms of the 2nd
-#'   assignment variable X2 for individuals in treatment based on cutoff, 
-#'   and to treatment for individuals in control based on cutoff.
+#' @param x2.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the second
+#'   assignment variable, \code{x2}, for individuals in the treatment based on the cutoff, 
+#'   and to treatment for individuals in the control based on the cutoff.
+#'   For a sharp design, both entries are 0. 
+#'   For a fuzzy design, the first entry is the probability to be assigned to 
+#'   control for individuals above the cutpoint, and the second entry is the 
+#'   probability to be assigned to treatment for individuals below the cutpoint.
+#'   The default is c(0,0), indicating a sharp design.
 #' @param x1.design A string specifying the treatment option according to design for \code{x1}. Options are  
 #'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
 #'   \code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
@@ -59,7 +64,7 @@
 #'   \item{The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.}
 #'   }
 #'   The default is c(0.1, 0.5, 0.5, 1, rep(0.1, 9)).
-#' @param eta.sq A numeric vector of length 1 specifying the expected partial eta-squared of the linear model with respect to the 
+#' @param eta.sq A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
 #'   treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50. 
 #' @param alpha.list A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
 #'   The default is c(0.001, 0.01, anad 0.05).
@@ -68,19 +73,19 @@
 #'   "\code{mrdp}" containing the mean, variance, and power for six estimators. The function \code{summary}
 #'   is used to obtain and print a summary of the power analysis. The six estimators are as follows:
 #'   \itemize{
-#'   \item{The 1st \code{Linear} provides results of the linear regression estimator 
+#'   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator 
 #'   of combined RD using the centering approach.}
-#'   \item{The 2nd \code{Opt} provides results of the local linear regression estimator
+#'   \item{The 2nd estimator, \code{Opt}, provides results of the local linear regression estimator
 #'   of combined RD using the centering approach, 
 #'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
-#'   \item{The 3rd \code{Linear} provides results of the linear regression estimator 
+#'   \item{The 3rd estimator, \code{Linear}, provides results of the linear regression estimator 
 #'   of separate RD in terms of \code{x1} using the univariate approach.}
-#'   \item{The 4th \code{Opt} provides results of the local linear regression estimator
+#'   \item{The 4th estimator, \code{Opt}, provides results of the local linear regression estimator
 #'   of separate RD in terms of \code{x1} using the univariate approach, 
 #'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
-#'   \item{The 5th \code{Linear} provides results of the linear regression estimator 
+#'   \item{The 5th estimator, \code{Linear}, provides results of the linear regression estimator 
 #'   of separate RD in terms of \code{x2} using the univariate approach.}
-#'   \item{The 6th \code{Opt} provides results of the local linear regression estimator
+#'   \item{The 6th estimator, \code{Opt}, provides results of the local linear regression estimator
 #'   of separate RD in terms of \code{x2} using the univariate approach, 
 #'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
 #'   }
