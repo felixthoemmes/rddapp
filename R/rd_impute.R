@@ -11,7 +11,7 @@
 #' @param data An optional data frame containing the variables in the model. If not found in \code{data},
 #'   the variables are taken from \code{environment(formula)}.
 #' @param subset An optional vector specifying a subset of observations to be used in the fitting process.
-#' @param cutpoint An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.
+#' @param cutpoint A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.
 #' @param bw A vector specifying the bandwidths at which to estimate the RD. 
 #'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
 #'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
@@ -72,6 +72,7 @@
 #' @export 
 #'
 #' @examples
+#' set.seed(12345)
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x < 0) + rnorm(1000)

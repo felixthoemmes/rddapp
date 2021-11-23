@@ -34,7 +34,7 @@ the variables are taken from \code{environment(formula)}.}
 
 \item{subset}{An optional vector specifying a subset of observations to be used in the fitting process.}
 
-\item{cutpoint}{An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
+\item{cutpoint}{A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
 
 \item{bw}{A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -89,6 +89,7 @@ and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its
 \code{rd_impute} estimates treatment effects in an RDD with imputed missing values.
 }
 \examples{
+set.seed(12345)
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x < 0) + rnorm(1000)
