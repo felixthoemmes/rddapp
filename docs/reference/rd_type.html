@@ -86,39 +86,40 @@ It can be accessed using the triple colon, as in rddapp:::rd_type().</p>
 <dt>assign_1</dt>
 <dd><p>A string specifying the variable name of the primary assignment.</p></dd>
 <dt>cutoff_1</dt>
-<dd><p>A numeric vector of length 1 containing the cutpoint at which
+<dd><p>A numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the primary assignment.</p></dd>
 <dt>operator_1</dt>
 <dd><p>The operator for the primary assignment.</p></dd>
 <dt>assign_2</dt>
 <dd><p>An optional string specifying the variable name of the secondary assignment.</p></dd>
 <dt>cutoff_2</dt>
-<dd><p>An optional numeric vector of length 1 containing the cutpoint at which
+<dd><p>An optional numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the secondary assignment.</p></dd>
 <dt>operator_2</dt>
 <dd><p>The operator for the secondary assignment.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of two elements:</p>
+    <p><code>rd_type</code> returns a list of two elements:</p>
 <dl><dt>crosstab</dt>
 <dd><p>The cross-table as a data.frame.</p></dd>
 <dt>type</dt>
-<dd><p>The type of design as a string, either <code>"SHARP"</code> or <code>"FUZZY"</code>.</p></dd>
+<dd><p>A string specifying the type of design used, either <code>"SHARP"</code> or <code>"FUZZY"</code>.</p></dd>
 </dl></div>
     </div>
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">cov</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, t <span class="op">=</span> <span class="va">x</span><span class="op">&gt;=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">rddapp</span><span class="fu">:::</span><span class="fu">rd_type</span><span class="op">(</span><span class="va">df</span>, <span class="st">'t'</span>, <span class="st">'x'</span>, <span class="fl">0</span>, <span class="st">'geq'</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $crosstab</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A1 Control Treat Prob.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt; 0     499     0     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 = 0       0   501     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 &lt; 0     469     0     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 = 0       0   531     1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "SHARP"</span>
