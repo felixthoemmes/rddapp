@@ -1,7 +1,7 @@
 #' Power Analysis of Regression Discontinuity
 #' 
 #' \code{rd_power} computes the empirical probability that RD is significant,
-#' i.e. the empirical alpha of null hypothesis: RD = 0
+#' i.e. the empirical alpha of null hypothesis: RD = 0.
 #'
 #' @param num.rep A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.
 #' @param sample.size A non-negative integer specifying the number of observations in each sample. The default is 100.
@@ -12,7 +12,7 @@
 #'   mean and standard deviation of the normal distribution.
 #'   If \code{x.dist} is \code{"uniform"}, then \code{x.para} includes the 
 #'   upper and lower boundaries of the uniform distribution. The default is c(0,1).
-#' @param x.cut A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.
+#' @param x.cut A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.
 #' @param x.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the
 #'   assignment variable, \code{x}, for individuals in the treatment based on the cutoff, 
 #'   and to treatment for individuals in the control based on the cutoff.
@@ -35,7 +35,7 @@
 #'   \item{The 4th entry is the slope of interaction between treatment and assignment.}
 #'   }
 #'   The default is c(0.3, 1, 0.2, 0.3).
-#' @param eta.sq A numeric vector of length 1 specifying the expected partial eta-squared of the linear model with respect to the 
+#' @param eta.sq A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
 #'   treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50. 
 #' @param alpha.list A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
 #'   The default is c(0.001, 0.01, anad 0.05).
@@ -44,9 +44,9 @@
 #'   "\code{rdp}", including containing the mean, variance, and power for two estimators. The function \code{summary}
 #'   is used to obtain and print a summary of the power analysis. The two estimators are:
 #'   \itemize{
-#'   \item{The 1st \code{Linear} provides results of the linear regression estimator.} 
-#'   \item{The 2nd \code{Opt} provides results of the local linear regression estimator of RD,
-#'      with of RD, with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+#'   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator.} 
+#'   \item{The 2nd estimator, \code{Opt}, provides results of the local linear regression estimator of RD,
+#'         with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
 #'   }
 #'
 #' @references Imbens, G., Kalyanaraman, K. (2012). 
