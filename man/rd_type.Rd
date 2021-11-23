@@ -22,22 +22,22 @@ rd_type(
 
 \item{assign_1}{A string specifying the variable name of the primary assignment.}
 
-\item{cutoff_1}{A numeric vector of length 1 containing the cutpoint at which
+\item{cutoff_1}{A numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the primary assignment.}
 
 \item{operator_1}{The operator for the primary assignment.}
 
 \item{assign_2}{An optional string specifying the variable name of the secondary assignment.}
 
-\item{cutoff_2}{An optional numeric vector of length 1 containing the cutpoint at which
+\item{cutoff_2}{An optional numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the secondary assignment.}
 
 \item{operator_2}{The operator for the secondary assignment.}
 }
 \value{
-A list of two elements:
+\code{rd_type} returns a list of two elements:
 \item{crosstab}{The cross-table as a data.frame.}
-\item{type}{The type of design as a string, either \code{"SHARP"} or \code{"FUZZY"}.}
+\item{type}{A string specifying the type of design used, either \code{"SHARP"} or \code{"FUZZY"}.}
 }
 \description{
 \code{rd_type} cross-tabulates observations based on (1) a binary treatment and 
@@ -46,6 +46,7 @@ This is an internal function and is typically not directly invoked by the user.
 It can be accessed using the triple colon, as in rddapp:::rd_type().
 }
 \examples{
+set.seed(12345)
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
