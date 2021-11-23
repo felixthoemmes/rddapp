@@ -13,7 +13,7 @@ attr_check(x1, y, t, x2 = NULL)
 as \code{x1}.}
 
 \item{t}{A numeric object containing the treatment variable, with the same dimensionality 
-as \code{x1} and \code{y}. The treatment variable should be coded as 0 for untreated and 1 for treated.}
+as \code{x1} and \code{y}.}
 
 \item{x2}{A numeric object containing the secondary assignment variable.}
 }

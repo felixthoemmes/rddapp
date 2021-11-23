@@ -9,7 +9,7 @@
 #' @param y A numeric object containing the outcome variable, with the same dimensionality 
 #'   as \code{x1}.
 #' @param t A numeric object containing the treatment variable, with the same dimensionality 
-#'   as \code{x1} and \code{y}. The treatment variable should be coded as 0 for untreated and 1 for treated. 
+#'   as \code{x1} and \code{y}.
 #' @param x2 A numeric object containing the secondary assignment variable.
 #' 
 #' @return \code{attr_check} returns a list containing the amount and percentage of missing data for all variables and subgroups, by treatment.
