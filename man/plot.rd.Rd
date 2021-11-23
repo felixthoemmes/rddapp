@@ -30,12 +30,12 @@
 \item{fit_ci}{A string specifying whether and how to plot prediction confidence intervals
 around the fitted lines. Options are \code{c("area", "dot", "hide")}.}
 
-\item{fit_ci_level}{A numeric vector of length 1 specifying the confidence level of prediction CIs. The default is 0.95.}
+\item{fit_ci_level}{A numeric value between 0 and 1 specifying the confidence level of prediction CIs. The default is 0.95.}
 
 \item{bin_n}{An integer specifying the number of bins for binned data points. If \code{bin_n} is 0, raw data points are plotted.
 If \code{bin_n} is < 0, data points are suppressed. The default is 20.}
 
-\item{bin_level}{A numeric vector of length 1 specifying the confidence level for CIs around binned data points. The default is 0.95.}
+\item{bin_level}{A numeric value between 0 and 1 specifying the confidence level for CIs around binned data points. The default is 0.95.}
 
 \item{bin_size}{A string specifying how to plot the number of observations in each bin, by \code{"size"} or \code{"shape"}.}
 

@@ -10,10 +10,10 @@
 #' @param fit_line A string specifying models to be shown as fitted lines. Options are \code{c("linear", "quadratic", "cubic", "optimal", "half", "double")}.
 #' @param fit_ci A string specifying whether and how to plot prediction confidence intervals
 #'   around the fitted lines. Options are \code{c("area", "dot", "hide")}.
-#' @param fit_ci_level A numeric vector of length 1 specifying the confidence level of prediction CIs. The default is 0.95. 
+#' @param fit_ci_level A numeric value between 0 and 1 specifying the confidence level of prediction CIs. The default is 0.95. 
 #' @param bin_n An integer specifying the number of bins for binned data points. If \code{bin_n} is 0, raw data points are plotted.  
 #'   If \code{bin_n} is < 0, data points are suppressed. The default is 20.
-#' @param bin_level A numeric vector of length 1 specifying the confidence level for CIs around binned data points. The default is 0.95.
+#' @param bin_level A numeric value between 0 and 1 specifying the confidence level for CIs around binned data points. The default is 0.95.
 #' @param bin_size A string specifying how to plot the number of observations in each bin, by \code{"size"} or \code{"shape"}.
 #' @param quant_bin A logical value indicating whether the data are binned per quantiles. The default is \code{TRUE}.
 #' @param xlim An optional numeric vector containing the x-axis limits.
