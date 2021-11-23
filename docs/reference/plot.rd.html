@@ -91,12 +91,12 @@ It is based on the <code>plot.RD</code> function in the "rdd" package.</p>
 <dd><p>A string specifying whether and how to plot prediction confidence intervals
 around the fitted lines. Options are <code>c("area", "dot", "hide")</code>.</p></dd>
 <dt>fit_ci_level</dt>
-<dd><p>A numeric value between 0 and 1 specifying the confidence level of prediction CIs. The default is 0.95.</p></dd>
+<dd><p>A numeric vector of length 1 specifying the confidence level of prediction CIs. The default is 0.95.</p></dd>
 <dt>bin_n</dt>
 <dd><p>An integer specifying the number of bins for binned data points. If <code>bin_n</code> is 0, raw data points are plotted.
 If <code>bin_n</code> is &lt; 0, data points are suppressed. The default is 20.</p></dd>
 <dt>bin_level</dt>
-<dd><p>A numeric value between 0 and 1 specifying the confidence level for CIs around binned data points. The default is 0.95.</p></dd>
+<dd><p>A numeric vector of length 1 specifying the confidence level for CIs around binned data points. The default is 0.95.</p></dd>
 <dt>bin_size</dt>
 <dd><p>A string specifying how to plot the number of observations in each bin, by <code>"size"</code> or <code>"shape"</code>.</p></dd>
 <dt>quant_bin</dt>

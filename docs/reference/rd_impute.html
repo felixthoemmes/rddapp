@@ -92,7 +92,7 @@ the variables are taken from <code>environment(formula)</code>.</p></dd>
 <dt>subset</dt>
 <dd><p>An optional vector specifying a subset of observations to be used in the fitting process.</p></dd>
 <dt>cutpoint</dt>
-<dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
+<dd><p>An optional numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
 <dt>bw</dt>
 <dd><p>A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are <code>"IK09"</code>, <code>"IK12"</code>, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -165,8 +165,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 
     <div id="examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">cov</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
@@ -177,7 +176,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Linear   Quadratic       Cubic         Opt    Half-Opt  Double-Opt  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      9.789       9.248       9.168       9.384       9.335       9.675  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      9.377       9.846       9.954       9.760       9.757       9.452  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="co"># Efficiency gains can be made by including covariates</span></span>
 <span class="r-in"><span class="fu">rd_impute</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">cov</span>, impute <span class="op">=</span> <span class="va">group</span>, t.design <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
@@ -187,7 +186,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Linear   Quadratic       Cubic         Opt    Half-Opt  Double-Opt  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      9.947       9.906      10.261       9.938      10.239       9.937  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      10.03       10.22       10.17       10.13       10.33       10.06  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

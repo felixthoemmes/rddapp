@@ -105,9 +105,9 @@ mean and standard deviation of the normal distribution.
 If <code>x2.dist</code> is <code>"uniform"</code>, then <code>x2.para</code> includes the 
 upper and lower boundaries of the uniform distribution. The default is c(0,1).</p></dd>
 <dt>x1.cut</dt>
-<dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, <code>x1</code>. The default is 0.</p></dd>
+<dd><p>A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, <code>x1</code>. The default is 0.</p></dd>
 <dt>x2.cut</dt>
-<dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, <code>x2</code>. The default is 0.</p></dd>
+<dd><p>A numeric vector of length 1 containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, <code>x2</code>. The default is 0.</p></dd>
 <dt>x1.fuzzy</dt>
 <dd><p>A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the first
 assignment variable, <code>x1</code>, for individuals in the treatment based on the cutoff, 
@@ -118,14 +118,9 @@ control for individuals above the cutpoint, and the second entry is the
 probability to be assigned to treatment for individuals below the cutpoint.
 The default is c(0,0), indicating a sharp design.</p></dd>
 <dt>x2.fuzzy</dt>
-<dd><p>A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the second
-assignment variable, <code>x2</code>, for individuals in the treatment based on the cutoff, 
-and to treatment for individuals in the control based on the cutoff.
-For a sharp design, both entries are 0. 
-For a fuzzy design, the first entry is the probability to be assigned to 
-control for individuals above the cutpoint, and the second entry is the 
-probability to be assigned to treatment for individuals below the cutpoint.
-The default is c(0,0), indicating a sharp design.</p></dd>
+<dd><p>Probabilities to be assigned to control in terms of the 2nd
+assignment variable X2 for individuals in treatment based on cutoff, 
+and to treatment for individuals in control based on cutoff.</p></dd>
 <dt>x1.design</dt>
 <dd><p>A string specifying the treatment option according to design for <code>x1</code>. Options are
 <code>"g"</code> (treatment is assigned if <code>x1</code> is greater than its cutoff),
@@ -154,7 +149,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x2</code> is less than or
 <li><p>The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.</p></li>
 </ul><p>The default is c(0.1, 0.5, 0.5, 1, rep(0.1, 9)).</p></dd>
 <dt>eta.sq</dt>
-<dd><p>A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
+<dd><p>A numeric vector of length 1 specifying the expected partial eta-squared of the linear model with respect to the 
 treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.</p></dd>
 <dt>alpha.list</dt>
 <dd><p>A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
@@ -162,19 +157,19 @@ The default is c(0.001, 0.01, anad 0.05).</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>mrd_power</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a>  "<code>mrdp</code>" containing the mean, variance, and power for six estimators. The function <code>summary</code>  is used to obtain and print a summary of the power analysis. The six estimators are as follows:</p><ul><li><p>The 1st estimator, <code>Linear</code>, provides results of the linear regression estimator 
+    <p><code>mrd_power</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a>  "<code>mrdp</code>" containing the mean, variance, and power for six estimators. The function <code>summary</code>  is used to obtain and print a summary of the power analysis. The six estimators are as follows:</p><ul><li><p>The 1st <code>Linear</code> provides results of the linear regression estimator 
   of combined RD using the centering approach.</p></li>
-<li><p>The 2nd estimator, <code>Opt</code>, provides results of the local linear regression estimator
+<li><p>The 2nd <code>Opt</code> provides results of the local linear regression estimator
   of combined RD using the centering approach, 
   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.</p></li>
-<li><p>The 3rd estimator, <code>Linear</code>, provides results of the linear regression estimator 
+<li><p>The 3rd <code>Linear</code> provides results of the linear regression estimator 
   of separate RD in terms of <code>x1</code> using the univariate approach.</p></li>
-<li><p>The 4th estimator, <code>Opt</code>, provides results of the local linear regression estimator
+<li><p>The 4th <code>Opt</code> provides results of the local linear regression estimator
   of separate RD in terms of <code>x1</code> using the univariate approach, 
   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.</p></li>
-<li><p>The 5th estimator, <code>Linear</code>, provides results of the linear regression estimator 
+<li><p>The 5th <code>Linear</code> provides results of the linear regression estimator 
   of separate RD in terms of <code>x2</code> using the univariate approach.</p></li>
-<li><p>The 6th estimator, <code>Opt</code>, provides results of the local linear regression estimator
+<li><p>The 6th <code>Opt</code> provides results of the local linear regression estimator
   of separate RD in terms of <code>x2</code> using the univariate approach, 
   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.</p></li>
 </ul><p>@references Imbens, G., Kalyanaraman, K. (2012). 
