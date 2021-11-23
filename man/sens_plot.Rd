@@ -16,7 +16,7 @@ sens_plot(
 \item{sim_results}{A \code{data.frame} returned by \code{rd_sens_cutoff}, \code{rd_sens_bw},
 \code{mrd_sens_cutoff}, or \code{mrd_sens_bw}.}
 
-\item{level}{A numeric vector of length 1 specifying the confidence level for CIs (assuming a normal sampling distribution). The default is 0.95.}
+\item{level}{A numeric value between 0 and 1 specifying the confidence level for CIs (assuming a normal sampling distribution). The default is 0.95.}
 
 \item{x}{A string of the column name of the varying parameter in \code{sim_results}. 
 This will be used as the x-axis in the plot. Possible values are \code{c("A1", "A2", "bw")}, 
