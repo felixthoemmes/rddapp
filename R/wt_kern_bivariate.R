@@ -1,27 +1,27 @@
 #' Bivariate Kernel Weight Calculation
 #' 
-#' \code{wt_kern_bivariate} calculates the appropriate weights for two variables
-#'    for nonparametric implementation of Multivariate Frontier Regression Discontinuity Estimation.
+#' \code{wt_kern_bivariate} calculates the appropriate weights for two variables for
+#'    Multivariate Frontier Regression Discontinuity Estimation with nonparametric implementation.
 #'    Kernel weights are calculated based on the L1 distance of the two variables from the frontiers.
 #' @param X1 The input x1 values for the first vector. 
 #'   This variable represents the axis along which kernel weighting should be performed.
 #' @param X2 The input x2 values for the second vector. \code{X2} has the same length as \code{X1}.
 #'   This variable represents the axis along which kernel weighting should be performed.   
-#' @param center1 The point from which distances should be calculated for the first vector.
-#' @param center2 The point from which distances should be calculated for the second vector.
+#' @param center1 A numeric value specifying the point from which distances should be calculated for the first vector, \code{X1}.
+#' @param center2 A numeric value specifying the point from which distances should be calculated for the second vector, \code{X2}.
 #' @param bw A numeric vector specifying the bandwidths for each of three effects models
-#' @param kernel A string indicating the kernel to use. Options are \code{"triangular"} (the default), 
-#'   \code{"epanechnikov"}, \code{"quartic"}, \code{"triweight"}, \code{"tricube"}, \code{"gaussian"},
-#'   and \code{"cosine"}.
-#' @param t.design The treatment option according to design.
-#'   The 1st entry is for X1: \code{"g"} means treatment is assigned 
-#'   if X1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-#'   if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-#'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-#'   if X1 is less than or equal to its cutoff.
-#'   The 2nd entry is for X2.
+#' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
+#'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+#'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
+#' @param t.design A character vector of length 2 specifying the treatment option according to design.
+#'   The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+#'   The same options are available for \code{x2}.
 #'
-#' @return Three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
+#' @return \code{wt_bivariate_kern} returns three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
 #'   The first and second weights and distances are calculated with respect to all frontiers of different treatments.
 #'   The third weight and distance are calculated with respect to the overall frontier of treatment versus
 #'   non-treatment.

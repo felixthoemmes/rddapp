@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{An object of class \code{"mrdp"}, usually a result of a call to \code{\link{mrd_power}}.}
 
-\item{digits}{Number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.}
 
 \item{...}{Additional arguments.}
 }
@@ -18,5 +18,5 @@
 \item{coefficients}{A matrix containing the mean, variance, and empirical alpha of each estimator.}
 }
 \description{
-\code{summary.mrdp} is a \code{summary} method for class \code{"mrdp"}
+\code{summary.mrdp} is a \code{summary} method for class \code{"mrdp"}.
 }

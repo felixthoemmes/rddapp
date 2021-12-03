@@ -16,22 +16,23 @@ sens_plot(
 \item{sim_results}{A \code{data.frame} returned by \code{rd_sens_cutoff}, \code{rd_sens_bw},
 \code{mrd_sens_cutoff}, or \code{mrd_sens_bw}.}
 
-\item{level}{The confidence level for CIs (assuming a normal sampling distribution).}
+\item{level}{A numeric value between 0 and 1 specifying the confidence level for CIs (assuming a normal sampling distribution). The default is 0.95.}
 
 \item{x}{A string of the column name of the varying parameter in \code{sim_results}. 
 This will be used as the x-axis in the plot. Possible values are \code{c("A1", "A2", "bw")}, 
 which are column names in \code{sim_results}. 
-\code{A1} means the varying cutoffs are for assignment 1, and \code{A2} assignment 2.}
+\code{A1} specifies that the varying cutoffs are for assignment 1 and \code{A2} specifies assignment 2. \code{bw} indicates that the varying parameter is bandwidth.}
 
-\item{plot_models}{A character vector specifying the models (i.e., models estimated with 
-different approaches) to be plotted. Possible values are \code{unique(sim_results$model))}.}
+\item{plot_models}{A character vector specifying the models to be plotted (i.e. models estimated with 
+different approaches). Possible values are \code{unique(sim_results$model))}.}
 
-\item{yrange}{A numeric vector of the range of y-axis}
+\item{yrange}{An optional numeric vector specifying the range of the y-axis.}
 }
 \description{
-\code{sens_plot} plots the sensitivity analysis for cutpoint or bandwidth.
+\code{sens_plot} plots the sensitivity analysis for cutpoints or bandwidths.
 }
 \examples{
+set.seed(12345)
 x <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)

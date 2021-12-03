@@ -5,24 +5,27 @@
 #' This is an internal function and is typically not directly invoked by the user. 
 #' It can be accessed using the triple colon, as in rddapp:::rd_type().
 #'
-#' @param data A \code{data.frame} with each row representing an observation.
-#' @param treat The name of a numeric variable (treated = positive values).
-#' @param assign_1 The variable name of the primary assignment.
-#' @param cutoff_1 The cutoff value of the primary assignment.
+#' @param data A \code{data.frame}, with each row representing an observation.
+#' @param treat A string specifying the name of a numeric variable (treated = positive values).
+#' @param assign_1 A string specifying the variable name of the primary assignment.
+#' @param cutoff_1 A numeric value containing the cutpoint at which
+#'    assignment to the treatment is determined, for the primary assignment.
 #' @param operator_1 The operator for the primary assignment. 
-#' @param assign_2 The variable name of the secondary assignment.
-#' @param cutoff_2 The cutoff value of the secondary assignment.
+#' @param assign_2 An optional string specifying the variable name of the secondary assignment.
+#' @param cutoff_2 An optional numeric value containing the cutpoint at which
+#'    assignment to the treatment is determined, for the secondary assignment.
 #' @param operator_2 The operator for the secondary assignment. 
 #'
-#' @return A list of two elements:
+#' @return \code{rd_type} returns a list of two elements:
 #' \item{crosstab}{The cross-table as a data.frame.}
-#' \item{type}{The type of design as a string.}
+#' \item{type}{A string specifying the type of design used, either \code{"SHARP"} or \code{"FUZZY"}.}
 #' 
 #' @importFrom stats reshape xtabs
 #'
 #' @include treat_assign.R
 #' 
 #' @examples
+#' set.seed(12345)
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)

@@ -9,7 +9,7 @@ model_codeUI = function(id){
           'Script 1')
         # ,
         # downloadLink(ns('r_file'),label = NULL, class='btn btn-default btn-sm pull-right', 
-        #   icon('file-text-o'),
+        #   icon('file-alt'),
         #   title = 'Download the script')
       ),
       div(class='panel-body', style='min-height: 480px;',

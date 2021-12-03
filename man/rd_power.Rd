@@ -18,58 +18,65 @@ rd_power(
 )
 }
 \arguments{
-\item{num.rep}{Number of repetitions used to calculate the empirical alpha.}
+\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.}
 
-\item{sample.size}{Number of observations in each sample.}
+\item{sample.size}{A non-negative integer specifying the number of observations in each sample. The default is 100.}
 
-\item{x.dist}{Distribution of the assignment variable X.
-\code{"normal"} distribution is the default. 
-\code{"uniform"} distribution is the only other option.}
+\item{x.dist}{A string specifying the distribution of the assignment variable, \code{x}.
+Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.}
 
-\item{x.para}{Parameters of the distribution of the assignment variable X.
+\item{x.para}{A numeric vector of length 2 specifying parameters of the distribution of the first assignment variable, \code{x1}.
 If \code{x.dist} is \code{"normal"}, then \code{x.para} includes the
-mean and sd of normal distribution.
+mean and standard deviation of the normal distribution.
 If \code{x.dist} is \code{"uniform"}, then \code{x.para} includes the 
-upper and lower boundaries of uniform distribution.}
+upper and lower boundaries of the uniform distribution. The default is c(0,1).}
 
-\item{x.cut}{Cutpoint of RD with respect to the assignment variable X.}
+\item{x.cut}{A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
 
-\item{x.fuzzy}{Probabilities to be assigned to control for individuals in treatment 
-based on cutoff, and to treatment for individuals in control based on cutoff.
-For a sharp design, by default, the 1st entry is 0, and the 2nd entry is 0. 
-For a fuzzy design, the 1st entry is the probability to be assigned to 
-control for individuals above the cutpoint, and the 2nd entry is the 
-probability to be assigned to treatment for individuals below the cutpoint.}
+\item{x.fuzzy}{A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the
+assignment variable, \code{x}, for individuals in the treatment based on the cutoff, 
+and to treatment for individuals in the control based on the cutoff.
+For a sharp design, both entries are 0. 
+For a fuzzy design, the first entry is the probability to be assigned to 
+control for individuals above the cutpoint, and the second entry is the 
+probability to be assigned to treatment for individuals below the cutpoint.
+The default is c(0,0), indicating a sharp design.}
 
-\item{x.design}{The treatment option according to design.
-The entry is for X: \code{"g"} means treatment is assigned 
-if X is greater than its cutoff, \code{"geq"} means treatment is assigned 
-if X is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-if X is less than its cutoff, \code{"leq"} means treatment is assigned 
-if X is less than or equal to its cutoff.}
+\item{x.design}{A string specifying the treatment option according to design.
+Options are \code{"g"} (treatment is assigned if \code{x} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its cutoff).}
 
-\item{coeff}{Coefficients of variables in the linear model to generate data
-The 1st entry is the intercept. 
-The 2nd entry is the slope of treatment, i.e. treatment effect.
-The 3rd entry is the slope of assignment.
-The 4th entry is the slope of interaction between treatment and assignment.}
+\item{coeff}{A numeric vector specifying coefficients of variables in the linear model to generate data.
+Coefficients are in the following order:
+\itemize{
+\item{The 1st entry is the intercept.} 
+\item{The 2nd entry is the slope of treatment, i.e. treatment effect.}
+\item{The 3rd entry is the slope of assignment.}
+\item{The 4th entry is the slope of interaction between treatment and assignment.}
+}
+The default is c(0.3, 1, 0.2, 0.3).}
 
-\item{eta.sq}{Expected partial eta-squared of the linear model with respect to the 
-treatment itself. It is used to control the variance of noise in the linear model.}
+\item{eta.sq}{A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
+treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.}
 
-\item{alpha.list}{List of significance levels used to calculate the empirical alpha.}
+\item{alpha.list}{A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
+The default is c(0.001, 0.01, anad 0.05).}
 }
 \value{
-\code{rd_power} returns the results of 2 estimators as a table of \link{class} 
-  "\code{rdp}", including mean, variance, and power of estimate. The function \code{summary}
-  is used to obtain and print a summary of the power analysis.
-  The 1st \code{Linear} results of the linear regression estimator 
-  The 2nd \code{Opt} results of the local linear regression estimator
-  of RD, with the optimal bandwidth in the IK 2012 paper.
+\code{rd_power} returns an object of \link{class} 
+  "\code{rdp}", including containing the mean, variance, and power for two estimators. The function \code{summary}
+  is used to obtain and print a summary of the power analysis. The two estimators are:
+  \itemize{
+  \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator.} 
+  \item{The 2nd estimator, \code{Opt}, provides results of the local linear regression estimator of RD,
+        with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+  }
 }
 \description{
 \code{rd_power} computes the empirical probability that RD is significant,
-i.e. the empirical alpha of null hypothesis: RD = 0
+i.e. the empirical alpha of null hypothesis: RD = 0.
 }
 \examples{
 \dontrun{
@@ -77,4 +84,10 @@ rd_power(x.design = "l")
 rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
 rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
 }
+}
+\references{
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }

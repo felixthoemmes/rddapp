@@ -10,9 +10,9 @@
 \item{object}{An object of class \code{"mrdi"}, usually a result of a call to 
 \code{\link{mrd_impute}} with \code{"front"} method.}
 
-\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
+\item{level}{A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.}
 
-\item{digits}{Number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.}
 
 \item{...}{Additional arguments.}
 }
@@ -26,5 +26,5 @@ for the heterogeneous treatment model.}
 for the treatment only model.}
 }
 \description{
-\code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}
+\code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}.
 }

@@ -15,6 +15,8 @@ csl: apa-old-doi-prefix.csl
 
 `rddapp` is an [`R` package](https://cran.r-project.org/web/packages/rddapp/index.html) with a `shiny` [web app](https://shiny.rstudio.com/) for the analysis of [regression discontinuity designs](https://en.wikipedia.org/wiki/Regression_discontinuity_design) (RDDs). It offers both parametric and non-parametric estimation of causal effects in RDDs, with one or two assignment variables. It also provides numerous assumption checks, and allows the estimation of statistical power.
 
+**Note:** If any of the equations or mathematical symbols do not align properly on your web page, right click on the disrupted text and select "Math Settings" in the dropdown menu. Then, navigate to the "Math Renderer" option and select "Common HTML".
+
 # Use
 
 ## Online

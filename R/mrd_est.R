@@ -1,38 +1,38 @@
 #' Multivariate Regression Discontinuity Estimation
 #' 
-#' \code{mrd_est} estimates treatment effects in an MRDD with two assignment variables, 
-#' including the frontier average treatment effect (tau_MRD) 
-#' and frontier-specific effects (tau_R and tau_M) simultaneously. 
+#' \code{mrd_est} estimates treatment effects in a multivariate regression discontinuity design (MRDD) with two assignment variables, 
+#' including the frontier average treatment effect (\code{tau_MRD}) 
+#' and frontier-specific effects (\code{tau_R} and \code{tau_M}) simultaneously. 
 #' 
-#' @param formula The formula of the MRDD. This is supplied in the
-#'   format of \code{y ~ x1 + x2} for a simple sharp MRDD, or \code{y ~ x1 + x2 | c1 + c2}
-#'   for a sharp MRDD with two covariates. Fuzzy MRDD may be specified as
+#' @param formula The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
+#'   format of \code{y ~ x1 + x2} for a simple sharp MRDD or \code{y ~ x1 + x2 | c1 + c2}
+#'   for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
 #'   \code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
 #'   \code{z} is the endogenous treatment variable. Covariates are then included in the 
 #'   same manner as in a sharp MRDD.
-#' @param data An optional data frame.
-#' @param subset An optional vector specifying a subset of observations to be used.
-#' @param cutpoint The cutpoint. If omitted, it is assumed to be c(0, 0).
-#' @param bw A numeric vector specifying the bandwidths at which to estimate the RD. 
-#'   If omitted or it is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
-#'   2012 method. If it is \code{"IK09"}, the bandwidth is calculated using 
-#'   the Imbens-Kalyanaraman 2009 method. Then it is estimated
+#' @param data An optional data frame containing the variables in the model. If not found in \code{data},
+#'   the variables are taken from \code{environment(formula)}. 
+#' @param subset An optional vector specifying a subset of observations to be used in the fitting process.
+#' @param cutpoint A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).
+#' @param bw A vector specifying the bandwidths at which to estimate the RD. 
+#'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
+#'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
+#'   2012 method. If \code{bw}  is \code{"IK09"}, the bandwidth is calculated using 
+#'   the Imbens-Kalyanaraman 2009 method. Then, the RD is estimated
 #'   with that bandwidth, half that bandwidth, and twice that bandwidth. 
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
-#' @param front.bw A numeric vector specifying the bandwidths at which to estimate the RD for each
-#'   of three effects models in the frontier method. If NA, front.bw will be determined by cross validation.
-#' @param m The number of uniformly-at-random samples to draw as search candidates for front.bw 
-#'   if not given.
-#' @param k An integer specifying the number of folds for cross validation to determine front.bw
-#'   if not given. 
-#' @param kernel A string specifying the kernel to be used in the local linear fitting. 
-#'   \code{"triangular"} kernel is the default and is the "correct" theoretical kernel to be 
-#'   used for edge estimation as in RDD (Lee and Lemieux, 2010). Other options are 
-#'   \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
-#'   \code{"triweight"}, \code{"tricube"}, \code{"gaussian"} and \code{"cosine"}.
-#' @param se.type This specifies the robust SE calculation method to use. Options are,
+#' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
+#' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
+#'   if \code{front.bw} is \code{NA}. The default is 10.
+#' @param k A non-negative integer specifying the number of folds for cross-validation to determine \code{front.bw},
+#'   if \code{front.bw} is \code{NA}. The default is 5.
+#' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
+#'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+#'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
+#' @param se.type This specifies the robust standard error calculation method to use. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
@@ -40,33 +40,37 @@
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
-#' @param verbose Will provide some additional information printed to the terminal.
-#' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal, 
-#'   instead of linear, quadratic, cubic, optimal, half and double.
-#' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included. Not
+#' @param verbose A logical value indicating whether to print additional information to 
+#'   the terminal. The default is \code{FALSE}.
+#' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
+#'   return the estimates of linear, quadratic, cubic, optimal, half and double. The default is \code{FALSE}.
+#' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included.
+#'   If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
 #'   applicable if method is \code{"front"}.
-#' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned. Not
+#' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned.
+#'   If \code{FALSE}, the estimates of ITT will not be returned. The default is \code{FALSE}. This option is not
 #'   applicable if method is \code{"front"}.
-#' @param local The range of neighboring points around the cutoff on the 
-#'   standardized scale on each assignment variable, which is a positive number.
-#' @param ngrid The number of non-zero grid points on each assignment variable,
-#'   which is also the number of zero grid points on each assignment variable. Value used in 
+#' @param local A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+#'   standardized scale, for each assignment variable. The default is 0.15. 
+#' @param ngrid A non-negative integer specifying the number of non-zero grid points on each assignment variable,
+#'   which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 #'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
-#' @param margin The range of grid points beyond the minimum and maximum
-#'   of sample points on each assignment variable.
-#' @param boot The number of bootstrap samples to obtain standard error of estimates.
-#' @param method The method to estimate rd effect. Options are \code{"center"}, 
+#' @param margin A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+#'   of sample points on each assignment variable. The default is 0.03.
+#' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
+#'   This arugment is not optional if method is \code{"front"}.
+#' @param method A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 #'   \code{"univ"}, \code{"front"}.
-#' @param t.design The treatment option according to design.
-#'   The 1st entry is for X1: \code{"g"} means treatment is assigned 
-#'   if X1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-#'   if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-#'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-#'   if X1 is less than or equal to its cutoff.
-#'   The 2nd entry is for X2.
-#' @param stop.on.error Logical. If \code{TRUE} (the default), removes bootstraps which cause
-#'   error in the \code{integrate} function, and resample till the specified number of 
-#'   bootstrap samples are acquired.
+#' @param t.design A character vector of length 2 specifying the treatment option according to design.
+#'   The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+#'   The same options are available for \code{x2}.
+#' @param stop.on.error A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
+#'   and resampled until the specified number of 
+#'   bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error are not removed. The default is \code{TRUE}.
 #'
 #' @return \code{mrd_est} returns an object of \link{class} "\code{mrd}".
 #'
@@ -75,6 +79,22 @@
 #'   A comparative study of four estimation methods.
 #'   Journal of Educational and Behavioral Statistics, 38(2), 107-141.
 #'   \url{https://journals.sagepub.com/doi/10.3102/1076998611432172}. 
+#' @references Imbens, G., Kalyanaraman, K. (2009). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator 
+#'   (Working Paper No. 14726). National Bureau of Economic Research.
+#'   \url{https://www.nber.org/papers/w14726}.
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
+#' @references Lee, D. S., Card, D. (2010).
+#'   Regression discontinuity inference with specification error. 
+#'   Journal of Econometrics, 142(2), 655-674. 
+#'   \doi{10.1016/j.jeconom.2007.05.003}.
+#'   #' @references Lee, D. S., Lemieux, T. (2010).
+#'   Regression Discontinuity Designs in Economics.
+#'   Journal of Economic Literature, 48(2), 281-355. 
+#'   \doi{10.1257/jel.48.2.281}.
 #'
 #' @importFrom Formula as.Formula
 #' @importFrom stats model.frame na.pass complete.cases as.formula
@@ -87,6 +107,7 @@
 #' @export
 #' 
 #' @examples
+#' set.seed(12345)
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)

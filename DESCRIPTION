@@ -1,7 +1,6 @@
 Package: rddapp
 Title: Regression Discontinuity Design Application
-Version: 1.2.2
-Date: 2021-03-24
+Version: 1.3
 Authors@R: c(
     person("Ze", "Jin", role = c("aut"),
            email = "zj58@cornell.edu"),
@@ -10,7 +9,9 @@ Authors@R: c(
     person("Irena", "Papst", role = c("aut"),
             email = "ip98@cornell.edu"),
     person("Wenyu", "Zhang", role = c("aut"),
-            email = "wz258@cornell.edu"),           
+            email = "wz258@cornell.edu"),
+    person("Kimberly", "Hochstedler", role = c("aut"),
+            email = "kah343@cornell.edu"),
     person("Felix", "Thoemmes", role = c("aut", "cre"),
            email = "fjt36@cornell.edu")
     )   
@@ -48,7 +49,7 @@ Suggests:
 VignetteBuilder: knitr
 License: GPL (>= 2)
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 
     'attr_check.R'
     'bw_ik09.R'

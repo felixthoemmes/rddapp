@@ -24,64 +24,63 @@ mfrd_est(
 )
 }
 \arguments{
-\item{y}{The outcome variable (continuous).}
+\item{y}{A numeric object containing outcome variable.}
 
-\item{x1}{The assignment variable 1.}
+\item{x1}{A numeric object containing the first assignment variable.}
 
-\item{x2}{The assignment variable 2.}
+\item{x2}{A numeric object containing the second assignment variable.}
 
-\item{c1}{The cutoff of assignment variable 1.}
+\item{c1}{A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x1}.}
 
-\item{c2}{The cutoff of assignment variable 2.}
+\item{c2}{A numeric value containing the cutpoint at which assignment to the treatment is determined for \code{x2}.}
 
-\item{t.design}{The treatment option according to design.
-The 1st entry is for x1: \code{"g"} means treatment is assigned 
-if x1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-if x1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-if x1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-if x1 is less than or equal to its cutoff.
-The 2nd entry is for x2.}
+\item{t.design}{A character vector of length 2 specifying the treatment option according to design.
+The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
+\code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+The same options are available for \code{x2}.}
 
-\item{local}{The range of neighboring points around the cutoff on the 
-standardized scale on each assignment variable, which is a positive number.}
+\item{local}{A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
+standardized scale, for each assignment variable. The default is 0.15.}
 
-\item{front.bw}{A numeric vector specifying the bandwidths at which to estimate the RD for each
-of three effects models. If NA, front.bw will be determined by cross validation.}
+\item{front.bw}{A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
+of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
 
-\item{m}{The number of uniformly-at-random samples to draw as search candidates for front.bw if not
-given.}
+\item{m}{A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
+if \code{front.bw} is \code{NA}. The default is 10.}
 
-\item{k}{An integer specifying the number of folds for cross validation to determine front.bw
-if not given.}
+\item{k}{A non-negative integer specifying the number of folds for cross-validation to determine \code{front.bw},
+if \code{front.bw} is \code{NA}. The default is 5.}
 
-\item{kernel}{A string specifying the kernel to be used in the local linear fitting. 
-\code{"triangular"} kernel is the default. Other options are 
-\code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
-\code{"triweight"}, \code{"tricube"}, \code{"gaussian"} and \code{"cosine"}.}
+\item{kernel}{A string indicating which kernel to use. Options are \code{"triangular"} 
+(default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+\code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 
-\item{ngrid}{The number of non-zero grid points on each assignment variable,
-which is also the number of zero grid points on each assignment variable. Value used in 
+\item{ngrid}{A non-negative integer specifying the number of non-zero grid points on each assignment variable,
+which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
-\item{margin}{The range of grid points beyond the minimum and maximum
-of sample points on each assignment variable.}
+\item{margin}{A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
+of sample points on each assignment variable. The default is 0.03.}
 
-\item{boot}{The number of bootstrap samples to obtain standard error of estimates.}
+\item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.}
 
 \item{cluster}{An optional vector specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
 anything specified in \code{se.type}. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
 
-\item{stop.on.error}{Logical. If \code{TRUE} (the default), removes bootstraps which cause
-error in the \code{integrate} function, and resample till the specified number of 
-bootstrap samples are acquired.}
+\item{stop.on.error}{A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
+and resampled until the specified number of 
+bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error are not removed. The default is \code{TRUE}.}
 }
 \value{
 \code{mfrd_est} returns an object of \link{class} "\code{mfrd}".
 }
 \description{
-\code{mfrd_est} implements the frontier approach in Wong, Steiner and Cook (2013). 
+\code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
 It is based on the MFRDD code in Stata.
 }
 \examples{
@@ -91,4 +90,15 @@ x2 <- runif(1000, -1, 1)
 cov <- rnorm(1000)
 y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
 mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0, t.design = c("geq", "geq"))
+}
+\references{
+Wong, V., Steiner, P, and Cook, T. (2013).
+  Analyzing regression discontinuity designs with multiple assignment variables: A comparative study of four estimation methods. 
+  Journal of Educational and Behavioral Statistics, 38(2), 107-141. 
+  \doi{10.3102/1076998611432172}.
+
+Lee, D. and Card, D. (2008).
+  A Regression discontinuity inference with specification error.
+  Journal of Econometrics, 142(2), 655-674. 
+  \doi{10.1016/j.jeconom.2007.05.003}.
 }

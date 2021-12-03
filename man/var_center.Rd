@@ -8,27 +8,28 @@ var_center(x, cut = c(0, 0), t.design = NULL, t.plot = FALSE)
 }
 \arguments{
 \item{x}{Data frame or matrix of two assignment variables,
-where the 1st column is X1, the 2nd column is X2}
+where the first column is \code{x1} and the second column is \code{x2}.}
 
-\item{cut}{Cutoffs of two assignment variables X1, X2.}
+\item{cut}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined.
+The default is c(0, 0).}
 
-\item{t.design}{The treatment option according to design.
-The 1st entry is for x1: \code{"g"} means treatment is assigned 
-if x1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-if x1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-if x1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-if x1 is less than or equal to its cutoff.
-The 2nd entry is for x2.}
+\item{t.design}{A character vector of length 2 specifying the treatment option according to design.
+The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
+\code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+The same options are available for \code{x2}.}
 
-\item{t.plot}{Whether calculate the univariate treatment variable T and make a plot}
+\item{t.plot}{A logical value inidcating whether to calculate the univariate treatment variable, \code{t}, and make a plot. The default is \code{FALSE}.}
 }
 \value{
 \code{var_center} returns the univariate assignment variable as a vector 
   according to the design.
 }
 \description{
-\code{var_center} computes the univariate assignment variable X based on the cutoffs of 
- two assignment variables X1, X2.
+\code{var_center} computes the univariate assignment variable, \code{x} based on the cutoffs of 
+ two assignment variables: \code{x1} and \code{x2}.
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::var_center().
 }

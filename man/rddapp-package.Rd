@@ -6,7 +6,7 @@
 \alias{rddapp}
 \title{Regression Discontinuity Design Application}
 \description{
-rddapp: A package for regression discontinuity designs
+rddapp: A package for regression discontinuity designs (RDDs).
 }
 \details{
 The rddapp package provides a set of functions for the analysis 
@@ -46,5 +46,6 @@ Ze Jin \email{zj58@cornell.edu},
   Wang Liao \email{wl483@cornell.edu},
   Irena Papst \email{ip98@cornell.edu},
   Wenyu Zhang \email{wz258@cornell.edu},
+  Kimberly Hochstedler \email{kah343@cornell.edu},
   Felix Thoemmes, \email{fjt36@cornell.edu}
 }

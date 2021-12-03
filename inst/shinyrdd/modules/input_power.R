@@ -131,11 +131,11 @@ input_powerUI = function(id){
         plotOutput(ns('par_model'), height = '325px'),
         conditionalPanel(condition = sprintf("input['%s'] %% 2 == 1", ns('allow_frontier')),
           fluidRow(
-            column(6, h6(class='badge',icon('arrows-v')),
+            column(6, h6(class='badge',icon('arrows-alt-v')),
               sliderInput(ns('par_model_phi'), label = NULL, min = -180, 
                 max = 180, value = 30, ticks = F, post = '°')
             ),
-            column(6, h6(class='badge',icon('arrows-h')),
+            column(6, h6(class='badge',icon('arrows-alt-h')),
               sliderInput(ns('par_model_theta'), label = NULL,min = -180, 
                 max = 180, value = -30, ticks = F, post = '°')
             )
@@ -146,7 +146,7 @@ input_powerUI = function(id){
         fluidRow(
           column(4, h6('Treatment'), 
             numericInput(ns('par_model_t'), label = NULL, value = 1, step = .05)),
-          column(8, align = 'right', h6('Partial','η',tags$sup('2')), 
+          column(8, align = 'right', h6('Partial',intToUtf8(0x3B7),tags$sup('2')), 
             sliderInput(
               ns('par_model_eta2'), 
               label = NULL, min = .01, max = .99, value = .5, step = .01, ticks = F)

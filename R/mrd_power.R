@@ -1,76 +1,99 @@
 #' Power Analysis of Multivariate Regression Discontinuity
 #' 
-#' \code{mrd_power} computes the empirical probability that RD is significant,
-#' i.e. the empirical alpha of null hypothesis: RD = 0
+#' \code{mrd_power} computes the empirical probability that an MRD is significant,
+#' i.e. the empirical alpha of null hypothesis: MRD = 0
 #'
-#' @param num.rep Number of repetitions used to calculate the empirical alpha.
-#' @param sample.size Number of observations in each sample.
-#' @param x1.dist Distribution of the 1st assignment variable X1.
-#'   \code{"normal"} distribution is the default. 
-#'   \code{"uniform"} distribution is the only other option.
-#' @param x1.para Parameters of the distribution of the 1st assignment variable X1.
+#' @param num.rep A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100. 
+#' @param sample.size A non-negative integer specifying the number of observations in each sample. The default is 100. 
+#' @param x1.dist A string specifying the distribution of the first assignment variable, \code{x1}.
+#'   Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution. 
+#' @param x1.para A numeric vector of length 2 specifying parameters of the distribution of the first assignment variable, \code{x1}.
 #'   If \code{x1.dist} is \code{"normal"}, then \code{x1.para} includes the
-#'   mean and sd of normal distribution.
+#'   mean and standard deviation of the normal distribution.
 #'   If \code{x1.dist} is \code{"uniform"}, then \code{x1.para} includes the 
-#'   upper and lower boundaries of uniform distribution.
-#' @param x2.dist Distribution of the 2nd assignment variable X2.
-#' @param x2.para Parameters of the distribution of the 2nd assignment variable X2.
-#' @param x1.cut Cutpoint of RD with respect to the 1st assignment variable X1.
-#' @param x2.cut Cutpoint of RD with respect to the 2nd assignment variable X2.
-#' @param x1.fuzzy Probabilities to be assigned to control in terms of the 1st
-#'   assignment variable X1 for individuals in treatment based on cutoff, 
-#'   and to treatment for individuals in control based on cutoff.
-#'   For a sharp design, by default, the 1st entry is 0, and the 2nd entry is 0. 
-#'   For a fuzzy design, the 1st entry is the probability to be assigned to 
-#'   control for individuals above the cutpoint, and the 2nd entry is the 
+#'   upper and lower boundaries of the uniform distribution. The default is c(0,1). 
+#' @param x2.dist A string specifying the distribution of the second assignment variable, \code{x2}.
+#'   Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.
+#' @param x2.para A numeric vector of length 2 specifying parameters of the distribution of the second assignment variable, \code{x2}.
+#'   If \code{x2.dist} is \code{"normal"}, then \code{x2.para} includes the
+#'   mean and standard deviation of the normal distribution.
+#'   If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
+#'   upper and lower boundaries of the uniform distribution. The default is c(0,1).
+#' @param x1.cut A numeric value containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.
+#' @param x2.cut A numeric value containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.
+#' @param x1.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the first
+#'   assignment variable, \code{x1}, for individuals in the treatment based on the cutoff, 
+#'   and to treatment for individuals in the control based on the cutoff.
+#'   For a sharp design, both entries are 0. 
+#'   For a fuzzy design, the first entry is the probability to be assigned to 
+#'   control for individuals above the cutpoint, and the second entry is the 
 #'   probability to be assigned to treatment for individuals below the cutpoint.
-#' @param x2.fuzzy Probabilities to be assigned to control in terms of the 2nd
-#'   assignment variable X2 for individuals in treatment based on cutoff, 
-#'   and to treatment for individuals in control based on cutoff.
-#' @param x1.design The treatment option according to design.
-#'   The entry is for X1: \code{"g"} means treatment is assigned 
-#'   if X1 is greater than its cutoff, \code{"geq"} means treatment is assigned 
-#'   if X1 is greater than or equal to its cutoff, \code{"l"} means treatment is assigned 
-#'   if X1 is less than its cutoff, \code{"leq"} means treatment is assigned 
-#'   if X1 is less than or equal to its cutoff.
-#' @param x2.design The treatment option according to design.
-#'   The entry is for X2.
-#' @param coeff Coefficients of variables in the linear model to generate data
-#'   The 1st entry is the intercept. 
-#'   The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.
-#'   The 3rd entry is the slope of treatment 2, i.e. treatment effect 2.
-#'   The 4th entry is the slope of treatment, i.e. treatment effect.
-#'   The 5th entry is the slope of assignment 1.
-#'   The 6th entry is the slope of assignment 2.
-#'   The 7th entry is the slope of interaction between assignment 1 and assignment 2.
-#'   The 8th entry is the slope of interaction between treatment 1 and assignment 1.
-#'   The 9th entry is the slope of interaction between treatment 2 and assignment 1.
-#'   The 10th entry is the slope of interaction between treatment 1 and assignment 2.
-#'   The 11th entry is the slope of interaction between treatment 2 and assignment 2.
-#'   The 12th entry is the slope of interaction between treatment 1, assignment 1 and assignment 2.
-#'   The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.
-#' @param eta.sq Expected partial eta-squared of the linear model with respect to the 
-#'   treatment itself. It is used to control the variance of noise in the linear model.
-#' @param alpha.list List of significance levels used to calculate the empirical alpha.
+#'   The default is c(0,0), indicating a sharp design. 
+#' @param x2.fuzzy A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the second
+#'   assignment variable, \code{x2}, for individuals in the treatment based on the cutoff, 
+#'   and to treatment for individuals in the control based on the cutoff.
+#'   For a sharp design, both entries are 0. 
+#'   For a fuzzy design, the first entry is the probability to be assigned to 
+#'   control for individuals above the cutpoint, and the second entry is the 
+#'   probability to be assigned to treatment for individuals below the cutpoint.
+#'   The default is c(0,0), indicating a sharp design.
+#' @param x1.design A string specifying the treatment option according to design for \code{x1}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
+#' @param x2.design A string specifying the treatment option according to design for \code{x2}. Options are  
+#'   \code{"g"} (treatment is assigned if \code{x2} is greater than its cutoff),
+#'   \code{"geq"} (treatment is assigned if \code{x2} is greater than or equal to its cutoff),
+#'   \code{"l"} (treatment is assigned if \code{x2} is less than its cutoff),
+#'   and \code{"leq"} (treatment is assigned if \code{x2} is less than or equal to its cutoff).
+#' @param coeff A numeric vector specifying coefficients of variables in the linear model to generate data. Coefficients are in the following order:
+#'   \itemize{
+#'   \item{The 1st entry is the intercept.}
+#'   \item{The 2nd entry is the slope of treatment 1, i.e. treatment effect 1.}
+#'   \item{The 3rd entry is the slope of treatment 2, i.e. treatment effect 2.}
+#'   \item{The 4th entry is the slope of treatment, i.e. treatment effect.}
+#'   \item{The 5th entry is the slope of assignment 1.}
+#'   \item{The 6th entry is the slope of assignment 2.}
+#'   \item{The 7th entry is the slope of interaction between assignment 1 and assignment 2.}
+#'   \item{The 8th entry is the slope of interaction between treatment 1 and assignment 1.}
+#'   \item{The 9th entry is the slope of interaction between treatment 2 and assignment 1.}
+#'   \item{The 10th entry is the slope of interaction between treatment 1 and assignment 2.}
+#'   \item{The 11th entry is the slope of interaction between treatment 2 and assignment 2.}
+#'   \item{The 12th entry is the slope of interaction between treatment 1, assignment 1 and assignment 2.}
+#'   \item{The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.}
+#'   }
+#'   The default is c(0.1, 0.5, 0.5, 1, rep(0.1, 9)).
+#' @param eta.sq A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
+#'   treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50. 
+#' @param alpha.list A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
+#'   The default is c(0.001, 0.01, anad 0.05).
 #'
-#' @return \code{mrd_power} returns the results of 6 estimators as a table of \link{class} 
-#'   "\code{mrdp}", including mean, variance, and power of estimate. The function \code{summary}
-#'   is used to obtain and print a summary of the power analysis.
-#'   The 1st \code{Linear} results of the linear regression estimator 
-#'   of combined RD using the centering approach.
-#'   The 2nd \code{Opt} results of the local linear regression estimator
+#' @return \code{mrd_power} returns an object of \link{class} 
+#'   "\code{mrdp}" containing the mean, variance, and power for six estimators. The function \code{summary}
+#'   is used to obtain and print a summary of the power analysis. The six estimators are as follows:
+#'   \itemize{
+#'   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator 
+#'   of combined RD using the centering approach.}
+#'   \item{The 2nd estimator, \code{Opt}, provides results of the local linear regression estimator
 #'   of combined RD using the centering approach, 
-#'   with the optimal bandwidth in the IK 2012 paper.
-#'   The 3rd \code{Linear} results of the linear regression estimator 
-#'   of separate RD in terms of x1 using the univariate approach.
-#'   The 4th \code{Opt} results of the local linear regression estimator
-#'   of separate RD in terms of x1 using the univariate approach, 
-#'   with the optimal bandwidth in the IK 2012 paper.
-#'   The 5th \code{Linear} results of the linear regression estimator 
-#'   of separate RD in terms of x2 using the univariate approach.
-#'   The 6th \code{Opt} results of the local linear regression estimator
-#'   of separate RD in terms of x2 using the univariate approach, 
-#'   with the optimal bandwidth in the IK 2012 paper. 
+#'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+#'   \item{The 3rd estimator, \code{Linear}, provides results of the linear regression estimator 
+#'   of separate RD in terms of \code{x1} using the univariate approach.}
+#'   \item{The 4th estimator, \code{Opt}, provides results of the local linear regression estimator
+#'   of separate RD in terms of \code{x1} using the univariate approach, 
+#'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+#'   \item{The 5th estimator, \code{Linear}, provides results of the linear regression estimator 
+#'   of separate RD in terms of \code{x2} using the univariate approach.}
+#'   \item{The 6th estimator, \code{Opt}, provides results of the local linear regression estimator
+#'   of separate RD in terms of \code{x2} using the univariate approach, 
+#'   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
+#'   }
+#'   
+#'   @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 #'
 #' @include mrd_est.R
 #' @include treat_assign.R

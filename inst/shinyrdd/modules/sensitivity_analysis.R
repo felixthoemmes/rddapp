@@ -22,17 +22,17 @@ sensitivity_analysisUI = function(id){
                 span(class='input-group-addon','%')
               ),
               div(class='btn-group',
-                downloadLink(ns('cutsens_png'),label = NULL, icon('file-image-o'),
+                downloadLink(ns('cutsens_png'),label = NULL, icon('file-image'),
                              class='btn btn-default btn-sm', 
                              title = 'Download plot as PNG'),  
-                downloadLink(ns('cutsens_svg'),label = NULL, icon('file-o'),
+                downloadLink(ns('cutsens_svg'),label = NULL, icon('file'),
                              class='btn btn-default btn-sm', 
                              title = 'Download plot as SVG'),
-                downloadLink(ns('cutsens_pdf'),label = NULL, icon('file-pdf-o'),
+                downloadLink(ns('cutsens_pdf'),label = NULL, icon('file-pdf'),
                              class='btn btn-default btn-sm', 
                              title = 'Download plot as PDF'),
                 downloadLink(ns('cutsens_csv'),label = NULL, class='btn btn-default btn-sm', 
-                  icon('file-text-o'),
+                  icon('file-alt'),
                   title = 'Download simulated results as CSV')
                 # actionButton(ns('cut_sens_opt_btn'), label = NULL, icon = icon(name = 'cog'),
                 #   class='pull-right btn-sm', `data-toggle`="button", `aria-pressed`="false", autocomplete="off",
@@ -90,7 +90,7 @@ sensitivity_analysisUI = function(id){
               span(class='input-group-addon', tags$small('steps'), style = 'border-left:0; border-right:0'),
               numericInput(ns('cutsens_step'), label = NULL, value = 10, step = 1, width = '100%'),   
               span(class='input-group-btn',
-                actionButton(ns('cutsens_simulate'), class='btn-primary',icon = icon('refresh'), 
+                actionButton(ns('cutsens_simulate'), class='btn-primary',icon = icon('sync'), 
                   label = NULL)
               ) 
             )
@@ -115,13 +115,13 @@ sensitivity_analysisUI = function(id){
               ),
               div(class='btn-group',
                 downloadLink(ns('bwsens_png'),label = NULL, class='btn btn-default btn-sm', 
-                             icon('file-image-o'), title = 'Download plot as PNG'),
+                             icon('file-image'), title = 'Download plot as PNG'),
                 downloadLink(ns('bwsens_svg'),label = NULL, class='btn btn-default btn-sm', 
-                             icon('file-o'), title = 'Download plot as SVG'),
+                             icon('file'), title = 'Download plot as SVG'),
                 downloadLink(ns('bwsens_pdf'),label = NULL, class='btn btn-default btn-sm', 
-                             icon('file-pdf-o'), title = 'Download plot as PDF'),
+                             icon('file-pdf'), title = 'Download plot as PDF'),
                 downloadLink(ns('bwsens_csv'),label = NULL, class='btn btn-default btn-sm', 
-                  icon('file-text-o'),
+                  icon('file-alt'),
                   title = 'Download simulated results as CSV')
               )
             ) 
@@ -356,7 +356,7 @@ sensitivity_analysis =  function(input, output, session, dataframe, parameter, r
       span(class='input-group-addon', tags$small('steps'), style = 'border-left:0; border-right:0'),
       numericInput(ns('bwsens_step'), label = NULL, min = 2, value = 10, step = 1, width = '100%'),   
       span(class='input-group-btn',
-        actionButton(ns('bwsens_simulate'), class='btn-primary', icon = icon('refresh'), 
+        actionButton(ns('bwsens_simulate'), class='btn-primary', icon = icon('sync'), 
           label = NULL)
       )
     )

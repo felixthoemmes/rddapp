@@ -1,32 +1,32 @@
 #' McCrary Sorting Test
 #' 
-#' \code{dc_test} implements the McCrary (2008) sorting test.
-#' It is based on the \code{\link[rdd]{DCdensity}} function in the \pkg{rdd} package. 
+#' \code{dc_test} implements the McCrary (2008) sorting test to identify violations of assignment rules.
+#' It is based on the \code{DCdensity} function in the "rdd" package. 
 #' 
-#' @param runvar Numerical vector of the running variable.
-#' @param cutpoint The cutpoint (defaults to 0).
-#' @param bin The binwidth (defaults to \code{2*sd(runvar)*length(runvar)^(-.5)}).
-#' @param bw The bandwidth to use (by default uses bandwidth selection calculation 
-#'   from McCrary (2008)).
-#' @param verbose Logical flag specifying whether to print diagnostic information to 
-#'   the terminal (defaults to \code{TRUE}).
-#' @param plot Logical flag indicating whether to plot the histogram and density estimations 
-#'   (defaults to \code{TRUE}). The user may wrap this function in additional graphical options 
+#' @param runvar A numeric vector containing the running variable.
+#' @param cutpoint A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0. 
+#' @param bin A numeric value containing the binwidth. The default is \code{2*sd(runvar)*length(runvar)^(-.5)}.
+#' @param bw A numeric value containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
+#'   from McCrary (2008).
+#' @param verbose A logical value indicating whether to print diagnostic information to 
+#'   the terminal. The default is \code{TRUE}.
+#' @param plot A logical value indicating whether to plot the histogram and density estimations 
+#'   The default is \code{TRUE}. The user may wrap this function in additional graphical options 
 #'   to modify the plot.
-#' @param ext.out Logical flag indicating whether to return extended output. 
-#'   When \code{FALSE} (the default) \code{DCdensity} will return only the p-value of the test. 
-#'   When \code{TRUE}, \code{DCdensity} will return the additional information documented below.
-#' @param htest Logical flag indicating whether to return an \code{"htest"} object 
-#'   compatible with base R's hypothesis test output.
-#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
-#' @param digits Number of digits to display.
-#' @param timeout Numerical value specifying the maximum number of seconds (defaults to 30 seconds) 
-#'   expressions in the function are allowed to run. Specify \code{Inf} to run all expressions
+#' @param ext.out A logical value indicating whether to return extended output. 
+#'   The default is \code{FALSE}. When \code{FALSE} \code{dc_test} will return only the p-value of the test. 
+#'   When \code{TRUE}, \code{dc_test} will return the additional information documented below.
+#' @param htest A logical value indicating whether to return an \code{"htest"} object 
+#'   compatible with base R's hypothesis test output. The default is \code{FALSE}.
+#' @param level A numerical value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95. 
+#' @param digits A non-negative integer specifying the number of digits to display in all output. The default is 3.
+#' @param timeout A non-negative numerical value specifying the maximum number of seconds that 
+#'   expressions in the function are allowed to run. The default is 30. Specify \code{Inf} to run all expressions
 #'   to completion.
 #'
-#' @return If \code{ext.out} is \code{FALSE}, only the p value will be returned. 
+#' @return If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
 #'   Additional output is enabled when \code{ext.out} is \code{TRUE}. 
-#'   In this case, a list will be returned with the following elements:
+#'   In this case, \code{dc_test} returns a list with the following elements:
 #' \item{theta}{The estimated log difference in heights at the cutpoint.}
 #' \item{se}{The standard error of \code{theta}.}
 #' \item{z}{The z statistic of the test.}
@@ -41,7 +41,9 @@
 #' @references McCrary, J. (2008).
 #'   Manipulation of the running variable in the regression discontinuity design: A density test. 
 #'   Journal of Econometrics, 142(2), 698-714. 
-#'   \url{https://doi.org/10.1016/j.jeconom.2007.05.005}.
+#'   \doi{10.1016/j.jeconom.2007.05.005}.
+#'   
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package version 0.57. https://CRAN.R-project.org/package=rdd
 #'
 #' @importFrom stats complete.cases sd lm coef predict pnorm setNames 
 #' @importFrom graphics lines points axis box plot.new plot.window polygon title
@@ -52,6 +54,7 @@
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' # No discontinuity
 #' x <- runif(1000, -1, 1)
 #' dc_test(x, 0)

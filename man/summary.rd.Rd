@@ -9,9 +9,9 @@
 \arguments{
 \item{object}{An object of class \code{"rd"}, usually a result of a call to \code{\link{rd_est}}.}
 
-\item{level}{Numerical value between 0 and 1. Confidence level for confidence intervals.}
+\item{level}{A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.}
 
-\item{digits}{Number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.}
 
 \item{...}{Additional arguments.}
 }
@@ -22,5 +22,9 @@
 }
 \description{
 \code{summary.rd} is a \code{summary} method for class \code{"rd"}
-It is based on \code{\link[rdd]{summary.RD}} function in the \pkg{rdd} package.
+It is based on \code{summary.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }

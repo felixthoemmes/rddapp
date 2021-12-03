@@ -185,7 +185,7 @@ data_summary = function(input, output, session, dataframe, parameter){
               tags$th, rowspan = 2),
             tags$th(colspan = 2, paste0('Treatment Receipt (',parameter$treatment(),')'), 
               style = 'text-align: center'),
-            tags$th('π',rowspan = 2, style = 'text-align: center')
+            tags$th(intToUtf8(0x03C0),rowspan = 2, style = 'text-align: center')
           ),
           tags$tr(
             lapply(c('control', 'treatment'), tags$th, align = 'center')
@@ -208,7 +208,7 @@ data_summary = function(input, output, session, dataframe, parameter){
           buttons = list(list(
             extend = 'csv',
             bom = 'true', 
-            text = '<i class="fa fa-file-text-o"></i>',
+            text = '<i class="fa fa-file-alt"></i>',
             titleAttr = 'Download table as CSV',
             filename = 'table_1_2_design_summary',
             className = 'btn btn-default btn-sm'
@@ -233,7 +233,7 @@ data_summary = function(input, output, session, dataframe, parameter){
       'A1 =', paste0(parameter$assignment1(),'.'),
       ifelse(parameter$is_frontier(), 
         paste0('A2 = ', parameter$assignment2(),'.'),''),
-      'π = Probability conditioning on treatment status.',
+       intToUtf8(0x03C0), '= Probability conditioning on treatment status.',
       'This is a', em(tolower(crosstab()$type)), 'design.'
     )
   })
@@ -298,7 +298,7 @@ data_summary = function(input, output, session, dataframe, parameter){
           scrollX = TRUE,
           buttons = list(list(
             extend = 'csv',
-            text = '<i class="fa fa-file-text-o"></i>',
+            text = '<i class="fa fa-file-alt"></i>',
             titleAttr = 'Download table as CSV',
             filename = 'table_1_1_descriptive_statistics',
             className = 'btn btn-default btn-sm'

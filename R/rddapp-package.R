@@ -1,4 +1,4 @@
-#' rddapp: A package for regression discontinuity designs
+#' rddapp: A package for regression discontinuity designs (RDDs).
 #'
 #' The rddapp package provides a set of functions for the analysis 
 #' of the regression-discontinuity design (RDD). The three main parts are:
@@ -38,6 +38,7 @@
 #'   Wang Liao \email{wl483@cornell.edu},
 #'   Irena Papst \email{ip98@cornell.edu},
 #'   Wenyu Zhang \email{wz258@cornell.edu},
+#'   Kimberly Hochstedler \email{kah343@cornell.edu},
 #'   Felix Thoemmes, \email{fjt36@cornell.edu}
 
 NULL 

@@ -9,11 +9,15 @@
 \arguments{
 \item{x}{An \code{mfrd} object, typically the result of \code{\link{mfrd_est}}.}
 
-\item{digits}{The number of digits to print.}
+\item{digits}{A non-negative integer specifying the number of digits to print.}
 
 \item{...}{Additional arguments.}
 }
 \description{
 \code{print.mfrd} prints a very basic summary of the multivariate frontier regression 
-discontinuity. It is based on the \code{\link[rdd]{print.RD}} function in the \pkg{rdd} package.
+discontinuity. It is based on the \code{print.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }

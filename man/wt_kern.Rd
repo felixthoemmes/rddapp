@@ -7,25 +7,29 @@
 wt_kern(X, center, bw, kernel = "triangular")
 }
 \arguments{
-\item{X}{The input x values. This variable represents the axis along which kernel weighting 
+\item{X}{A numeric vector containing the the input \code{X} values. This variable represents the axis along which kernel weighting 
 should be performed.}
 
-\item{center}{The point from which distances should be calculated.}
+\item{center}{A numeric value specifying the point from which distances should be calculated.}
 
-\item{bw}{The bandwidth.}
+\item{bw}{A numeric value specifying the bandwidth.}
 
-\item{kernel}{A string indicating the kernel to use. Options are \code{"triangular"} (the default), 
-\code{"epanechnikov"}, \code{"quartic"}, \code{"triweight"}, \code{"tricube"}, \code{"gaussian"},
-and \code{"cosine"}.}
+\item{kernel}{A string indicating which kernel to use. Options are \code{"triangular"} 
+(default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
+\code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 }
 \value{
-A vector of weights with length equal to that of the \code{X} input 
+\code{wt_kern} returns a vector of weights with length equal to that of the \code{X} input 
   (one weight per element of \code{X}).
 }
 \description{
 \code{wt_kern} calculates the appropriate kernel weights for a vector. 
 This is useful when, for instance, one wishes to perform local regression.
-It is based on the \code{\link[rdd]{kernelwts}} function in the \pkg{rdd} package. 
+It is based on the \code{kernelwts} function in the "rdd" package. 
 This is an internal function and is typically not directly invoked by the user. 
 It can be accessed using the triple colon, as in rddapp:::wt_kern().
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+  version 0.57. https://CRAN.R-project.org/package=rdd
 }

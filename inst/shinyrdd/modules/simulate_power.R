@@ -4,7 +4,7 @@ simulate_powerUI = function(id){
   tagList(
     p(),
     p(em("To start a Monte Carlo simulation, please click a compute icon ("),
-      icon('refresh'),
+      icon('sync'),
       #img(src = "compute-icon.png"),
       em(").")),
     div(class='panel panel-default',
@@ -20,7 +20,7 @@ simulate_powerUI = function(id){
                   tag
                 }),
                 span(class='input-group-btn',
-                  actionButton(ns('power_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('refresh'))
+                  actionButton(ns('power_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('sync'))
                   )
               )
           
@@ -64,20 +64,20 @@ simulate_powerUI = function(id){
                   tag
                 }),
                 span(class='input-group-btn',
-                  actionButton(ns('power_chart_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('refresh'))
+                  actionButton(ns('power_chart_simulate'), label = NULL, class='btn-sm btn-primary pull-right', icon = icon('sync'))
                   )
               ),
           div(class='btn-group',
-            downloadLink(ns('power_chart_png'),label = NULL, icon('file-image-o'),
+            downloadLink(ns('power_chart_png'),label = NULL, icon('file-image'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PNG'),
-            downloadLink(ns('power_chart_svg'),label = NULL, icon('file-o'),
+            downloadLink(ns('power_chart_svg'),label = NULL, icon('file'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as SVG'),
-            downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf-o'),
+            downloadLink(ns('power_chart_pdf'),label = NULL, icon('file-pdf'),
               class='btn btn-default btn-sm', 
               title = 'Download plot as PDF'),
-            downloadLink(ns('power_chart_csv'),label = NULL, icon('file-text-o'),
+            downloadLink(ns('power_chart_csv'),label = NULL, icon('file-alt'),
               class='btn btn-default btn-sm', 
               title = 'Download simulated results as csv')
           )

@@ -1,20 +1,20 @@
 #' Attrition Checks
 #'
 #' \code{attr_check} reports missing data on treatment variable, assignment variable, and outcome.
-#' Currently it only supports the design with one assignment variable.
+#' Currently, it only supports designs with one assignment variable.
 #' This is an internal function and is typically not directly invoked by the user. 
 #' It can be accessed using the triple colon, as in rddapp:::attr_check().
 #' 
-#' @param x1 A numeric object, the assignment variable.
-#' @param y A numeric object, the outcome variable, with the same dimensionality 
-#'   as \code{x}.
-#' @param t A numeric object, the treatment variable, with the same dimensionality 
-#'   as \code{x} and \code{y}.
-#' @param x2 A numeric object, the secondary assignment variable.
+#' @param x1 A numeric object containing the assignment variable.
+#' @param y A numeric object containing the outcome variable, with the same dimensionality 
+#'   as \code{x1}.
+#' @param t A numeric object containing the treatment variable (coded as 0 for untreated and 1 for treated), with the same dimensionality 
+#'   as \code{x1} and \code{y}.
+#' @param x2 A numeric object containing the secondary assignment variable.
 #' 
-#' @return A list with the missing data numbers and percentages for all variables 
-#'   and subgroups by treatment.
-
+#' @return \code{attr_check} returns a list containing the amount and percentage of missing data for all variables and subgroups, by treatment.
+#'   
+ 
 attr_check <- function(x1, y, t, x2 = NULL) {
   res = list(
     # get length of vector t to determine number of cases

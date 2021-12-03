@@ -1,19 +1,20 @@
 #' Cutoff Sensitivity Simulation for Multivariate Regression Discontinuity
 #'
-#' \code{mrd_sens_cutoff} refits the supplemented model with varying cutoff(s). 
+#' \code{mrd_sens_cutoff} refits the supplied model with varying cutoff(s). 
 #' Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
 #' 
 #' @param object An object returned by \code{mrd_est} or \code{mrd_impute}. 
 #' @param cutoffs A two-column numeric matrix of paired cutoff values 
 #'   to be used for refitting an \code{mrd} object.  
 #'
-#' @return A dataframe which contains the estimate \code{est} and standard error \code{se} 
+#' @return \code{mrd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
 #'   for each pairs of cutoffs (\code{A1} and \code{A2}). \code{A1} contains varying cutoffs 
-#'   on assignment 1, and \code{A2} assignment 2.
+#'   for assignment 1 and \code{A2} contains varying cutoffs for assignment 2.
 #'
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- rnorm(1000, 10, 2)
 #' cov <- rnorm(1000)

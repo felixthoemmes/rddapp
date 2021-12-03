@@ -1,17 +1,17 @@
 #' Plot the Simulated Estimates for Sensitivity Analyses
 #'
-#' \code{sens_plot} plots the sensitivity analysis for cutpoint or bandwidth.
+#' \code{sens_plot} plots the sensitivity analysis for cutpoints or bandwidths.
 #'
 #' @param sim_results A \code{data.frame} returned by \code{rd_sens_cutoff}, \code{rd_sens_bw},
 #'   \code{mrd_sens_cutoff}, or \code{mrd_sens_bw}.
-#' @param level The confidence level for CIs (assuming a normal sampling distribution).
+#' @param level A numeric value between 0 and 1 specifying the confidence level for CIs (assuming a normal sampling distribution). The default is 0.95.
 #' @param x A string of the column name of the varying parameter in \code{sim_results}. 
 #'   This will be used as the x-axis in the plot. Possible values are \code{c("A1", "A2", "bw")}, 
 #'   which are column names in \code{sim_results}. 
-#'   \code{A1} means the varying cutoffs are for assignment 1, and \code{A2} assignment 2.  
-#' @param plot_models A character vector specifying the models (i.e., models estimated with 
-#'   different approaches) to be plotted. Possible values are \code{unique(sim_results$model))}.
-#' @param yrange A numeric vector of the range of y-axis
+#'   \code{A1} specifies that the varying cutoffs are for assignment 1 and \code{A2} specifies assignment 2. \code{bw} indicates that the varying parameter is bandwidth.  
+#' @param plot_models A character vector specifying the models to be plotted (i.e. models estimated with 
+#'   different approaches). Possible values are \code{unique(sim_results$model))}.
+#' @param yrange An optional numeric vector specifying the range of the y-axis.
 #'
 #' @importFrom stats na.omit
 #' @importFrom graphics abline
@@ -19,6 +19,7 @@
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' x <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)

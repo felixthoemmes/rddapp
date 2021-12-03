@@ -1,19 +1,20 @@
 #' Bandwidth Sensitivity Simulation for Multivariate Regression Discontinuity
 #'
-#' \code{mrd_sens_bw} refits the supplemented model with varying bandwidth. 
+#' \code{mrd_sens_bw} refits the supplied model with varying bandwidths. 
 #' Other estimation parameters are held constant.
 #'
 #' @param object An object returned by \code{mrd_est} or \code{mrd_impute}. 
 #' @param approach A string of the approaches to be refitted, 
 #'   choosing from \code{c("center", "univ1", "univ2")}.
-#' @param bws A positive numeric vector of bandwidth for refitting an \code{mrd} object.  
+#' @param bws A positive numeric vector of the bandwidths for refitting an \code{mrd} object.  
 #'
-#' @return A dataframe which contains the estimate \code{est} and standard error \code{se} 
+#' @return \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
 #'   for each supplemented bandwidth.
 #' 
 #' @export
 #'
 #' @examples
+#' set.seed(12345)
 #' x1 <- runif(1000, -1, 1)
 #' x2 <- rnorm(1000, 10, 2)
 #' cov <- rnorm(1000)

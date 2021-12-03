@@ -1,11 +1,11 @@
 #' Summarize the Power Analysis of Regression Discontinuity
 #' 
-#' \code{summary.mrdp} is a \code{summary} method for class \code{"mrdp"}
+#' \code{summary.mrdp} is a \code{summary} method for class \code{"mrdp"}.
 #' 
 #' @method summary mrdp
 #' 
 #' @param object An object of class \code{"mrdp"}, usually a result of a call to \code{\link{mrd_power}}.
-#' @param digits Number of digits to display.
+#' @param digits A non-negative integer specifying the number of digits to display.
 #' @param ... Additional arguments.
 #' 
 #' @return \code{summary.mrdp} returns a list which has the following components:
@@ -44,5 +44,3 @@ summary.mrdp <- function(object, digits = max(3, getOption("digits") - 3), ...) 
   
   return(invisible(out))
 } 
-
-cat("Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n")

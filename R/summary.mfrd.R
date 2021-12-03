@@ -1,22 +1,25 @@
 #' Summarize the Multivariate Frontier Regression Discontinuity
 #' 
-#' \code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}
-#' It is based on \code{\link[rdd]{summary.RD}} function in the \pkg{rdd} package. 
+#' \code{summary.mfrd} is a \code{summary} method for class \code{"mfrd"}.
+#' It is based on the \code{summary.RD} function in the "rdd" package. 
 #' 
 #' @method summary mfrd
 #' 
 #' @param object An object of class \code{"mfrd"}, usually a result of a call to \code{\link{mfrd_est}}.
-#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
-#' @param digits Number of digits to display.
+#' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
+#' @param digits A non-negative integer specifying the number of digits to display.
 #' @param ... Additional arguments.
 #' 
-#' @return \code{summary.mfrd} returns a list which has the following components:
+#' @return \code{summary.mfrd} returns a list containing the following components:
 #' \item{coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 #' for the complete model.}
 #' \item{ht_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 #' for the heterogeneous treatment model.}
 #' \item{t_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 #' for the treatment only model.}
+#' 
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+#'    version 0.57. https://CRAN.R-project.org/package=rdd
 #' 
 #' @importFrom stats residuals
 #'

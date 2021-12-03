@@ -13,15 +13,16 @@ mrd_sens_cutoff(object, cutoffs)
 to be used for refitting an \code{mrd} object.}
 }
 \value{
-A dataframe which contains the estimate \code{est} and standard error \code{se} 
+\code{mrd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
   for each pairs of cutoffs (\code{A1} and \code{A2}). \code{A1} contains varying cutoffs 
-  on assignment 1, and \code{A2} assignment 2.
+  for assignment 1 and \code{A2} contains varying cutoffs for assignment 2.
 }
 \description{
-\code{mrd_sens_cutoff} refits the supplemented model with varying cutoff(s). 
+\code{mrd_sens_cutoff} refits the supplied model with varying cutoff(s). 
 Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
 }
 \examples{
+set.seed(12345)
 x1 <- runif(1000, -1, 1)
 x2 <- rnorm(1000, 10, 2)
 cov <- rnorm(1000)

@@ -1,18 +1,21 @@
 #' Summarize the Regression Discontinuity
 #' 
 #' \code{summary.rd} is a \code{summary} method for class \code{"rd"}
-#' It is based on \code{\link[rdd]{summary.RD}} function in the \pkg{rdd} package. 
+#' It is based on \code{summary.RD} function in the "rdd" package. 
 #' 
 #' @method summary rd
 #' 
 #' @param object An object of class \code{"rd"}, usually a result of a call to \code{\link{rd_est}}.
-#' @param level Numerical value between 0 and 1. Confidence level for confidence intervals.
-#' @param digits Number of digits to display.
+#' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
+#' @param digits A non-negative integer specifying the number of digits to display.
 #' @param ... Additional arguments.
 #' 
 #' @return \code{summary.rd} returns a list which has the following components:
 #' \item{coefficients}{A matrix containing bandwidths, number of observations, estimates, 
 #'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
+#'   
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+#'    version 0.57. https://CRAN.R-project.org/package=rdd
 #' 
 #' @importFrom stats residuals
 #'
