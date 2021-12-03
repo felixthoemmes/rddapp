@@ -128,8 +128,7 @@ of sample points on each assignment variable. The default is 0.03.</p></dd>
 <dd><p>An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.</p></dd>
 <dt>cluster</dt>
 <dd><p>An optional vector specifying clusters within which the errors are assumed
-to be correlated. This will result in reporting cluster robust SEs. This option overrides
-anything specified in <code>se.type</code>. It is suggested that data with a discrete running 
+to be correlated. This will result in reporting cluster robust SEs. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).</p></dd>
 <dt>stop.on.error</dt>
 <dd><p>A logical value indicating whether to remove bootstraps which cause error in the <code>integrate</code> function. If <code>TRUE</code>, bootstraps which cause error are removed

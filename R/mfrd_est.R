@@ -33,8 +33,7 @@
 #'   of sample points on each assignment variable. The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
 #' @param cluster An optional vector specifying clusters within which the errors are assumed
-#'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
-#'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
+#'   to be correlated. This will result in reporting cluster robust SEs. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
 #' @param stop.on.error A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
 #'   and resampled until the specified number of 
