@@ -124,11 +124,6 @@ The default is c(0.001, 0.01, anad 0.05).}
   of separate RD in terms of \code{x2} using the univariate approach, 
   with the optimal bandwidth in the Imbens and Kalyanaraman (2012) paper.}
   }
-  
-  @references Imbens, G., Kalyanaraman, K. (2012). 
-  Optimal bandwidth choice for the regression discontinuity estimator. 
-  The Review of Economic Studies, 79(3), 933-959.
-  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }
 \description{
 \code{mrd_power} computes the empirical probability that an MRD is significant,
@@ -140,4 +135,10 @@ mrd_power(x1.design = "l", x2.design = "l")
 mrd_power(x1.dist = "uniform", x1.cut = 0.5, x1.design = "l", x2.design = "l")
 mrd_power(x1.fuzzy = c(0.1, 0.1), x1.design = "l", x2.design = "l")
 }
+}
+\references{
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }
