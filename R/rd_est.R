@@ -72,7 +72,7 @@
 #' \item{obs}{Vector of the number of observations within the corresponding bandwidth.}
 #' \item{call}{The matched call.}
 #' \item{na.action}{The observations removed from fitting due to missingness.}
-#' \item{impute}{Whether multiple imputation is used or not.}
+#' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 #' \item{model}{For a sharp design, a list of the \code{lm} objects is returned.
 #'   For a fuzzy design, a list of lists is returned, each with two elements: 
 #'   \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 

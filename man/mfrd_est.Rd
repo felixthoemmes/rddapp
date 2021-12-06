@@ -77,6 +77,23 @@ bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error ar
 }
 \value{
 \code{mfrd_est} returns an object of \link{class} "\code{mfrd}".
+  The functions \code{summary} and \code{plot} are used to obtain and print a summary and 
+  plot of the estimated regression discontinuity. The object of class \code{mfrd} is a list 
+  containing the following components:
+\item{w}{What is w?}   
+\item{est}{Numeric matrix of the estimate of the discontinuity in the outcome under 
+  a ... , for each corresponding bandwidth.}
+\item{d}{Numeric matrix of the effect size (Cohen's d) for estimate.}
+\item{se}{Numeric matrix of the standard error for each corresponding bandwidth and ....}
+\item{m_s}{...}
+\item{m_h}{...}
+\item{m_t}{...}
+\item{dat_h}{...}
+\item{dat}{A data frame containing...}
+\item{obs}{List of the number of observations within the corresponding bandwidth.}
+\item{impute}{A logical value indicating whether multiple imputation is used or not.}
+\item{call}{The matched call.}
+\item{front.bw}{Numeric vector of each bandwidth used in estimation.}
 }
 \description{
 \code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
