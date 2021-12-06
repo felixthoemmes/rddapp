@@ -121,6 +121,30 @@ bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error ar
 }
 \value{
 \code{mrd_est} returns an object of \link{class} "\code{mrd}".
+  The function \code{summary} is used to obtain and print a summary of the 
+  estimated regression discontinuity. The object of class \code{mrd} is a list 
+  containing the following components for each estimated treatment effect,
+  \code{tau_MRD} or \code{tau_R} and \code{tau_M}:
+\item{type}{A string denoting either \code{"sharp"} or \code{"fuzzy"} RDD.}
+\item{call}{The matched call.}
+\item{est}{Numeric vector of the estimate of the discontinuity in the outcome under 
+  a sharp MRDD or the Wald estimator in the fuzzy MRDD, for each corresponding bandwidth.}
+\item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
+\item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
+  for each corresponding bandwidth.}
+\item{bw}{Numeric vector of each bandwidth used in estimation.}
+\item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
+\item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
+\item{obs}{Vector of the number of observations within the corresponding bandwidth.}
+\item{cov}{The names of covariates.}
+\item{model}{For a sharp design, a list of the \code{lm} objects is returned.
+  For a fuzzy design, a list of lists is returned, each with two elements: 
+  \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 
+  A model is returned for each corresponding bandwidth.}
+\item{frame}{Returns the model frame used in fitting.}
+\item{na.action}{The observations removed from fitting due to missingness.}
+\item{impute}{A logical value indicating whether multiple imputation is used or not.}
+\item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
 }
 \description{
 \code{mrd_est} estimates treatment effects in a multivariate regression discontinuity design (MRDD) with two assignment variables, 
