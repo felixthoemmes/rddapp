@@ -50,6 +50,30 @@
 #'   and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its cutoff).
 #'
 #' @return \code{rd_impute} returns an object of \link{class} "\code{rd}".
+#'   The functions \code{summary} and \code{plot} are used to obtain and print a summary and 
+#'   plot of the estimated regression discontinuity. The object of class \code{rd} is a list 
+#'   containing the following components:
+#' \item{call}{The matched call.}
+#' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
+#' \item{type}{A string denoting either \code{"sharp"} or \code{"fuzzy"} RDD.}
+#' \item{cov}{The names of covariates.}
+#' \item{bw}{Numeric vector of each bandwidth used in estimation.}
+#' \item{obs}{Vector of the number of observations within the corresponding bandwidth.}
+#' \item{model}{For a sharp design, a list of the \code{lm} objects is returned.
+#'   For a fuzzy design, a list of lists is returned, each with two elements: 
+#'   \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 
+#'   A model is returned for each corresponding bandwidth.}
+#' \item{frame}{Returns the model frame used in fitting.}
+#' \item{na.action}{The observations removed from fitting due to missingness.}
+#' \item{est}{Numeric vector of the estimate of the discontinuity in the outcome under 
+#'   a sharp RDD or the Wald estimator in the fuzzy RDD, for each corresponding bandwidth.}
+#' \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
+#' \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
+#' \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
+#' \item{df}{Numeric vector of the degrees of freedom for each...}
+#' \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
+#' \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
+#'   for each corresponding bandwidth.}
 #'
 #' @references Stata: 64 mi estimate - Estimation using multiple imputations
 #' @references Lee, D. S., Card, D. (2010).
