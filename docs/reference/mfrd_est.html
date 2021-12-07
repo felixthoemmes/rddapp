@@ -137,8 +137,38 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>mfrd_est</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a> "<code>mfrd</code>".</p>
-    </div>
+    <p><code>mfrd_est</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a> "<code>mfrd</code>".
+  The functions <code>summary</code> and <code>plot</code> are used to obtain and print a summary and 
+  plot of the estimated regression discontinuity. The object of class <code>mfrd</code> is a list 
+  containing the following components:</p>
+<dl><dt>w</dt>
+<dd><p>What is w?</p></dd>
+<dt>est</dt>
+<dd><p>Numeric matrix of the estimate of the discontinuity in the outcome under 
+  a ... , for each corresponding bandwidth.</p></dd>
+<dt>d</dt>
+<dd><p>Numeric matrix of the effect size (Cohen's d) for estimate.</p></dd>
+<dt>se</dt>
+<dd><p>Numeric matrix of the standard error for each corresponding bandwidth and ....</p></dd>
+<dt>m_s</dt>
+<dd><p>...</p></dd>
+<dt>m_h</dt>
+<dd><p>...</p></dd>
+<dt>m_t</dt>
+<dd><p>...</p></dd>
+<dt>dat_h</dt>
+<dd><p>...</p></dd>
+<dt>dat</dt>
+<dd><p>A data frame containing...</p></dd>
+<dt>obs</dt>
+<dd><p>List of the number of observations within the corresponding bandwidth.</p></dd>
+<dt>impute</dt>
+<dd><p>A logical value indicating whether multiple imputation is used or not.</p></dd>
+<dt>call</dt>
+<dd><p>The matched call.</p></dd>
+<dt>front.bw</dt>
+<dd><p>Numeric vector of each bandwidth used in estimation.</p></dd>
+</dl></div>
     <div id="references">
     <h2>References</h2>
     <p>Wong, V., Steiner, P, and Cook, T. (2013).
