@@ -182,9 +182,49 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>mrd_impute</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a> "<code>mrd</code>", or "<code>mrdi</code>" for
-<code>"front"</code> method.</p>
-    </div>
+    <p><code>mrd_impute</code> returns an object of <a href="https://rdrr.io/r/base/class.html" class="external-link">class</a> "<code>mrd</code>" or <code>"mrdi"</code> for <code>"front"</code> method.
+  The function <code>summary</code> is used to obtain and print a summary of the 
+  estimated regression discontinuity. The object of class <code>mrd</code> is a list 
+  containing the following components for each estimated treatment effect,
+<code>tau_MRD</code> or <code>tau_R</code> and <code>tau_M</code>:</p>
+<dl><dt>call</dt>
+<dd><p>The matched call.</p></dd>
+<dt>type</dt>
+<dd><p>A string denoting either <code>"sharp"</code> or <code>"fuzzy"</code> RDD.</p></dd>
+<dt>cov</dt>
+<dd><p>The names of covariates.</p></dd>
+<dt>bw</dt>
+<dd><p>Numeric vector of each bandwidth used in estimation.</p></dd>
+<dt>obs</dt>
+<dd><p>Vector of the number of observations within the corresponding bandwidth.</p></dd>
+<dt>model</dt>
+<dd><p>For a sharp design, a list of the <code>lm</code> objects is returned.
+  For a fuzzy design, a list of lists is returned, each with two elements: 
+  <code>firststage</code>, the first stage <code>lm</code> object, and <code>iv</code>, the <code>ivreg</code> object. 
+  A model is returned for each corresponding bandwidth.</p></dd>
+<dt>frame</dt>
+<dd><p>Returns the model frame used in fitting.</p></dd>
+<dt>na.action</dt>
+<dd><p>The observations removed from fitting due to missingness.</p></dd>
+<dt>est</dt>
+<dd><p>Numeric vector of the estimate of the discontinuity in the outcome under 
+  a sharp MRDD or the Wald estimator in the fuzzy MRDD, for each corresponding bandwidth.</p></dd>
+<dt>d</dt>
+<dd><p>Numeric vector of the effect size (Cohen's d) for each estimate.</p></dd>
+<dt>se</dt>
+<dd><p>Numeric vector of the standard error for each corresponding bandwidth.</p></dd>
+<dt>z</dt>
+<dd><p>Numeric vector of the z statistic for each corresponding bandwidth.</p></dd>
+<dt>df</dt>
+<dd><p>Numeric vector of the degrees of freedom for each ...</p></dd>
+<dt>p</dt>
+<dd><p>Numeric vector of the p-value for each corresponding bandwidth.</p></dd>
+<dt>ci</dt>
+<dd><p>The matrix of the 95<!-- % confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")}  -->
+  for each corresponding bandwidth.</p></dd>
+<dt>impute</dt>
+<dd><p>A logical value indicating whether multiple imputation is used or not.</p></dd>
+</dl></div>
     <div id="references">
     <h2>References</h2>
     <p>Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 
