@@ -74,8 +74,11 @@ to be used for refitting an <code>mrd</code> object.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>mrd_sens_cutoff</code> returns a dataframe containing the estimate <code>est</code> and standard error <code>se</code>  for each pairs of cutoffs (<code>A1</code> and <code>A2</code>). <code>A1</code> contains varying cutoffs 
-  for assignment 1 and <code>A2</code> contains varying cutoffs for assignment 2.</p>
+    <p><code>mrd_sens_cutoff</code> returns a dataframe containing the estimate <code>est</code> and standard error <code>se</code>  for each pair of cutoffs (<code>A1</code> and <code>A2</code>) and for each <code>model</code>. <code>A1</code> contains varying cutoffs 
+  for assignment 1 and <code>A2</code> contains varying cutoffs for assignment 2.
+  The <code>model</code> column contains the approach (either centering, univariate 1, or univariate 2)
+  for determining the cutoff and the parametric model (linear, quadratic, or cubic) or 
+  non-parametric bandwidth setting (optimal, half, or double) used for estimation.</p>
     </div>
     </div>
 
