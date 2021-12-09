@@ -8,8 +8,9 @@
 #'   an \code{rd} object.
 #'
 #' @return \code{rd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
-#'   for each cutoff values (\code{A1}). Column \code{A1} contains varying cutoffs 
-#'   on the assignment variable.
+#'   for each cutoff value (\code{A1}). Column \code{A1} contains varying cutoffs 
+#'   on the assignment variable. The \code{model} column contains the parametric model (linear, quadratic, or cubic) or 
+#'   non-parametric bandwidth setting (optimal, half, or double) used for estimation.
 #'
 #' @export
 #'
