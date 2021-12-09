@@ -16,7 +16,8 @@ choosing from \code{c("center", "univ1", "univ2")}.}
 }
 \value{
 \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
-  for each supplemented bandwidth.
+  for each supplied bandwidth and for the optimal bandwidth, \code{bw}, 
+  and for each supplied approach, \code{model}.
 }
 \description{
 \code{mrd_sens_bw} refits the supplied model with varying bandwidths. 
