@@ -8,8 +8,11 @@
 #'   to be used for refitting an \code{mrd} object.  
 #'
 #' @return \code{mrd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
-#'   for each pairs of cutoffs (\code{A1} and \code{A2}). \code{A1} contains varying cutoffs 
+#'   for each pair of cutoffs (\code{A1} and \code{A2}) and for each \code{model}. \code{A1} contains varying cutoffs 
 #'   for assignment 1 and \code{A2} contains varying cutoffs for assignment 2.
+#'   The \code{model} column contains the approach (either centering, univariate 1, or univariate 2)
+#'   for determining the cutoff and the parametric model (linear, quadratic, or cubic) or 
+#'   non-parametric bandwidth setting (optimal, half, or double) used for estimation. 
 #'
 #' @export
 #'
