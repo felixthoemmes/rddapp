@@ -166,7 +166,8 @@ mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "center", t.design = c("geq
 # univariate
 mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "univ", t.design = c("geq", "geq"), m = 3)
 # frontier - don't run due to computation time
-\dontrun{mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front", boot = 1000, t.design = c("geq", "geq"), m = 3)}
+\dontrun{mrd_impute(y ~ x1 + x2 | cov, impute = imp, method = "front",
+                    boot = 1000, t.design = c("geq", "geq"), m = 3)}
 }
 \references{
 Wong, V. C., Steiner, P. M., Cook, T. D. (2013). 
