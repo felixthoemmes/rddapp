@@ -49,4 +49,6 @@ The same options are available for \code{x2}.}
 \code{wt_kern_bivariate} calculates the appropriate weights for two variables for
    Multivariate Frontier Regression Discontinuity Estimation with nonparametric implementation.
    Kernel weights are calculated based on the L1 distance of the two variables from the frontiers.
+   This is an internal function and is typically not directly invoked by the user.
+   It can be accessed using the triple colon, as in rddapp:::wt_kern_bivariate().
 }
