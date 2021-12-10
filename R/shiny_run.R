@@ -5,6 +5,7 @@
 #' @param app_name A string specifying the name of the R Shiny app. The default is "shinyrdd".
 #'
 #' @importFrom shiny runApp
+#' @importFrom DT dataTableOutput renderDataTable
 #'
 #' @export
 #'
