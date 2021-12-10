@@ -4,7 +4,7 @@ author: "Felix Thoemmes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using the RDD app}
+  %\VignetteIndexEntry{Using the rddapp R package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

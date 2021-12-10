@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.mrdi.R
 \name{summary.mrdi}
 \alias{summary.mrdi}
-\title{Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation}
+\title{Summarize the Multiple Imputation of Multivariate Regression Discontinuity}
 \usage{
 \method{summary}{mrdi}(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...)
 }

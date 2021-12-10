@@ -1,4 +1,4 @@
-#' Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation
+#' Summarize the Multiple Imputation of Multivariate Regression Discontinuity
 #' 
 #' \code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}.
 #' 
