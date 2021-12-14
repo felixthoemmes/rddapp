@@ -80,16 +80,41 @@ bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error ar
   The functions \code{summary} and \code{plot} are used to obtain and print a summary and 
   plot of the estimated regression discontinuity. The object of class \code{mfrd} is a list 
   containing the following components:
-\item{w}{What is w?}   
+\item{w}{Numeric vector specifying the weight of frontier 1 and frontier 2, respectively.}   
 \item{est}{Numeric matrix of the estimate of the discontinuity in the outcome under 
-  a ... , for each corresponding bandwidth.}
+  a complete model (no prefix), heterogeneous treatment (ht) effects model, and treatment (t) only model,
+  for the parametric case and for each corresponding bandwidth.
+  Estimates with suffix "ev1" and "ev2" correspond to expected values for each frontier, under a given model.
+  Estimates with suffix "ate" correspond to average treatment effects across both frontiers, 
+  under a given model.}
 \item{d}{Numeric matrix of the effect size (Cohen's d) for estimate.}
 \item{se}{Numeric matrix of the standard error for each corresponding bandwidth and ....}
-\item{m_s}{...}
-\item{m_h}{...}
-\item{m_t}{...}
-\item{dat_h}{...}
-\item{dat}{A data frame containing...}
+\item{m_s}{A list containing estimates for the complete model, under parametric
+and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+coefficient estimates, residuals, effects, weights (in the non-parametric case),
+rank, fitted values, assignments,
+qr, residual degrees of freedom, levels of the x value, function call, terms,
+and output data frame are returned for each model.}
+\item{m_h}{A list containing estimates for the heterogeneous treatments model, under parametric
+and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+coefficient estimates, residuals, effects, weights (in the non-parametric case),
+rank, fitted values, assignments,
+qr, residual degrees of freedom, levels of the x value, function call, terms,
+and output data frame are returned for each model.}
+\item{m_t}{A list containing estimates for the treatment only model, under parametric
+and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+coefficient estimates, residuals, effects, weights (in the non-parametric case),
+rank, fitted values, assignments,
+qr, residual degrees of freedom, levels of the x value, function call, terms,
+and output data frame are returned for each model.}
+\item{dat_h}{A list containing four data frames, one for each case:
+parametric or non-parametric (optimal, half, and double bandwidth).
+Each data frame contains ... colnames ... for each ... row information.}
+\item{dat}{A data frame containing the outcome (y) and each input (x1, x2) for each observation.
+The data frame also contains sample restrictions for x1 and x2 (x1res, x2res),
+scaled (zx1, zx2) and centered x1 and x2 values (zcx1, zcx2), and 
+treatment indicators for overall treatment (tr) based on treatment assignment
+from x1 (tr1), x2 (tr2), and both assignment variables (trb).}
 \item{obs}{List of the number of observations within the corresponding bandwidth.}
 \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 \item{call}{The matched call.}
