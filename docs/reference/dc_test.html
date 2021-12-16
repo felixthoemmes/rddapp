@@ -96,8 +96,8 @@ The default is <code>TRUE</code>. The user may wrap this function in additional 
 to modify the plot.</p></dd>
 <dt>ext.out</dt>
 <dd><p>A logical value indicating whether to return extended output. 
-The default is <code>FALSE</code>. When <code>FALSE</code> <code>dc_test</code> will return only the p-value of the test. 
-When <code>TRUE</code>, <code>dc_test</code> will return the additional information documented below.</p></dd>
+The default is <code>FALSE</code>. When <code>FALSE</code> <code>dc_test</code> will return only the p-value of the test, but will print more information. 
+When <code>TRUE</code>, <code>dc_test</code> will return and print the additional information documented below.</p></dd>
 <dt>htest</dt>
 <dd><p>A logical value indicating whether to return an <code>"htest"</code> object 
 compatible with base R's hypothesis test output. The default is <code>FALSE</code>.</p></dd>
@@ -116,7 +116,7 @@ to completion.</p></dd>
   Additional output is enabled when <code>ext.out</code> is <code>TRUE</code>. 
   In this case, <code>dc_test</code> returns a list with the following elements:</p>
 <dl><dt>theta</dt>
-<dd><p>The estimated log difference in heights at the cutpoint.</p></dd>
+<dd><p>The estimated log difference in heights of the density curve at the cutpoint.</p></dd>
 <dt>se</dt>
 <dd><p>The standard error of <code>theta</code>.</p></dd>
 <dt>z</dt>
