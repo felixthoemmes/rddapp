@@ -46,7 +46,8 @@ The same options are available for \code{x2}.}
 standardized scale, for each assignment variable. The default is 0.15.}
 
 \item{front.bw}{A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
+of three effects models detailed in Wong, Steiner, and Cook (2013).
+If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
 
 \item{m}{A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 if \code{front.bw} is \code{NA}. The default is 10.}
@@ -63,11 +64,12 @@ which is also the number of zero grid points on each assignment variable. The de
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
 \item{margin}{A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
-of sample points on each assignment variable. The default is 0.03.}
+of sample points on each assignment variable. This grid is used to impute potential outcomes along the frontier,
+as in Wong, Steiner, and Cook (2013). The default is 0.03.}
 
 \item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.}
 
-\item{cluster}{An optional vector specifying clusters within which the errors are assumed
+\item{cluster}{An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
 

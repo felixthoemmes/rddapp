@@ -36,7 +36,7 @@
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
-#' @param cluster An optional vector specifying clusters within which the errors are assumed
+#' @param cluster An optional vector of length n specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
