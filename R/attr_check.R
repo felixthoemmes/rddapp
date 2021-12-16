@@ -1,7 +1,6 @@
 #' Attrition Checks
 #'
 #' \code{attr_check} reports missing data on treatment variable, assignment variable, and outcome.
-#' Currently, it only supports designs with one assignment variable.
 #' This is an internal function and is typically not directly invoked by the user. 
 #' It can be accessed using the triple colon, as in rddapp:::attr_check().
 #' 
