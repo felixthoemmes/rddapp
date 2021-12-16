@@ -1,7 +1,7 @@
 #' Multivariate Frontier Regression Discontinuity Estimation 
 #'
 #' \code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
-#' It is based on the MFRDD code in Stata. 
+#' It is based on the MFRDD code in Stata from Wong, Steiner, and Cook (2013). 
 #'
 #' @param y A numeric object containing outcome variable.
 #' @param x1 A numeric object containing the first assignment variable.

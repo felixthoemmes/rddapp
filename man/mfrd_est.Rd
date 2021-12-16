@@ -122,7 +122,7 @@ from x1 (tr1), x2 (tr2), and both assignment variables (trb).}
 }
 \description{
 \code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
-It is based on the MFRDD code in Stata.
+It is based on the MFRDD code in Stata from Wong, Steiner, and Cook (2013).
 }
 \examples{
 set.seed(12345)
