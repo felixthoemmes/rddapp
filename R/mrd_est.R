@@ -115,7 +115,7 @@
 #'   Regression discontinuity inference with specification error. 
 #'   Journal of Econometrics, 142(2), 655-674. 
 #'   \doi{10.1016/j.jeconom.2007.05.003}.
-#'   #' @references Lee, D. S., Lemieux, T. (2010).
+#' @references Lee, D. S., Lemieux, T. (2010).
 #'   Regression Discontinuity Designs in Economics.
 #'   Journal of Economic Literature, 48(2), 281-355. 
 #'   \doi{10.1257/jel.48.2.281}.
