@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny_run.R
 \name{shiny_run}
 \alias{shiny_run}
-\title{Launch the Shiny App for Regression Discontinuity}
+\title{Launch the R Shiny App for "rddapp"}
 \usage{
 shiny_run(app_name = "shinyrdd")
 }

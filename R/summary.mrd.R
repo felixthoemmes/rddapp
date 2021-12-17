@@ -13,11 +13,11 @@
 #' @return \code{summary.mrd} returns a list which has the following components depending on methods
 #' implemented in the \code{"mrd"} object:
 #' \item{center_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
+#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth and/or parametric model.}
 #' \item{univR_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
+#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth and/or parametric model.}.}
 #' \item{univM_coefficients}{A matrix containing bandwidths, number of observations, estimates, 
-#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth.}
+#'   SEs, confidence intervals, z-values and p-values for each estimated bandwidth and/or parametric model.}.}
 #' \item{front_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 #' for the complete model.}
 #' \item{front_ht_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 

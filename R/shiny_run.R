@@ -1,4 +1,4 @@
-#' Launch the Shiny App for Regression Discontinuity
+#' Launch the R Shiny App for "rddapp"
 #'
 #' \code{shiny_run} launches the R Shiny application for "rddapp".
 #'
