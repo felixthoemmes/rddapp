@@ -82,16 +82,20 @@
     <h2>Arguments</h2>
     <dl><dt>X1</dt>
 <dd><p>The input x1 values for the first vector. 
-This variable represents the axis along which kernel weighting should be performed.</p></dd>
+This variable represents the axis along which kernel weighting should be performed;
+the first assignment variable in an MRDD.</p></dd>
 <dt>X2</dt>
 <dd><p>The input x2 values for the second vector. <code>X2</code> has the same length as <code>X1</code>.
-This variable represents the axis along which kernel weighting should be performed.</p></dd>
+This variable represents the axis along which kernel weighting should be performed.;
+the second assignment variable in an MRDD.</p></dd>
 <dt>center1</dt>
 <dd><p>A numeric value specifying the point from which distances should be calculated for the first vector, <code>X1</code>.</p></dd>
 <dt>center2</dt>
 <dd><p>A numeric value specifying the point from which distances should be calculated for the second vector, <code>X2</code>.</p></dd>
 <dt>bw</dt>
-<dd><p>A numeric vector specifying the bandwidths for each of three effects models</p></dd>
+<dd><p>A numeric vector specifying the bandwidths for each of three effects models 
+(complete model, heterogeneous treatment model, and treatment only model) 
+detailed in Wong, Steiner, and Cook (2013).</p></dd>
 <dt>kernel</dt>
 <dd><p>A string indicating which kernel to use. Options are <code>"triangular"</code> 
 (default and recommended), <code>"rectangular"</code>, <code>"epanechnikov"</code>, <code>"quartic"</code>, 
@@ -107,7 +111,7 @@ The same options are available for <code>x2</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>wt_bivariate_kern</code> returns three vectors of weights and distances with length equal to that of the <code>X1</code> and <code>X2</code> input.
+    <p><code>wt_bivariate_kern</code> returns a matrix of weights and distances with length equal to that of the <code>X1</code> and <code>X2</code> input.
   The first and second weights and distances are calculated with respect to all frontiers of different treatments.
   The third weight and distance are calculated with respect to the overall frontier of treatment versus
   non-treatment.</p>
