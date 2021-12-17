@@ -23,7 +23,7 @@ mrd_power(
 )
 }
 \arguments{
-\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.}
+\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical power. The default is 100.}
 
 \item{sample.size}{A non-negative integer specifying the number of observations in each sample. The default is 100.}
 
@@ -49,9 +49,10 @@ upper and lower boundaries of the uniform distribution. The default is c(0,1).}
 
 \item{x2.cut}{A numeric value containing the cutpoint at which assignment to the treatment is determined for the second assignment variable, \code{x2}. The default is 0.}
 
-\item{x1.fuzzy}{A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the first
+\item{x1.fuzzy}{A numeric vector of length 2 specifying the probabilities to be
+assigned to the control condition, in terms of the first
 assignment variable, \code{x1}, for individuals in the treatment based on the cutoff, 
-and to treatment for individuals in the control based on the cutoff.
+and to treatment for individuals in the control condition based on the cutoff.
 For a sharp design, both entries are 0. 
 For a fuzzy design, the first entry is the probability to be assigned to 
 control for individuals above the cutpoint, and the second entry is the 
@@ -105,8 +106,11 @@ The default is c(0.001, 0.01, anad 0.05).}
 }
 \value{
 \code{mrd_power} returns an object of \link{class} 
-  "\code{mrdp}" containing the mean, variance, and power for six estimators. The function \code{summary}
-  is used to obtain and print a summary of the power analysis. The six estimators are as follows:
+  "\code{mrdp}" containing the number of successful iterations,
+  mean, variance, and power (with \code{alpha} of 0.001, 0.01, and 0.05)
+  for six estimators. The function \code{summary}
+  is used to obtain and print a summary of the power analysis.
+  The six estimators are as follows:
   \itemize{
   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator 
   of combined RD using the centering approach.}
@@ -126,14 +130,16 @@ The default is c(0.001, 0.01, anad 0.05).}
   }
 }
 \description{
-\code{mrd_power} computes the empirical probability that an MRD is significant,
-i.e. the empirical alpha of null hypothesis: MRD = 0
+\code{mrd_power} computes the empirical probability that a resulting parameter
+estimate of the MRD is significant,
+i.e. the empirical power (1 - beta).
 }
 \examples{
 \dontrun{
-mrd_power(x1.design = "l", x2.design = "l")
-mrd_power(x1.dist = "uniform", x1.cut = 0.5, x1.design = "l", x2.design = "l")
-mrd_power(x1.fuzzy = c(0.1, 0.1), x1.design = "l", x2.design = "l")
+summary(mrd_power(x1.design = "l", x2.design = "l"))
+summary(mrd_power(x1.dist = "uniform", x1.cut = 0.5,
+                  x1.design = "l", x2.design = "l"))
+summary(mrd_power(x1.fuzzy = c(0.1, 0.1), x1.design = "l", x2.design = "l"))
 }
 }
 \references{
