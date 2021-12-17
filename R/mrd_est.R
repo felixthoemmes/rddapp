@@ -4,10 +4,12 @@
 #' including the frontier average treatment effect (\code{tau_MRD}) 
 #' and frontier-specific effects (\code{tau_R} and \code{tau_M}) simultaneously. 
 #' 
-#' @param formula The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
+#' @param formula The formula of the MRDD; a symbolic description of the model to
+#'   be fitted. This is supplied in the
 #'   format of \code{y ~ x1 + x2} for a simple sharp MRDD or \code{y ~ x1 + x2 | c1 + c2}
 #'   for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
-#'   \code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
+#'   \code{y ~ x1 + x2 + z} where \code{x1} is the first running variable,
+#'   \code{x2} is the second running variable, and 
 #'   \code{z} is the endogenous treatment variable. Covariates are then included in the 
 #'   same manner as in a sharp MRDD.
 #' @param data An optional data frame containing the variables in the model. If not found in \code{data},
@@ -15,7 +17,9 @@
 #' @param subset An optional vector specifying a subset of observations to be used in the fitting process.
 #' @param cutpoint A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).
 #' @param bw A vector specifying the bandwidths at which to estimate the RD. 
-#'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
+#'   Possible values are \code{"IK09"}, \code{"IK12"},
+#'   or a user-specified non-negative numeric vector containing the bandwidths
+#'   at which to estimate the RD.
 #'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
 #'   2012 method. If \code{bw}  is \code{"IK09"}, the bandwidth is calculated using 
 #'   the Imbens-Kalyanaraman 2009 method. Then, the RD is estimated
@@ -23,8 +27,9 @@
 #'   If only a single value is passed into the function,
 #'   the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 #'   and twice that bandwidth.
-#' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-#'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
+#' @param front.bw A non-negative numeric vector of length 3 specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013). If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.
 #' @param k A non-negative integer specifying the number of folds for cross-validation to determine \code{front.bw},
@@ -32,7 +37,8 @@
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
-#' @param se.type This specifies the robust standard error calculation method to use. Options are,
+#' @param se.type This specifies the robust standard error calculation method to use,
+#' from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
@@ -41,26 +47,30 @@
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
 #' @param verbose A logical value indicating whether to print additional information to 
-#'   the terminal. The default is \code{FALSE}.
-#' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
-#'   return the estimates of linear, quadratic, cubic, optimal, half and double. The default is \code{FALSE}.
+#'   the terminal, including results of instrumental variable regression,
+#'   and outputs from background regression models. The default is \code{FALSE}.
+#' @param less Logical. If \code{TRUE}, return the estimates of parametric linear
+#'   and optimal bandwidth non-parametric models only. If \code{FALSE} 
+#'   return the estimates of linear, quadratic, and cubic parametric models and 
+#'   optimal, half and double bandwidths in non-parametric models. The default is \code{FALSE}.
 #' @param est.cov Logical. If \code{TRUE}, the estimates of covariates will be included.
 #'   If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
 #'   applicable if method is \code{"front"}.
-#' @param est.itt Logical. If \code{TRUE}, the estimates of ITT will be returned.
+#' @param est.itt Logical. If \code{TRUE}, the estimates of intent-to-treat (ITT) will be returned.
 #'   If \code{FALSE}, the estimates of ITT will not be returned. The default is \code{FALSE}. This option is not
 #'   applicable if method is \code{"front"}.
-#' @param local A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+#' @param local A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 #'   standardized scale, for each assignment variable. The default is 0.15. 
 #' @param ngrid A non-negative integer specifying the number of non-zero grid points on each assignment variable,
 #'   which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 #'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
-#' @param margin A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+#' @param margin A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable. The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
 #'   This arugment is not optional if method is \code{"front"}.
 #' @param method A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
-#'   \code{"univ"}, \code{"front"}.
+#'   \code{"univ"}, \code{"front"}, based on the centering, univariate, and frontier
+#'   approaches (respectively) from Wong, Steiner, and Cook (2013). 
 #' @param t.design A character vector of length 2 specifying the treatment option according to design.
 #'   The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
 #'   \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
@@ -119,6 +129,10 @@
 #'   Regression Discontinuity Designs in Economics.
 #'   Journal of Economic Literature, 48(2), 281-355. 
 #'   \doi{10.1257/jel.48.2.281}.
+#' @references Zeileis, A. (2006).
+#'   Object-oriented computation of sandwich estimators.
+#'   Journal of Statistical Software, 16(9), 1-16.
+#'   \doi{10.18637/jss.v016.i09}
 #'
 #' @importFrom Formula as.Formula
 #' @importFrom stats model.frame na.pass complete.cases as.formula
