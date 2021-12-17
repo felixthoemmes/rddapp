@@ -32,11 +32,12 @@
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
-#' @param se.type This specifies the robust standard error calculation method to use. Options are,
+#' @param se.type This specifies the robust standard error calculation method to use,
+#'   from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
-#' @param cluster An optional vector specifying clusters within which the errors are assumed
+#' @param cluster An optional vector of length n specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
@@ -71,13 +72,13 @@
 #' \item{bw}{Numeric vector of each bandwidth used in estimation.}
 #' \item{obs}{Vector of the number of observations within the corresponding bandwidth.}
 #' \item{call}{The matched call.}
-#' \item{na.action}{The observations removed from fitting due to missingness.}
+#' \item{na.action}{The number of observations removed from fitting due to missingness.}
 #' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 #' \item{model}{For a sharp design, a list of the \code{lm} objects is returned.
 #'   For a fuzzy design, a list of lists is returned, each with two elements: 
 #'   \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 
 #'   A model is returned for each corresponding bandwidth.}
-#' \item{frame}{Returns the model frame used in fitting.}
+#' \item{frame}{Returns the dataframe used in fitting the model.}
 #'
 #' @references Lee, D. S., Lemieux, T. (2010).
 #'   Regression Discontinuity Designs in Economics.
@@ -124,7 +125,7 @@
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x >= 0) + rnorm(1000)
 #' rd_est(y ~ x, t.design = "geq")
-#' # Efficiency gains can be made by including covariates
+#' # Efficiency gains can be made by including covariates (review SEs in "summary" output).
 #' rd_est(y ~ x | cov, t.design = "geq")
 
 rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 
