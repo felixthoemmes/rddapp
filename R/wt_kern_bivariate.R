@@ -6,12 +6,16 @@
 #'    This is an internal function and is typically not directly invoked by the user.
 #'    It can be accessed using the triple colon, as in rddapp:::wt_kern_bivariate().
 #' @param X1 The input x1 values for the first vector. 
-#'   This variable represents the axis along which kernel weighting should be performed.
+#'   This variable represents the axis along which kernel weighting should be performed;
+#'   the first assignment variable in an MRDD.
 #' @param X2 The input x2 values for the second vector. \code{X2} has the same length as \code{X1}.
-#'   This variable represents the axis along which kernel weighting should be performed.   
+#'   This variable represents the axis along which kernel weighting should be performed.;
+#'   the second assignment variable in an MRDD.  
 #' @param center1 A numeric value specifying the point from which distances should be calculated for the first vector, \code{X1}.
 #' @param center2 A numeric value specifying the point from which distances should be calculated for the second vector, \code{X2}.
-#' @param bw A numeric vector specifying the bandwidths for each of three effects models
+#' @param bw A numeric vector specifying the bandwidths for each of three effects models 
+#'   (complete model, heterogeneous treatment model, and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013).
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
@@ -23,7 +27,7 @@
 #'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
 #'   The same options are available for \code{x2}.
 #'
-#' @return \code{wt_bivariate_kern} returns three vectors of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
+#' @return \code{wt_bivariate_kern} returns a matrix of weights and distances with length equal to that of the \code{X1} and \code{X2} input.
 #'   The first and second weights and distances are calculated with respect to all frontiers of different treatments.
 #'   The third weight and distance are calculated with respect to the overall frontier of treatment versus
 #'   non-treatment.
