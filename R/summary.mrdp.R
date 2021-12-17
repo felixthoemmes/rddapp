@@ -1,6 +1,7 @@
 #' Summarize the Power Analysis of Regression Discontinuity
 #' 
 #' \code{summary.mrdp} is a \code{summary} method for class \code{"mrdp"}.
+#' It is based on \code{summary.RD} function in the "rdd" package.
 #' 
 #' @method summary mrdp
 #' 
@@ -10,6 +11,9 @@
 #' 
 #' @return \code{summary.mrdp} returns a list which has the following components:
 #' \item{coefficients}{A matrix containing the mean, variance, and empirical alpha of each estimator.}
+#'
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+#'    version 0.57. https://CRAN.R-project.org/package=rdd
 #'
 #' @include mrd_power.R
 #' 

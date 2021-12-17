@@ -19,4 +19,9 @@
 }
 \description{
 \code{summary.rdp} is a \code{summary} method for class \code{"rdp"}.
+It is based on \code{summary.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }
