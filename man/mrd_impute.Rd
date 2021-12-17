@@ -34,7 +34,8 @@ mrd_impute(
 \item{formula}{The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
 format of \code{y ~ x1 + x2} for a simple sharp MRDD or \code{y ~ x1 + x2 | c1 + c2}
 for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
-\code{y ~ x1 + x2 + z} where \code{x} is the running variable, and 
+\code{y ~ x1 + x2 + z} where \code{x1} is the first running variable,
+\code{x2} is the second running variable, and 
 \code{z} is the endogenous treatment variable. Covariates are then included in the 
 same manner as in a sharp MRDD.}
 
@@ -55,8 +56,9 @@ If only a single value is passed into the function,
 the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 and twice that bandwidth.}
 
-\item{front.bw}{An optional non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
+\item{front.bw}{A non-negative numeric vector of length 3 specifying the bandwidths at which to estimate the RD for each
+of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+detailed in Wong, Steiner, and Cook (2013). If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
 
 \item{m}{A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 if \code{front.bw} is \code{NA}. The default is 10.}
@@ -68,47 +70,52 @@ if \code{front.bw} is \code{NA}. The default is 5.}
 (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 
-\item{se.type}{This specifies the robust standard error calculation method to use. Options are,
+\item{se.type}{This specifies the robust standard error calculation method to use,
+from the "sandwich" package. Options are,
 as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 is overridden by \code{cluster}.}
 
-\item{cluster}{An optional vector specifying clusters within which the errors are assumed
+\item{cluster}{An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
 anything specified in \code{se.type}. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
 
-\item{impute}{An optional vector specifying the imputed variables with missing values.}
+\item{impute}{An optional vector of length n containing a grouping variable that 
+specifies the imputed variables with missing values.}
 
 \item{verbose}{A logical value indicating whether to print additional information to 
 the terminal. The default is \code{FALSE}.}
 
-\item{less}{Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
-return the estimates of linear, quadratic, cubic, optimal, half and double. The default is \code{FALSE}.}
+\item{less}{Logical. If \code{TRUE}, return the estimates of parametric linear
+and optimal bandwidth non-parametric models only. If \code{FALSE} 
+return the estimates of linear, quadratic, and cubic parametric models and 
+optimal, half and double bandwidths in non-parametric models. The default is \code{FALSE}.}
 
 \item{est.cov}{Logical. If \code{TRUE}, the estimates of covariates will be included.
 If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
 applicable if method is \code{"front"}.}
 
-\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.
+\item{est.itt}{Logical. If \code{TRUE}, the estimates of intent-to-treat (ITT) will be returned.
 If \code{FALSE}, the estimates of ITT will not be returned. The default is \code{FALSE}. This option is not
 applicable if method is \code{"front"}.}
 
-\item{local}{A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+\item{local}{A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 standardized scale, for each assignment variable. The default is 0.15.}
 
 \item{ngrid}{A non-negative integer specifying the number of non-zero grid points on each assignment variable,
 which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 
-\item{margin}{A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+\item{margin}{A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 of sample points on each assignment variable. The default is 0.03.}
 
 \item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
 This arugment is not optional if method is \code{"front"}.}
 
 \item{method}{A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
-\code{"univ"}, \code{"front"}.}
+\code{"univ"}, \code{"front"}, based on the centering, univariate, and frontier
+approaches (respectively) from Wong, Steiner, and Cook (2013).}
 
 \item{t.design}{A character vector of length 2 specifying the treatment option according to design.
 The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  
