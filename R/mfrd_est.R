@@ -18,7 +18,8 @@
 #' @param local A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 #'   standardized scale, for each assignment variable. The default is 0.15. 
 #' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-#'   of three effects models detailed in Wong, Steiner, and Cook (2013).
+#'   of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013).
 #'   If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.

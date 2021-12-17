@@ -46,7 +46,8 @@ The same options are available for \code{x2}.}
 standardized scale, for each assignment variable. The default is 0.15.}
 
 \item{front.bw}{A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-of three effects models detailed in Wong, Steiner, and Cook (2013).
+of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+detailed in Wong, Steiner, and Cook (2013).
 If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.}
 
 \item{m}{A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
