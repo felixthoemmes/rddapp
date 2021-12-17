@@ -22,7 +22,8 @@ returned by \code{mrd_est}.}
 which denote the complete model, heterogeneous treatment model, and treatment only 
 model, respectively.}
 
-\item{methodname}{A string containing the method specification. Options include one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.}
+\item{methodname}{A string containing the method specification.
+Options include one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.}
 
 \item{gran}{A non-negative integer specifying the granularity of the surface grid (i.e. the desired number of predicted points 
 before and after the cutoff, along each assignment variable). The default is 10.}

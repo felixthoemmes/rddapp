@@ -10,7 +10,9 @@ mrd_sens_cutoff(object, cutoffs)
 \item{object}{An object returned by \code{mrd_est} or \code{mrd_impute}.}
 
 \item{cutoffs}{A two-column numeric matrix of paired cutoff values 
-to be used for refitting an \code{mrd} object.}
+to be used for refitting an \code{mrd} object. The first column corresponds
+to cutoffs for \code{x1} and the second column corresponds to cutoffs
+for \code{x2}.}
 }
 \value{
 \code{mrd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
@@ -22,7 +24,7 @@ to be used for refitting an \code{mrd} object.}
 }
 \description{
 \code{mrd_sens_cutoff} refits the supplied model with varying cutoff(s). 
-Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
+All other aspects of the model, such as the automatically calculated bandwidth, are held constant.
 }
 \examples{
 set.seed(12345)
