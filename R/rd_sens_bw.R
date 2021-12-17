@@ -1,7 +1,7 @@
 #' Bandwidth Sensitivity Simulation for Regression Discontinuity
 #'
 #' \code{rd_sens_bw} refits the supplied model with varying bandwidths. 
-#' Other estimation parameters are held constant.
+#' All other aspects of the model are held constant.
 #' 
 #' @param object An object returned by \code{rd_est} or \code{rd_impute}. 
 #' @param bws A positive numeric vector of the bandwidths for refitting an \code{rd} object.

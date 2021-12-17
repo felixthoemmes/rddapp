@@ -18,7 +18,7 @@ rd_sens_bw(object, bws)
 }
 \description{
 \code{rd_sens_bw} refits the supplied model with varying bandwidths. 
-Other estimation parameters are held constant.
+All other aspects of the model are held constant.
 }
 \examples{
 set.seed(12345)

@@ -20,7 +20,7 @@ an \code{rd} object.}
 }
 \description{
 \code{rd_sens_cutoff} refits the supplied model with varying cutoff(s). 
-Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
+All other aspects of the model, such as the automatically calculated bandwidth, are held constant.
 }
 \examples{
 set.seed(12345)
