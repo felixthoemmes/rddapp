@@ -84,7 +84,10 @@
 #' \item{obs}{List of the number of observations within the corresponding bandwidth.}
 #' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 #' \item{call}{The matched call.}
-#' \item{front.bw}{Numeric vector of each bandwidth used in estimation.}
+#' \item{front.bw}{Numeric vector of each bandwidth used to estimate the RD for
+#'   the three effects models (complete model, heterogeneous treatment model,
+#'   and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013).}
 #' 
 #' @references Wong, V., Steiner, P, and Cook, T. (2013).
 #'   Analyzing regression discontinuity designs with multiple assignment variables: A comparative study of four estimation methods. 
