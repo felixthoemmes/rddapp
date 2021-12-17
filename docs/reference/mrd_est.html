@@ -92,10 +92,12 @@ and frontier-specific effects (<code>tau_R</code> and <code>tau_M</code>) simult
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>formula</dt>
-<dd><p>The formula of the MRDD; a symbolic description of the model to be fitted. This is supplied in the
+<dd><p>The formula of the MRDD; a symbolic description of the model to
+be fitted. This is supplied in the
 format of <code>y ~ x1 + x2</code> for a simple sharp MRDD or <code>y ~ x1 + x2 | c1 + c2</code>
 for a sharp MRDD with two covariates. A fuzzy MRDD may be specified as
-<code>y ~ x1 + x2 + z</code> where <code>x</code> is the running variable, and 
+<code>y ~ x1 + x2 + z</code> where <code>x1</code> is the first running variable,
+<code>x2</code> is the second running variable, and 
 <code>z</code> is the endogenous treatment variable. Covariates are then included in the 
 same manner as in a sharp MRDD.</p></dd>
 <dt>data</dt>
@@ -107,7 +109,9 @@ the variables are taken from <code>environment(formula)</code>.</p></dd>
 <dd><p>A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).</p></dd>
 <dt>bw</dt>
 <dd><p>A vector specifying the bandwidths at which to estimate the RD. 
-Possible values are <code>"IK09"</code>, <code>"IK12"</code>, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
+Possible values are <code>"IK09"</code>, <code>"IK12"</code>,
+or a user-specified non-negative numeric vector containing the bandwidths
+at which to estimate the RD.
 The default is <code>"IK12"</code>. If <code>bw</code> is <code>"IK12"</code>, the bandwidth is calculated using the Imbens-Kalyanaraman 
 2012 method. If <code>bw</code>  is <code>"IK09"</code>, the bandwidth is calculated using 
 the Imbens-Kalyanaraman 2009 method. Then, the RD is estimated
@@ -116,8 +120,9 @@ If only a single value is passed into the function,
 the RD will similarly be estimated at that bandwidth, half that bandwidth, 
 and twice that bandwidth.</p></dd>
 <dt>front.bw</dt>
-<dd><p>A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-of three effects models. If <code>NA</code>, <code>front.bw</code> will be determined by cross-validation. The default is <code>NA</code>.</p></dd>
+<dd><p>A non-negative numeric vector of length 3 specifying the bandwidths at which to estimate the RD for each
+of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+detailed in Wong, Steiner, and Cook (2013). If <code>NA</code>, <code>front.bw</code> will be determined by cross-validation. The default is <code>NA</code>.</p></dd>
 <dt>m</dt>
 <dd><p>A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for <code>front.bw</code>,
 if <code>front.bw</code> is <code>NA</code>. The default is 10.</p></dd>
@@ -129,7 +134,8 @@ if <code>front.bw</code> is <code>NA</code>. The default is 5.</p></dd>
 (default and recommended), <code>"rectangular"</code>, <code>"epanechnikov"</code>, <code>"quartic"</code>, 
 <code>"triweight"</code>, <code>"tricube"</code>, and <code>"cosine"</code>.</p></dd>
 <dt>se.type</dt>
-<dd><p>This specifies the robust standard error calculation method to use. Options are,
+<dd><p>This specifies the robust standard error calculation method to use,
+from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
 <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
 is overridden by <code>cluster</code>.</p></dd>
@@ -140,34 +146,38 @@ anything specified in <code>se.type</code>. It is suggested that data with a dis
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).</p></dd>
 <dt>verbose</dt>
 <dd><p>A logical value indicating whether to print additional information to 
-the terminal. The default is <code>FALSE</code>.</p></dd>
+the terminal, including results of instrumental variable regression,
+and outputs from background regression models. The default is <code>FALSE</code>.</p></dd>
 <dt>less</dt>
-<dd><p>Logical. If <code>TRUE</code>, return the estimates of linear and optimal. If <code>FALSE</code> 
-return the estimates of linear, quadratic, cubic, optimal, half and double. The default is <code>FALSE</code>.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, return the estimates of parametric linear
+and optimal bandwidth non-parametric models only. If <code>FALSE</code> 
+return the estimates of linear, quadratic, and cubic parametric models and 
+optimal, half and double bandwidths in non-parametric models. The default is <code>FALSE</code>.</p></dd>
 <dt>est.cov</dt>
 <dd><p>Logical. If <code>TRUE</code>, the estimates of covariates will be included.
 If <code>FALSE</code>, the estimates of covariates will not be included. The default is <code>FALSE</code>. This option is not
 applicable if method is <code>"front"</code>.</p></dd>
 <dt>est.itt</dt>
-<dd><p>Logical. If <code>TRUE</code>, the estimates of ITT will be returned.
+<dd><p>Logical. If <code>TRUE</code>, the estimates of intent-to-treat (ITT) will be returned.
 If <code>FALSE</code>, the estimates of ITT will not be returned. The default is <code>FALSE</code>. This option is not
 applicable if method is <code>"front"</code>.</p></dd>
 <dt>local</dt>
-<dd><p>A non-negative numeric vector of length 1 or 2 specifying the range of neighboring points around the cutoff on the 
+<dd><p>A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 standardized scale, for each assignment variable. The default is 0.15.</p></dd>
 <dt>ngrid</dt>
 <dd><p>A non-negative integer specifying the number of non-zero grid points on each assignment variable,
 which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.</p></dd>
 <dt>margin</dt>
-<dd><p>A non-negative numeric vector of length 1 or 2 specifying the range of grid points beyond the minimum and maximum
+<dd><p>A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 of sample points on each assignment variable. The default is 0.03.</p></dd>
 <dt>boot</dt>
 <dd><p>An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
 This arugment is not optional if method is <code>"front"</code>.</p></dd>
 <dt>method</dt>
 <dd><p>A string specifying the method to estimate the RD effect. Options are <code>"center"</code>, 
-<code>"univ"</code>, <code>"front"</code>.</p></dd>
+<code>"univ"</code>, <code>"front"</code>, based on the centering, univariate, and frontier
+approaches (respectively) from Wong, Steiner, and Cook (2013).</p></dd>
 <dt>t.design</dt>
 <dd><p>A character vector of length 2 specifying the treatment option according to design.
 The first entry is for <code>x1</code> and the second entry is for <code>x2</code>. Options are  
@@ -249,6 +259,10 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
   Journal of Economic Literature, 48(2), 281-355. 
   doi: <a href="https://doi.org/10.1257/jel.48.2.281" class="external-link">10.1257/jel.48.2.281</a>
 .</p>
+<p>Zeileis, A. (2006).
+  Object-oriented computation of sandwich estimators.
+  Journal of Statistical Software, 16(9), 1-16.
+  doi: <a href="https://doi.org/10.18637/jss.v016.i09" class="external-link">10.18637/jss.v016.i09</a></p>
     </div>
     </div>
 

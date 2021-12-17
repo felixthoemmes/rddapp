@@ -108,7 +108,8 @@ and twice that bandwidth.</p></dd>
 (default and recommended), <code>"rectangular"</code>, <code>"epanechnikov"</code>, <code>"quartic"</code>, 
 <code>"triweight"</code>, <code>"tricube"</code>, and <code>"cosine"</code>.</p></dd>
 <dt>se.type</dt>
-<dd><p>This specifies the robust standard error calculation method to use. Options are,
+<dd><p>This specifies the robust standard error calculation method to use,
+from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
 <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
 is overridden by <code>cluster</code>.</p></dd>
@@ -118,7 +119,7 @@ to be correlated. This will result in reporting cluster robust SEs. This option 
 anything specified in <code>se.type</code>. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).</p></dd>
 <dt>impute</dt>
-<dd><p>An optional vector specifying the imputed variables with missing values.</p></dd>
+<dd><p>An optional vector of length n, indexing whole imputations.</p></dd>
 <dt>verbose</dt>
 <dd><p>A logical value indicating whether to print additional information to 
 the terminal. The default is <code>FALSE</code>.</p></dd>
@@ -186,8 +187,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 </dl></div>
     <div id="references">
     <h2>References</h2>
-    <p>Stata: 64 mi estimate - Estimation using multiple imputations</p>
-<p>Lee, D. S., Card, D. (2010).
+    <p>Lee, D. S., Card, D. (2010).
   Regression discontinuity inference with specification error. 
   Journal of Econometrics, 142(2), 655-674. 
   doi: <a href="https://doi.org/10.1016/j.jeconom.2007.05.003" class="external-link">10.1016/j.jeconom.2007.05.003</a>
@@ -219,7 +219,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Linear   Quadratic       Cubic         Opt    Half-Opt  Double-Opt  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      9.789       9.248       9.168       9.384       9.335       9.675  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># Efficiency gains can be made by including covariates</span></span>
+<span class="r-in"><span class="co"># Efficiency gains can be made by including covariates (review SEs in "summary" output).</span></span>
 <span class="r-in"><span class="fu">rd_impute</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">cov</span>, impute <span class="op">=</span> <span class="va">group</span>, t.design <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>

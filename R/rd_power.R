@@ -1,9 +1,10 @@
 #' Power Analysis of Regression Discontinuity
 #' 
-#' \code{rd_power} computes the empirical probability that RD is significant,
-#' i.e. the empirical alpha of null hypothesis: RD = 0.
+#' \code{rd_power} computes the empirical probability that a resulting parameter
+#' estimate of the MRD is significant,
+#' i.e. the empirical power (1 - beta).
 #'
-#' @param num.rep A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.
+#' @param num.rep A non-negative integer specifying the number of repetitions used to calculate the empirical power. The default is 100.
 #' @param sample.size A non-negative integer specifying the number of observations in each sample. The default is 100.
 #' @param x.dist A string specifying the distribution of the assignment variable, \code{x}.
 #'   Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.
@@ -41,7 +42,8 @@
 #'   The default is c(0.001, 0.01, anad 0.05).
 #'
 #' @return \code{rd_power} returns an object of \link{class} 
-#'   "\code{rdp}", including containing the mean, variance, and power for two estimators. The function \code{summary}
+#'   "\code{rdp}", including containing the mean, variance, and power (with \code{alpha} of 0.001, 0.01, and 0.05)
+#'   for two estimators. The function \code{summary}
 #'   is used to obtain and print a summary of the power analysis. The two estimators are:
 #'   \itemize{
 #'   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator.} 
@@ -63,9 +65,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' rd_power(x.design = "l")
-#' rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
-#' rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
+#' summary(rd_power(x.design = "l"))
+#' summary(rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l"))
+#' summary(rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l"))
 #' }
 
 rd_power <- function(num.rep = 100, sample.size = 100, x.dist = "normal", x.para = c(0, 1), 

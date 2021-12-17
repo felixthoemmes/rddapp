@@ -121,12 +121,13 @@ and twice that bandwidth.</p></dd>
 (default and recommended), <code>"rectangular"</code>, <code>"epanechnikov"</code>, <code>"quartic"</code>, 
 <code>"triweight"</code>, <code>"tricube"</code>, and <code>"cosine"</code>.</p></dd>
 <dt>se.type</dt>
-<dd><p>This specifies the robust standard error calculation method to use. Options are,
+<dd><p>This specifies the robust standard error calculation method to use,
+from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
 <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
 is overridden by <code>cluster</code>.</p></dd>
 <dt>cluster</dt>
-<dd><p>An optional vector specifying clusters within which the errors are assumed
+<dd><p>An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
 anything specified in <code>se.type</code>. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).</p></dd>
@@ -180,7 +181,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <dt>call</dt>
 <dd><p>The matched call.</p></dd>
 <dt>na.action</dt>
-<dd><p>The observations removed from fitting due to missingness.</p></dd>
+<dd><p>The number of observations removed from fitting due to missingness.</p></dd>
 <dt>impute</dt>
 <dd><p>A logical value indicating whether multiple imputation is used or not.</p></dd>
 <dt>model</dt>
@@ -189,7 +190,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
   <code>firststage</code>, the first stage <code>lm</code> object, and <code>iv</code>, the <code>ivreg</code> object. 
   A model is returned for each corresponding bandwidth.</p></dd>
 <dt>frame</dt>
-<dd><p>Returns the model frame used in fitting.</p></dd>
+<dd><p>Returns the dataframe used in fitting the model.</p></dd>
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -239,7 +240,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Linear   Quadratic       Cubic         Opt    Half-Opt  Double-Opt  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      10.23       10.67       10.66       10.47       10.57       10.30  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># Efficiency gains can be made by including covariates</span></span>
+<span class="r-in"><span class="co"># Efficiency gains can be made by including covariates (review SEs in "summary" output).</span></span>
 <span class="r-in"><span class="fu">rd_est</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">cov</span>, t.design <span class="op">=</span> <span class="st">"geq"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
