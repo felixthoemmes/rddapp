@@ -15,13 +15,14 @@ choosing from \code{c("center", "univ1", "univ2")}.}
 \item{bws}{A positive numeric vector of the bandwidths for refitting an \code{mrd} object.}
 }
 \value{
-\code{mrd_sens_bw} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
+\code{mrd_sens_bw} returns a dataframe containing the estimate \code{est}
+  and standard error \code{se} 
   for each supplied bandwidth and for the optimal bandwidth, \code{bw}, 
   and for each supplied approach, \code{model}.
 }
 \description{
 \code{mrd_sens_bw} refits the supplied model with varying bandwidths. 
-Other estimation parameters are held constant.
+All other aspects of the model are held constant.
 }
 \examples{
 set.seed(12345)
