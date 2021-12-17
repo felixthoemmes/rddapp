@@ -24,7 +24,8 @@
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
-#' @param se.type This specifies the robust standard error calculation method to use. Options are,
+#' @param se.type This specifies the robust standard error calculation method to use,
+#'   from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
@@ -32,7 +33,7 @@
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
-#' @param impute An optional vector specifying the imputed variables with missing values. 
+#' @param impute An optional vector of length n, indexing whole imputations. 
 #' @param verbose A logical value indicating whether to print additional information to 
 #'   the terminal. The default is \code{FALSE}.
 #' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
@@ -75,7 +76,6 @@
 #' \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
 #'   for each corresponding bandwidth.}
 #'
-#' @references Stata: 64 mi estimate - Estimation using multiple imputations
 #' @references Lee, D. S., Card, D. (2010).
 #'   Regression discontinuity inference with specification error. 
 #'   Journal of Econometrics, 142(2), 655-674. 
@@ -102,7 +102,7 @@
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x < 0) + rnorm(1000)
 #' group <- rep(1:10, each = 100)
 #' rd_impute(y ~ x, impute = group, t.design = "l")
-#' # Efficiency gains can be made by including covariates
+#' # Efficiency gains can be made by including covariates (review SEs in "summary" output).
 #' rd_impute(y ~ x | cov, impute = group, t.design = "l")
 
 rd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 

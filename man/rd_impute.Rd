@@ -50,7 +50,8 @@ and twice that bandwidth.}
 (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.}
 
-\item{se.type}{This specifies the robust standard error calculation method to use. Options are,
+\item{se.type}{This specifies the robust standard error calculation method to use,
+from the "sandwich" package. Options are,
 as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 is overridden by \code{cluster}.}
@@ -60,7 +61,7 @@ to be correlated. This will result in reporting cluster robust SEs. This option 
 anything specified in \code{se.type}. It is suggested that data with a discrete running 
 variable be clustered by each unique value of the running variable (Lee and Card, 2008).}
 
-\item{impute}{An optional vector specifying the imputed variables with missing values.}
+\item{impute}{An optional vector of length n, indexing whole imputations.}
 
 \item{verbose}{A logical value indicating whether to print additional information to 
 the terminal. The default is \code{FALSE}.}
@@ -119,12 +120,10 @@ cov <- rnorm(1000)
 y <- 3 + 2 * x + 3 * cov + 10 * (x < 0) + rnorm(1000)
 group <- rep(1:10, each = 100)
 rd_impute(y ~ x, impute = group, t.design = "l")
-# Efficiency gains can be made by including covariates
+# Efficiency gains can be made by including covariates (review SEs in "summary" output).
 rd_impute(y ~ x | cov, impute = group, t.design = "l")
 }
 \references{
-Stata: 64 mi estimate - Estimation using multiple imputations
-
 Lee, D. S., Card, D. (2010).
   Regression discontinuity inference with specification error. 
   Journal of Econometrics, 142(2), 655-674. 
