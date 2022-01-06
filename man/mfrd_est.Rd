@@ -121,10 +121,7 @@ from x1 (tr1), x2 (tr2), and both assignment variables (trb).}
 \item{obs}{List of the number of observations within the corresponding bandwidth.}
 \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 \item{call}{The matched call.}
-\item{front.bw}{Numeric vector of each bandwidth used to estimate the RD for
-  the three effects models (complete model, heterogeneous treatment model,
-  and treatment only model) 
-  detailed in Wong, Steiner, and Cook (2013).}
+\item{front.bw}{Numeric vector of each bandwidth used in estimation.}
 }
 \description{
 \code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
