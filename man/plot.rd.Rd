@@ -49,7 +49,7 @@ If \code{bin_n} is < 0, data points are suppressed. The default is 20.}
 
 \item{include_rugs}{A logical value indicating whether to include the 1d plot for both axes. The default is \code{FALSE}.}
 
-\item{...}{Additional arguments affecting the plots produced.}
+\item{...}{Additional graphic arguments passed to \code{plot}.}
 }
 \description{
 \code{plot.rd} plots the relationship between the running variable and the outcome.

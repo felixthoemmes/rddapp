@@ -13,7 +13,7 @@
 
 \item{digits}{A non-negative integer specifying the number of digits to display.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments passed to \code{summary}..}
 }
 \value{
 \code{summary.rd} returns a list which has the following components:

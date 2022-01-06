@@ -13,7 +13,7 @@
 
 \item{digits}{A non-negative integer specifying the number of digits to display.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments passed to \code{summary}.}
 }
 \value{
 \code{summary.mfrd} returns a list containing the following components:

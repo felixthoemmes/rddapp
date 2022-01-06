@@ -11,7 +11,7 @@
 
 \item{digits}{A non-negative integer specifying the number of digits to print.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments passed to \code{print}.}
 }
 \description{
 \code{print.mfrd} prints a very basic summary of the multivariate frontier regression 
