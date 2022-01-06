@@ -9,7 +9,7 @@
 #' \code{\link{mrd_impute}} with \code{"front"} method.
 #' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
 #' @param digits A non-negative integer specifying the number of digits to display.
-#' @param ... Additional arguments passed to \code{summary}.
+#' @param ... Additional arguments.
 #' 
 #' @return \code{summary.mrdi} returns a list which has the following components:
 #' \item{coefficients}{A matrix containing estimates and confidence intervals (if applicable) 

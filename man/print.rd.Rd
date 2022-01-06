@@ -11,7 +11,7 @@
 
 \item{digits}{A non-negative integer specifying the number of digits to print.}
 
-\item{...}{Additional arguments passed to \code{print}.}
+\item{...}{Additional arguments.}
 }
 \description{
 \code{print.rd} prints a basic summary of the regression discontinuity.

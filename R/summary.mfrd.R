@@ -8,7 +8,7 @@
 #' @param object An object of class \code{"mfrd"}, usually a result of a call to \code{\link{mfrd_est}}.
 #' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
 #' @param digits A non-negative integer specifying the number of digits to display.
-#' @param ... Additional arguments passed to \code{summary}.
+#' @param ... Additional arguments.
 #' 
 #' @return \code{summary.mfrd} returns a list containing the following components:
 #' \item{coefficients}{A matrix containing estimates and confidence intervals (if applicable) 

@@ -11,7 +11,7 @@
 
 \item{gran}{A non-negative integer specifying the granularity of the data points (i.e. the desired number of predicted points). The default is 50.}
 
-\item{...}{Additional arguments passed to \code{predict}.}
+\item{...}{Additional arguments affecting the predictions produced.}
 }
 \description{
 \code{predict.rd} makes predictions of means and standard deviations of RDs at different cutoffs.

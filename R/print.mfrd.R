@@ -7,7 +7,7 @@
 #'
 #' @param x An \code{mfrd} object, typically the result of \code{\link{mfrd_est}}.
 #' @param digits A non-negative integer specifying the number of digits to print.
-#' @param ... Additional arguments passed to \code{print}.
+#' @param ... Additional arguments.
 #' 
 #' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
 #'    version 0.57. https://CRAN.R-project.org/package=rdd
