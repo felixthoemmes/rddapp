@@ -1,6 +1,6 @@
 template:
-  bootstrap: 5
-  bootswatch: simplex
+  params:
+    bootswatch: yeti
 
 reference:
   - title: Package and web application
