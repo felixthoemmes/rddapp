@@ -75,18 +75,21 @@
 #' and output data frame are returned for each model.}
 #' \item{dat_h}{A list containing four data frames, one for each case:
 #' parametric or non-parametric (optimal, half, and double bandwidth).
-#' Each data frame contains ... colnames ... for each ... row information.}
-#' \item{dat}{A data frame containing the outcome (y) and each input (x1, x2) for each observation.
-#' The data frame also contains sample restrictions for x1 and x2 (x1res, x2res),
-#' scaled (zx1, zx2) and centered x1 and x2 values (zcx1, zcx2), and 
-#' treatment indicators for overall treatment (tr) based on treatment assignment
-#' from x1 (tr1), x2 (tr2), and both assignment variables (trb).}
-#' \item{obs}{List of the number of observations within the corresponding bandwidth.}
+#' Each data frame contains functions and densities for each frontier
+#' and treatment model.}
+#' \item{dat}{A data frame containing the outcome (\code{y}) and each input
+#' (\code{x1}, \code{x2}) for each observation. The data frame also contains
+#'  sample restrictions for x1 and x2 (\code{x1res}, \code{x2res}),
+#' scaled (\code{zx1}, \code{zx2}) and
+#' centered x1 and x2 values (\code{zcx1}, \code{zcx2}), and 
+#' treatment indicators for overall treatment (\code{tr}) based on treatment assignment
+#' from x1 (\code{tr1}), x2 (\code{tr2}), and both assignment variables (\code{trb}).}
+#' \item{obs}{List of the number of observations used in each model.}
 #' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
 #' \item{call}{The matched call.}
-#' \item{front.bw}{Numeric vector of each bandwidth used to estimate the RD for
-#'   the three effects models (complete model, heterogeneous treatment model,
-#'   and treatment only model) 
+#' \item{front.bw}{Numeric vector of each bandwidth used to estimate the density
+#'   at the frontier for the three effects models (complete model,
+#'   heterogeneous treatment model, and treatment only model) 
 #'   detailed in Wong, Steiner, and Cook (2013).}
 #' 
 #' @references Wong, V., Steiner, P, and Cook, T. (2013).
