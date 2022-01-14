@@ -134,8 +134,8 @@ if <code>front.bw</code> is <code>NA</code>. The default is 5.</p></dd>
 <dd><p>This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
-<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
-is overridden by <code>cluster</code>.</p></dd>
+<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>.
+The default is <code>"HC1"</code>. This option is overridden by <code>cluster</code>.</p></dd>
 <dt>cluster</dt>
 <dd><p>An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides

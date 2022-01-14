@@ -88,7 +88,7 @@ Options are <code>"normal"</code> and  <code>"uniform"</code>. The default is th
 If <code>x.dist</code> is <code>"normal"</code>, then <code>x.para</code> includes the
 mean and standard deviation of the normal distribution.
 If <code>x.dist</code> is <code>"uniform"</code>, then <code>x.para</code> includes the 
-upper and lower boundaries of the uniform distribution. The default is c(0,1).</p></dd>
+upper and lower boundaries of the uniform distribution. The default is <code>c(0,1)</code>.</p></dd>
 <dt>x.cut</dt>
 <dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
 <dt>x.fuzzy</dt>
@@ -112,13 +112,13 @@ Coefficients are in the following order:</p><ul><li><p>The 1st entry is the inte
 <li><p>The 2nd entry is the slope of treatment, i.e. treatment effect.</p></li>
 <li><p>The 3rd entry is the slope of assignment.</p></li>
 <li><p>The 4th entry is the slope of interaction between treatment and assignment.</p></li>
-</ul><p>The default is c(0.3, 1, 0.2, 0.3).</p></dd>
+</ul><p>The default is <code>c(0.3, 1, 0.2, 0.3)</code>.</p></dd>
 <dt>eta.sq</dt>
 <dd><p>A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
 treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.</p></dd>
 <dt>alpha.list</dt>
 <dd><p>A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
-The default is c(0.001, 0.01, anad 0.05).</p></dd>
+The default is <code>c(0.001, 0.01, 0.05)</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>

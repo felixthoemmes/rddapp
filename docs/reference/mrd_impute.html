@@ -97,7 +97,8 @@ the variables are taken from <code>environment(formula)</code>.</p></dd>
 <dt>subset</dt>
 <dd><p>An optional vector specifying a subset of observations to be used in the fitting process.</p></dd>
 <dt>cutpoint</dt>
-<dd><p>A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).</p></dd>
+<dd><p>A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined.
+The default is <code>c(0, 0)</code>.</p></dd>
 <dt>bw</dt>
 <dd><p>A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are <code>"IK09"</code>, <code>"IK12"</code>, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -126,8 +127,8 @@ if <code>front.bw</code> is <code>NA</code>. The default is 5.</p></dd>
 <dd><p>This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
-<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
-is overridden by <code>cluster</code>.</p></dd>
+<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>.
+The default is <code>"HC1"</code>. This option is overridden by <code>cluster</code>.</p></dd>
 <dt>cluster</dt>
 <dd><p>An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides

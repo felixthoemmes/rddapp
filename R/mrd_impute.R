@@ -12,7 +12,8 @@
 #' @param data An optional data frame containing the variables in the model. If not found in \code{data},
 #'   the variables are taken from \code{environment(formula)}. 
 #' @param subset An optional vector specifying a subset of observations to be used in the fitting process.
-#' @param cutpoint A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).
+#' @param cutpoint A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined.
+#'   The default is \code{c(0, 0)}.
 #' @param bw A vector specifying the bandwidths at which to estimate the RD. 
 #'   Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
 #'   The default is \code{"IK12"}. If \code{bw} is \code{"IK12"}, the bandwidth is calculated using the Imbens-Kalyanaraman 
@@ -35,8 +36,8 @@
 #' @param se.type This specifies the robust standard error calculation method to use,
 #'   from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
-#'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
-#'   is overridden by \code{cluster}.
+#'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}.
+#'   The default is \code{"HC1"}. This option is overridden by \code{cluster}.
 #' @param cluster An optional vector of length n specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 

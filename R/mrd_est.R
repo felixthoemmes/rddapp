@@ -40,8 +40,8 @@
 #' @param se.type This specifies the robust standard error calculation method to use,
 #'   from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
-#'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
-#'   is overridden by \code{cluster}.
+#'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}.
+#'   The default is \code{"HC1"}. This option is overridden by \code{cluster}.
 #' @param cluster An optional vector of length n specifying clusters within which the errors are assumed
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 

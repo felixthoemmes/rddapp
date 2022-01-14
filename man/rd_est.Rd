@@ -52,8 +52,8 @@ and twice that bandwidth.}
 \item{se.type}{This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
 as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
-\code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
-is overridden by \code{cluster}.}
+\code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. 
+The default is \code{"HC1"}. This option is overridden by \code{cluster}.}
 
 \item{cluster}{An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
@@ -70,7 +70,8 @@ return the estimates of linear, quadratic, cubic, optimal, half and double. The 
 If \code{FALSE}, the estimates of covariates will not be included. The default is \code{FALSE}. This option is not
 applicable if method is \code{"front"}.}
 
-\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.}
+\item{est.itt}{Logical. If \code{TRUE}, the estimates of ITT will be returned.
+The default is \code{FALSE}.}
 
 \item{t.design}{A string specifying the treatment option according to design.
 Options are \code{"g"} (treatment is assigned if \code{x} is greater than its cutoff),

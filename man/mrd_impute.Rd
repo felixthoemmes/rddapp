@@ -44,7 +44,8 @@ the variables are taken from \code{environment(formula)}.}
 
 \item{subset}{An optional vector specifying a subset of observations to be used in the fitting process.}
 
-\item{cutpoint}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).}
+\item{cutpoint}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined.
+The default is \code{c(0, 0)}.}
 
 \item{bw}{A vector specifying the bandwidths at which to estimate the RD. 
 Possible values are \code{"IK09"}, \code{"IK12"}, and a user-specified non-negative numeric vector specifying the bandwidths at which to estimate the RD.
@@ -73,8 +74,8 @@ if \code{front.bw} is \code{NA}. The default is 5.}
 \item{se.type}{This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
 as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
-\code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
-is overridden by \code{cluster}.}
+\code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}.
+The default is \code{"HC1"}. This option is overridden by \code{cluster}.}
 
 \item{cluster}{An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides

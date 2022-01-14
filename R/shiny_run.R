@@ -2,7 +2,7 @@
 #'
 #' \code{shiny_run} launches the R Shiny application for "rddapp".
 #'
-#' @param app_name A string specifying the name of the R Shiny app. The default is "shinyrdd".
+#' @param app_name A string specifying the name of the R Shiny app. The default is \code{"shinyrdd"}.
 #'
 #' @importFrom shiny runApp
 #' @importFrom DT dataTableOutput renderDataTable

@@ -126,8 +126,8 @@ and twice that bandwidth.</p></dd>
 <dd><p>This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
 as in <code>vcovHC</code>, <code>"HC3"</code>, <code>"const"</code>, <code>"HC"</code>, <code>"HC0"</code>, 
-<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. This option 
-is overridden by <code>cluster</code>.</p></dd>
+<code>"HC1"</code>, <code>"HC2"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. 
+The default is <code>"HC1"</code>. This option is overridden by <code>cluster</code>.</p></dd>
 <dt>cluster</dt>
 <dd><p>An optional vector of length n specifying clusters within which the errors are assumed
 to be correlated. This will result in reporting cluster robust SEs. This option overrides
@@ -144,7 +144,8 @@ return the estimates of linear, quadratic, cubic, optimal, half and double. The 
 If <code>FALSE</code>, the estimates of covariates will not be included. The default is <code>FALSE</code>. This option is not
 applicable if method is <code>"front"</code>.</p></dd>
 <dt>est.itt</dt>
-<dd><p>Logical. If <code>TRUE</code>, the estimates of ITT will be returned.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, the estimates of ITT will be returned.
+The default is <code>FALSE</code>.</p></dd>
 <dt>t.design</dt>
 <dd><p>A string specifying the treatment option according to design.
 Options are <code>"g"</code> (treatment is assigned if <code>x</code> is greater than its cutoff),

@@ -30,7 +30,7 @@ before and after the cutoff, along each assignment variable). The default is 10.
 
 \item{raw_data}{A logical value indicating whether the raw data points are plotted. The default is \code{TRUE}.}
 
-\item{color_surface}{A logical value indicating whether the treated surface is colored. The defaulti s \code{FALSE}.}
+\item{color_surface}{A logical value indicating whether the treated surface is colored. The default is \code{FALSE}.}
 
 \item{...}{Additional graphic arguments passed to \code{persp}.}
 }

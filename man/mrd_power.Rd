@@ -34,7 +34,7 @@ Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"nor
 If \code{x1.dist} is \code{"normal"}, then \code{x1.para} includes the
 mean and standard deviation of the normal distribution.
 If \code{x1.dist} is \code{"uniform"}, then \code{x1.para} includes the 
-upper and lower boundaries of the uniform distribution. The default is c(0,1).}
+upper and lower boundaries of the uniform distribution. The default is \code{c(0,1)}.}
 
 \item{x2.dist}{A string specifying the distribution of the second assignment variable, \code{x2}.
 Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"normal"} distribution.}
@@ -43,7 +43,7 @@ Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"nor
 If \code{x2.dist} is \code{"normal"}, then \code{x2.para} includes the
 mean and standard deviation of the normal distribution.
 If \code{x2.dist} is \code{"uniform"}, then \code{x2.para} includes the 
-upper and lower boundaries of the uniform distribution. The default is c(0,1).}
+upper and lower boundaries of the uniform distribution. The default is \code{c(0,1)}.}
 
 \item{x1.cut}{A numeric value containing the cutpoint at which assignment to the treatment is determined for the first assignment variable, \code{x1}. The default is 0.}
 
@@ -57,7 +57,7 @@ For a sharp design, both entries are 0.
 For a fuzzy design, the first entry is the probability to be assigned to 
 control for individuals above the cutpoint, and the second entry is the 
 probability to be assigned to treatment for individuals below the cutpoint.
-The default is c(0,0), indicating a sharp design.}
+The default is \code{c(0,0)}, indicating a sharp design.}
 
 \item{x2.fuzzy}{A numeric vector of length 2 specifying the probabilities to be assigned to the control, in terms of the second
 assignment variable, \code{x2}, for individuals in the treatment based on the cutoff, 
@@ -66,7 +66,7 @@ For a sharp design, both entries are 0.
 For a fuzzy design, the first entry is the probability to be assigned to 
 control for individuals above the cutpoint, and the second entry is the 
 probability to be assigned to treatment for individuals below the cutpoint.
-The default is c(0,0), indicating a sharp design.}
+The default is \code{c(0,0)}, indicating a sharp design.}
 
 \item{x1.design}{A string specifying the treatment option according to design for \code{x1}. Options are
 \code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
@@ -96,13 +96,13 @@ and \code{"leq"} (treatment is assigned if \code{x2} is less than or equal to it
 \item{The 12th entry is the slope of interaction between treatment 1, assignment 1 and assignment 2.}
 \item{The 13th entry is the slope of interaction between treatment 2, assignment 1 and assignment 2.}
 }
-The default is c(0.1, 0.5, 0.5, 1, rep(0.1, 9)).}
+The default is \code{c(0.1, 0.5, 0.5, 1, rep(0.1, 9))}.}
 
 \item{eta.sq}{A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
 treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.}
 
 \item{alpha.list}{A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
-The default is c(0.001, 0.01, anad 0.05).}
+The default is \code{c(0.001, 0.01, anad 0.05)}.}
 }
 \value{
 \code{mrd_power} returns an object of \link{class} 
