@@ -46,7 +46,7 @@ the variables are taken from \code{environment(formula)}.}
 
 \item{cutpoint}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined. The default is c(0, 0).}
 
-\item{bw}{A vector specifying the bandwidths at which to estimate the RD. 
+\item{bw}{A vector specifying the bandwidths at which to estimate the RD for non-parametric models. 
 Possible values are \code{"IK09"}, \code{"IK12"},
 or a user-specified non-negative numeric vector containing the bandwidths
 at which to estimate the RD.
