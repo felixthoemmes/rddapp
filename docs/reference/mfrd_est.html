@@ -177,23 +177,26 @@ and output data frame are returned for each model.</p></dd>
 <dt>dat_h</dt>
 <dd><p>A list containing four data frames, one for each case:
 parametric or non-parametric (optimal, half, and double bandwidth).
-Each data frame contains ... colnames ... for each ... row information.</p></dd>
+Each data frame contains functions and densities for each frontier
+and treatment model.</p></dd>
 <dt>dat</dt>
-<dd><p>A data frame containing the outcome (y) and each input (x1, x2) for each observation.
-The data frame also contains sample restrictions for x1 and x2 (x1res, x2res),
-scaled (zx1, zx2) and centered x1 and x2 values (zcx1, zcx2), and 
-treatment indicators for overall treatment (tr) based on treatment assignment
-from x1 (tr1), x2 (tr2), and both assignment variables (trb).</p></dd>
+<dd><p>A data frame containing the outcome (<code>y</code>) and each input
+(<code>x1</code>, <code>x2</code>) for each observation. The data frame also contains
+ sample restrictions for x1 and x2 (<code>x1res</code>, <code>x2res</code>),
+scaled (<code>zx1</code>, <code>zx2</code>) and
+centered x1 and x2 values (<code>zcx1</code>, <code>zcx2</code>), and 
+treatment indicators for overall treatment (<code>tr</code>) based on treatment assignment
+from x1 (<code>tr1</code>), x2 (<code>tr2</code>), and both assignment variables (<code>trb</code>).</p></dd>
 <dt>obs</dt>
-<dd><p>List of the number of observations within the corresponding bandwidth.</p></dd>
+<dd><p>List of the number of observations used in each model.</p></dd>
 <dt>impute</dt>
 <dd><p>A logical value indicating whether multiple imputation is used or not.</p></dd>
 <dt>call</dt>
 <dd><p>The matched call.</p></dd>
 <dt>front.bw</dt>
-<dd><p>Numeric vector of each bandwidth used to estimate the RD for
-  the three effects models (complete model, heterogeneous treatment model,
-  and treatment only model) 
+<dd><p>Numeric vector of each bandwidth used to estimate the density
+  at the frontier for the three effects models (complete model,
+  heterogeneous treatment model, and treatment only model) 
   detailed in Wong, Steiner, and Cook (2013).</p></dd>
 </dl></div>
     <div class="section level2">
