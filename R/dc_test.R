@@ -19,7 +19,8 @@
 #' @param htest A logical value indicating whether to return an \code{"htest"} object 
 #'   compatible with base R's hypothesis test output. The default is \code{FALSE}.
 #' @param level A numerical value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95. 
-#' @param digits A non-negative integer specifying the number of digits to display in all output. The default is 3.
+#' @param digits A non-negative integer specifying the number of digits to display in all output.
+#'   The default is \code{max(3, getOption("digits") - 3)}.
 #' @param timeout A non-negative numerical value specifying the maximum number of seconds that 
 #'   expressions in the function are allowed to run. The default is 30. Specify \code{Inf} to run all expressions
 #'   to completion.

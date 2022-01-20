@@ -68,7 +68,8 @@ It is based on the <code>summary.RD</code> function in the "rdd" package.</p>
 <dt>level</dt>
 <dd><p>A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.</p></dd>
 <dt>digits</dt>
-<dd><p>A non-negative integer specifying the number of digits to display.</p></dd>
+<dd><p>A non-negative integer specifying the number of digits to display.
+The default is <code>max(3, getOption("digits") - 3)</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments passed to <code>summary</code>.</p></dd>
 </dl></div>

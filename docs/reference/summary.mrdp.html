@@ -66,7 +66,8 @@ It is based on <code>summary.RD</code> function in the "rdd" package.</p>
     <dl><dt>object</dt>
 <dd><p>An object of class <code>"mrdp"</code>, usually a result of a call to <code><a href="mrd_power.html">mrd_power</a></code>.</p></dd>
 <dt>digits</dt>
-<dd><p>A non-negative integer specifying the number of digits to display.</p></dd>
+<dd><p>A non-negative integer specifying the number of digits to display.
+The default is <code>max(3, getOption("digits") - 3)</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments passed to <code>summary</code>.</p></dd>
 </dl></div>

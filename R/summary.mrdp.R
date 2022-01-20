@@ -7,6 +7,7 @@
 #' 
 #' @param object An object of class \code{"mrdp"}, usually a result of a call to \code{\link{mrd_power}}.
 #' @param digits A non-negative integer specifying the number of digits to display.
+#'   The default is \code{max(3, getOption("digits") - 3)}.
 #' @param ... Additional arguments passed to \code{summary}.
 #' 
 #' @return \code{summary.mrdp} returns a list which has the following components:

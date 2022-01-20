@@ -11,7 +11,8 @@
 
 \item{level}{A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.}
 
-\item{digits}{A non-negative integer specifying the number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.
+The default is \code{max(3, getOption("digits") - 3)}.}
 
 \item{...}{Additional arguments passed to \code{summary}.}
 }

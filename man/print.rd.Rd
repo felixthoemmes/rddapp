@@ -9,7 +9,8 @@
 \arguments{
 \item{x}{An \code{rd} object, typically the result of \code{\link{rd_est}}.}
 
-\item{digits}{A non-negative integer specifying the number of digits to print.}
+\item{digits}{A non-negative integer specifying the number of digits to print.
+The default is \code{max(3, getOption("digits") - 3)}.}
 
 \item{...}{Additional arguments passed to \code{print}.}
 }

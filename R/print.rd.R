@@ -7,6 +7,7 @@
 #'
 #' @param x An \code{rd} object, typically the result of \code{\link{rd_est}}.
 #' @param digits A non-negative integer specifying the number of digits to print.
+#'   The default is \code{max(3, getOption("digits") - 3)}.
 #' @param ... Additional arguments passed to \code{print}.
 #' 
 #' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package

@@ -66,7 +66,8 @@ print.rd is based on the print.RD function in the "rdd" package.'><meta property
     <dl><dt>x</dt>
 <dd><p>An <code>rd</code> object, typically the result of <code><a href="rd_est.html">rd_est</a></code>.</p></dd>
 <dt>digits</dt>
-<dd><p>A non-negative integer specifying the number of digits to print.</p></dd>
+<dd><p>A non-negative integer specifying the number of digits to print.
+The default is <code>max(3, getOption("digits") - 3)</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments passed to <code>print</code>.</p></dd>
 </dl></div>
