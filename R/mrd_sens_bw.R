@@ -11,7 +11,8 @@
 #' @return \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est}
 #'   and standard error \code{se} 
 #'   for each supplied bandwidth and for the Imbens-Kalyanaraman (2012) optimal bandwidth, \code{bw}, 
-#'   and for each supplied approach, \code{model}. 
+#'   and for each supplied approach, \code{model}. Approaches are either user
+#'   specified (\code{"usr"}) or based on the optimal bandwidth (\code{"origin"}).
 #'   
 #' @references Imbens, G., Kalyanaraman, K. (2012). 
 #'   Optimal bandwidth choice for the regression discontinuity estimator. 
@@ -51,22 +52,22 @@ mrd_sens_bw <- function(object, approach = c("center", "univ1", "univ2"), bws) {
 
       switch(approach,
         center = data.frame(
+          bw = bw,
           est = new_model$center$tau_MRD$est["Usr"], 
           # Wang: used index here because the returned array's names are constant "Z" or "Tr" 
           se = new_model$center$tau_MRD$se["Usr"], 
-          bw = bw,
           model = paste("center-usr"), 
           stringsAsFactors = FALSE),
         univ1 = data.frame(
+          bw = bw,
           est = new_model$univ$tau_R$est["Usr"], 
           se = new_model$univ$tau_R$se["Usr"], 
-          bw = bw,
           model = paste("univ1-usr"), 
           stringsAsFactors = FALSE),
         univ2 = data.frame(
+          bw = bw,
           est = new_model$univ$tau_M$est["Usr"], 
           se = new_model$univ$tau_M$se["Usr"], 
-          bw = bw,
           model = paste("univ2-usr"), 
           stringsAsFactors = FALSE)
       )
@@ -76,21 +77,21 @@ mrd_sens_bw <- function(object, approach = c("center", "univ1", "univ2"), bws) {
   combined_sim_results <- do.call(rbind.data.frame, sim_results)
   original_result <- switch(approach,
     center = data.frame(
+      bw = object$center$tau_MRD$bw["Opt"],
       est = object$center$tau_MRD$est["Opt"], 
       se = object$center$tau_MRD$se["Opt"], 
-      bw = object$center$tau_MRD$bw["Opt"], 
       model = paste("center-origin"), 
       stringsAsFactors = FALSE),
     univ1 = data.frame(
+      bw = object$univ$tau_R$bw["Opt"],
       est = object$univ$tau_R$est["Opt"], 
       se = object$univ$tau_R$se["Opt"], 
-      bw = object$univ$tau_R$bw["Opt"], 
       model = paste("univ1-origin"), 
       stringsAsFactors = FALSE),
     univ2 = data.frame(
+      bw = object$univ$tau_M$bw["Opt"],
       est = object$univ$tau_M$est["Opt"], 
       se = object$univ$tau_M$se["Opt"], 
-      bw = object$univ$tau_M$bw["Opt"], 
       model = paste("univ2-origin"), 
       stringsAsFactors = FALSE)
   )

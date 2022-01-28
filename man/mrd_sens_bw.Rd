@@ -18,7 +18,8 @@ choosing from \code{c("center", "univ1", "univ2")}.}
 \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est}
   and standard error \code{se} 
   for each supplied bandwidth and for the Imbens-Kalyanaraman (2012) optimal bandwidth, \code{bw}, 
-  and for each supplied approach, \code{model}.
+  and for each supplied approach, \code{model}. Approaches are either user
+  specified (\code{"usr"}) or based on the optimal bandwidth (\code{"origin"}).
 }
 \description{
 \code{mrd_sens_bw} refits the supplied model with varying bandwidths. 
