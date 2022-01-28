@@ -58,20 +58,20 @@
 #' \item{m_s}{A list containing estimates for the complete model, under parametric
 #' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 #' coefficient estimates, residuals, effects, weights (in the non-parametric case),
-#' rank, fitted values, assignments,
-#' qr, residual degrees of freedom, levels of the x value, function call, terms,
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 #' and output data frame are returned for each model.}
 #' \item{m_h}{A list containing estimates for the heterogeneous treatments model, under parametric
 #' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 #' coefficient estimates, residuals, effects, weights (in the non-parametric case),
-#' rank, fitted values, assignments,
-#' qr, residual degrees of freedom, levels of the x value, function call, terms,
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 #' and output data frame are returned for each model.}
 #' \item{m_t}{A list containing estimates for the treatment only model, under parametric
 #' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 #' coefficient estimates, residuals, effects, weights (in the non-parametric case),
-#' rank, fitted values, assignments,
-#' qr, residual degrees of freedom, levels of the x value, function call, terms,
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 #' and output data frame are returned for each model.}
 #' \item{dat_h}{A list containing four data frames, one for each case:
 #' parametric or non-parametric (optimal, half, and double bandwidth).
@@ -79,7 +79,8 @@
 #' and treatment model.}
 #' \item{dat}{A data frame containing the outcome (\code{y}) and each input
 #' (\code{x1}, \code{x2}) for each observation. The data frame also contains
-#'  sample restrictions for x1 and x2 (\code{x1res}, \code{x2res}),
+#'  indicators of being within the \code{local} boundary of the \code{cutpoint}
+#'  for x1 and x2 (\code{x1res}, \code{x2res}),
 #' scaled (\code{zx1}, \code{zx2}) and
 #' centered x1 and x2 values (\code{zcx1}, \code{zcx2}), and 
 #' treatment indicators for overall treatment (\code{tr}) based on treatment assignment

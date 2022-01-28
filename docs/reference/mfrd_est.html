@@ -157,22 +157,22 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
 <dd><p>A list containing estimates for the complete model, under parametric
 and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 coefficient estimates, residuals, effects, weights (in the non-parametric case),
-rank, fitted values, assignments,
-qr, residual degrees of freedom, levels of the x value, function call, terms,
+<code>lm</code> output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 and output data frame are returned for each model.</p></dd>
 <dt>m_h</dt>
 <dd><p>A list containing estimates for the heterogeneous treatments model, under parametric
 and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 coefficient estimates, residuals, effects, weights (in the non-parametric case),
-rank, fitted values, assignments,
-qr, residual degrees of freedom, levels of the x value, function call, terms,
+<code>lm</code> output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 and output data frame are returned for each model.</p></dd>
 <dt>m_t</dt>
 <dd><p>A list containing estimates for the treatment only model, under parametric
 and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 coefficient estimates, residuals, effects, weights (in the non-parametric case),
-rank, fitted values, assignments,
-qr, residual degrees of freedom, levels of the x value, function call, terms,
+<code>lm</code> output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
 and output data frame are returned for each model.</p></dd>
 <dt>dat_h</dt>
 <dd><p>A list containing four data frames, one for each case:
@@ -182,7 +182,8 @@ and treatment model.</p></dd>
 <dt>dat</dt>
 <dd><p>A data frame containing the outcome (<code>y</code>) and each input
 (<code>x1</code>, <code>x2</code>) for each observation. The data frame also contains
- sample restrictions for x1 and x2 (<code>x1res</code>, <code>x2res</code>),
+ indicators of being within the <code>local</code> boundary of the <code>cutpoint</code>
+ for x1 and x2 (<code>x1res</code>, <code>x2res</code>),
 scaled (<code>zx1</code>, <code>zx2</code>) and
 centered x1 and x2 values (<code>zcx1</code>, <code>zcx2</code>), and 
 treatment indicators for overall treatment (<code>tr</code>) based on treatment assignment
