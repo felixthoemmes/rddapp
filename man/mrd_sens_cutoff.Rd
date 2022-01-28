@@ -28,12 +28,12 @@ All other aspects of the model, such as the automatically calculated bandwidth, 
 }
 \examples{
 set.seed(12345)
-x1 <- runif(1000, -1, 1)
-x2 <- rnorm(1000, 10, 2)
-cov <- rnorm(1000)
-y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(1000)
+x1 <- runif(10000, -1, 1)
+x2 <- rnorm(10000, 10, 2)
+cov <- rnorm(10000)
+y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(10000)
 mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"))
-mrd_sens_cutoff(mrd, expand.grid(A1 = seq(-.5, .5, length.out = 5), A2 = 10))
+mrd_sens_cutoff(mrd, expand.grid(A1 = seq(-.5, .5, length.out = 3), A2 = 10))
 }
 \references{
 Imbens, G., Kalyanaraman, K. (2012). 
