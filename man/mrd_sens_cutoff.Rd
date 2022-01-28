@@ -20,7 +20,7 @@ for \code{x2}.}
   for assignment 1 and \code{A2} contains varying cutoffs for assignment 2.
   The \code{model} column contains the approach (either centering, univariate 1, or univariate 2)
   for determining the cutoff and the parametric model (linear, quadratic, or cubic) or 
-  non-parametric bandwidth setting (optimal, half, or double) used for estimation.
+  non-parametric bandwidth setting (Imbens-Kalyanaraman 2012 optimal, half, or double) used for estimation.
 }
 \description{
 \code{mrd_sens_cutoff} refits the supplied model with varying cutoff(s). 
@@ -34,4 +34,10 @@ cov <- rnorm(1000)
 y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(1000)
 mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"))
 mrd_sens_cutoff(mrd, expand.grid(A1 = seq(-.5, .5, length.out = 5), A2 = 10))
+}
+\references{
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }

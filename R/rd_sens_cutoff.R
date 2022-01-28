@@ -10,7 +10,12 @@
 #' @return \code{rd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
 #'   for each cutoff value (\code{A1}). Column \code{A1} contains varying cutoffs 
 #'   on the assignment variable. The \code{model} column contains the parametric model (linear, quadratic, or cubic) or 
-#'   non-parametric bandwidth setting (optimal, half, or double) used for estimation.
+#'   non-parametric bandwidth setting (Imbens-Kalyanaraman 2012 optimal, half, or double) used for estimation.
+#'
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 #'
 #' @export
 #'

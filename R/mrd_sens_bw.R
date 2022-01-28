@@ -10,8 +10,13 @@
 #'
 #' @return \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est}
 #'   and standard error \code{se} 
-#'   for each supplied bandwidth and for the optimal bandwidth, \code{bw}, 
+#'   for each supplied bandwidth and for the Imbens-Kalyanaraman (2012) optimal bandwidth, \code{bw}, 
 #'   and for each supplied approach, \code{model}. 
+#'   
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 #' 
 #' @export
 #'

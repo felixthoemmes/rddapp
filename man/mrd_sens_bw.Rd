@@ -17,7 +17,7 @@ choosing from \code{c("center", "univ1", "univ2")}.}
 \value{
 \code{mrd_sens_bw} returns a dataframe containing the estimate \code{est}
   and standard error \code{se} 
-  for each supplied bandwidth and for the optimal bandwidth, \code{bw}, 
+  for each supplied bandwidth and for the Imbens-Kalyanaraman (2012) optimal bandwidth, \code{bw}, 
   and for each supplied approach, \code{model}.
 }
 \description{
@@ -32,4 +32,10 @@ cov <- rnorm(1000)
 y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(1000)
 mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"))
 mrd_sens_bw(mrd, approach = "univ1", bws = seq(0.1, 1, length.out = 5))
+}
+\references{
+Imbens, G., Kalyanaraman, K. (2012). 
+  Optimal bandwidth choice for the regression discontinuity estimator. 
+  The Review of Economic Studies, 79(3), 933-959.
+  \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 }

@@ -14,7 +14,12 @@
 #'   for assignment 1 and \code{A2} contains varying cutoffs for assignment 2.
 #'   The \code{model} column contains the approach (either centering, univariate 1, or univariate 2)
 #'   for determining the cutoff and the parametric model (linear, quadratic, or cubic) or 
-#'   non-parametric bandwidth setting (optimal, half, or double) used for estimation. 
+#'   non-parametric bandwidth setting (Imbens-Kalyanaraman 2012 optimal, half, or double) used for estimation. 
+#'
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 #'
 #' @export
 #'
