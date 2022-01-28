@@ -158,7 +158,7 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <dd><p>For a sharp design, a list of the <code>lm</code> objects is returned.
   For a fuzzy design, a list of lists is returned, each with two elements: 
   <code>firststage</code>, the first stage <code>lm</code> object, and <code>iv</code>, the <code>ivreg</code> object. 
-  A model is returned for each corresponding bandwidth.</p></dd>
+  A model is returned for each parametric and non-parametric case and corresponding bandwidth.</p></dd>
 <dt>frame</dt>
 <dd><p>Returns the model frame used in fitting.</p></dd>
 <dt>na.action</dt>
@@ -173,7 +173,8 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
 <dt>z</dt>
 <dd><p>Numeric vector of the z statistic for each corresponding bandwidth.</p></dd>
 <dt>df</dt>
-<dd><p>Numeric vector of the degrees of freedom for each...</p></dd>
+<dd><p>Numeric vector of the degrees of freedom computed using Rubin (1987)
+  adjustment for imputation.</p></dd>
 <dt>p</dt>
 <dd><p>Numeric vector of the p-value for each corresponding bandwidth.</p></dd>
 <dt>ci</dt>
@@ -195,6 +196,9 @@ and <code>"leq"</code> (treatment is assigned if <code>x</code> is less than or 
   Optimal bandwidth choice for the regression discontinuity estimator. 
   The Review of Economic Studies, 79(3), 933-959.
   <a href="https://academic.oup.com/restud/article/79/3/933/1533189" class="external-link">https://academic.oup.com/restud/article/79/3/933/1533189</a>.</p>
+<p>Rubin, D. B. (1987).
+  Multiple imputation for nonresponse in surveys.
+  New York: Wiley.</p>
     </div>
 
     <div class="section level2">

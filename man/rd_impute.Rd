@@ -97,7 +97,7 @@ and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its
 \item{model}{For a sharp design, a list of the \code{lm} objects is returned.
   For a fuzzy design, a list of lists is returned, each with two elements: 
   \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 
-  A model is returned for each corresponding bandwidth.}
+  A model is returned for each parametric and non-parametric case and corresponding bandwidth.}
 \item{frame}{Returns the model frame used in fitting.}
 \item{na.action}{The observations removed from fitting due to missingness.}
 \item{est}{Numeric vector of the estimate of the discontinuity in the outcome under 
@@ -105,7 +105,8 @@ and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its
 \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
 \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
 \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
-\item{df}{Numeric vector of the degrees of freedom for each...}
+\item{df}{Numeric vector of the degrees of freedom computed using Rubin (1987)
+  adjustment for imputation.}
 \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
 \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
   for each corresponding bandwidth.}
@@ -138,4 +139,8 @@ Imbens, G., Kalyanaraman, K. (2012).
   Optimal bandwidth choice for the regression discontinuity estimator. 
   The Review of Economic Studies, 79(3), 933-959.
   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
+
+Rubin, D. B. (1987).
+  Multiple imputation for nonresponse in surveys.
+  New York: Wiley.
 }

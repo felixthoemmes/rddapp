@@ -204,7 +204,7 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
 <dd><p>For a sharp design, a list of the <code>lm</code> objects is returned.
   For a fuzzy design, a list of lists is returned, each with two elements: 
   <code>firststage</code>, the first stage <code>lm</code> object, and <code>iv</code>, the <code>ivreg</code> object. 
-  A model is returned for each corresponding bandwidth.</p></dd>
+  A model is returned for each parametric and non-parametric case and corresponding bandwidth.</p></dd>
 <dt>frame</dt>
 <dd><p>Returns the model frame used in fitting.</p></dd>
 <dt>na.action</dt>
@@ -219,7 +219,8 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
 <dt>z</dt>
 <dd><p>Numeric vector of the z statistic for each corresponding bandwidth.</p></dd>
 <dt>df</dt>
-<dd><p>Numeric vector of the degrees of freedom for each ...</p></dd>
+<dd><p>Numeric vector of the degrees of freedom computed using Rubin (1987)
+  adjustment for imputation.</p></dd>
 <dt>p</dt>
 <dd><p>Numeric vector of the p-value for each corresponding bandwidth.</p></dd>
 <dt>ci</dt>
@@ -245,6 +246,9 @@ bootstrap samples are acquired. If <code>FALSE</code>, bootstraps which cause er
   Journal of Econometrics, 142(2), 655-674. 
   doi: <a href="https://doi.org/10.1016/j.jeconom.2007.05.003" class="external-link">10.1016/j.jeconom.2007.05.003</a>
 .</p>
+<p>Rubin, D. B. (1987).
+  Multiple imputation for nonresponse in surveys.
+  New York: Wiley.</p>
     </div>
 
     <div class="section level2">
