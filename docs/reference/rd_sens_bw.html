@@ -89,13 +89,13 @@ All other aspects of the model are held constant.</p>
 <span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">cov</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">rd</span> <span class="op">&lt;-</span> <span class="fu"><a href="rd_est.html">rd_est</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">cov</span>, t.design <span class="op">=</span> <span class="st">"geq"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">rd_sens_bw</span><span class="op">(</span><span class="va">rd</span>, bws <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">.1</span>, <span class="fl">1</span>, length.out <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            est        se        bw  model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Usr   9.542498 0.3855296 0.1000000    usr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Usr1  9.851057 0.2137608 0.3250000    usr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Usr2  9.963613 0.1697730 0.5500000    usr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Usr3 10.039427 0.1459733 0.7750000    usr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Usr4 10.057096 0.1293339 1.0000000    usr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Opt  10.046675 0.1413530 0.8336036 origin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             bw       est        se  model</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Usr  0.1000000  9.542498 0.3855296    usr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Usr1 0.3250000  9.851057 0.2137608    usr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Usr2 0.5500000  9.963613 0.1697730    usr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Usr3 0.7750000 10.039427 0.1459733    usr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Usr4 1.0000000 10.057096 0.1293339    usr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Opt  0.8336036 10.046675 0.1413530 origin</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
