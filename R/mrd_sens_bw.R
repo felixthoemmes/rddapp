@@ -23,11 +23,11 @@
 #'
 #' @examples
 #' set.seed(12345)
-#' x1 <- runif(15000, -1, 1)
-#' x2 <- rnorm(15000, 10, 2)
-#' cov <- rnorm(15000)
-#' y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(15000)
-#' mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"), front.bw = c(1,1,1))
+#' x1 <- runif(1000, -1, 1)
+#' x2 <- rnorm(1000, 10, 2)
+#' cov <- rnorm(1000)
+#' y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(1000)
+#' mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"))
 #' mrd_sens_bw(mrd, approach = "univ1", bws = seq(0.1, 1, length.out = 3))
 
 mrd_sens_bw <- function(object, approach = c("center", "univ1", "univ2"), bws) {

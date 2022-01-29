@@ -89,11 +89,11 @@ for <code>x2</code>.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">15000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15000</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15000</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">x1</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">*</span> <span class="va">x2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">cov</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="op">(</span><span class="va">x1</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="va">x2</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15000</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mrd</span> <span class="op">&lt;-</span> <span class="fu"><a href="mrd_est.html">mrd_est</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">|</span> <span class="va">cov</span>, cutpoint <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, t.design <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geq"</span>, <span class="st">"geq"</span><span class="op">)</span>, front.bw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">x1</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">*</span> <span class="va">x2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">cov</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="op">(</span><span class="va">x1</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">5</span> <span class="op">*</span> <span class="op">(</span><span class="va">x2</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">mrd</span> <span class="op">&lt;-</span> <span class="fu"><a href="mrd_est.html">mrd_est</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">|</span> <span class="va">cov</span>, cutpoint <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, t.design <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"geq"</span>, <span class="st">"geq"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>collapsing to unique 'x' values</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>collapsing to unique 'x' values</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>collapsing to unique 'x' values</span>
@@ -111,79 +111,79 @@ for <code>x2</code>.</p></dd>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>collapsing to unique 'x' values</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>collapsing to unique 'x' values</span>
 <span class="r-in"><span class="fu">mrd_sens_cutoff</span><span class="op">(</span><span class="va">mrd</span>, <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>A1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.5</span>, <span class="fl">.5</span>, length.out <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, A2 <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            est         se   A1 A2            model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   7.06133915 0.11153432 -0.5 10    center-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   3.43655827 0.17056849 -0.5 10 center-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.35721669 0.19290161 -0.5 10     center-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -0.04307852 0.10565794 -0.5 10   center-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -0.47187916 0.12930417 -0.5 10      center-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   2.73611335 0.10805086 -0.5 10    center-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0.12867819 0.10650423 -0.5 10     univ1-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -3.43224536 0.14729563 -0.5 10  univ1-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  -1.74886343 0.18204919 -0.5 10      univ1-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 -2.10896258 0.10924905 -0.5 10    univ1-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0.03422457 0.11739343 -0.5 10       univ1-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 -1.00269487 0.09643648 -0.5 10     univ1-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  4.94013303 0.05661176 -0.5 10     univ2-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  4.91383540 0.07472065 -0.5 10  univ2-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  4.95990000 0.09314010 -0.5 10      univ2-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  4.95413766 0.12289295 -0.5 10    univ2-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  4.88154422 0.17759063 -0.5 10       univ2-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  4.96404719 0.08999705 -0.5 10     univ2-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 10.42757312 0.07712836  0.0 10    center-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  9.99484594 0.10562324  0.0 10 center-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  9.30936292 0.13102254  0.0 10     center-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  8.88419474 0.09381808  0.0 10   center-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  8.64535520 0.11531763  0.0 10      center-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  9.72883616 0.08116446  0.0 10    center-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 10.07092670 0.07173077  0.0 10     univ1-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 10.06835898 0.10804248  0.0 10  univ1-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 10.14980310 0.14487229  0.0 10      univ1-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28 10.06863111 0.08594703  0.0 10    univ1-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29 10.16970690 0.12296214  0.0 10       univ1-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30 10.07054637 0.07275143  0.0 10     univ1-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  4.98077951 0.04421255  0.0 10     univ2-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  4.92673588 0.05898149  0.0 10  univ2-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33  4.96005208 0.07458740  0.0 10      univ2-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  5.02652809 0.10114891  0.0 10    univ2-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35  5.04066199 0.14583543  0.0 10       univ2-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36  5.00630748 0.07194026  0.0 10     univ2-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37  2.44804986 0.13336600  0.5 10    center-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38  0.51723381 0.18195708  0.5 10 center-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39  1.62578347 0.23092537  0.5 10     center-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40  1.33924349 0.15856514  0.5 10   center-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41  0.96680510 0.21331634  0.5 10      center-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42  2.08631721 0.13886571  0.5 10    center-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43 -0.04454592 0.10911215  0.5 10     univ1-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44 -3.69238884 0.15657732  0.5 10  univ1-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45 -1.92328723 0.19642545  0.5 10      univ1-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46 -2.17910574 0.11529161  0.5 10    univ1-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47  0.04741440 0.12172702  0.5 10       univ1-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48 -1.13056902 0.10034159  0.5 10     univ1-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49  4.83748002 0.17284241  0.5 10     univ2-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50  4.77334108 0.23206417  0.5 10  univ2-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51  4.91870922 0.29166335  0.5 10      univ2-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52  4.71291965 0.39674721  0.5 10    univ2-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53  4.62150220 0.56674025  0.5 10       univ2-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54  4.87688553 0.28285618  0.5 10     univ2-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55 10.42757312 0.07712836  0.0 10    center-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56  9.99484594 0.10562324  0.0 10 center-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57  9.30936292 0.13102254  0.0 10     center-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58  8.88419474 0.09381808  0.0 10   center-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59  8.64535520 0.11531763  0.0 10      center-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60  9.72883616 0.08116446  0.0 10    center-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61 10.07092670 0.07173077  0.0 10     univ1-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62 10.06835898 0.10804248  0.0 10  univ1-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63 10.14980310 0.14487229  0.0 10      univ1-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64 10.06863111 0.08594703  0.0 10    univ1-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65 10.16970690 0.12296214  0.0 10       univ1-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66 10.07054637 0.07275143  0.0 10     univ1-double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67  4.98077951 0.04421255  0.0 10     univ2-linear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68  4.92673588 0.05898149  0.0 10  univ2-quadratic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69  4.96005208 0.07458740  0.0 10      univ2-cubic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70  4.95184584 0.05197190  0.0 10    univ2-optimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71  4.99901511 0.06841120  0.0 10       univ2-half</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72  4.96583948 0.04559202  0.0 10     univ2-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           est        se   A1 A2            model</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.8847593 0.4633947 -0.5 10    center-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2.9281293 0.6146645 -0.5 10 center-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.4035069 0.7002419 -0.5 10     center-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -1.2246745 0.4515216 -0.5 10   center-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -0.2777913 0.5475007 -0.5 10      center-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   1.7956124 0.4347646 -0.5 10    center-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -0.4062718 0.4383258 -0.5 10     univ1-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -4.3336221 0.6166704 -0.5 10  univ1-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  -2.5951449 0.7964317 -0.5 10      univ1-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 -3.0065180 0.4434336 -0.5 10    univ1-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 -0.2924274 0.4629300 -0.5 10       univ1-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 -1.6987637 0.3953229 -0.5 10     univ1-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  4.9056863 0.2072438 -0.5 10     univ2-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  4.7193419 0.2483900 -0.5 10  univ2-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  4.7362439 0.3150560 -0.5 10      univ2-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  4.8059388 0.3549255 -0.5 10    univ2-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  4.6979063 0.3894803 -0.5 10       univ2-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  4.8879584 0.2899357 -0.5 10     univ2-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 11.0754510 0.3191325  0.0 10    center-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 10.6340007 0.4201082  0.0 10 center-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 10.3514707 0.5461452  0.0 10     center-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  9.3993911 0.3807504  0.0 10   center-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  9.4285404 0.5063189  0.0 10      center-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 10.2831952 0.3330933  0.0 10    center-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 10.5846002 0.2876699  0.0 10     univ1-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 11.4707113 0.4525852  0.0 10  univ1-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 11.0841187 0.6000191  0.0 10      univ1-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 11.1058669 0.3625977  0.0 10    univ1-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 10.9673369 0.5058807  0.0 10       univ1-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 10.7254182 0.2958371  0.0 10     univ1-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  5.0774755 0.1613573  0.0 10     univ2-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  5.0799220 0.2079335  0.0 10  univ2-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33  5.1167284 0.2588334  0.0 10      univ2-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  5.2628545 0.3218006  0.0 10    univ2-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35  5.0055656 0.3935608  0.0 10       univ2-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36  5.3188818 0.2485518  0.0 10     univ2-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37  2.4466751 0.5073562  0.5 10    center-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38  0.6223124 0.6523347  0.5 10 center-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39  2.3454819 0.8083939  0.5 10     center-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40  0.8951054 0.6367617  0.5 10   center-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41  1.2029813 0.8225216  0.5 10      center-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42  2.0247158 0.5311896  0.5 10    center-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 -0.3060398 0.4256132  0.5 10     univ1-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 -3.1011407 0.6547519  0.5 10  univ1-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45 -1.5665685 0.8917970  0.5 10      univ1-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46 -1.7361964 0.4665950  0.5 10    univ1-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47  0.4539768 0.5234849  0.5 10       univ1-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48 -1.2354987 0.4041570  0.5 10     univ1-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  4.4105824 0.6937743  0.5 10     univ2-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  4.2427715 0.9092893  0.5 10  univ2-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  4.3609328 1.1313003  0.5 10      univ2-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52  5.1037715 1.4559238  0.5 10    univ2-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53  3.4728684 2.0077789  0.5 10       univ2-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54  4.0332410 1.1046053  0.5 10     univ2-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55 11.0754510 0.3191325  0.0 10    center-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56 10.6340007 0.4201082  0.0 10 center-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57 10.3514707 0.5461452  0.0 10     center-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58  9.3993911 0.3807504  0.0 10   center-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59  9.4285404 0.5063189  0.0 10      center-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60 10.2831952 0.3330933  0.0 10    center-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61 10.5846002 0.2876699  0.0 10     univ1-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62 11.4707113 0.4525852  0.0 10  univ1-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63 11.0841187 0.6000191  0.0 10      univ1-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64 11.1058669 0.3625977  0.0 10    univ1-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65 10.9673369 0.5058807  0.0 10       univ1-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66 10.7254182 0.2958371  0.0 10     univ1-double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67  5.0774755 0.1613573  0.0 10     univ2-linear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68  5.0799220 0.2079335  0.0 10  univ2-quadratic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69  5.1167284 0.2588334  0.0 10      univ2-cubic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70  5.1060010 0.1929948  0.0 10    univ2-optimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71  5.3100372 0.2452996  0.0 10       univ2-half</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72  5.0726866 0.1678915  0.0 10     univ2-double</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
