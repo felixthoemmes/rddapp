@@ -32,7 +32,9 @@ x1 <- runif(10000, -1, 1)
 x2 <- rnorm(10000, 10, 2)
 cov <- rnorm(10000)
 y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(10000)
-mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = c(0, 10), t.design = c("geq", "geq"), front.bw=c(1,1,1))
+cut <- c(0, 10)
+geq <- c("geq", "geq")
+mrd <- mrd_est(y ~ x1 + x2 | cov, cutpoint = cut, t.design = geq, front.bw=c(1,1,1))
 mrd_sens_cutoff(mrd, expand.grid(A1 = seq(-.5, .5, length.out = 3), A2 = 10))
 }
 \references{
