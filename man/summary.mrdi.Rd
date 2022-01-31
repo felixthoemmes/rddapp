@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.mrdi.R
 \name{summary.mrdi}
 \alias{summary.mrdi}
-\title{Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation}
+\title{Summarize the Multiple Imputation of Multivariate Regression Discontinuity}
 \usage{
 \method{summary}{mrdi}(object, level = 0.95, digits = max(3, getOption("digits") - 3), ...)
 }
@@ -12,9 +12,10 @@
 
 \item{level}{A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.}
 
-\item{digits}{A non-negative integer specifying the number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.
+The default is \code{max(3, getOption("digits") - 3)}.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments passed to \code{summary}.}
 }
 \value{
 \code{summary.mrdi} returns a list which has the following components:
@@ -27,4 +28,9 @@ for the treatment only model.}
 }
 \description{
 \code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}.
+It is based on \code{summary.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }

@@ -24,7 +24,8 @@
 #' @param kernel A string indicating which kernel to use. Options are \code{"triangular"} 
 #'   (default and recommended), \code{"rectangular"}, \code{"epanechnikov"}, \code{"quartic"}, 
 #'   \code{"triweight"}, \code{"tricube"}, and \code{"cosine"}.
-#' @param se.type This specifies the robust standard error calculation method to use. Options are,
+#' @param se.type This specifies the robust standard error calculation method to use,
+#'   from the "sandwich" package. Options are,
 #'   as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 #'   \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}. This option 
 #'   is overridden by \code{cluster}.
@@ -32,7 +33,7 @@
 #'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
 #'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
-#' @param impute An optional vector specifying the imputed variables with missing values. 
+#' @param impute An optional vector of length n, indexing whole imputations. 
 #' @param verbose A logical value indicating whether to print additional information to 
 #'   the terminal. The default is \code{FALSE}.
 #' @param less Logical. If \code{TRUE}, return the estimates of linear and optimal. If \code{FALSE} 
@@ -50,8 +51,32 @@
 #'   and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its cutoff).
 #'
 #' @return \code{rd_impute} returns an object of \link{class} "\code{rd}".
+#'   The functions \code{summary} and \code{plot} are used to obtain and print a summary and 
+#'   plot of the estimated regression discontinuity. The object of class \code{rd} is a list 
+#'   containing the following components:
+#' \item{call}{The matched call.}
+#' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
+#' \item{type}{A string denoting either \code{"sharp"} or \code{"fuzzy"} RDD.}
+#' \item{cov}{The names of covariates.}
+#' \item{bw}{Numeric vector of each bandwidth used in estimation.}
+#' \item{obs}{Vector of the number of observations within the corresponding bandwidth.}
+#' \item{model}{For a sharp design, a list of the \code{lm} objects is returned.
+#'   For a fuzzy design, a list of lists is returned, each with two elements: 
+#'   \code{firststage}, the first stage \code{lm} object, and \code{iv}, the \code{ivreg} object. 
+#'   A model is returned for each parametric and non-parametric case and corresponding bandwidth.}
+#' \item{frame}{Returns the model frame used in fitting.}
+#' \item{na.action}{The observations removed from fitting due to missingness.}
+#' \item{est}{Numeric vector of the estimate of the discontinuity in the outcome under 
+#'   a sharp RDD or the Wald estimator in the fuzzy RDD, for each corresponding bandwidth.}
+#' \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
+#' \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
+#' \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
+#' \item{df}{Numeric vector of the degrees of freedom computed using Rubin (1987)
+#'   adjustment for imputation.}
+#' \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
+#' \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
+#'   for each corresponding bandwidth.}
 #'
-#' @references Stata: 64 mi estimate - Estimation using multiple imputations
 #' @references Lee, D. S., Card, D. (2010).
 #'   Regression discontinuity inference with specification error. 
 #'   Journal of Econometrics, 142(2), 655-674. 
@@ -64,6 +89,9 @@
 #'   Optimal bandwidth choice for the regression discontinuity estimator. 
 #'   The Review of Economic Studies, 79(3), 933-959.
 #'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
+#' @references Rubin, D. B. (1987).
+#'   Multiple imputation for nonresponse in surveys.
+#'   New York: Wiley.
 #'
 #' @importFrom stats complete.cases pt qt
 #'
@@ -78,7 +106,7 @@
 #' y <- 3 + 2 * x + 3 * cov + 10 * (x < 0) + rnorm(1000)
 #' group <- rep(1:10, each = 100)
 #' rd_impute(y ~ x, impute = group, t.design = "l")
-#' # Efficiency gains can be made by including covariates
+#' # Efficiency gains can be made by including covariates (review SEs in "summary" output).
 #' rd_impute(y ~ x | cov, impute = group, t.design = "l")
 
 rd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL, 

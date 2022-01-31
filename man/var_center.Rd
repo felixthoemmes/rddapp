@@ -11,7 +11,7 @@ var_center(x, cut = c(0, 0), t.design = NULL, t.plot = FALSE)
 where the first column is \code{x1} and the second column is \code{x2}.}
 
 \item{cut}{A numeric vector of length 2 containing the cutpoints at which assignment to the treatment is determined.
-The default is c(0, 0).}
+The default is \code{c(0, 0)}.}
 
 \item{t.design}{A character vector of length 2 specifying the treatment option according to design.
 The first entry is for \code{x1} and the second entry is for \code{x2}. Options are  

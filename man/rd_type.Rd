@@ -18,25 +18,38 @@ rd_type(
 \arguments{
 \item{data}{A \code{data.frame}, with each row representing an observation.}
 
-\item{treat}{A string specifying the name of a numeric variable (treated = positive values).}
+\item{treat}{A string specifying the name of the numeric treatment variable (treated = positive values).}
 
 \item{assign_1}{A string specifying the variable name of the primary assignment.}
 
 \item{cutoff_1}{A numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the primary assignment.}
 
-\item{operator_1}{The operator for the primary assignment.}
+\item{operator_1}{The operator specifying the treatment option according to design for the primary assignment.
+Options are  
+\code{"g"} (treatment is assigned if \code{x1} is greater than its cutoff),
+\code{"geq"} (treatment is assigned if \code{x1} is greater than or equal to its cutoff),
+\code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
+and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).}
 
 \item{assign_2}{An optional string specifying the variable name of the secondary assignment.}
 
 \item{cutoff_2}{An optional numeric value containing the cutpoint at which
 assignment to the treatment is determined, for the secondary assignment.}
 
-\item{operator_2}{The operator for the secondary assignment.}
+\item{operator_2}{The operator specifying the treatment option according to design for the secondary assignment.
+Options are  
+ \code{"g"} (treatment is assigned if \code{x2} is greater than its cutoff),
+ \code{"geq"} (treatment is assigned if \code{x2} is greater than or equal to its cutoff),
+ \code{"l"} (treatment is assigned if \code{x2} is less than its cutoff),
+ and \code{"leq"} (treatment is assigned if \code{x2} is less than or equal to its cutoff).}
 }
 \value{
 \code{rd_type} returns a list of two elements:
-\item{crosstab}{The cross-table as a data.frame.}
+\item{crosstab}{The cross-table as a data.frame. Columns in the dataframe include
+  treatment rules, number of observations in the control condition,
+  number of observations in the treatment condition, and the probability of an
+  observation being in treatment or control.}
 \item{type}{A string specifying the type of design used, either \code{"SHARP"} or \code{"FUZZY"}.}
 }
 \description{

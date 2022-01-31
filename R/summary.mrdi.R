@@ -1,6 +1,7 @@
-#' Summarize the Multiple Imputation of Multivariate Regression Discontinuity Estimation
+#' Summarize the Multiple Imputation of Multivariate Regression Discontinuity
 #' 
 #' \code{summary.mrdi} is a \code{summary} method for class \code{"mrdi"}.
+#' It is based on \code{summary.RD} function in the "rdd" package.
 #' 
 #' @method summary mrdi
 #' 
@@ -8,7 +9,8 @@
 #' \code{\link{mrd_impute}} with \code{"front"} method.
 #' @param level A numeric value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.
 #' @param digits A non-negative integer specifying the number of digits to display.
-#' @param ... Additional arguments.
+#'   The default is \code{max(3, getOption("digits") - 3)}.
+#' @param ... Additional arguments passed to \code{summary}.
 #' 
 #' @return \code{summary.mrdi} returns a list which has the following components:
 #' \item{coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
@@ -17,6 +19,9 @@
 #' for the heterogeneous treatment model.}
 #' \item{t_coefficients}{A matrix containing estimates and confidence intervals (if applicable) 
 #' for the treatment only model.}
+#' 
+#' @references Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+#'    version 0.57. https://CRAN.R-project.org/package=rdd
 #' 
 #' @importFrom stats residuals
 #'

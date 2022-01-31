@@ -18,7 +18,7 @@ rd_power(
 )
 }
 \arguments{
-\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical alpha. The default is 100.}
+\item{num.rep}{A non-negative integer specifying the number of repetitions used to calculate the empirical power. The default is 100.}
 
 \item{sample.size}{A non-negative integer specifying the number of observations in each sample. The default is 100.}
 
@@ -29,7 +29,7 @@ Options are \code{"normal"} and  \code{"uniform"}. The default is the \code{"nor
 If \code{x.dist} is \code{"normal"}, then \code{x.para} includes the
 mean and standard deviation of the normal distribution.
 If \code{x.dist} is \code{"uniform"}, then \code{x.para} includes the 
-upper and lower boundaries of the uniform distribution. The default is c(0,1).}
+upper and lower boundaries of the uniform distribution. The default is \code{c(0,1)}.}
 
 \item{x.cut}{A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.}
 
@@ -56,17 +56,18 @@ Coefficients are in the following order:
 \item{The 3rd entry is the slope of assignment.}
 \item{The 4th entry is the slope of interaction between treatment and assignment.}
 }
-The default is c(0.3, 1, 0.2, 0.3).}
+The default is \code{c(0.3, 1, 0.2, 0.3)}.}
 
 \item{eta.sq}{A numeric value specifying the expected partial eta-squared of the linear model with respect to the 
 treatment itself. It is used to control the variance of noise in the linear model. The default is 0.50.}
 
 \item{alpha.list}{A numeric vector containing significance levels (between 0 and 1) used to calculate the empirical alpha.
-The default is c(0.001, 0.01, anad 0.05).}
+The default is \code{c(0.001, 0.01, 0.05)}.}
 }
 \value{
 \code{rd_power} returns an object of \link{class} 
-  "\code{rdp}", including containing the mean, variance, and power for two estimators. The function \code{summary}
+  "\code{rdp}", including containing the mean, variance, and power (with \code{alpha} of 0.001, 0.01, and 0.05)
+  for two estimators. The function \code{summary}
   is used to obtain and print a summary of the power analysis. The two estimators are:
   \itemize{
   \item{The 1st estimator, \code{Linear}, provides results of the linear regression estimator.} 
@@ -75,14 +76,15 @@ The default is c(0.001, 0.01, anad 0.05).}
   }
 }
 \description{
-\code{rd_power} computes the empirical probability that RD is significant,
-i.e. the empirical alpha of null hypothesis: RD = 0.
+\code{rd_power} computes the empirical probability that a resulting parameter
+estimate of the MRD is significant,
+i.e. the empirical power (1 - beta).
 }
 \examples{
 \dontrun{
-rd_power(x.design = "l")
-rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l")
-rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l")
+summary(rd_power(x.design = "l"))
+summary(rd_power(x.dist = "uniform", x.cut = 0.5, x.design = "l"))
+summary(rd_power(x.fuzzy = c(0.1, 0.1), x.design = "l"))
 }
 }
 \references{

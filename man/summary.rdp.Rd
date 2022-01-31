@@ -9,9 +9,10 @@
 \arguments{
 \item{object}{An object of class \code{"rdp"}, usually a result of a call to \code{\link{rd_power}}.}
 
-\item{digits}{A non-negative integer specifying the number of digits to display.}
+\item{digits}{A non-negative integer specifying the number of digits to display.
+The default is \code{max(3, getOption("digits") - 3)}.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional arguments passed to \code{summary}.}
 }
 \value{
 \code{summary.rdp} returns a list which has the following components:
@@ -19,4 +20,9 @@
 }
 \description{
 \code{summary.rdp} is a \code{summary} method for class \code{"rdp"}.
+It is based on \code{summary.RD} function in the "rdd" package.
+}
+\references{
+Drew Dimmery (2016). rdd: Regression Discontinuity Estimation. R package
+   version 0.57. https://CRAN.R-project.org/package=rdd
 }

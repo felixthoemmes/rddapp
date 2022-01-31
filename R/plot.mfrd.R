@@ -7,11 +7,12 @@
 #' @param model A string containing the model specification. Options include one of \code{c("m_s", "m_h", "m_t")},
 #'   which denote the complete model, heterogeneous treatment model, and treatment only 
 #'   model, respectively.
-#' @param methodname A string containing the method specification. Options include one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.
+#' @param methodname A string containing the method specification.
+#'   Options include one of \code{c("Param", "bw", "Half-bw", "Double-bw")}.
 #' @param gran A non-negative integer specifying the granularity of the surface grid (i.e. the desired number of predicted points 
 #'   before and after the cutoff, along each assignment variable). The default is 10.
 #' @param raw_data A logical value indicating whether the raw data points are plotted. The default is \code{TRUE}.
-#' @param color_surface A logical value indicating whether the treated surface is colored. The defaulti s \code{FALSE}.
+#' @param color_surface A logical value indicating whether the treated surface is colored. The default is \code{FALSE}.
 #' @param ... Additional graphic arguments passed to \code{persp}.
 #'
 #' @importFrom stats expand.model.frame formula

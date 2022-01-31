@@ -1,7 +1,7 @@
 #' Multivariate Frontier Regression Discontinuity Estimation 
 #'
 #' \code{mfrd_est} implements the frontier approach for multivariate regression discontinuity estimation in Wong, Steiner and Cook (2013). 
-#' It is based on the MFRDD code in Stata. 
+#' It is based on the MFRDD code in Stata from Wong, Steiner, and Cook (2013). 
 #'
 #' @param y A numeric object containing outcome variable.
 #' @param x1 A numeric object containing the first assignment variable.
@@ -17,8 +17,10 @@
 #'   The same options are available for \code{x2}.
 #' @param local A non-negative numeric value specifying the range of neighboring points around the cutoff on the 
 #'   standardized scale, for each assignment variable. The default is 0.15. 
-#' @param front.bw A non-negative numeric vector specifying the bandwidths at which to estimate the RD for each
-#'   of three effects models. If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
+#' @param front.bw A non-negative numeric vector of length 3 specifying the bandwidths at which to estimate the RD for each
+#'   of three effects models (complete model, heterogeneous treatment model, and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013).
+#'   If \code{NA}, \code{front.bw} will be determined by cross-validation. The default is \code{NA}.
 #' @param m A non-negative integer specifying the number of uniformly-at-random samples to draw as search candidates for \code{front.bw},
 #'   if \code{front.bw} is \code{NA}. The default is 10.
 #' @param k A non-negative integer specifying the number of folds for cross-validation to determine \code{front.bw},
@@ -30,17 +32,66 @@
 #'   which is also the number of zero grid points on each assignment variable. The default is 250. The value used in 
 #'   Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.
 #' @param margin A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
-#'   of sample points on each assignment variable. The default is 0.03.
+#'   of sample points on each assignment variable. This grid is used to impute potential outcomes along the frontier,
+#'   as in Wong, Steiner, and Cook (2013). The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
-#' @param cluster An optional vector specifying clusters within which the errors are assumed
-#'   to be correlated. This will result in reporting cluster robust SEs. This option overrides
-#'   anything specified in \code{se.type}. It is suggested that data with a discrete running 
+#' @param cluster An optional vector of length n specifying clusters within which the errors are assumed
+#'   to be correlated. This will result in reporting cluster robust SEs. It is suggested that data with a discrete running 
 #'   variable be clustered by each unique value of the running variable (Lee and Card, 2008).
 #' @param stop.on.error A logical value indicating whether to remove bootstraps which cause error in the \code{integrate} function. If \code{TRUE}, bootstraps which cause error are removed
 #'   and resampled until the specified number of 
 #'   bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error are not removed. The default is \code{TRUE}.
 #'
 #' @return \code{mfrd_est} returns an object of \link{class} "\code{mfrd}".
+#'   The functions \code{summary} and \code{plot} are used to obtain and print a summary and 
+#'   plot of the estimated regression discontinuity. The object of class \code{mfrd} is a list 
+#'   containing the following components:
+#' \item{w}{Numeric vector specifying the weight of frontier 1 and frontier 2, respectively.}   
+#' \item{est}{Numeric matrix of the estimate of the discontinuity in the outcome under 
+#'   a complete model (no prefix), heterogeneous treatment (ht) effects model, and treatment (t) only model,
+#'   for the parametric case and for each corresponding bandwidth.
+#'   Estimates with suffix "ev1" and "ev2" correspond to expected values for each frontier, under a given model.
+#'   Estimates with suffix "ate" correspond to average treatment effects across both frontiers, 
+#'   under a given model.}
+#' \item{d}{Numeric matrix of the effect size (Cohen's d) for estimate.}
+#' \item{se}{Numeric matrix of the standard error for each corresponding bandwidth and ....}
+#' \item{m_s}{A list containing estimates for the complete model, under parametric
+#' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+#' coefficient estimates, residuals, effects, weights (in the non-parametric case),
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
+#' and output data frame are returned for each model.}
+#' \item{m_h}{A list containing estimates for the heterogeneous treatments model, under parametric
+#' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+#' coefficient estimates, residuals, effects, weights (in the non-parametric case),
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
+#' and output data frame are returned for each model.}
+#' \item{m_t}{A list containing estimates for the treatment only model, under parametric
+#' and non-parametric (optimal, half, and double bandwidth) cases. A list of 
+#' coefficient estimates, residuals, effects, weights (in the non-parametric case),
+#' \code{lm} output (rank of the fitted linear model, fitted values, assignments for the design matrix,
+#' qr for linear fit, residual degrees of freedom, levels of the x value, function call, and terms),
+#' and output data frame are returned for each model.}
+#' \item{dat_h}{A list containing four data frames, one for each case:
+#' parametric or non-parametric (optimal, half, and double bandwidth).
+#' Each data frame contains functions and densities for each frontier
+#' and treatment model.}
+#' \item{dat}{A data frame containing the outcome (\code{y}) and each input
+#' (\code{x1}, \code{x2}) for each observation. The data frame also contains
+#'  indicators of being within the \code{local} boundary of the \code{cutpoint}
+#'  for x1 and x2 (\code{x1res}, \code{x2res}),
+#' scaled (\code{zx1}, \code{zx2}) and
+#' centered x1 and x2 values (\code{zcx1}, \code{zcx2}), and 
+#' treatment indicators for overall treatment (\code{tr}) based on treatment assignment
+#' from x1 (\code{tr1}), x2 (\code{tr2}), and both assignment variables (\code{trb}).}
+#' \item{obs}{List of the number of observations used in each model.}
+#' \item{impute}{A logical value indicating whether multiple imputation is used or not.}
+#' \item{call}{The matched call.}
+#' \item{front.bw}{Numeric vector of each bandwidth used to estimate the density
+#'   at the frontier for the three effects models (complete model,
+#'   heterogeneous treatment model, and treatment only model) 
+#'   detailed in Wong, Steiner, and Cook (2013).}
 #' 
 #' @references Wong, V., Steiner, P, and Cook, T. (2013).
 #'   Analyzing regression discontinuity designs with multiple assignment variables: A comparative study of four estimation methods. 
@@ -695,7 +746,8 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
 
 ## mimic Stata's integ
 int_cubic <- function(x, y, stop.on.error = TRUE){
-  integrate(splinefun(x, y, method = "natural"), lower = min(x), upper = max(x), 
+  integrate(splinefun(x, y, method = "natural", ties = list("ordered", mean)),
+            lower = min(x), upper = max(x), 
             subdivisions = 500L, stop.on.error = stop.on.error)$value
 }
 

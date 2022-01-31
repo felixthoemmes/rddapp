@@ -1,15 +1,21 @@
 #' Cutoff Sensitivity Simulation for Regression Discontinuity
 #'
 #' \code{rd_sens_cutoff} refits the supplied model with varying cutoff(s). 
-#' Other estimation parameters, such as the automatically calculated bandwidth, are held constant.
+#' All other aspects of the model, such as the automatically calculated bandwidth, are held constant.
 #' 
 #' @param object An object returned by \code{rd_est} or \code{rd_impute}.
 #' @param cutoffs A numeric vector of cutoff values to be used for refitting 
 #'   an \code{rd} object.
 #'
 #' @return \code{rd_sens_cutoff} returns a dataframe containing the estimate \code{est} and standard error \code{se} 
-#'   for each cutoff values (\code{A1}). Column \code{A1} contains varying cutoffs 
-#'   on the assignment variable.
+#'   for each cutoff value (\code{A1}). Column \code{A1} contains varying cutoffs 
+#'   on the assignment variable. The \code{model} column contains the parametric model (linear, quadratic, or cubic) or 
+#'   non-parametric bandwidth setting (Imbens-Kalyanaraman 2012 optimal, half, or double) used for estimation.
+#'
+#' @references Imbens, G., Kalyanaraman, K. (2012). 
+#'   Optimal bandwidth choice for the regression discontinuity estimator. 
+#'   The Review of Economic Studies, 79(3), 933-959.
+#'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 #'
 #' @export
 #'

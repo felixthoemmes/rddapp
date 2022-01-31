@@ -64,4 +64,6 @@
 
 # rddapp 1.3
 
-- List things we updated.
+- Updated package documentation and help pages
+- Created pkgdown website
+- Fixed display issues in "shinyrdd" app

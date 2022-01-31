@@ -1,3 +1,58 @@
 template:
-  params:
-    bootswatch: yeti
+  bootstrap: 5
+  bootswatch: simplex
+
+reference:
+  - title: Package and web application
+    desc: ~
+    contents:
+      - '`rddapp-package`'
+      - '`shiny_run`'
+  - title: Estimation
+    desc: Functions to estimate treatment effects for RDDs
+    contents:
+      - '`rd_est`'
+      - '`summary.rd`'
+      - '`plot.rd`'
+      - '`predict.rd`'
+      - '`print.rd`'
+      - '`rd_impute`'
+      - '`mrd_est`'
+      - '`summary.mrd`'
+      - '`mfrd_est`'
+      - '`summary.mfrd`'
+      - '`print.mfrd`'
+      - '`plot.mfrd`'
+      - '`mrd_impute`'
+      - '`summary.mrdi`'
+  - title: Power analysis
+    desc: Functions to estimate power for RDDs
+    contents:
+      - '`rd_power`'
+      - '`summary.rdp`'
+      - '`mrd_power`'
+      - '`summary.mrdp`'
+  - title: Assumption checks
+    desc: Functions for assumption and sensitivity checks
+    contents:
+      - '`dc_test`'
+      - '`rd_sens_bw`'
+      - '`rd_sens_cutoff`'
+      - '`mrd_sens_bw`'
+      - '`mrd_sens_cutoff`'
+      - '`sens_plot`'
+  - title: Data
+    desc: Example data sets
+    contents:
+      - '`CARE`'
+  - title: Internals
+    desc: Internal functions and helpers
+    contents:
+      - '`attr_check`'
+      - '`bw_ik09`'
+      - '`bw_ik12`'
+      - '`rd_type`'
+      - '`treat_assign`'
+      - '`var_center`'
+      - '`wt_kern`'
+      - '`wt_kern_bivariate`'

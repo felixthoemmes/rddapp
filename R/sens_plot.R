@@ -8,7 +8,8 @@
 #' @param x A string of the column name of the varying parameter in \code{sim_results}. 
 #'   This will be used as the x-axis in the plot. Possible values are \code{c("A1", "A2", "bw")}, 
 #'   which are column names in \code{sim_results}. 
-#'   \code{A1} specifies that the varying cutoffs are for assignment 1 and \code{A2} specifies assignment 2. \code{bw} indicates that the varying parameter is bandwidth.  
+#'   \code{A1} specifies that the varying cutoffs are for assignment 1 and \code{A2} specifies assignment 2.
+#'   \code{bw} indicates that the varying parameter is bandwidth.  
 #' @param plot_models A character vector specifying the models to be plotted (i.e. models estimated with 
 #'   different approaches). Possible values are \code{unique(sim_results$model))}.
 #' @param yrange An optional numeric vector specifying the range of the y-axis.

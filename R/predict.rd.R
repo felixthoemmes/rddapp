@@ -4,7 +4,7 @@
 #' 
 #' @param object An \code{rd} object, typically the result of \code{\link{rd_est}}.
 #' @param gran A non-negative integer specifying the granularity of the data points (i.e. the desired number of predicted points). The default is 50.
-#' @param ... Additional arguments affecting the predictions produced.
+#' @param ... Additional arguments passed to \code{predict}.
 #'
 #' @importFrom AER ivreg 
 #' @importFrom Formula as.Formula

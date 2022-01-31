@@ -14,12 +14,13 @@
 #'   The default is \code{TRUE}. The user may wrap this function in additional graphical options 
 #'   to modify the plot.
 #' @param ext.out A logical value indicating whether to return extended output. 
-#'   The default is \code{FALSE}. When \code{FALSE} \code{dc_test} will return only the p-value of the test. 
-#'   When \code{TRUE}, \code{dc_test} will return the additional information documented below.
+#'   The default is \code{FALSE}. When \code{FALSE} \code{dc_test} will return only the p-value of the test, but will print more information. 
+#'   When \code{TRUE}, \code{dc_test} will return and print the additional information documented below.
 #' @param htest A logical value indicating whether to return an \code{"htest"} object 
 #'   compatible with base R's hypothesis test output. The default is \code{FALSE}.
 #' @param level A numerical value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95. 
-#' @param digits A non-negative integer specifying the number of digits to display in all output. The default is 3.
+#' @param digits A non-negative integer specifying the number of digits to display in all output.
+#'   The default is \code{max(3, getOption("digits") - 3)}.
 #' @param timeout A non-negative numerical value specifying the maximum number of seconds that 
 #'   expressions in the function are allowed to run. The default is 30. Specify \code{Inf} to run all expressions
 #'   to completion.
@@ -27,7 +28,7 @@
 #' @return If \code{ext.out} is \code{FALSE}, \code{dc_test} returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
 #'   Additional output is enabled when \code{ext.out} is \code{TRUE}. 
 #'   In this case, \code{dc_test} returns a list with the following elements:
-#' \item{theta}{The estimated log difference in heights at the cutpoint.}
+#' \item{theta}{The estimated log difference in heights of the density curve at the cutpoint.}
 #' \item{se}{The standard error of \code{theta}.}
 #' \item{z}{The z statistic of the test.}
 #' \item{p}{The p-value of the test. A p-value below the significance threshold indicates 
