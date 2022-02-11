@@ -21,7 +21,7 @@ The first entry is for \code{x1} and the second entry is for \code{x2}. Options 
 and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
 The same options are available for \code{x2}.}
 
-\item{t.plot}{A logical value inidcating whether to calculate the univariate treatment variable, \code{t}, and make a plot. The default is \code{FALSE}.}
+\item{t.plot}{A logical value indicating whether to calculate the univariate treatment variable, \code{t}, and make a plot. The default is \code{FALSE}.}
 }
 \value{
 \code{var_center} returns the univariate assignment variable as a vector 

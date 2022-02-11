@@ -111,7 +111,7 @@ Wong, Steiner and Cook (2013) is 2500, which may cause long computational time.}
 of sample points on each assignment variable. The default is 0.03.}
 
 \item{boot}{An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
-This arugment is not optional if method is \code{"front"}.}
+This argument is not optional if method is \code{"front"}.}
 
 \item{method}{A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 \code{"univ"}, \code{"front"}, based on the centering, univariate, and frontier

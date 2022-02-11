@@ -67,7 +67,7 @@
 #' @param margin A non-negative numeric value specifying the range of grid points beyond the minimum and maximum
 #'   of sample points on each assignment variable. The default is 0.03.
 #' @param boot An optional non-negative integer specifying the number of bootstrap samples to obtain standard error of estimates.
-#'   This arugment is not optional if method is \code{"front"}.
+#'   This argument is not optional if method is \code{"front"}.
 #' @param method A string specifying the method to estimate the RD effect. Options are \code{"center"}, 
 #'   \code{"univ"}, \code{"front"}, based on the centering, univariate, and frontier
 #'   approaches (respectively) from Wong, Steiner, and Cook (2013). 

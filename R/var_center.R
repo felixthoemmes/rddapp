@@ -16,7 +16,7 @@
 #'   \code{"l"} (treatment is assigned if \code{x1} is less than its cutoff),
 #'   and \code{"leq"} (treatment is assigned if \code{x1} is less than or equal to its cutoff).
 #'   The same options are available for \code{x2}.
-#' @param t.plot A logical value inidcating whether to calculate the univariate treatment variable, \code{t}, and make a plot. The default is \code{FALSE}. 
+#' @param t.plot A logical value indicating whether to calculate the univariate treatment variable, \code{t}, and make a plot. The default is \code{FALSE}. 
 #    showing T and X or not.
 #'
 #' @return \code{var_center} returns the univariate assignment variable as a vector 

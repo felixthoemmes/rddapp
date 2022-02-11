@@ -40,7 +40,7 @@
 
 - Bugfixes in mrd_impute function, including summary function
 
-- Incorrect outputs for Cohen'd of covariates are removed from rd_est and mrd_est
+- Incorrect outputs for Cohen's d of covariates are removed from rd_est and mrd_est
 
 - Help files have been updated e.g. example added for rd_type, more descriptions of arguments added for plot.mfrd and predict.rd
 
