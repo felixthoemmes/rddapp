@@ -18,8 +18,8 @@ jobs:
         config:
           - {os: ubuntu-latest, r: 'devel'}
           - {os: ubuntu-latest, r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: windows-latest, r: 'devel'}
+          - {os: windows-2022, r: 'release'}
+          - {os: windows-2022, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'devel'}
     env:
