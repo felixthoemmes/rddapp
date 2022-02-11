@@ -1,7 +1,10 @@
-## Test environments
-* local Windows 10 install, R 4.0.4
-* ubuntu 16.04 (on travis-ci), R 4.0.2
-* win-builder (devel and release)
- 
+## Test environments - all using Github Actions
+* Windows Server 2019 and Windows Server 2022, R 4.1.2
+* Windows Server 2019 and Windows Server 2022, R-devel r81713
+* ubuntu 20.04.3, R 4.1.2
+* ubuntu 20.04.3, R-devel r81713
+* macOS 11.6.3, R 4.1.2
+* macOS 11.6.3, R-devel r81713
+
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs.
