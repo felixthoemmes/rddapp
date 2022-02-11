@@ -16,7 +16,6 @@
 #' }
 #'
 #' @source \url{http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091}
-#' @source \url{http://www.researchconnections.org/childcare/studies/4091/version/1}
 #' 
 #' @examples 
 #' data("CARE")
