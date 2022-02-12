@@ -1,5 +1,5 @@
 # The dataset is available online at the following URL:
-# http://www.researchconnections.org/childcare/studies/4091
+# https://www.icpsr.umich.edu/web/ICPSR/studies/4091
 # The file is ASCII, but has NO column labels and value labels
 # Therefore we also downloaded the .sps file from the same website, 
 # and executed the SPSS syntax file
