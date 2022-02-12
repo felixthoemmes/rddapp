@@ -17,8 +17,6 @@ A data frame with 81 rows and 5 variables:
 }
 \source{
 \url{http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/4091}
-
-\url{http://www.researchconnections.org/childcare/studies/4091/version/1}
 }
 \usage{
 CARE
