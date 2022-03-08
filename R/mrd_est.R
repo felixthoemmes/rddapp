@@ -353,6 +353,21 @@ mrd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
               less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
           ))
         )
+      } else if (bw == "IK12" | bw == "IK09") {
+        o[["univ"]] <- list(
+          tau_R = eval(bquote(
+            rd_est(formula = .(form1), data = data, subset = subset1, 
+                   cutpoint = .(cutpoint[1]), bw = .(bw), kernel = .(kernel), 
+                   se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+                   less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[1]))
+          )),
+          tau_M = eval(bquote(
+            rd_est(formula = .(form2), data = data, subset = subset2, 
+                   cutpoint = .(cutpoint[2]), bw = .(bw), kernel = .(kernel), 
+                   se.type = .(se.type), cluster = cluster, verbose = .(verbose), 
+                   less = .(less), est.cov = .(est.cov), est.itt = .(est.itt), t.design = .(t.design[2]))
+          ))
+        )
       } else {
         stop("Invalid bandwidth. Read ?mrd_est for proper syntax.")
       }
