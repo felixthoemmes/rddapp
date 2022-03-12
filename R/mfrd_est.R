@@ -346,7 +346,8 @@ mfrd_est_cv <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.
     trainx2 <- x2[-testInd]
     
     # Fit using training data
-    zc1 <- c(scale(c1, center = mean(trainx1), scale = sd(trainx1)))
+    zc1 <- c(scale(c1, center = mean(trainx1, na.rm = TRUE),
+                   scale = sd(trainx1, na.rm = TRUE)))
     zc2 <- c(scale(c2, center = mean(trainx2), scale = sd(trainx2)))
     trainzx1 <- c(scale(trainx1))
     trainzx2 <- c(scale(trainx2))
@@ -371,8 +372,8 @@ mfrd_est_cv <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.
     m_t <- lm(y.dat ~ zcx1 + zcx2 + tr.dat, weights = trainwt$wTr, data = traindat) 
      
     # Return MSE of test data only within a fixed bandwidth bw.test
-    testzx1 <- c(scale(testx1, sd(trainx1)))
-    testzx2 <- c(scale(testx2, sd(trainx2)))
+    testzx1 <- c(scale(testx1, sd(trainx1, na.rm = TRUE)))
+    testzx2 <- c(scale(testx2, sd(trainx2, na.rm = TRUE)))
     
     testdat <- data.frame(
       y.dat = testy,
@@ -393,12 +394,15 @@ mfrd_est_cv <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.
     yhat_h = predict.lm(m_h, newdata = testdat)
     yhat_t = predict.lm(m_t, newdata = testdat)
     
-    mse$mse_s[i] = mean(((yhat_s - testy)[testwt$distAll1 <= 1])**2)
-    mse$mse_h[i] = mean(((yhat_h - testy)[testwt$distAll2 <= 1])**2)
-    mse$mse_t[i] = mean(((yhat_t - testy)[testwt$distTr <= 1])**2)
+    mse$mse_s[i] = mean(((yhat_s - testy)[testwt$distAll1 <= 1])**2,
+                        na.rm = TRUE)
+    mse$mse_h[i] = mean(((yhat_h - testy)[testwt$distAll2 <= 1])**2,
+                        na.rm = TRUE)
+    mse$mse_t[i] = mean(((yhat_t - testy)[testwt$distTr <= 1])**2,
+                        na.rm = TRUE)
   }
 
-  return(colMeans(mse))
+  return(colMeans(mse, na.rm = TRUE))
 }
 
 
@@ -410,7 +414,8 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
   
   dat <- data.frame(y, x1, x2)
   
-  zc1 <- c(scale(c1, center = mean(dat$x1), scale = sd(dat$x1)))
+  zc1 <- c(scale(c1, center = mean(dat$x1, na.rm = TRUE),
+                 scale = sd(dat$x1, na.rm = TRUE)))
   zc2 <- c(scale(c2, center = mean(dat$x2), scale = sd(dat$x2)))
   
   if (!all(t.design %in% c("g", "geq", "l", "leq"))) {
