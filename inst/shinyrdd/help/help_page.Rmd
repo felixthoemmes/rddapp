@@ -431,7 +431,7 @@ Depending on the **Group lines by** option selected, a second drop-down menu app
 Both the currently displayed plot and the full simulation data can be downloaded using the buttons in the top right corner of the Figure 5.1 panel. The plot can be downloaded as a `.png`, `.svg`, or `.pdf`. The simulation data can be downloaded as a `.csv` file.
 
 # About
-This software was developed by [Felix Thoemmes](https://psychology.cornell.edu/felix-j-thoemmes), [Wang Liao](https://wliao229.github.io/), [Ze Jin](https://www.linkedin.com/in/ze-jin-08045b31), [Wenyu Zhang](http://zwenyu.github.io/), and [Irena Papst](https://github.com/papsti) all at Cornell University. We are happy to receive feedback! Please send it to
+This software was developed by [Felix Thoemmes](https://psychology.cornell.edu/felix-j-thoemmes), [Wang Liao](https://wliao229.github.io/), [Ze Jin](https://www.linkedin.com/in/ze-jin-08045b31), [Wenyu Zhang](http://zwenyu.github.io/), [Irena Papst](https://github.com/papsti), and [Kim Hochstedler](https://kimhochstedler.github.io/my_website/) all at Cornell University. We are happy to receive feedback! Please send it to
 ![](../www/fjt_email.png)
 
 
