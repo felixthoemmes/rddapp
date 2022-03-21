@@ -209,14 +209,15 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
     mse.cv <- sapply(bw.seq, cv)
     min.idx <- as.numeric(apply(mse.cv, 1, which.min))
     bw.opt <- bw.seq[min.idx]
-    if (identical(bw.opt, numeric(0)) | sum(is.na(bw.opt)) > 0) {
-      print("Cross validation failed. `front.bw` = 1 is used.")
-    }
     # default of bandwidth is 1 when minimum cannot be found due to no points within testing bandwidth
     bw.opt[is.na(bw.opt)] = 1
     bw.opt <- ifelse(identical(bw.opt, numeric(0)), 1, bw.opt)
     bw.opt[2] <- ifelse(is.na(bw.opt[2]), 1, bw.opt)
     bw.opt[3] <- ifelse(is.na(bw.opt[3]), 1, bw.opt)
+  }
+  
+  if (all.equal(bw.opt, rep(1,3))) {
+    print("Cross validation failed. `front.bw` = 1 is used.")
   }
   
   # concatenate results for the bandwidth, and half and double the bandwidth
