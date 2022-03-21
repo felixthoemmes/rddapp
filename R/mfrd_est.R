@@ -216,7 +216,7 @@ mfrd_est <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.bw 
     bw.opt[3] <- ifelse(is.na(bw.opt[3]), 1, bw.opt)
   }
   
-  if (all.equal(bw.opt, rep(1,3))) {
+  if (length(which(bw.opt == 1)) > 1) {
     print("Cross validation failed. `front.bw` = 1 is used.")
   }
   
