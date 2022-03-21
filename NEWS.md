@@ -67,3 +67,8 @@
 - Updated package documentation and help pages
 - Created pkgdown website
 - Fixed display issues in "shinyrdd" app
+
+# rddapp 1.3.1
+
+- Fixed `mrd_est` to allow users to specify "IK12" and "IK09" for the `bw` argument. 
+- Added warnings for `front.bw` calculations in `mfrd_est`. 
