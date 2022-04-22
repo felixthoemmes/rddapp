@@ -400,9 +400,9 @@ mfrd_est_cv <- function(y, x1, x2, c1, c2, t.design = NULL, local = 0.15, front.
     yhat_h = predict.lm(m_h, newdata = testdat)
     yhat_t = predict.lm(m_t, newdata = testdat)
     
-    mse$mse_s[i] = mean(((yhat_s - testy)[testwt$distAll1 <= 1])**2)
-    mse$mse_h[i] = mean(((yhat_h - testy)[testwt$distAll2 <= 1])**2)
-    mse$mse_t[i] = mean(((yhat_t - testy)[testwt$distTr <= 1])**2)
+    mse$mse_s[i] = mean(((yhat_s - testy)[testwt$distAll1 <= 1])**2, na.rm = TRUE)
+    mse$mse_h[i] = mean(((yhat_h - testy)[testwt$distAll2 <= 1])**2, na.rm = TRUE)
+    mse$mse_t[i] = mean(((yhat_t - testy)[testwt$distTr <= 1])**2, na.rm = TRUE)
   }
 
   return(colMeans(mse))
