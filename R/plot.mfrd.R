@@ -33,8 +33,8 @@
 #' x2 <- runif(1000, -1, 1)
 #' cov <- rnorm(1000)
 #' y <- 3 + 2 * (x1 >= 0) + 3 * cov + 10 * (x2 >= 0) + rnorm(1000)
-#' model <- mfrd_est(y = y, x1 = x1, x2 = x2, c1 = 0, c2 = 0, t.design = c("geq", "geq"))
-#' plot(model, "m_s", "Param")
+#' model <- mrd_est(y ~ x1 + x2, cutpoint = c(0, 0), t.design = c("geq", "geq"))
+#' plot(model$front$tau_MRD, "m_s", "Param")
 
 plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
                       methodname = c("Param", "bw", "Half-bw", "Double-bw"),
