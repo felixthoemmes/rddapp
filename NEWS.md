@@ -72,3 +72,7 @@
 
 - Fixed `mrd_est` to allow users to specify "IK12" and "IK09" for the `bw` argument. 
 - Added warnings for `front.bw` calculations in `mfrd_est`. 
+
+# rddapp 1.3.2
+
+- Updated degrees of freedom calculations in `rd_impute` and `mrd_impute` to use Barnard and Rubin (1999) adjustment. 
