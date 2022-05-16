@@ -105,7 +105,7 @@ and \code{"leq"} (treatment is assigned if \code{x} is less than or equal to its
 \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
 \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
 \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
-\item{df}{Numeric vector of the degrees of freedom computed using Rubin (1987)
+\item{df}{Numeric vector of the degrees of freedom computed using Barnard and Rubin (1999)
   adjustment for imputation.}
 \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
 \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
@@ -140,7 +140,7 @@ Imbens, G., Kalyanaraman, K. (2012).
   The Review of Economic Studies, 79(3), 933-959.
   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
 
-Rubin, D. B. (1987).
-  Multiple imputation for nonresponse in surveys.
-  New York: Wiley.
+Barnard, J., Rubin, D. (1999).
+  Small-Sample Degrees of Freedom with Multiple Imputation.
+  Biometrika, 86(4), 948-55.
 }

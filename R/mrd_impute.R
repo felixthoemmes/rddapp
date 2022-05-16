@@ -100,7 +100,7 @@
 #' \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
 #' \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
 #' \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
-#' \item{df}{Numeric vector of the degrees of freedom computed using Rubin (1987)
+#' \item{df}{Numeric vector of the degrees of freedom computed using Barnard and Rubin (1999)
 #'   adjustment for imputation.}
 #' \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
 #' \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
@@ -120,9 +120,9 @@
 #'   Regression discontinuity inference with specification error. 
 #'   Journal of Econometrics, 142(2), 655-674. 
 #'   \doi{10.1016/j.jeconom.2007.05.003}.
-#' @references Rubin, D. B. (1987).
-#'   Multiple imputation for nonresponse in surveys.
-#'   New York: Wiley.
+#' @references Barnard, J., Rubin, D. (1999).
+#'   Small-Sample Degrees of Freedom with Multiple Imputation.
+#'   Biometrika, 86(4), 948-55.
 #'
 #' @importFrom Formula as.Formula
 #' @importFrom stats complete.cases pt qt
@@ -347,8 +347,22 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o$center$tau_MRD$se <- sqrt(V)
     o$center$tau_MRD$z <- unname(o$center$tau_MRD$est/o$center$tau_MRD$se)
     
+    n <- mean(table(impute))
+    # Fine to use one model since rank won't change between imputation sets
+    rank <- c(center_MRD[["model"]][[1]][["rank"]],
+              center_MRD[["model"]][[2]][["rank"]],
+              center_MRD[["model"]][[3]][["rank"]],
+              center_MRD[["model"]][[4]][["rank"]],
+              center_MRD[["model"]][[5]][["rank"]],
+              center_MRD[["model"]][[6]][["rank"]])
+    k <- rank
     r <- (1 + 1 / num_imp) * B / U
-    df <- (num_imp - 1) * (1 + 1 / r)^2
+    lambda <- ((1 + 1 / num_imp) * B) / (((1 + 1 / num_imp) * B) + U)
+    
+    df_old <- (num_imp - 1) * (1 + 1 / (r^2))
+    df_obs <- (((n - k) + 1) / ((n - k) + 3)) * (n - k) * (1 - lambda)
+    
+    df <- (df_old * df_obs) / (df_old + df_obs)
     o$center$tau_MRD$df <- df
     
     o$center$tau_MRD$p <- 2 * pt(abs(o$center$tau_MRD$z), df = df, lower.tail = FALSE)
@@ -378,14 +392,28 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o$univ$tau_R$se <- sqrt(V)
     o$univ$tau_R$z <- unname(o$univ$tau_R$est/o$univ$tau_R$se)
     
+    n <- mean(table(impute))
+    # Fine to use one model since rank won't change between imputation sets
+    rank <- c(univ_R[["model"]][[1]][["rank"]],
+              univ_R[["model"]][[2]][["rank"]],
+              univ_R[["model"]][[3]][["rank"]],
+              univ_R[["model"]][[4]][["rank"]],
+              univ_R[["model"]][[5]][["rank"]],
+              univ_R[["model"]][[6]][["rank"]])
+    k <- rank
     r <- (1 + 1 / num_imp) * B / U
-    df <- (num_imp - 1) * (1 + 1 / r)^2
+    lambda <- ((1 + 1 / num_imp) * B) / (((1 + 1 / num_imp) * B) + U)
+    
+    df_old <- (num_imp - 1) * (1 + 1 / (r^2))
+    df_obs <- (((n - k) + 1) / ((n - k) + 3)) * (n - k) * (1 - lambda)
+    
+    df <- (df_old * df_obs) / (df_old + df_obs)
     o$univ$tau_R$df <- df
     
     o$univ$tau_R$p <- 2 * pt(abs(o$univ$tau_R$z), df = df, lower.tail = FALSE)
     o$univ$tau_R$ci <- unname(c(
-      o$univ$tau_R$est - qt(0.975, df = df) * o$univ$tau_R$se, 
-      o$univ$tau_R$est + qt(0.975, df = df) * o$univ$tau_R$se))
+    o$univ$tau_R$est - qt(0.975, df = df) * o$univ$tau_R$se, 
+    o$univ$tau_R$est + qt(0.975, df = df) * o$univ$tau_R$se))
     o$univ$tau_R$ci <- matrix(o$univ$tau_R$ci, ncol = 2)
     
     #o$univ$tau_R$bw <- rep(NA, length(name_mod$univ_R))
@@ -407,8 +435,22 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o$univ$tau_M$se <- sqrt(V)
     o$univ$tau_M$z <- unname(o$univ$tau_M$est/o$univ$tau_M$se)
     
+    n <- mean(table(impute))
+    # Fine to use one model since rank won't change between imputation sets
+    rank <- c(univ_M[["model"]][[1]][["rank"]],
+              univ_M[["model"]][[2]][["rank"]],
+              univ_M[["model"]][[3]][["rank"]],
+              univ_M[["model"]][[4]][["rank"]],
+              univ_M[["model"]][[5]][["rank"]],
+              univ_M[["model"]][[6]][["rank"]])
+    k <- rank
     r <- (1 + 1 / num_imp) * B / U
-    df <- (num_imp - 1) * (1 + 1 / r)^2
+    lambda <- ((1 + 1 / num_imp) * B) / (((1 + 1 / num_imp) * B) + U)
+    
+    df_old <- (num_imp - 1) * (1 + 1 / (r^2))
+    df_obs <- (((n - k) + 1) / ((n - k) + 3)) * (n - k) * (1 - lambda)
+    
+    df <- (df_old * df_obs) / (df_old + df_obs)
     o$univ$tau_M$df <- df
     
     o$univ$tau_M$p <- 2 * pt(abs(o$univ$tau_M$z), df = df, lower.tail = FALSE)
@@ -443,8 +485,31 @@ mrd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
     o$front$tau_MRD$se <- sqrt(V)
     o$front$tau_MRD$z <- o$front$tau_MRD$est/o$front$tau_MRD$se
     
+    n <- mean(table(impute))
+    # Fine to use one model since rank won't change between imputation sets. 
+    s_rank <- matrix(c(rep(front_MRD$m_s$Param$rank, 3),
+                       rep(front_MRD$m_s$bw$rank, 3),
+                       rep(front_MRD$m_s$`Half-bw`$rank, 3),
+                       rep(front_MRD$m_s$`Double-bw`$rank, 3)),
+                     nrow = 4, byrow = TRUE)
+    h_rank <- matrix(c(rep(front_MRD$m_h$Param$rank, 3),
+                       rep(front_MRD$m_h$bw$rank, 3),
+                       rep(front_MRD$m_h$`Half-bw`$rank, 3),
+                       rep(front_MRD$m_h$`Double-bw`$rank, 3)),
+                     nrow = 4, byrow = TRUE)
+    t_rank <- matrix(c(rep(front_MRD$m_t$Param$rank, 3),
+                       rep(front_MRD$m_t$bw$rank, 3),
+                       rep(front_MRD$m_t$`Half-bw`$rank, 3),
+                       rep(front_MRD$m_t$`Double-bw`$rank, 3)),
+                     nrow = 4, byrow = TRUE)
+    k <- do.call(cbind, list(s_rank, h_rank, t_rank))
     r <- (1 + 1 / num_imp) * B / U
-    df <- (num_imp - 1) * (1 + 1 / r)^2
+    lambda <- ((1 + 1 / num_imp) * B) / (((1 + 1 / num_imp) * B) + U)
+    
+    df_old <- (num_imp - 1) * (1 + 1 / (r^2))
+    df_obs <- (((n - k) + 1) / ((n - k) + 3)) * (n - k) * (1 - lambda)
+    
+    df <- (df_old * df_obs) / (df_old + df_obs)
     o$front$tau_MRD$df <- df
     
     o$front$tau_MRD$p <- 2 * pt(abs(o$front$tau_MRD$z), df = df, lower.tail = FALSE)

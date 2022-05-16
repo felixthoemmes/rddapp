@@ -71,7 +71,7 @@
 #' \item{d}{Numeric vector of the effect size (Cohen's d) for each estimate.}
 #' \item{se}{Numeric vector of the standard error for each corresponding bandwidth.}
 #' \item{z}{Numeric vector of the z statistic for each corresponding bandwidth.}
-#' \item{df}{Numeric vector of the degrees of freedom computed using Rubin (1987)
+#' \item{df}{Numeric vector of the degrees of freedom computed using Barnard and Rubin (1999)
 #'   adjustment for imputation.}
 #' \item{p}{Numeric vector of the p-value for each corresponding bandwidth.}
 #' \item{ci}{The matrix of the 95% confidence interval, \code{c("CI Lower Bound", "CI Upper Bound")} 
@@ -89,9 +89,9 @@
 #'   Optimal bandwidth choice for the regression discontinuity estimator. 
 #'   The Review of Economic Studies, 79(3), 933-959.
 #'   \url{https://academic.oup.com/restud/article/79/3/933/1533189}.
-#' @references Rubin, D. B. (1987).
-#'   Multiple imputation for nonresponse in surveys.
-#'   New York: Wiley.
+#' @references Barnard, J., Rubin, D. (1999).
+#'   Small-Sample Degrees of Freedom with Multiple Imputation.
+#'   Biometrika, 86(4), 948-55.
 #'
 #' @importFrom stats complete.cases pt qt
 #'
@@ -200,8 +200,22 @@ rd_impute <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   o$se <- sqrt(V)
   o$z <- unname(o$est/o$se)
   
+  n <- mean(table(impute))
+  # Fine to use one model since rank won't change between imputation sets
+  rank <- c(curr_mod[["model"]][[1]][["rank"]],
+            curr_mod[["model"]][[2]][["rank"]],
+            curr_mod[["model"]][[3]][["rank"]],
+            curr_mod[["model"]][[4]][["rank"]],
+            curr_mod[["model"]][[5]][["rank"]],
+            curr_mod[["model"]][[6]][["rank"]])
+  k <- rank
   r <- (1 + 1 / num_imp) * B / U
-  df <- (num_imp - 1) * (1 + 1 / r)^2
+  lambda <- ((1 + 1 / num_imp) * B) / (((1 + 1 / num_imp) * B) + U)
+  
+  df_old <- (num_imp - 1) * (1 + 1 / (r^2))
+  df_obs <- (((n - k) + 1) / ((n - k) + 3)) * (n - k) * (1 - lambda)
+  
+  df <- (df_old * df_obs) / (df_old + df_obs)
   o$df <- df
   
   o$p <- 2 * pt(abs(o$z), df = df, lower.tail = FALSE)
