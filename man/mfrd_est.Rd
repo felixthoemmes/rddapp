@@ -91,7 +91,7 @@ bootstrap samples are acquired. If \code{FALSE}, bootstraps which cause error ar
   Estimates with suffix "ate" correspond to average treatment effects across both frontiers, 
   under a given model.}
 \item{d}{Numeric matrix of the effect size (Cohen's d) for estimate.}
-\item{se}{Numeric matrix of the standard error for each corresponding bandwidth and ....}
+\item{se}{Numeric matrix of the standard error for each corresponding bandwidth, if applicable.}
 \item{m_s}{A list containing estimates for the complete model, under parametric
 and non-parametric (optimal, half, and double bandwidth) cases. A list of 
 coefficient estimates, residuals, effects, weights (in the non-parametric case),
