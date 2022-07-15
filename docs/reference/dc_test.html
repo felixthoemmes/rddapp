@@ -19,7 +19,7 @@ It is based on the DCdensity function in the "rdd" package.'><meta property="og:
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="../articles/rddapp.html">Get started</a>
 </li>
@@ -57,79 +57,110 @@ It is based on the <code>DCdensity</code> function in the "rdd" package.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dc_test</span><span class="op">(</span>
-  <span class="va">runvar</span>,
-  <span class="va">cutpoint</span>,
-  bin <span class="op">=</span> <span class="cn">NULL</span>,
-  bw <span class="op">=</span> <span class="cn">NULL</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-  plot <span class="op">=</span> <span class="cn">TRUE</span>,
-  ext.out <span class="op">=</span> <span class="cn">FALSE</span>,
-  htest <span class="op">=</span> <span class="cn">FALSE</span>,
-  level <span class="op">=</span> <span class="fl">0.95</span>,
-  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>,
-  timeout <span class="op">=</span> <span class="fl">30</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dc_test</span><span class="op">(</span></span>
+<span>  <span class="va">runvar</span>,</span>
+<span>  <span class="va">cutpoint</span>,</span>
+<span>  bin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  bw <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  ext.out <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  htest <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  timeout <span class="op">=</span> <span class="fl">30</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>runvar</dt>
 <dd><p>A numeric vector containing the running variable.</p></dd>
+
+
 <dt>cutpoint</dt>
 <dd><p>A numeric value containing the cutpoint at which assignment to the treatment is determined. The default is 0.</p></dd>
+
+
 <dt>bin</dt>
 <dd><p>A numeric value containing the binwidth. The default is <code>2*sd(runvar)*length(runvar)^(-.5)</code>.</p></dd>
+
+
 <dt>bw</dt>
 <dd><p>A numeric value containing bandwidth to use. If no bandwidth is supplied, the default uses bandwidth selection calculation 
 from McCrary (2008).</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>A logical value indicating whether to print diagnostic information to 
 the terminal. The default is <code>TRUE</code>.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>A logical value indicating whether to plot the histogram and density estimations 
 The default is <code>TRUE</code>. The user may wrap this function in additional graphical options 
 to modify the plot.</p></dd>
+
+
 <dt>ext.out</dt>
 <dd><p>A logical value indicating whether to return extended output. 
 The default is <code>FALSE</code>. When <code>FALSE</code> <code>dc_test</code> will return only the p-value of the test, but will print more information. 
 When <code>TRUE</code>, <code>dc_test</code> will return and print the additional information documented below.</p></dd>
+
+
 <dt>htest</dt>
 <dd><p>A logical value indicating whether to return an <code>"htest"</code> object 
 compatible with base R's hypothesis test output. The default is <code>FALSE</code>.</p></dd>
+
+
 <dt>level</dt>
 <dd><p>A numerical value between 0 and 1 specifying the confidence level for confidence intervals. The default is 0.95.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>A non-negative integer specifying the number of digits to display in all output.
 The default is <code>max(3, getOption("digits") - 3)</code>.</p></dd>
+
+
 <dt>timeout</dt>
 <dd><p>A non-negative numerical value specifying the maximum number of seconds that 
 expressions in the function are allowed to run. The default is 30. Specify <code>Inf</code> to run all expressions
 to completion.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If <code>ext.out</code> is <code>FALSE</code>, <code>dc_test</code> returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
+    
+
+<p>If <code>ext.out</code> is <code>FALSE</code>, <code>dc_test</code> returns a numeric value specifying the p-value of the McCrary (2008) sorting test. 
   Additional output is enabled when <code>ext.out</code> is <code>TRUE</code>. 
   In this case, <code>dc_test</code> returns a list with the following elements:</p>
 <dl><dt>theta</dt>
 <dd><p>The estimated log difference in heights of the density curve at the cutpoint.</p></dd>
+
 <dt>se</dt>
 <dd><p>The standard error of <code>theta</code>.</p></dd>
+
 <dt>z</dt>
 <dd><p>The z statistic of the test.</p></dd>
+
 <dt>p</dt>
 <dd><p>The p-value of the test. A p-value below the significance threshold indicates 
   that the user can reject the null hypothesis of no sorting.</p></dd>
+
 <dt>binsize</dt>
 <dd><p>The calculated size of bins for the test.</p></dd>
+
 <dt>bw</dt>
 <dd><p>The calculated bandwidth for the test.</p></dd>
+
 <dt>cutpoint</dt>
 <dd><p>The cutpoint used.</p></dd>
+
 <dt>data</dt>
 <dd><p>A dataframe for the binning of the histogram. Columns are <code>cellmp</code> 
   (the midpoints of each cell) and <code>cellval</code> (the normalized height of each cell).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -143,10 +174,10 @@ to completion.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># No discontinuity</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># No discontinuity</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binwidth:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.03597 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -163,11 +194,11 @@ to completion.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence interval used:  0.95 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2189345</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Discontinuity</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Discontinuity</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">dc_test</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Binwidth:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.04767 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -195,7 +226,7 @@ to completion.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

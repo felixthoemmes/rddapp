@@ -76,3 +76,7 @@
 # rddapp 1.3.2
 
 - Updated degrees of freedom calculations in `rd_impute` and `mrd_impute` to use Barnard and Rubin (1999) adjustment. 
+
+# rddapp 1.3.3
+
+- Adjusted the smoothing spline used in the `int_cubic` internal function to improve estimation stability. 
