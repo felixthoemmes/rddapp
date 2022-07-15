@@ -753,7 +753,7 @@ mfrd_est_single <- function(y, x1, x2, c1, c2,
 
 ## mimic Stata's integ
 int_cubic <- function(x, y, stop.on.error = TRUE){
-  fit_spline = stats::smooth.spline(x, y)
+  fit_spline = smooth.spline(x, y)
   integrate(splinefun(fit_spline$x, fit_spline$y,
                       method = "natural", ties = list("ordered", mean)),
             lower = min(x), upper = max(x), 
