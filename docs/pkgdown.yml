@@ -1,8 +1,8 @@
-pandoc: 2.14.0.3
-pkgdown: 2.0.5
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   distance-from-frontier: distance-from-frontier.html
   rddapp: rddapp.html
-last_built: 2022-08-22T15:20Z
+last_built: 2022-10-04T19:27Z
 
