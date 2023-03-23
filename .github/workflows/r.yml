@@ -11,25 +11,6 @@ name: R-CMD-check
 
 jobs:
 
-  my_job:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install XQuartz
-      run: |
-        if [ ! -d "/opt/X11" ]; then
-          echo "Installing XQuartz..."
-          curl -OL https://dl.bintray.com/xquartz/downloads/XQuartz-2.8.1.dmg
-          sudo hdiutil attach XQuartz-2.8.1.dmg
-          sudo installer -pkg /Volumes/XQuartz-2.8.1/XQuartz.pkg -target /
-          sudo hdiutil detach /Volumes/XQuartz-2.8.1
-          echo "XQuartz installed."
-        fi
-
-    - name: Install tcltk package
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y tcl-dev tk-dev
-        Rscript -e "install.packages('tcltk', dependencies = TRUE)"
 
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
