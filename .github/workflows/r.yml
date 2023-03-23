@@ -3,6 +3,7 @@
 # Additional comment.
 on:
   push:
+  workflow_dispatch: # Put here!!
 
 name: R-CMD-check
 
