@@ -35,7 +35,7 @@ jobs:
       - if: runner.os == 'macOS'
         run: brew install --cask xquartz
         
-      - if: runner.os == 'ubuntu'
+      - if: runner.os == 'Ubuntu'
         run: |
            sudo apt-get install xvfb
            export DISPLAY=:99
