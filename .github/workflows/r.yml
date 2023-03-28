@@ -36,9 +36,10 @@ jobs:
         run: brew install --cask xquartz
         
       - if: runner.os == 'Linux'
-        run: sudo apt-get install xvfb
-             export DISPLAY=:99
-             Xvfb $DISPLAY -ac &
+        run: |
+         sudo apt-get install xvfb
+         export DISPLAY=:99
+         Xvfb $DISPLAY -screen 0 1920x1080x24 > /dev/null 2>&1 &
              
       - uses: actions/checkout@v3
 
