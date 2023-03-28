@@ -35,7 +35,7 @@ jobs:
       - if: runner.os == 'macOS'
         run: brew install --cask xquartz
         
-      - if: runner.os == 'Ubuntu'
+      - if: runner.os == 'Linux'
         run: sudo apt-get install xvfb
   
       - uses: actions/checkout@v3
