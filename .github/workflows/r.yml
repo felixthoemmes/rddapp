@@ -37,7 +37,9 @@ jobs:
         
       - if: runner.os == 'Linux'
         run: sudo apt-get install xvfb
-  
+             export DISPLAY=:99
+             Xvfb $DISPLAY -ac &
+             
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
