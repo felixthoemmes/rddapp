@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo apt-get install xvfb
           export DISPLAY=:99
-        
+          Xvfb $DISPLAY -screen 0 1024x768x24 > /dev/null 2>&1 &
         
       - uses: actions/checkout@v3
 
