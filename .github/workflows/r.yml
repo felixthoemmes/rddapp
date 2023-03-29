@@ -36,10 +36,7 @@ jobs:
         run: brew install --cask xquartz
         
       - if: runner.os == 'Linux'
-        run: |
-         sudo apt-get install xvfb
-         export DISPLAY=:99
-         xvfb-run R --no-save
+        run: export DISPLAY=:99
              
       - uses: actions/checkout@v3
 
