@@ -41,7 +41,7 @@ plot.mfrd <- function(x, model = c("m_s", "m_h", "m_t"),
                       gran = 10, raw_data = TRUE, 
                       color_surface = FALSE, ...) {
   
-  if (class(x)!= "mfrd") 
+  if (!inherits(x, "mfrd")) 
     stop ("Not an object of class mfrd.")
   
   model <- match.arg(model)
