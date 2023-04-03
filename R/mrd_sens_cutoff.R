@@ -36,7 +36,7 @@
 #' mrd_sens_cutoff(mrd, expand.grid(A1 = seq(-.5, .5, length.out = 3), A2 = 10))
 
 mrd_sens_cutoff <- function(object, cutoffs) {
-  if (class(object) != "mrd") 
+  if (!inherits(object, "mrd"))
     stop("Not an object of class mrd.")
   if (is.null(object$call$cutpoint)) 
     object$call$cutpoint <- quote(c(0,0))
