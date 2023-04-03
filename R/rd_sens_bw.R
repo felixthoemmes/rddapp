@@ -27,7 +27,7 @@
 #' rd_sens_bw(rd, bws = seq(.1, 1, length.out = 5))
 
 rd_sens_bw <- function(object, bws) {
-  if (class(object) != "rd") 
+  if (!inherits(object, "rd"))
     stop("Not an object of class rd.")
   
   sim_results <- lapply(bws, 
