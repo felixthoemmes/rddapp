@@ -199,7 +199,7 @@ rd_power <- function(num.rep = 100, sample.size = 100, x.dist = "normal", x.para
       rd_est(y_out ~ x_var + t_var, cutpoint = x.cut, less = TRUE, t.design = x.design)
     })
     
-    if (class(rd_model) == "try-error") {
+    if (inherits(rd_model, "try-error")) {
       est_res[i, ] <- NA
       pval_res[i, ] <- NA
     } else {
