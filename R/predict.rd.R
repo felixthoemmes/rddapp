@@ -25,7 +25,7 @@
 #' predict(rd)
 
 predict.rd <- function(object, gran = 50, ...) {
-  if (class(object) != "rd") 
+  if (!inherits(x, "rd"))
     stop("Not an object of class rd.")
 
   if ("kernel" %in% names(object$call)) 
@@ -166,7 +166,7 @@ predict.rd <- function(object, gran = 50, ...) {
                   data = df, weights = w)
             })
 
-            if (class(m) == "try-error") {
+            if (inherits(m, "try-error")) {
               return(c(Yhat = NA, YSE = NA))
             } else {
               if (any(is.na(coef(m)))) 
@@ -231,7 +231,7 @@ predict.rd <- function(object, gran = 50, ...) {
 
 pred_var <- function(data_mat, vcov) {
   vars <- try(sqrt(rowSums(data_mat %*% vcov * data_mat)))
-  if (class(vars) == "try-error")
+  if (inherits(vars, "try-error"))
     vars <- NA
   return(vars)
 }
