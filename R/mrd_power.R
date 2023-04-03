@@ -270,7 +270,7 @@ mrd_power <- function(num.rep = 100, sample.size = 100, x1.dist = "normal", x1.p
       }
     )
     
-    if (class(mrd_model) == "try-error") {
+    if (inherits(mrd_model, "try-error")) {
       est_res[i, ] <- NA
       pval_res[i, ] <- NA
     } else {
