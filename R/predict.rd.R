@@ -25,7 +25,7 @@
 #' predict(rd)
 
 predict.rd <- function(object, gran = 50, ...) {
-  if (!inherits(x, "rd"))
+  if (!inherits(object, "rd"))
     stop("Not an object of class rd.")
 
   if ("kernel" %in% names(object$call)) 
