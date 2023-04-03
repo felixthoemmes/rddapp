@@ -28,7 +28,7 @@
 #' rd_sens_cutoff(rd, seq(-.5, .5, length.out = 10))
 
 rd_sens_cutoff <- function(object, cutoffs) {
-  if (class(object) != "rd") 
+ if (!inherits(object, "rd"))
     stop("Not an object of class rd.")
   
   sim_results <- lapply(cutoffs, 
