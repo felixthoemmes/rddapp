@@ -34,7 +34,7 @@
 #' mrd_sens_bw(mrd, approach = "univ1", bws = seq(0.1, 1, length.out = 3))
 
 mrd_sens_bw <- function(object, approach = c("center", "univ1", "univ2"), bws) {
-  if (class(object) != "mrd") 
+  if (!inherits(object, "mrd"))
     stop("Not an object of class mrd.")
   if (any(bws <= 0)) 
     stop("Bandwidth must be positive.")
