@@ -37,6 +37,7 @@ jobs:
         
       - if: runner.os == 'Linux'
         run: |
+          sudo apt-get install xvfb xauth xfonts-base tcl8.6-dev tk8.6-dev
           export DISPLAY=:99.0
           Xvfb $DISPLAY -screen 0 1024x768x24 > /dev/null 2>&1 &
           
@@ -54,8 +55,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          DISPLAY: 99.0
-
 
       - uses: r-lib/actions/check-r-package@v2
         with:
