@@ -49,7 +49,7 @@ plot.rd <- function(x, preds = NULL,
   bin_size = c("shade", "size"), quant_bin = TRUE, xlim = NULL, ylim = NULL, 
   include_rugs = FALSE, ...) {
   
-  if (class(x) != "rd") 
+  if (!inherits(x, "rd"))
     stop("Not an object of class rd.")
   
   if (is.factor(x$frame[, x$cov]) == TRUE)
