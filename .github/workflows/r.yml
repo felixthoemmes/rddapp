@@ -38,6 +38,7 @@ jobs:
       - if: runner.os == 'Linux'
         run: |
           export DISPLAY=:99.0
+          DISPLAY: 99.0
           Xvfb $DISPLAY -screen 0 1024x768x24 > /dev/null 2>&1 &
           
       - uses: actions/checkout@v3
