@@ -104,6 +104,7 @@
 #'   \doi{10.1016/j.jeconom.2007.05.003}.
 #'
 #' @importFrom stats bw.nrd0 integrate splinefun predict.lm
+#' @importFrom stats smooth.spline
 #'
 #' @include treat_assign.R
 #' @include wt_kern_bivariate.R
