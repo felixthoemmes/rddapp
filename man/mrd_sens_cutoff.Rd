@@ -28,10 +28,10 @@ All other aspects of the model, such as the automatically calculated bandwidth, 
 }
 \examples{
 set.seed(12345)
-x1 <- runif(10000, -1, 1)
-x2 <- rnorm(10000, 10, 2)
-cov <- rnorm(10000)
-y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(10000)
+x1 <- runif(5000, -1, 1)
+x2 <- rnorm(5000, 10, 2)
+cov <- rnorm(5000)
+y <- 3 + 2 * x1 + 1 * x2 + 3 * cov + 10 * (x1 >= 0) + 5 * (x2 >= 10) + rnorm(5000)
 # front.bw arugment was supplied to speed up the example
 # users should choose appropriate values for front.bw
 mrd <- mrd_est(y ~ x1 + x2 | cov,
