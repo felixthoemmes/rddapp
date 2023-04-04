@@ -1,4 +1,4 @@
-## Test environments - GitHub Actions and Rhub
+## Test environments - GitHub Actions
 * Windows Server 2019 and Windows Server 2022 (GitHub Actions), R 4.1.2
 * Windows Server 2019 and Windows Server 2022 (GitHub Actions), R-devel r81713
 * ubuntu 20.04.3 (GitHub Actions), R 4.1.2
@@ -11,5 +11,4 @@
 * winbuilder (x86_64-w64-mingw32 (64-bit) Rdevel - 1 NOTE: URLs not found, however URLs are accessible
 
 ## R CMD check results
-There were no ERRORs, or WARNINGs. 
-There were 2 NOTES, but only for Rhub.
+There were no ERRORs, WARNINGs or NOTES.
