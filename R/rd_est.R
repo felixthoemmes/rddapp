@@ -223,7 +223,7 @@ rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   if (is.null(bw) || bw == "IK12") {
     bw <- try(bw_ik12(X = X, Y = Y, cutpoint = cutpoint, kernel = kernel, verbose = verbose), 
       silent = TRUE)
-    if (class(bw) == "try-error") {
+    if (inherits(bw, "try-error")) {
       bws <- c(NA, NA, NA, -1, -1, -1)
       warning("Fail to calculate the IK12 bandwidth, nonparametric models will be NA.")
     } else {
@@ -233,7 +233,7 @@ rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
   } else if (bw == "IK09") {
     bw <- try(bw_ik09(X = X, Y = Y, cutpoint = cutpoint, kernel = kernel, verbose = verbose), 
       silent = TRUE)
-    if (class(bw) == "try-error") {
+    if (inherits(bw, "try-error")) {
       bws <- c(NA, NA, NA, -1, -1, -1)
       warning("Fail to calculate the IK09 bandwidth, nonparametric models will be NA.")
     } else {
@@ -371,7 +371,7 @@ rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
           mod <- try(lm(form, weights = w, data = subset(data, w > 0)), silent = TRUE)
         }
         
-        if (class(mod) == "try-error") {
+        if (inherits(mod, "try-error")) {
           o$est[pos] <- NA
           o$se[pos] <- NA
           o$z[pos] <- NA
@@ -468,7 +468,7 @@ rd_est <- function(formula, data, subset = NULL, cutpoint = NULL, bw = NULL,
           mod <- try(ivreg(form, weights = w, data = subset(data, w > 0)), silent = TRUE)
         }
         
-        if (class(mod) == "try-error") {
+        if (inherits(mod, "try-error")) {
           o$est[pos] <- NA
           o$se[pos] <- NA
           o$z[pos] <- NA
