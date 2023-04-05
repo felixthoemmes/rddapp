@@ -21,4 +21,4 @@ bib <- bibentry(
 
 citHeader("To cite rddapp in publications use:")
 
-citEntry(bib)
+bibentry(bib)
