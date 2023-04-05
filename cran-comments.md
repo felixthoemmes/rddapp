@@ -8,3 +8,8 @@
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTES.
+
+##win_builder 
+
+Produces NOTE about DOIs being invalid
+We checked DOIs manually and they are valid
