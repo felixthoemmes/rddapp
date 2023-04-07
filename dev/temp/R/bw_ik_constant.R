@@ -162,3 +162,4 @@ if(kernel=="triangular"){
   w<-1/sqrt(2*pi)*exp(-1/2*dist^2)
 } else if (kernel=="cosine") {
   w<-pi/4*cos(pi/2 * dist)
+}
