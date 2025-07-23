@@ -73,7 +73,7 @@ if \code{front.bw} is \code{NA}. The default is 5.}
 
 \item{se.type}{This specifies the robust standard error calculation method to use,
 from the "sandwich" package. Options are,
-as in \code{\link{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
+as in \code{\link[sandwich]{vcovHC}}, \code{"HC3"}, \code{"const"}, \code{"HC"}, \code{"HC0"}, 
 \code{"HC1"}, \code{"HC2"}, \code{"HC4"}, \code{"HC4m"}, \code{"HC5"}.
 The default is \code{"HC1"}. This option is overridden by \code{cluster}.}
 

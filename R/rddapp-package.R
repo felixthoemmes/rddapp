@@ -26,12 +26,6 @@
 #' chosen bandwidth parameter for non-parametric models, and so-called placebo tests, that examine
 #' the treatment effect at other cut-points along the assignment variable. 
 #'
-#' @name rddapp-package
-#'
-#' @aliases rddapp
-#'
-#' @docType package
-#'
 #' @title Regression Discontinuity Design Application
 #'
 #' @author Ze Jin \email{zj58@cornell.edu}, 
@@ -40,5 +34,6 @@
 #'   Wenyu Zhang \email{wz258@cornell.edu},
 #'   Kimberly Hochstedler \email{kah343@cornell.edu},
 #'   Felix Thoemmes, \email{fjt36@cornell.edu}
-
-NULL 
+#'   
+#' @keywords internal
+"_PACKAGE"

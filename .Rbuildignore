@@ -13,3 +13,5 @@
 ^pkgdown$
 ^logo.png
 ^CRAN-SUBMISSION$
+^doc$
+^Meta$

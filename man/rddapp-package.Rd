@@ -2,8 +2,8 @@
 % Please edit documentation in R/rddapp-package.R
 \docType{package}
 \name{rddapp-package}
-\alias{rddapp-package}
 \alias{rddapp}
+\alias{rddapp-package}
 \title{Regression Discontinuity Design Application}
 \description{
 rddapp: A package for regression discontinuity designs (RDDs).
@@ -49,3 +49,4 @@ Ze Jin \email{zj58@cornell.edu},
   Kimberly Hochstedler \email{kah343@cornell.edu},
   Felix Thoemmes, \email{fjt36@cornell.edu}
 }
+\keyword{internal}
