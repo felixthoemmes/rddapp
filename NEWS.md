@@ -79,4 +79,6 @@
 
 # rddapp 1.3.3
 
-- Adjusted the smoothing spline used in the `int_cubic` internal function to improve estimation stability. 
+* Fixed Rd cross-references to external packages (`vcovHC` from `sandwich`)
+* Modernized package-level documentation to avoid deprecated `@docType`
+* Updated `RoxygenNote` to 7.3.2
