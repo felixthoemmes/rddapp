@@ -1,15 +1,13 @@
 ## Test environments - GitHub Actions
-* Windows Server 2022 (GitHub Actions), R 4.2.3
-* ubuntu 22.04.2 (GitHub Actions), R 4.1.3
-* ubuntu 22.04.2 (GitHub Actions), R-devel r84154
-* ubuntu 22.04.2 (GitHub Actions), R 4.2.3
-* macOS 12.6.3 (GitHub Actions), R 4.2.3
-* macOS 11.6.3 (GitHub Actions), R-devel r81713
+* Windows Server 2022 (GitHub Actions), R 4.5.1
+* ubuntu 24.04.2 (GitHub Actions), R 4.4.3
+* ubuntu 24.04.2 (GitHub Actions), R-devel r88411
+* ubuntu 24.04.2 (GitHub Actions), R 4.5.1
+* macOS 14.7.6 (GitHub Actions), R 4.5.1
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTES.
 
-##win_builder 
+## win_builder 
+There were no ERRORs, WARNINGs or NOTES.
 
-Produces NOTE about DOIs being invalid
-We checked DOIs manually and they are valid
